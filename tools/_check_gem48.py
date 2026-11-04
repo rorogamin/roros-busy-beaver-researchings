@@ -19,7 +19,8 @@ Run: python tools/_check_gem48.py
 import re
 import sys
 
-V_PATH = r'C:\Users\Rowan\Downloads\epsilon1_tm.v'
+import sys
+V_PATH = sys.argv[1] if len(sys.argv) > 1 else r'C:\Users\Rowan\Downloads\epsilon1_tm.v'
 
 # ---------------------------------------------------------------- parsing
 src = open(V_PATH, encoding='utf-8').read()
@@ -225,10 +226,23 @@ print('halts_on_base_worm (the lemma computes with the UNMODIFIED table; '
       'the S48 comment is a gloss):')
 ones, hd = worm_config(0, 1, [(0, 0), (1, 0)])
 m = Sim('S02', hd, ones).run(400)
-print(f'  halted at step {m.halted} (claim: 152), head {m.head}'
-      f' (claim: 4), tape {sorted(m.ones)} (claim [-1;0;1])')
-if m.halted != 152 or m.head != 4 or sorted(m.ones) != [-1, 0, 1]:
+# the halting claim is now parsed from the file's own lemma:
+#   exists 148%nat, 4, [-1; 0; 1].
+_mc = re.search(r'exists (\d+)%nat, (\-?\d+), \[([^\]]*)\]', src)
+if not _mc:
+    print('  could not parse the halting claim from the file')
     FAIL.append('halts_on_base_worm')
+else:
+    claim_step = int(_mc.group(1))
+    claim_head = int(_mc.group(2))
+    claim_tape = [int(x) for x in _mc.group(3).replace(';', ',').split(',') if x.strip()]
+    print(f'  file-claim: exists {claim_step}, head {claim_head}, tape {claim_tape}')
+    print(f'  halted at step {m.halted}, head {m.head}, tape {sorted(m.ones)}')
+    ok = (m.halted == claim_step and m.head == claim_head
+          and sorted(m.ones) == sorted(claim_tape))
+    print('  OK' if ok else '  MISMATCH')
+    if not ok:
+        FAIL.append('halts_on_base_worm')
 # for the record: the S48[0]->S35 variant of the comment, as a side note
 TABLE[('S48', 0)] = (0, 'R', 'S35')
 m2 = Sim('S02', hd, ones).run(400)

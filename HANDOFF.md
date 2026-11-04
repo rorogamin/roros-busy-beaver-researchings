@@ -1153,3 +1153,52 @@ unbuilt, no earned state count.  <50 remains a target, not a promise.
    battery.  NOTE: a working 48-state precedent now exists to cross-
    check framing decisions against (their worm layout is a THIRD
    world between odi's runs and super's entries).
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 12b: GEMINI'S REPAIRED 48-STATE FILE (epsilon1_tm(1).v
+  in Downloads) -- ARCHIVED, THREE MORE DEFECTS FOUND AND FIXED, the
+  file now COMPILES CLEAN (exit 0, all 13 Print Assumptions = "Closed
+  under the global context"; mantra Rocq 9.1.0, direct coqc.exe).
+-----------------------------------------------------------------------
+Machine UNCHANGED: trans table identical to round-12 v1; checker
+  (now claim-reading, not hardcoded) reproduces ALL milestones incl.
+  halts_on_base_worm at 148 (head 4, tape [-1;0;1]).
+What the repair ADDS (real length): step_tm_add / step_tm_halt_none /
+  step_tm_none_add / step_tm_split (runtime-composition lemmas),
+  cfg_worm_state, blank_halt_decomposes_at_1641 (any halting blank run
+  must pass through the step-1641 seed config), the worm_campaign_chain
+  INDUCTIVE + soundness theorem (a chain witnesses BOTH a concrete
+  step_tm execution AND the valuation bound), the 148-step base-worm
+  witness, and rewritten headline/bridge theorems.  152->148 fixed.
+THREE NEW DEFECTS in the repaired proof (all fixed in our v2_fix):
+  1) f_eps0_succ_ge_S: lia "Cannot find witness" -- goal seed term
+     iter_nat f_eps0 (S n) n is an opaque atom vs hypotheses; ONE
+     cbn [iter_nat]. before lia closes it.  (This was really the
+     round-12 line-390 failure; v1 never reached the headline lemma.)
+  2) worm_eval_lower_bound_mono: induction as-pattern [|[a [|b']] IHw]
+     binds the TAIL LIST to IHw, not the induction hypothesis -- latent
+     error surfaced only once (1) was fixed.  Rewrote with correct
+     induction [| [a b] w IHw] + explicit destruct b.
+  3) worm_eval_W_step_1641_ge_f_eps1_3: the shipped change ... with
+     (... (f_eps1 3)) form does NOT TERMINATE: conversion must compare
+     the numeral 3 with f_eps1 3, whose value is astronomically large
+     (isolated with minimum probes; rev-composition alone is fine).
+     Rebuilt structurally: new worm_eval_comp composition law
+     (E (w1++w2) n = E w2 (E w1 n)), two reflexivity shape lemmas for
+     the 1641 worm, growth chain (tower/seq/succ _ge_S) + lia.
+ENV NOTE: rocq c (wrapper) DEADLOCKS in this shell (idle zero-CPU
+  processes, no output); use C:\Rocq-Platform~9.1~2026.01in\coqc.exe
+  directly; compile "hangs" = check the running command before retry.
+HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
+  exceeds_f_eps1_3) and its corollary are CONDITIONAL -- they
+  quantify over a hurd_campaign_chain from the step-1641 seed; the
+  only provided witness is the 148-step base-worm calibration run,
+  which does NOT exceed f_eps1(3).  No chain witness for the seed,
+  and no proof the blank run halts (sim: no halt in 2 000 000 steps,
+  tape 1242 cells over head 418).  So the file now proves the
+  bridge SHAPE (chain => halting run > f_eps1(3)) and the halt
+  LOCALS (boot + campaign fragments + 148), but the transcendence
+  REMAINS UNWITNESSED for the 48-state seed.  Files: rocq/
+  gemini_epsilon1_tm_48s_v2.v (verbatim), _v2_fix.v (compiling),
+  _v2_fix_compile.log, tools/_check_gem48.py (v2-aware),
+  _check_gem48_v2fix.txt.
