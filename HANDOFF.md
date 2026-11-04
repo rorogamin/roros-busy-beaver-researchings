@@ -967,3 +967,27 @@ B. GATE 3 DEPTH: tiers were verified 1..3; the frozen-model walk is
    halting counts model-exact.  State counts of record unchanged:
    71 / 72 / 76 (sn=1/2/3); the <=67 lever is still the parked
    tape-layout change (HANDOFF round 5 tail), nothing re-opened.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 9: THE RETURN-WALKER MERGE ATTEMPT (the parked
+  >=67-to-71 lever, run and blocked by the fork wall): reverted green.
+-----------------------------------------------------------------------
+The round-5 parked lever (a layout rewrite to push sn=1 below 67) got
+its first concrete tranche: merging the three RIGHT-RETURN walkers
+焉 the route-A park-extension return, the fs-spend/absorb return, and
+the absorb rewrite return (the WR_A / WR_FS / WB_ABS trios).  Their
+front and cross rows are pair-identical rides ((1,R,self) and
+(0,R,cross#2)); the pair-tests differ only in the 0-arm lander exit
+(RAW / DECF / ABS_E).  FINDING: the fork problem re-appears at the
+cross state.  Each crosser (WR_A2 / WR_FS2 / WB_ABS2) has a 0-arm
+that disambiguates INTO the family-specific pair-test, so the trio
+cannot be shared without a token, and the free cells of the tape sit
+past the terminator, which the return walk never reaches (the walk
+stopped at the 00 test before them).  The partial edit broke the
+CONTEXT_MERGES bookkeeping (a stale pair) and the battery, so it was
+reverted in place; the machine is back green: 71 / 72 / 76 states
+(sn=1/2/3), the battery exits 0 ALL OK (tiers 1..7), and the honest
+census/landings are unchanged.  The parked layout lever is now
+concretely blocked by the fork wall, not merely "probably blocked".
+This freezes the 71 / 72 / 76 counts of record as a fixpoint under
+all three merge hunts (bisimulation, observed-context, row-pair).
