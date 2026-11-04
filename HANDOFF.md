@@ -1556,3 +1556,53 @@ REMAINING LEDGER (item 3 continues): (ii) the (w,d) row read at
   1641, campaigns 5/135/139/284/350, base-worm halt 148, 2M
   no-halt, all byte-for-byte.  Only then the honest state count
   vs 48.  No claims made; odi/chain untouched; battery green.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 20: GEM48X CYCLE-COMPOSITION ANALYSIS (design fork; NO green check this round).
+-----------------------------------------------------------------------
+Attempt this session: stitch the two verified halves (round 18's
+strip rebuild + round 19's head-pair fetch) into one cycle table
+with the (w,d) row read and the sim exec, tools/_gem48x_cycle.py.
+Two sound results derived from the verified pieces, and one blocker:
+
+  (1) COMPOSABILITY (sound, and the key fact of the round): the
+      sim-exec (write w at the head pair's data cell + the +-1
+      trail repair per d) touches ONLY the data region and the
+      trips touch ONLY the strip region -- DISJOINT -- so the
+      write-then-move order of the simulated machine is preserved
+      with the exec taken BEFORE the rebuild.  This removes the
+      round-20 design hole (after the rebuild the CUR has moved,
+      and no cell distinguishes strip q_old from the middle band
+      [q_old, q_new], so a post-trip row read is impossible).
+  (2) THE ARM TRICK (sound): the row's (w,d) can be read on the
+      ENTRY crossing because the walker learns "inside strip
+      q_old" from the CUR before it reaches q_old's H cells (in
+      the round-18 layout the state cell is LEFTMOST), and the
+      b is already known from the fetch.  So: AGR_b hop-cross
+      HOME->CUR, armed pass reads the b-selected H class (8
+      classes: 4 non-halt (w,d) + 4 halt-flagged), arm fires into
+      exec-carry phases.
+  (3) THE BLOCKER (phase-count gate): with the honest carry discipline
+      the composed table lands at ~60-70 phases (8 exec-carry +
+      8 writer + 4 fix + 5 fetch-front + halts + the round-18 trip
+      set), BLOWING the round-15 gate of <48 compound states.
+      The transcendence record REQUIRES the compiled machine to
+      have FEWER states than gem48's 48: a 60-phase compile is
+      worthless as a record and must not be transcribed.
+NEXT SESSION'S PIVOTS (in order of promise):
+  a. KILL THE (b,w,d) RIDE: park the row's (w,d) in cells and
+     re-read them at the exec instead of carrying phases.  The
+     data region has no free cell; the strip section does: e.g.
+     the currently-unmarked foot cells of the middle band, or a
+     dedicated park strip.  The ride then carries only d (2
+     phases) through the short tail, not 8 through everything.
+  b. MERGE the halt walk into the exec family (the halt exec =
+     the same write+repair mechanics with a terminal home).
+  c. MERGE ARM into AGR (the CUR can arm and the H-read can fire
+     in one pass if the ARM rows are per-H distinct).
+Also this session (housekeeping): tools/_gem48x_tracer.py was
+created as an instrumented single-case tracer scaffold; the cycle
+battery file remains UNWIRED (its harness raises a skeleton error
+-- it must NOT be trusted as a result).  No claims made; odi/chain
+untouched; the eps1 battery green throughout; record state
+unchanged (gem48 informal, handoff round 19 the last green).
