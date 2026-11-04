@@ -1812,3 +1812,62 @@ unwitnessed.  For OUR records: gem48x compile work this round = none;
 R21 transcription deferred; our standing bar (byte-exact differential +
 Rocq) still not met by this file for ANY halo claim.  Audit artifacts
 left UNTRACKED in _gemini_audit/ (work.v + logs + probes).
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 24: Gemini's REPAIRED file transfinite_fgh_tms(1).v
+(_gemini_audit/v2.v, 1437 lines) audited; fix-walk completed on our copy
+work2.v -> FULL COMPILE, ZERO AXIOMS after 6 mechanical patches.
+-----------------------------------------------------------------------
+WHAT GEMINI ACTUALLY FIXED (the audit: v2 vs round-23 original):
+  1. Header family claims DOWNGRADED from 'Transcends f_alpha(n)' to
+     honest checkpoint statements ('reaches spine at step N').
+  2. NEW exact reducer step_worm_2d + fifo_step + strip_zeros_rev, and
+     every section-3/4 campaign lemma now STATED TWICE: once as the real
+     machine sim, once as the reducer's worm step at the same boundary.
+     The reducer was checked against the machine at ~15 real campaign
+     boundaries (halt 488->623->636, zeta0 1398->3755, eta0
+     1731->3384->6127, T54 539/1135/2460, T58 split-cascade 521/1944).
+  3. Opaque fgh_tower veblen_next f_veblen worm_eval_2d placed AFTER
+     section 6 -> kills the round-23 conversion-OOM class at the root
+     (rev_W_* identities are now cheap reflexivity list lemmas).
+  4. Section 7 rebuilt on the HONEST lemma worm_eval_2d_head_ge:
+     f_veblen b a n <= worm_eval_2d ((a,b)::rest) n (via cons + mono).
+     The 7.x bounds now work because at each recorded seed the worm's
+     REVERSED-reading head pair IS the target diagonal: e.g. step 1398
+     carries (3,2) head at n=3 = exactly f_{phi(2,3)}(3) = f_zeta0 3.
+     No claimed conversion any more, only real monotonicity.
+  5. Section 8 chain machinery rebuilt: worm_campaign_chain_with sound
+     (genuine induction proof), and the FIRST INHABITED WITNESS:
+     T48_halt_wcc_witness -> T48_halt_end_to_end_from_blank is now an
+     UNCONDITIONAL end-to-end theorem (blank -> Halt in 488+148 = 636
+     with computed worm bounds 4 <= 135, 5 <= 13; eval_2d_* lemmas).
+     All 16 Print Assumptions print 'Closed under the global context'.
+
+REMAINING NON-HALTING CAVEAT (unchanged in kind, narrower now):
+  The three transfinite blank_halting_run_exceeds theorems (zeta0, eta0,
+  T54/phi5) are STILL conditional shells: chain witness -> conclusion.
+  That is now the honest form: those machines never halt, so a witness
+  cannot exist; the shells say a halting W-run would exceed f_alpha(n).
+
+PATCHES WE APPLIED to _gemini_audit/work2.v (all shallow, logW2A..F):
+  a. veblen_next_ge_S: simpl over-unfolded iter_nat in the a=0 branch ->
+     replaced with explicit change-to-iter_nat-shape; apply closed.
+  b. f_veblen_step_b: simpl again; replaced with change + explicit
+     function arg on iter_nat_ge_once (wrong-branch class ii).
+  c. f_Gamma0_seq_ge_S base: goaled at veblen_next fgh_tower n n;
+     fixed with explicit args apply (f_veblen_ge_S 1 n n).
+  d. T48_eta0_runtime_gt_f_eta0_3: literal 6127 > 4096 parses as
+     of_num_uint -> lia sees an opaque atom and correctly refuses
+     'f < X + W from f <= W' without 0 < X; added vm_compute-proved
+     Hpos : 0 < 6127.  (3755 passed because it is still S-chain.)
+  e-f. The two-step verified_macro witnesses (eta0, T54, T58): their
+     injected 'simpl' reduced 2743 + 0 to 2743 BEFORE the second
+     eapply VMR_Step, so the unifier could not split the numeral into
+     ?dc + ?k_rest; deleted the three simpls, +0 shape preserved.
+
+VERDICT: v2 is a genuine repair, not a rebrand: the machine layer is
+still byte-identical to our gem48 table (0 row diffs), the reducer is
+dual-verified against the machine at every recorded boundary, the FGH
+section needed only the same 4 shallow tactic classes as round 23, and
+the halt machine now has a real zero-axiom end-to-end chain proof.  The
+omega-compressed f_* naming caveat from round 23 is unchanged.
