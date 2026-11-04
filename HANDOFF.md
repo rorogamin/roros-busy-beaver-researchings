@@ -1077,3 +1077,18 @@ tables; round 10 argues it for the redesign).  The U2 draft is kept in
 tools/eps1_u2.py as the halted design record, not a bearing build.
 The honest counts stay 71 / 72 / 76; no battery state changed and no
 run regressed.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 11: HOLDOUT FILE SAVED; PLAN-STATE RE-SURFACED.
+-----------------------------------------------------------------------
+The user provided 37 BB(2,5) "Rocq holdout" machines; saved verbatim as
+bb2x5_holdouts37.txt.  No mechanism currently connects them to the
+eps1 build; recorded as data of the separate Rocq/BB(5)-domain program.
+
+Re-surfaced the plan documents for the under-50 question: EPS1_SUPER.md
+(the <=40 tape-as-term design, model-level green in tools/eps1_super.py,
+NO 2-symbol table exists), EPS1_35_STATES.md (33+28 build sits below
+eps_1), EPS1_WALKWALL.md (the fusion-wall case analysis).  Verdict
+stands: odi 71 is the fork-wall fixpoint of this encoding; the only
+recorded route to <=50 is the SUPER local-rewrite construction item,
+unbuilt, no earned state count.  <50 remains a target, not a promise.
