@@ -1,0 +1,8 @@
+model init: 1 ['e0+1 + w^(0)']
+CYCLE 1 done at step 26: tape '01010011100000'
+  model prev: (1, ['e0+1 + w^(0)'])  [[fs]]  -> want: (0, ['e0+1', '3'])
+CYCLE 2 done at step 54: tape '01010011000000'
+  model prev: (0, ['e0+1', '3'])  [[pred]]  -> want: (0, ['e0+1', '2'])
+CYCLE 3 done at step 86: tape '00010000000000'
+  model prev: (0, ['e0+1', '2'])  [[pred]]  -> want: (1, ['e0+1'])
+HALT step 98: last None@3 cell=1

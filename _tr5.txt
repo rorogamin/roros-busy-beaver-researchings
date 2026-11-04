@@ -1,0 +1,5 @@
+model init: 1 [e0+1 + w^(0)]
+landing 0 step 24: head=1 g=(0, [3], 10) | mp=1 mc=[e0+1 + w^(0)] [[kind=fs]] want=0 [e0+1, 3] OK
+landing 1 step 52: head=1 g=(0, [2], 10) | mp=0 mc=[e0+1, 3] [[kind=pred]] want=0 [e0+1, 2] OK
+landing 2 step 80: head=1 g=(1, [], 10) | mp=0 mc=[e0+1, 2] [[kind=pred]] want=1 [e0+1] OK
+HALT step 92 state-id None head 2

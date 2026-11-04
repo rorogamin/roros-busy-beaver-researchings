@@ -1,0 +1,12 @@
+=== build 1 t_n 1 sn 1 ===
+model init 1 [e0+1 + w^(0)]
+ landed 0 t22: g=(0, [2], 10) mp=1 mc=[e0+1 + w^(0)] kind=fs want=0 [e0+1, 2] OK
+ landed 1 t50: g=(1, [], 10) mp=0 mc=[e0+1, 2] kind=pred want=1 [e0+1] OK
+ landed 2 t80: g=(2, [], 11) mp=1 mc=[e0+1] kind=fs want=2 [w^(0)] OK
+ landed 3 t104: g=(1, [2], 10) mp=2 mc=[w^(0)] kind=fs want=1 [w^(0)*2] BAD
+  >=64 route dump:
+=== build 1 t_n 2 sn 1 ===
+model init 2 [e0+1 + w^(0)]
+ landed 0 t24: g=(1, [2], 10) mp=2 mc=[e0+1 + w^(0)] kind=fs want=1 [e0+1, 2] OK
+ landed 1 t56: g=(0, [], 10) mp=1 mc=[e0+1, 2] kind=fs want=0 [e0+1, 1, 2] BAD
+  >=64 route dump:
