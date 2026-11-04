@@ -1398,3 +1398,29 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
 5. NOT DONE YET: no gem48x table exists.  Next session starts the
    build: sim-level interpreter first (the loops in Python), then
    the 2..k-symbol table, then the differential battery.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 16: GEM48X BUILD STARTED; STAGE-1 HARNESS GREEN.
+-----------------------------------------------------------------------
+1. tools/_gem48x_proto.py stage 1 (run via py -3.14 < tools/):
+   ALL OK on the user's machine:
+     gem48 loaded: 48 states, 96 rows, halt rows at [(0,1), (31,0)]
+       (= the recorded 2-of-48 halt-targeting states, confirm).
+     blank run 2M: halted=False, steps=2000000, cells=1242, head=418
+       (byte-identical to the audit record).
+   This file = the loader + the direct-sim oracle (the differential
+   baseline for every transcription) + the FROZEN PHASE PLAN of
+   record for the compiled machine (11 phase families, 15 phase
+   classes before the b/d expansion, k = 14 symbols, geometry and
+   cycle committed in the file docstring).
+2. STAGE 2 (next session): transcribe the machine body.
+     the table T[phase][symbol] -> (w, siln, nxt) over the 14-symbol
+     geometry, then the differential battery: boots 18/20/352/702/
+     1641, campaigns 5/135/139/284/350, the base-worm halt 148,
+     and 2M no-halt byte-for-byte vs the stage-1 oracle.
+     The interpreter boot (the layout writer as machine phases)
+     and the strip-trail footprint's +-1 discipline are the two
+     ledger items to nail first; the pencil-copy loop needs NO
+     count in the compound state (the source run is the count).
+3. Status: compile path OPEN and carrying a verified baseline; no
+   claims made or recorded; odi/chain untouched; batteries safe.
