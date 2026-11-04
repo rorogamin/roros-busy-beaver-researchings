@@ -1606,3 +1606,62 @@ battery file remains UNWIRED (its harness raises a skeleton error
 -- it must NOT be trusted as a result).  No claims made; odi/chain
 untouched; the eps1 battery green throughout; record state
 unchanged (gem48 informal, handoff round 19 the last green).
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 21: THE RIDE-KILLER SPEC (park-on-the-old-state-cell); NO table written, NO green check.
+-----------------------------------------------------------------------
+The round-20 fork (a) is RESOLVED ON PAPER this round, using only the
+verified round-18 layout ([st][foot][H0][run0][H1][run1], st leftmost,
+exactly one CUR on tape) and the round-19 fetch.  The result kills the
+60-70-phase blow-up.  The mechanism, strictly:
+
+  THE PARK.  The armed entry pass (AGR_b: hop-cross HOME towards the
+  unique CUR; ARM_b inside q_old reads the b-selected H class = the
+  row's (w,d)) does NOT ride (b,w,d) to the head pair.  Instead the
+  ARM turns around, hops left back over the strip-local cells (at
+  most one run + one H class), and REWRITES q_old's st cell: the CUR
+  marker is replaced by one of FOUR NEW STATE-CELL CODES, STZ{w,d}
+  (the old locator merged with the parked row bits; k grows by 4).
+  The b is spent at the arm; nothing else is carried anywhere.
+
+  WHY THE TRIPS STILL WORK.  Every down-tape consumer of "stop/ hop
+  at the CUR" gains one row per STZ code in addition: the trip's
+  entry crossing stops at STZ (the unique non-MID state cell until
+  the new CUR appears); the RET/MRET/CGO crossings hop it.  The foot
+  code and all run cells stay untouched, so the frontier discipline
+  (round 18, verified) is untouched.
+
+  WHY THE PARK SURVIVES THE TRIPS.  The DONE erase pass must no
+  longer write MID over the old locator: it SKIPS the st cell (the
+  locator hops left past it).  After FR2_b writes the new CUR on
+  q_new's st, the tape holds exactly one STZ (q_old's st) and one
+  CUR (q_new's st) -- two distinct codes, NO ambiguity anywhere.
+
+  THE EXEC, LAST IN THE CYCLE.  From the FR2 site the walker walks
+  LEFT (hop MID/SM-feet/runs of the band q_new-1.. ) until it lands
+  on the unique STZ code; reading the STZ class = the row's (w,d)
+  recovered with ZERO phases ridden.  It then walks right to the
+  head pair (one crossing; the only ride left is d, hidden in the
+  split EXT writer rows), writes the sim bit w, applies the +-1
+  trail repair per d (round-17 convention), walks left home, and
+  the cycle park = BEG.
+
+  HONEST PHASE BUDGET (counted sketch, NOT verified): fetch front
+  5 (BEG,H1,DBIT,CLB0/1) + entry/arm 4 (AGR/ARM x2) + park 4
+  (PBK{w,d}) + trips (round 18's verified set, ~21 with the b-copied
+  DONE/FRS/FR2) + post-exec 4 (left-find 1 + split writers 2 + 1
+  shared home) + terminal 1 ~ 39 -- UNDER the 48 gate with margin,
+  at the cost of k going from 17 to ~23 (4 STZ codes; the root
+  symbol/phase trade recorded, no claims).
+
+  HALT WALK (built like round 20 pivot b): the halt-flagged H
+  classes enter a halt exec family sharing the write/repair rows
+  with a terminal home; unchanged from the round-20 note.
+
+NEXT SESSION: transcribe THIS spec into tools/_gem48x_cycle.py
+(replacing the round-20 stub + the abgandoned in-flight half-forms),
+wire the river oracle (build_layout/expect per strip = the runs
+intact), and run the full 18432-case differential battery; then the
+k folds (the 4 STZ codes vs MID/CUR = the first merge candidates).
+Still no verified cycle; the last green remains round 19; odi/chain
+untouched; battery green throughout.
