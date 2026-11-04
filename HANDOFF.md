@@ -1738,3 +1738,77 @@ Status: gem48 informal (T not red), the round-21 spec stands
 unverified, no compile claim.  The eps1 battery stays green; odi/
 chain untouched.  Nothing in this round is a green check: it is
 precedent lookup + convention locking + a bad-citation correction.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 23: GEM48X TRANSCRIPTION SESSION REDIRECTED: audit of
+Gemini's transfinite_fgh_tms.v (user dropped it in Downloads).  NO gem48x
+table written this session; the audit is the round's product.
+-----------------------------------------------------------------------
+WHAT THE FILE IS (1048 lines, _gemini_audit/ holds our copy + the compile
+logs + our patched work.v): a Rocq formalization wrapping OUR gem48
+family (states S01..S48, morphett 0..47) at SIX bootstrap selectors
+tau_halt/eps0/eps1/zeta0_seed/zeta0/eta0_phi5, plus new T54 (S49..S54,
+"level climbing") and T58 (S55..S58, in-place (0,4)->(0,0)+(0,0) split),
+plus an in-file FGH: fgh_tower/veblen_next/f_veblen (2-arg Veblen
+diagonals), f_Gamma0/f_Ackermann_ord/f_SVO/f_LVO/f_BHO/f_TFBO towers,
+growth lemmas, transfinite_hierarchy_chain, worm_eval_2d, and three
+"blank_halting_run_exceeds ..." bridge theorems.
+
+VERIFIED-GROUND-TRUTH PARTS (independent of Rocq):
+  * ALL 96 trans_T48 rows byte-match our repo gem48_morphett.txt
+    (checked cell-by-cell: halt rows S01,B1 and S32,B0 and the exploited
+    S30,B0 -> S48 row included).  The "95 transitions identical, only
+    tau = delta(S48,B0) varies" claim is structurally true by the match
+    definition.  No fabrication in the machine layer.
+  * Its boot/campaign checkpoints (352, 702, 1641; 284, 350, 424, 506,
+    596, 694; halt 488/623/636; eps1 621/1480; T54 539/1135/2460; T58
+    521/1944) line up with OUR recorded eps1 battery numbers where they
+    overlap -> Gemini built this from OUR repo's lineage
+    (morphett header even cites rocq/gemini_epsilon1_tm_48s_v2_fix.v).
+
+WHAT COMPILES UNDER OUR OWN Rocq 9.1 (the version its header names):
+  * sections 1-4 (machine, boot with vm_compute, campaigns, T54/T58)
+    compile CLEAN untouched (probeB.v).  These are REAL machine
+    simulations, the honest core.
+  * sections 5-6 compile only AFTER ~12 mechanical tactic repairs to
+    OUR COPY (_gemini_audit/work.v): first failure at iter_nat_ge_once
+    (lia "Cannot find witness"), then f_veblen_step_a/b precondition
+    lias (fixed via Nat.lt_le_incl+eassumption), f_Gamma0_seq base case
+    (simpl peels f_veblen 1 to veblen_next fgh_tower; fixed), the
+    hierarchy chain's aux asserts (fixed le_trans chains), and the
+    chain's closing lia (fixed repeat split + Nat.le_refl via the
+    pose-proof pieces + H_ack..H_tfbo unfolds).  So the header claim
+    "Compiles in Rocq 9.1.0 with zero Axioms" is FALSE as committed.
+
+WHAT STILL DOES NOT COMPILE / IS NOT PROVED (sections 7-8):
+  * The 7.x worm-eval lower-bar lemmas use CHANGE between `worm_eval_2d
+    (rev W) 3` and `worm_eval_2d [...] (f_zeta0 3)`-style targets whose
+    CONVERSION would need Rocq to actually compute the enormous
+    f_veblen values -> conversion invalid; this is also the source of
+    the compile-side "Fatal error: out of memory" on the tail.  These
+    lemmas are NOT bad math necessarily, but their committed proofs
+    never worked.
+  * The three headline "blank_halting_run_exceeds_f_..." theorems are
+    CONDITIONAL shells: `forall k, worm_campaign_chain_with ... -> ...`
+    with NO chain witness constructed anywhere in the file.  Per the
+    soundness induction they only state: IF the machine spends
+    >= worm_eval steps per campaign node AND halts, THEN the FGH bound
+    holds.  The actual machine-behaviour claim (that it spends those
+    steps, or that it halts at all from blank) is NOT established.
+  * NAMING COMPRESSION (recorded): the f_* defs diagonalize the level
+    index with the argument: f_eps1 n = f_{phi(1,n)}(n) = f_{eps_n}(n)
+    which (by standard fundamental sequences) equals f_{eps_omega}(n);
+    f_zeta0/eta0 likewise sit one omega higher than their names.
+    f_phi_omega n = f_veblen n n n IS the standard phi(omega,0)
+    diagonal.  f_SVO/f_LVO/f_BHO/f_TFBO are in-file towers whose
+    equality with the literature psii formulations is comment-level,
+    never related to a standard presentation.
+
+VERDICT: a dressed-up partial restatement of our own gem48 family plus a
+skeleton of the machine->FGH bridge program, with the honest machine
+layer (boots/campaigns) really verified, the FGH section repaired-into-
+verifying by us, and the headline transcendence claims resting
+unwitnessed.  For OUR records: gem48x compile work this round = none;
+R21 transcription deferred; our standing bar (byte-exact differential +
+Rocq) still not met by this file for ANY halo claim.  Audit artifacts
+left UNTRACKED in _gemini_audit/ (work.v + logs + probes).
