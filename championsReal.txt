@@ -976,3 +976,149 @@ blank is the Z row; the superseded BB(6,6) row halts at 32, re-checked
 BB(7,6)/BB(8,6) rows halts within 100 000 steps (score 374 for the
 f_{w^2}(63) row, 324 for the first BB(8,6) and 336 for the second (BBi(43)), measured 2026-11-04; 379, 374
 and 398 for the earlier rows) -- for those rows the blank-tape phase is load bearing.
+
+-----------------------------------------------------------------------
+2026-11-04  ADD: loader3229's next BB(n,m) level-claim batch (bbchallenge
+  Discord Oct 29 - Nov 3, transcribed verbatim, ADD not supersede).
+  All levels are the claimant's own words only; "predicted, not formal"
+  unless the line says otherwise; two rows carry his "you can prove this
+  in Coq now" note (the f_(w*2)(32) row and BBi(36)).  nickdrozd confirmed
+  the first row Oct 29 ("#2 for BBi(8)").  Claims restated with w = omega
+  in the file's normal braces-less style; the 2{15}5 and 2{11}6 terms are
+  the claimant's arrow-notation (as in BB(7)'s 3{20}3 above).
+
+  1. BB(8,4):  1LH3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG1RZ------_1LG2RD1LG3RG_0LB---0LH2RB
+     > f_(w+2)(83).  CONFIRMED by nickdrozd 10/29; "#2 for BBi(8)".
+  2. BB(8,4):  1RC3LB2RD2RA_1RF3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ3RB_1LG2RD1LG3RG_0LH0LC0LH3RD
+     > f_(w+2)(f_w(f_w(f_w(f_w(12))))).  predicted, not formal.
+  3. BB(9,4):  0RB3LB2RD2RA_0LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH3LC0LH3RD_1LA------1RA
+     > f_(w+2)(f_(w+2)(f_w(f_w(f_w(f_w(12)))))).  predicted, not formal.
+  4. BB(9,4):  0LB3LB2RD2RA_2LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2RI3RF2RB1LI
+     > f_(w+3)(10).  predicted, not formal.
+  5. BB(9,4):  2LI3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2LB---1LI3RF
+     > f_(w+3)(16).  predicted, not formal.
+  6. BB(4,6):  1RB3LB5LD2RA4LB5LB_2LC3RB1LC2RA3LC1RZ_3RB1LB3LC2RC4LC5LC_
+     3RC---4LD4LD------
+     > f_(w+1)(2{15}5).  predicted, not formal.
+  7. BB(5,5)  [BBi(20) champion per claimant]:
+     1LB3LB4LC2RA4LB_3LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ------4LD4LE_
+     3RB------4LE3LC
+     > f_(w+1)(f_w(f_w(f_w(f_w(6))))).  predicted, not formal.
+  8. BB(6,5)  [BBi(21) per claimant]:
+     4RF3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_
+     3RB------4LE3LC_3RC------------
+     > f_(w+2)(4).  informal.
+  9. BB(6,5)  [BBi(22) per claimant]:
+     1RC3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_
+     3RB------4LE3LC_2LE3RC---------
+     > f_(w+2)(9).  informal.
+  10. BB(6,5): 0LB3LB4LC2RA4LB_1LF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      1RZ------4LD4LE_3RB------4LE3LC_4RF3RE---0RA3LC
+      > f_(w+2)(126).  predicted, not formal.
+  11. BB(6,5): 0LF3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      1RZ------4LD4LE_3RB------4LE3LC_2LE2RB1LF1RB1LA
+      > f_(w+2)(176).  predicted, not formal.
+  12. BB(6,5)  [BBi(26) champion per claimant]:
+      2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LA4LD4LE_
+      3RB---0RD4LE3LC_4LC------3LF3LF
+      > f_(w+3)(11).  predicted, not formal.
+  13. BB(7,5)  [BBi(27) per claimant]:
+      0LG3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---3LF---4LD4LE_
+      3RB------4LE3LC_4LC------3LF3LF_1RB---1LG1LF---
+      > f_(w+3)(17).  informal.
+  14. BB(7,5): 2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      ---3LF1LG4LD4LE_3RB---1LE4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+      > f_(w+3)(f_(w+3)(10)).  informal.
+  15. BB(8,5)  [BBi(28) per claimant]:
+      1RG3LB---2RA---_------1LD2RA---_3RB1LB3LC2RC---_3RE---3LC2RC---_
+      ---3RE---4LH---_4RA3LG---2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+      > f_(w*2)(17).  informal.
+  16. BB(8,5): 0LB3LB1RZ2RA4RB_0LD1RB1LD2RA1LE_3RB1LB3LC2RC3LF_
+      3RE2LF3LC2RC4LF_0LF3RE0LG4LH2LB_0LE3LG4LC2RF4LG_1LC3RG1LH2RF2RA_
+      3RG1LG3LH2RH4LH
+      > f_(w*2)(32).  "Informal result. You can prove this in Coq now."
+  17. BB(8,5)  [BBi(36) per claimant]:
+      2RG3LB4LC2RA4LB_1RZ---1LD2RA4LD_3RB1LB3LC2RC4LC_3RE---3LC2RC3LC_
+      ---3RE4LE4LH4RB_4LE3LG3LB2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+      > f_(w*2+1)(93).  "Informal result. You can prove this in Coq now."
+  18. BB(11,4): 1RG3LB1RZ2RA_2LD---1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_
+      ---3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_---3RH1LI2RG_3RH1LH3LI2RI_
+      ------3LJ3RK_------2RA3RK
+      > f_(w*2)(21).  predicted, not formal.
+  19. BB(11,4)  [claimant: "potential... probably can reach"]:
+      1RG3LB1RZ2RA_0LG0LE1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_0LC3RE3LH2LF_
+      3RF2RF2LE1LF_2LC3LH2LJ2RG_3LG3RH1LI2RG_3RH1LH3LI2RI_0LH2LI3LJ3RK_
+      ------2RA3RK
+      > f_(w*2)(2{11}6).  potential only.
+  20. BB(11,4): 1RG3LB1RZ2RA_0LG---1LD2RA_3RB1LB3LC2RC_3RE0LA3LC2RC_
+      1RI3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_0RG3RH1LI2RG_3RH1LH3LI2RI_
+      ------3LJ3RK_------2RA3RK
+      > f_(w*2)(98).  proved in coq per claimant.
+  21. BB(3,7): 6LC3LB6RA2RA4LB5LC5LA_1RZ3RB1LC2RA3RB4LC5RA_
+      3RB1LB3LC2RC4LC1RA6LA
+      > f_(w+1)(117)  -- claimant: "beats Graham's number".  informal.
+  22. BB(4,7): 6LD3LB5LD2RA4LB3LC5LA_1RZ3RB1LC2RA3RD---2RA_
+      3RB1LB3LC2RC4LC3LC5LD_3RB---6LC4LD4LC4LD---
+      > f_(w+2)(124).  informal.
+
+What this repository checked (tools/bbmulti.py, driver _intake3229b.py,
+blank tape, 2 000 000 steps, 2026-11-04): every string parses at its
+stated size, none halts within the budget (their claimed run lengths
+are far past simulation, so no-halt is necessary not sufficient), and
+the per-machine numbers:
+  BB(8,4) 8x4, 29 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,419
+    milestones: 10@98, 100@11,966, 1,000@1,268,758; states visited 8/8; symbols written [0, 1, 2, 3]
+    BB(8,4) 8x4, 32 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,443
+    milestones: 10@109, 100@6,474, 1,000@1,179,546; states visited 8/8; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 33 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,444
+    milestones: 10@108, 100@6,113, 1,000@1,175,917; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 34 defined transitions, undefined=2: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,452
+    milestones: 10@100, 100@4,731, 1,000@1,147,399; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 33 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,458
+    milestones: 10@58, 100@3,719, 1,000@1,126,035; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(4,6) 4x6, 21 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,446
+    milestones: 10@54, 100@5,678, 1,000@1,168,698; states visited 3/4; symbols written [1, 2, 3]
+    BB(5,5) [BBi(20) champion] 5x5, 21 defined transitions, undefined=4: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,431
+    milestones: 10@58, 100@6,672, 1,000@1,223,424; states visited 5/5; symbols written [1, 2, 3, 4]
+    BB(6,5) [BBi(21)] 6x5, 21 defined transitions, undefined=9: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,431
+    milestones: 10@45, 100@6,659, 1,000@1,223,411; states visited 6/6; symbols written [1, 2, 3, 4]
+    BB(6,5) [BBi(22)] 6x5, 22 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,436
+    milestones: 10@37, 100@6,297, 1,000@1,204,849; states visited 6/6; symbols written [1, 2, 3, 4]
+    BB(6,5) 6x5, 25 defined transitions, undefined=5: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,538
+    milestones: 10@85, 100@10,723, 1,000@870,900; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(6,5) 6x5, 26 defined transitions, undefined=4: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,629
+    milestones: 10@45, 100@2,091, 1,000@643,552; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(6,5) [BBi(26) champion] 6x5, 27 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,441
+    milestones: 10@44, 100@6,171, 1,000@1,186,523; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(7,5) [BBi(27)] 7x5, 27 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,446
+    milestones: 10@55, 100@5,383, 1,000@1,168,403; states visited 7/7; symbols written [0, 1, 2, 3, 4]
+    BB(7,5) 7x5, 29 defined transitions, undefined=6: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,440
+    milestones: 10@44, 100@6,163, 1,000@1,190,155; states visited 6/7; symbols written [1, 2, 3, 4]
+    BB(8,5) [BBi(28)] 8x5, 28 defined transitions, undefined=12: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,509
+    milestones: 10@54, 100@5,827, 1,000@955,391; states visited 8/8; symbols written [1, 2, 3, 4]
+    BB(8,5) 8x5, 40 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,567
+    milestones: 10@87, 100@7,299, 1,000@790,237; states visited 8/8; symbols written [0, 1, 2, 3, 4]
+    BB(8,5) [BBi(36)] 8x5, 37 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,572
+    milestones: 10@113, 100@4,650, 1,000@777,228; states visited 8/8; symbols written [1, 2, 3, 4]
+    BB(11,4) 11x4, 36 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,470
+    milestones: 10@61, 100@3,316, 1,000@1,084,928; states visited 11/11; symbols written [1, 2, 3]
+    BB(11,4) [potential, "probably can reach"] 11x4, 41 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,438
+    milestones: 10@39, 100@6,407, 1,000@1,197,679; states visited 11/11; symbols written [0, 1, 2, 3]
+    BB(11,4) 11x4, 39 defined transitions, undefined=5: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,617
+    milestones: 10@69, 100@8,083, 1,000@675,212; states visited 11/11; symbols written [0, 1, 2, 3]
+    BB(3,7) 3x7, 21 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,585
+    milestones: 10@96, 100@10,995, 1,000@748,533; states visited 3/3; symbols written [1, 2, 3, 4, 5, 6]
+    BB(4,7) 4x7, 25 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,547
+    milestones: 10@94, 100@11,855, 1,000@844,559; states visited 4/4; symbols written [1, 2, 3, 4, 5, 6]
+Observations: every state visited except in the BB(7,5) iterated row
+(6/7); symbols 0..4 all written in the rows that carry a 0-write row,
+the rest write 1..4 and their 0-symbol is only ever read-left as blank
+tape.  Scores at 2M are 1 436-1 629, milestones all in the 10@37-113,
+100@2 091-11 855, 1000@643k-1 223k band -- the same linear-pass head
+regime as the batch above, so the levels stay the claimant's, per the
+standing rule.
