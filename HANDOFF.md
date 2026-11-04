@@ -1444,3 +1444,61 @@ Remaining ledger: (2) the strip-trail footprint rebuild (the pencil-
 copy: the source run length = next_q - 1, the halt rows carry their
 flags in the H-cell classes, the CUR transfer = flip-left then the
 first-SB-right), then (3) the full table + the differential battery.
+-----------------------------------------------------------------------
+2026-11-04  ROUND 18: GEM48X LEDGER ITEM 2 VERIFIED (the footprint rebuild machine).
+-----------------------------------------------------------------------
+DESIGN FIX REQUIRED AND IMPLEMENTED THIS ROUND (the strip-trail
+geometry amendment, superseding the round-16 single-marker sketch):
+  the STATE CELL IS SPLIT FROM THE FOOTPRINT CELL.  Strip =
+  [state MID/CUR][foot SB/SM][H0][run0][H1][run1].  The fused single
+  cell was unsound twice over: (1) its CUR marker sat on the very
+  cell the trips must mark whenever q_new > q_old; (2) its fused
+  pencil leg (mark right of the frontier, then press on right to the
+  locator) walks off the layout whenever a mark lands at or right of
+  the locator, since the leg cannot look both ways.
+  (w, d, halt) semantics stay in the H-cell classes (HWR/HWL/H1R/H1L
+  + HWRH/HWLH for the halt-flagged rows); the trip legs look both
+  ways only where the geometry is symmetric, and the frontier fills
+  1,2,3,... left to right on the foot cells (never the state cells).
+THE MACHINE (tools/_gem48x_rebuild.py), as an explicit
+  (phase, symbol) -> (write, dir, next) table with a generic runner:
+  one-time entry: CUR -> foot -> H0 -> sanitize sweep LEFT to HOME
+    erasing every SM (SM -> SB), keep-everything-else, turn right.
+  per-trip hub cycle, anchored at HOME, pencil-first no-extra-mark:
+    leg 1  HOME -> CUR: hop-everything right (state MID, SM, SB,
+           H classes, SRC, SP), re-enter WITHOUT the sweep (FENF,
+           RH0: the one-time entry and the per-trip entry are
+           DIFFERENT phase rows on the same cells).
+    leg 2  pencil ONE source unit: b=0: RUNA (hop SP, first SRC ->
+           SP then leg 3; terminator class -> clean); b=1: RUNX
+           (transit run_0) -> RUNB1 (pencil in run_1; MID/tape
+           marker-done cue steps LEFT off the layout edge).
+    leg 3  CUR -> HOME: hop-everything left (SPs preserved for the
+           left-consecutive pencil discipline).
+    leg 4  HOME -> first SB = the frontier strip k, mark SB -> SM,
+           walk left back to the hub; loop leg 1.
+  exhaustion says DONE inside the pencil (the clean+flip: SP -> SRC,
+  hop left, CUR -> MID at the old strip's state cell, at HOME turn
+  right, FRS finds the first SB = strip q_new's foot, its state cell
+  BECOMES CUR (FRS2), ENDX walks right to the data marker: ZONE).
+VERIFIED: 4608/4608 rebuild cases ALL OK -- every (q_old, b, q_new)
+  with q_old, q_new in 1..48 on synthetic filler runs, differential
+  vs the relaid layout oracle (position-identical relayout, all SRC
+  counts intact, nothing written outside).  Max steps on one case:
+  56186 (the hub roundtrips are O(position)-per-trip, O(T^2)-per-run
+  -- the honest slowdown level for the transcendence claim).
+  27 phases defined, all referenced; k = 17 symbols at rehearsal
+  level.  Deaths that a sweep-1 debug pass found and fixed: ENH row
+  collision (san sweep swallowing the pencil on re-entry), fused
+  leg direction, exhaustion cue +-1 at the q_old=48 data edge,
+  missing H/SRC hops in TRPM/MRET/FRS crossing strip internals.
+REMAINING LEDGER: (3) transcribe this protocol over the REAL gem48
+  rows (the phase plan frozen in _gem48x_proto.py: b from the bit
+  read, the run lengths = next_q - 1 of next-q source runs, the halt
+  rows branch at H-read into a separate cheap halt walk), the
+  interpreter boot (the layout writer as machine phases), then the
+  differential battery: boots 18/20/352/702/1641, campaigns
+  5/135/139/284/350, base-worm halt 148, 2M no-halt.  Only then the
+  honest state count vs 48 (27 phases at rehearsal level, some
+  mergeable; the fetch head-walk and the b-read still to be added).
+  odi/chain untouched; the battery stayed green throughout.
