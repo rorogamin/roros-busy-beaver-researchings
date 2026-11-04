@@ -1316,3 +1316,85 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
    the startup unroll cost stay open ledger items.
    eps1_odi.py / eps1_chain.py untouched all session; the batteries
    of record are safe.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 15: GEM48 COMPILE RE-TASKED BY THE USER; RESEARCH
+  ROUND DONE; THE ROUND-13/13B "FOLKLORE" ATTRIBUTION CORRECTED;
+  THE SHUTTLE-INTERPRETER ROUTE OPENED.
+-----------------------------------------------------------------------
+1. CONTEXT CORRECTION: this session's context had rolled back past
+   the gem48 arc (rounds 12/12b/13: gem48 = 48-state 2-symbol eps1-
+   level machine, audited, v2_fix compiles zero-axiom, morphett
+   file verified, posted, championsReal.txt INFORMAL entry).  The
+   user re-anchored: "we already got the epsilon 1 machine in 48
+   states, its called gem48".  The standing <=50 goal is occupied
+   by gem48 at the informal level.
+2. USER RE-TASK: "compile that machine into lower states higher
+   symbols" (gem48 -> fewer states, larger alphabet).  This turn
+   runs two researcher-web agents on the known state-reduction
+   constructions (bbchallenge wiki/zones: Michel ha/beh/adv,
+   sligocki, Cryptids, the BB(5) paper, the small-UTM survey).
+3. RESEARCH VERDICTS (committed with URLs in the chat log):
+   a) RETRACTION: the "(n,2) <= (ceil(n/2),4) folklore" recorded in
+      round 13 is NOT a documented result anywhere in the sources
+      read.  The only trivially proven bounds are the monotone
+      ones (n,m) <= (n+1,m), (n,m) <= (n,m+1), and the
+      instruction-count identity BBi(ab-1) >= BB(a,b)-1.  The
+      round-13 CONCLUSION (no safe mechanical reduction; identical-
+      row merges only; the scan found none) STANDS as a result
+      about THIS machine table; the folklore citation does NOT.
+   b) Shannon (1956, per the Wikipedia UTM article) established the
+      state-symbol exchange in BOTH directions: 2 states with n
+      symbols holding the same universality as m states with 2
+      symbols.  Mechanism (folklore of his construction, not
+      re-read): the simulated state is a BLOCK ON THE TAPE and the
+      tiny fixed control SHUTTLES between the state block and the
+      data (fetch-decode-execute).
+   c) Stérin-Woods, arXiv:2107.12475: a clean modern worked
+      compilation 5-state 4-symbol -> 15-state 2-symbol at
+      LINEAR time per simulated step (proof by configuration
+      induction).  This is the reverse axis (alphabet collapse,
+      pay states) but the proof pattern is the model for ours.
+   d) Neary-Woods survey arXiv:1110.2230: universality with fixed
+      small state counts INDEPENDENT of the simulated machine:
+      Rogozhin (2,18), Neary-Woods (15,2), Watanabe O(t^2) etc.,
+      all with program-on-tape, marks read-then-restored, costs
+      O(t^2) up to O(t^6).  The fetch-execute loop is exactly the
+      mechanism our fork-wall=W3 argument rules out for CHEAP
+      synchronous compilations -- and exactly the mechanism that
+      makes the SHUTTLE family work at higher steady cost.
+   e) Community twins (Michel): the 6-state 2-symbol Marxen-
+      Buntrock champion and a 3-state 3-symbol Ligocki machine
+      have identical Sigma = 95,524,079 with ~half the steps --
+      empirical evidence that fewer states + more symbols is a
+      REAL equivalence class, not folklore.
+4. THE FORK WALL STANDS WHERE IT STOOD: W1-W4 kill state-tag and
+   per-edge-register synchronous compilers; they do NOT kill the
+   shuttle/fetch-execute family (the case bit walks to its reader
+   instead of riding a port).  Round 13b's "only identical-row
+   merges safe" must be amended: safe = for synchronous low-
+   overhead compilations.  The honest surviving route to a gem48
+   compile with fewer states:
+     SHUTTLE-INTERPRETER SPEC (gem48x, target: states << 48):
+     - tape: [state block (unary q-blocks, one marked current)]
+       [head-position counter (unary, live)] [sim data cells];
+     - per simulated step: walk right consuming one counter mark
+       per data cell to the sim head; read b; walk back; read the
+       row (w,d,next-q) from the current state block (b-selected
+       half, mark-walk addressing); copy the next-q address marks
+       with the two-pointer per-mark loop (NO count in the state);
+       walk back out (dec/restore the counter by +/-1 = its own
+       amortized mark budget); write w; move the sim head.
+     - state budget = the phase set of the loops + small carried
+       bits (b, w, d) only: target 25-45 states, k = 5-6 symbols,
+       slowdown ~ O(position) per simulated step -> O(T^2) total;
+       the transcendence T > f_eps1(3) claim only gets STRONGER
+       under any monotone slowdown (conditional on the base claim,
+       which stays INFORMAL for gem48 and for gem48x alike).
+     - verification bar: byte-exact differential sim vs gem48 (the
+       boots 18/20/352/702/1641, campaigns 5/135/139/284/350, the
+       base-worm halt 148, 2M no-halt blank run), then the same
+       honest INFORMAL record status.
+5. NOT DONE YET: no gem48x table exists.  Next session starts the
+   build: sim-level interpreter first (the loops in Python), then
+   the 2..k-symbol table, then the differential battery.
