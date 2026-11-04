@@ -1502,3 +1502,57 @@ REMAINING LEDGER: (3) transcribe this protocol over the REAL gem48
   honest state count vs 48 (27 phases at rehearsal level, some
   mergeable; the fetch head-walk and the b-read still to be added).
   odi/chain untouched; the battery stayed green throughout.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 19: GEM48X LEDGER ITEM 3, PART i VERIFIED (the fetch path).
+-----------------------------------------------------------------------
+tools/_gem48x_newfetch.py: the head-fetch/repair machinery as an
+explicit (phase, symbol) -> (write, dir, next) table, 81000 cycle
+cases ALL OK.  Per the FROZEN PHASE PLAN of round 16:
+  THE FETCH: the head walk from HOME over the interleaved pairs
+  [trail][data] is purely commemorative; first TB = the head pair's
+  own trail cell; one step right = the head pair's data cell where
+  THE BIT READ HAPPENS = the runner-peek.  ONE cell only: no w/d/
+  halt*-part rows needed at the read (they stay read-only at HOME).
+  b = 1 = the ODD pair (H2R/H2L branch in the compiled table).
+  THE DOUBLED FRONT (verified necessary in debug: the DBIT read
+  cannot know the carried previous-move d, so the fetch front is
+  doubled by d: W0/B0/H1/DBIT in a d=0 and a d=1 flavour; only
+  after BOTH carries (the previous move's d, and the runner-peek b)
+  does the RP phase branch into the repair.
+  THE DEFERRED +-1 REPAIR (the round-17 trailcheck convention):
+    d=+1: write TM at the head pair's own trail cell (it was the
+          first TB = the right boundary);
+    d=-1: keep TB there; write TB at the PREVIOUS pair's trail cell
+          (the first left TM = the new boundary);
+    then keep-everything-left to HOME and park as the paired copy
+    PB[b][d] = the phase record of both carries.
+VERIFIED: 801 exhaustive single-cycle sweeps (every pos in 0..400 x
+  every legal carried d, full layout checks byte-for-byte: the park
+  encodes (b,d); the trail satisfies the convention at pos+d; the
+  data bits untouched) + 401 chains x 200 pseudo-random-d cycles.
+  The 0-edge (pos=0, d=-1 illegal) and the horizon edge (pos=400,
+  d=+1 illegal in this model) are SKIPs, mirroring the real
+  machine's local-width semantics.
+  20 phases, 56 rows, k = 4 data symbols + the trail pair + HOME =
+  7 rehearsal symbols (with HOME encoded in the runner itself, k=5).
+  Deaths this debug pass caught and fixed one by one (each fixed
+  then re-swept): missing HOME rows (W0/B0/L) -- three separate
+  deaths as the walk reached the same class of cell in three
+  distinct phases; the H1 walk forgetting the DATA cells (the
+  interleaved layout has a data cell between every trail pair); the
+  DBIT transition label swap (RP01/RP10: the b digit sits FIRST);
+  and the front doubling being required at all (a single DBIT phase
+  cannot carry d into RP[b][d] -- it is now doubled by d).
+REMAINING LEDGER (item 3 continues): (ii) the (w,d) row read at
+  HOME (two further bundled bits, w next to d, halt-flagged rows
+  branch into a different row class), (iii) the exec walk + the
+  constant-pointer trail repair interleaving inside one full cycle,
+  then the FULL TABLE TRANSCRIPTION of the strip-rebuild protocol
+  (round 18) + the fetch path over REAL gem48 rows: the runner
+  cycle = [fetch + b-read at the head pair][home][the two row bits
+  at HOME][the strip-rebuild copy][the exec walk] -- then the full
+  differential battery vs the stage-1 oracle: boots 18/20/352/702/
+  1641, campaigns 5/135/139/284/350, base-worm halt 148, 2M
+  no-halt, all byte-for-byte.  Only then the honest state count
+  vs 48.  No claims made; odi/chain untouched; battery green.
