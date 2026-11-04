@@ -1424,3 +1424,23 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
      count in the compound state (the source run is the count).
 3. Status: compile path OPEN and carrying a verified baseline; no
    claims made or recorded; odi/chain untouched; batteries safe.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 17: GEM48X LEDGER ITEM 1 VERIFIED (the trail +-1 repair).
+-----------------------------------------------------------------------
+tools/_gem48x_trailcheck.py: exhaustive micro-verifier of the
+compiled machine's interleaved-trail geometry, ALL OK:
+  CLAIM A: with TM at j < pos / TB at j >= pos, the fetch walk
+    (first TB = the head pair) is write-free and exact for every
+    pos in 0..400.
+  CLAIM B: the constant-pointer +-1 repair is exact and
+    round-trips under a 300-move random-walk chain from every start.
+    d=+1: write TM at the head pair s own trail cell; d=-1: write
+    TB at the previous pair s trail cell; the blank region supplies
+    the next unmarked cell as the footprint grows.
+This is the geometric heart of the addressing: it holds, so the
+remaining stage-2 work is pure phase transcription over it.
+Remaining ledger: (2) the strip-trail footprint rebuild (the pencil-
+copy: the source run length = next_q - 1, the halt rows carry their
+flags in the H-cell classes, the CUR transfer = flip-left then the
+first-SB-right), then (3) the full table + the differential battery.
