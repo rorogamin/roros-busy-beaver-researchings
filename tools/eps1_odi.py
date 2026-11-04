@@ -241,7 +241,7 @@ def build_table(sn):
     row('WAZ', 1, 1, 'L', 'WAD')
     row('WAZ', 0, 0, 'L', 'WAS')
     add('WAS', 'route D-m2 look at C0-3 (fused: 0 = absorb write)')
-    row('WAS', 0, 1, 'R', 'WR_A1')    # p0: park mark at C0-3, walk back right
+    row('WAS', 0, 1, 'R', 'WB_ABS1')   # p0: park mark at C0-3, walk back right
     row('WAS', 1, 1, 'L', 'FSL')       # p>=1: fold the spend in, then walk back
     add('WAE', 'route E chain walk')
     row('WAE', 1, 1, 'L', 'WAE')
@@ -278,13 +278,11 @@ def build_table(sn):
     #   WB_P   the p0 plain dec: lands IN (rest on the new last mark)
     #   WR_FS  the fs dec + append: lands DECF
     #   WB_ABS the absorb park write: lands ABS_E
-    # ROUND 9 rewiring: the three RIGHT-RETURN walkers over the park
-    # region (WR_A for route A, WR_FS for the fs spend return, WB_ABS
-    # for the absorb) ride/cross/terminate IDENTICALLY (same 0-cross
-    # column, same (1,R,front) ride), so ONE walker (the WR_A trio)
-    # serves all of them.  The three landing tails differ only in their
-    # final non-IN lander (RAW / DECF / ABS_E) and stay separate.
-    # The old three trio-copies are gone (6 states).
+    # The fused-walk alternative (one shared loop) is blocked by a real
+    # one-bit-of-history problem: every shared state's 0-row routes to a
+    # single case, and the 2-symbol tape carries no case bit on this
+    # layout - so these families stay separate and each is already at
+    # its bisimulation floor.
     add('WBX1', 'p0 plain dec: cross C0-2')
     row('WBX1', 0, 0, 'R', 'WBX2')
     add('WBX2', 'p0 plain dec: cross C0-1')
@@ -297,16 +295,18 @@ def build_table(sn):
     T['WB_P4'] = {0: (0, 'L', 'WB_P5'), 1: (0, 'L', 'WB_P5')}
     add('WB_P5', 'walk back (DECP): erase the top run last mark, rest')
     T['WB_P5'] = {0: (0, 'L', 'IN'), 1: (0, 'L', 'IN')}
-    for base, land, tail in (
-                       ('WR_FS', 'DECF', 'WR_FS'), ('WB_ABS', 'ABS_E', 'WB_ABS')):
+    for base, land in (
+                       ('WR_FS', 'DECF'), ('WB_ABS', 'ABS_E')):
+        add(f'{base}1', f'walk back ({land}): walking right')
+        T[f'{base}1'] = {0: (0, 'R', f'{base}2'), 1: (1, 'R', f'{base}1')}
+        add(f'{base}2', f'walk back ({land}): crossed a 0')
+        T[f'{base}2'] = {0: (0, 'R', f'{base}3'), 1: (1, 'R', f'{base}1')}
+        add(f'{base}3', f'walk back ({land}): pair test (sep=1 / term=0)')
+        T[f'{base}3'] = {0: (0, 'L', f'{base}4'), 1: (1, 'R', f'{base}1')}
         add(f'{base}4', f'walk back ({land}): at chain end, stepping left')
         T[f'{base}4'] = {0: (0, 'L', f'{base}5'), 1: (0, 'L', f'{base}5')}
         add(f'{base}5', f'walk back ({land}): land the head on the top mark')
         T[f'{base}5'] = {0: (0, 'L', land), 1: (0, 'L', land)}
-    # the WR_FS / WB_ABS trio fronts retarget into the shared WR_A walker;
-    # the tail states below re-enter from WR_A3's 0-arm via their tails.
-    WR_FS3_EXIT = 'WR_FS4'
-    WB_ABS3_EXIT = 'WB_ABS4'
 
     # ---- route A: the fs-limit park extension (p += sn)
     add('PWA', 'route A walk: at C0-1 (the sep first cell), cross left')
@@ -355,12 +355,6 @@ def build_table(sn):
             T['WR_A2'] = {0: (0, 'R', 'WR_A3'), 1: (1, 'R', 'WR_A1')}
     add('WR_A3', 'route A walk back: pair test (sep=1 / term=0)')
     T['WR_A3'] = {0: (0, 'L', 'WR_A4'), 1: (1, 'R', 'WR_A1')}
-    # the fs walk-back and the absorb walk-back prepare their tails via
-    # the shared WR_A pair-test; the tails re-enter from WR_A4 via the
-    # WR_FS/WB_ABS landing states (each final step is its own family's
-    # lander: DECF / ABS_E).
-    T['WR_A3_EXIT_FS'] = None  # placeholder; removed below
-    del T['WR_A3_EXIT_FS']
     add('WR_A4', 'route A walk back: at chain end, step left')
     T['WR_A4'] = {0: (0, 'L', 'WR_A5'), 1: (0, 'L', 'WR_A5')}
     add('WR_A5', 'route A walk back: land on the top mark')
@@ -439,7 +433,7 @@ def build_table(sn):
     row('FSL', 1, 1, 'L', 'FSL')
     row('FSL', 0, 0, 'R', 'FSP')
     add('FSP', 'fs spend: erase the leftmost mark, walk back right')
-    row('FSP', 1, 0, 'R', 'WR_A1')
+    row('FSP', 1, 0, 'R', 'WR_FS1')
 
     # ---- route C k1 arms: the model's (p,[NUM(1)]) -> (p-1,[NUM(1+sn)]):
     # after the park erase the bottom run grows by sn marks at C0+3..
