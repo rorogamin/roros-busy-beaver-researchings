@@ -1222,3 +1222,39 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
    machine-specific structure analysis or a multi-cell state FIELD
    compiled the way our eps1 counters work (slow but honest).
 3. gem48 entered championsReal.txt (ADD, informal-marked).
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 13b: COMPILER WALL PROVEN; STRUCTURE SCAN NEGATIVE.
+-----------------------------------------------------------------------
+1. gem48 STRUCTURE SCAN (tools/_gem48_scan.py): NO exact twin rows,
+   NO merge-closed groups (rows equal up to merged next-classes), so
+   the only zero-risk mechanical reductions simply do not exist for
+   this machine. Two states halt-target total.
+2. THE WALL (why generic (n,m) -> (n'<n, k>m) with small slowdowns
+   fails; derived and checked exhaustively today):
+   W1 (write-at-departure): a TM writes the cell it LEAVES, so any
+     "state tag on cells" scheme reads stale tags at revisits -- the
+     user's one-state refutation is the sharpest form (state can only
+     be one cell behind; revisits outrun it).
+   W2 (per-edge registers DO keep the q-at-landing fresh -- written
+     at every crossing -- but that only solves the LOOKUP side.
+   W3 (payload-delivery): the lookup computes (w, d, q'); q' must
+     be WRITTEN at the register whose next read is the NEXT
+     transition (the exit register). Delivering it there requires
+     the compound state to carry q' (>= n states, no reduction) or
+     to read it at the exit register from its own content (stale) --
+     multi-visit pipelines cannot move the payload either, because
+     reads only ever return the cell under the head. Payload travel
+     through a single-cell read port is impossible without paying
+     >= n of compound-state somewhere.
+   W4 (multi-cell fields do not help): decoding a t-cell state field
+     trit-by-trit puts the leaf-level compound state count at 2^t,
+     i.e. >= n again; a tape-stored TRANSITION TABLE (lookup by
+     index) is a universal-machine-grade project, not a compiler.
+   CONCLUSION: honest sub-n state reduction needs MACHINE-SPECIFIC
+     structure (campaign-level analysis of gem48), not a generic
+     transformation. The folklore "(n,2) <= (n/2,4)" holds only for
+     machines with matching structure (e.g. ones already storing
+     data on their tape in a tag-friendly discipline).
+3. ABIYO candidates recorded: campaign-level gem48 structure analysis,
+   or the eps1_u3 push (standing goal).
