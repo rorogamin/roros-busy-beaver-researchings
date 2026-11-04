@@ -1258,3 +1258,61 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
      data on their tape in a tag-friendly discipline).
 3. ABIYO candidates recorded: campaign-level gem48 structure analysis,
    or the eps1_u3 push (standing goal).
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 14: U3 RESUME WORK -- THE DOCUMENTED LAYOUT PROVEN
+  SELF-BROKEN; THE FORK WALL RE-DERIVED INDEPENDENTLY; PLAN RE-POINTED.
+-----------------------------------------------------------------------
+1. U3 fix first applied: num_of was referenced unimported
+   (C.num_of wired).  Result: the CODEC layer is green (200
+   round-trips OK).  The faithful layer then dies at the very first
+   campaign: N3 lands on run1's first mark with no 1-row (the
+   walk-state misalignment of N1..N3).  That is only the surfacing
+   bug.  Under it: THE DOCUMENTED LAYOUT IS SELF-BROKEN.
+2. THE LAYOUT DEATH CERTIFICATE (exact trace, '110011000'-class
+   tapes): u3's format is [1^p] 00 [runs] with a = the pair's left
+   cell and the fs spend "at a-1" (the park block's RIGHTMOST mark).
+   After the spend the string is 1^(p-1) + 000 + runs: the decoder
+   read_tape counts the leading 1s left-to-right and demands the
+   FIRST 00 immediately after the block, so it reads the pair at
+   (a-1, a) and then the run scan starts at a+1 = the old pair's
+   right cell = 0: it decodes the EMPTY chain.  The spend silently
+   erases the chain from the decode's point of view.  Proven, not
+   probed: ANY layout whose p-block abuts a 00 pair with the spend
+   at the abutting cell has this failure; the fix of record is
+   odi's convention (park 1s anchored AT C0-3, count rightward from
+   the fixed end, spend = the LEFTMOST mark, grow = one cell left),
+   which is hole-free and decode-clean for every mix of spends and
+   grows.
+3. THE FORK WALL, re-derived independently from round  (2026-11-04
+   assistant session, consistent with round 10 and the merge hunts):
+     W1 write-at-departure staleness (the user's one-state argument);
+     W2 per-edge registers DO keep the q-at-landing fresh, but ...
+     W3 the payload q' cannot be carried to the register the NEXT
+        transition reads: the state would need >= n states again, the
+        exit register's old content is stale, and multi-visit
+        pipelines cannot move a payload through a single read port;
+     W4 multi-cell state fields decode to >= n leaf states, so
+        nothing is saved.  For the eps1 run-code context this is
+        exactly round 10's verdict: every p-split arm's return
+        forks, and no tape cell the walk passes carries the case
+        bit (the 00 separators are load-bearing, the terminator
+        pair's cells must stay 0, end+1 is past every ride's turn
+        signal, and a sentinel at the chain end misreads as the next
+        entry).  CONSEQUENCE: a faithful u3 rebuild on odi's
+        conventions lands in the same banked-fork band as odi
+        (71/72/76 is the fork-wall fixpoint of THIS encoding).
+     So u3-as-documented is closed honestly: no rebuild of the
+     documented layout will be green AND sub-71.
+4. PLAN OF RECORD RE-SURFACED (unchanged from round 11, now with
+   round 13b/14 wall-work behind it): the only recorded route to <=50
+   is the SUPER construction: tools/eps1_super.py is ALL OK at model
+   level on the user's 3.14 (re-confirmed this session), the ledger
+   phases are (reader/park <= 10, pred <= 12, fs-limit <= 12, setup
+   + halt <= 6), and the construction item = the LOCAL-REWRITE
+   realization of the three moves (head-stepping, byte-local edits
+   on the entry codec), then the 2-symbol table, then the gate
+   batteries.  The fs fixed-seed-vs-bumping-index gate question and
+   the startup unroll cost stay open ledger items.
+   eps1_odi.py / eps1_chain.py untouched all session; the batteries
+   of record are safe.
