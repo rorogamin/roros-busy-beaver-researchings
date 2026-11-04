@@ -1092,3 +1092,64 @@ eps_1), EPS1_WALKWALL.md (the fusion-wall case analysis).  Verdict
 stands: odi 71 is the fork-wall fixpoint of this encoding; the only
 recorded route to <=50 is the SUPER local-rewrite construction item,
 unbuilt, no earned state count.  <50 remains a target, not a promise.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 12: champion batch #3 intake + GEMINI 48-STATE f_eps1
+  CLAIM AUDIT (verdict: REAL table, REAL verified fragments, TWO
+  COMPILE DEFECTS, and the headline bound is NOT PUT THROUGH).
+-----------------------------------------------------------------------
+1. CHAMPIONS (ADD).  loader3229's Oct 29 - Nov 3 batch #3 (22 machines,
+   BB(3,7)..BB(11,4), two "BBi" champion notes, nickdrozd-confirmed
+   #2 for BBi(8)) appended verbatim to championsReal.txt with claims in
+   his words only (22 rows, "predicted, not formal"/"informal" marked).
+   tools/bbmulti.py checks (driver _intake3229b.py): all 22 parse at
+   size, NONE halts in 2 000 000 blank-tape steps, states visited
+   n/n except 6/7 in the BB(7,5) iterated row; scores 1 436..1 629 at
+   2M; milestones 1000@643k..1 223k.  The checked numbers are appended
+   to championsReal.txt; the levels remain the claimant's.
+
+2. GEMINI 48-STATE CLAIM ("48 states, 2 symbols, transcends f_eps1(3),
+   verified in epsilon1_tm.v", file received in Downloads).  Audit:
+   a) TABLE: parsed from the .v source directly (not any chat render),
+      48 states / 96 rows, well-formed (tools/_check_gem48.py).
+   b) INDEPENDENT SIMULATION reproduces EVERY computational fragment
+      the file states: boot_18, boot_20, boot_352/702/1641 (worm
+      configs decoded structurally: (n, pairs) exactly), the boot
+      selector S48[0] fires exactly once at step 248 as claimed, all
+      five campaign lemmas (5-step halt, 139, 135, 284, 350) exact,
+      and head/tape of the halting calibration config match.
+   c) LOCAL Rocq 9.1.0 COMPILE (rocq/gemini_epsilon1_tm_48s.v): DOES
+      NOT COMPILE AS SHIPPED.  halts_on_base_worm: "exists 152" is
+      FALSE -- step_tm 152 ... = None: the machine halts at 148 with
+      the same final config (head 4, tape [-1;0;1]); my simulation and
+      coqc AGREE via the divergence (sim: halt at 148; Rocq: unify
+      failure None-vs-Some).  Replacing "exists 152%nat" by "exists
+      148%nat" (= the simulation-verified value) makes that lemma
+      compile (rocq/gemini_epsilon1_tm_48s_fix.v).  The headline
+      runtime_gt_f_eps1_3 then FAILS: its lia proof hits "Cannot find
+      witness" (line 390 on the fix copy).  The inequality itself is
+      trivially true by hand (each level adds >= 1, chain of 7 gives
+      bound >= N0 + 6, so 1641 + bound > N0), but the shipped tactic
+      term does not line up on Rocq 9.1.0: needs a proof-engineering
+      repair, not a semantic one.  NOT CLAIMED GREEN.
+   d) THE STRUCTURAL GAP (this program's bar, round 10/11 language):
+      NOTHING in the file ties the blank-tape machine's RUNNING time
+      to worm_eval_lower_bound -- that evaluator is an arithmetic
+      estimate function, and runtime_gt_f_eps1_3 is an inequality
+      between two FGH formulae; no theorem states the machine's
+      halting (or non-halting) exceeds any bound.  Also no proof the
+      blank run halts at all.  So "48 states transcending f_eps1(3)"
+      is a GLOSS over verified fragments, exactly the shape our
+      standing rule (halt under f_ordinal(n), Rocq-verified) exists
+      for.  2 000 000 SIM steps: no halt, 1242 cells at head 418 --
+      the long regime is entered, the bound is not put through.
+   e) files: the .v verbatim at rocq/gemini_epsilon1_tm_48s.v, the
+      corrected compile at rocq/gemini_epsilon1_tm_48s_fix.v (+ its
+      _fix_compile.log), the checker at tools/_check_gem48.py, the
+      champion driver at _intake3229b.py.
+
+3. eps1: u3 (run-code V1) build still parked un-green; next session
+   resumes the fs/pred fork wiring (the T0..T6 count forks) and its
+   battery.  NOTE: a working 48-state precedent now exists to cross-
+   check framing decisions against (their worm layout is a THIRD
+   world between odi's runs and super's entries).

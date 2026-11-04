@@ -1,0 +1,6 @@
+File ".\gemini_epsilon1_tm_48s_fix.v", line 10, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\gemini_epsilon1_tm_48s_fix.v", line 390, characters 2-5:
+Error: Tactic failure:  Cannot find witness.
+
