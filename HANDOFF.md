@@ -991,3 +991,48 @@ census/landings are unchanged.  The parked layout lever is now
 concretely blocked by the fork wall, not merely "probably blocked".
 This freezes the 71 / 72 / 76 counts of record as a fixpoint under
 all three merge hunts (bisimulation, observed-context, row-pair).
+
+-----------------------------------------------------------------------
+2026-11-04  BB(16..29) CHAMPIONS RE-CHECKED AGAINST THE WIKI TABLE
+  (Champions page rev 10183, fetched 2026-11-04) and updated:
+* Source of record: wiki.bbchallenge.org/wiki/Champions (2-symbol table).
+  The user supplied a screenshot of the same table; the wiki text was used
+  to transcribe exactly (the screenshot misrenders superscripts/subscripts
+  at small sizes; one token, the BB(20) K-row, was unreadable in it and
+  resolved by the wiki as 1RL1RE).
+* Claim notation resolved by structural comparison with this file's
+  already-verified BB(13)/(14) rows: the wiki flatten f-w+K-m-(x) means
+  f_{omega+K} iterated m times (BB(13) "fw+26" = (f_{w+2})^6).  Result:
+  BB(17) = (f_{w+3})^3(9), BB(18) = (f_{w+3})^4(9), BB(19) = (f_{w+7})^2(5),
+  BB(20) = f_{w*2}((f_{w+2})^2(f_10(2))).
+* WRITTEN into championsreal.txt:
+  - BB(17): own row replacing "inherited from BB(16)" (Ketchersid/
+    Claude/Gemini 11/2026, claimed; BB(16) body, N/O/P tail respliced).
+  - BB(18): new row (f_{w+3})^4(9); the old f_{w+3}(114) row kept as
+    [superseded] with its 10/2026 commentary verbatim plus a supersede
+    note (the iterate count dominates the single step).
+  - BB(19): own row (Jacobzheng 2026, not independently verified; new
+    body, all 19 states used) replacing "inherited from BB(18)".
+  - BB(20): new row f_{w*2}(...) (Jacobzheng); the old f_{w+6}^2(4)
+    1RR-start machine kept as [superseded].
+  - BB(16): CONFIRMED VERBATIM (no edit; the screenshot 0RG0LO is the
+    wiki 0RO0LO misrendered).
+  - BB(21): machine already present and verbatim-confirmed; note added
+    that the wiki flatten "fw22(4^^341)" = f_{w^2}^2(4^^341), matching
+    the row's (f_omega^2)^2 reading and the earlier correction story.
+  - BB(29): note added -- the champions cell shows only the footnote [1]
+    (a Discord link), so the machine text is still not public on the page.
+* LOCAL CHECKS (tools/bbmulti.py parse+run, blank tape, budget 3M steps
+  to match the file convention; every machine all rows defined, a single
+  halt row, zero dangling next-state refs):
+  - BB(17): 17x2, 34/34 rows, halt (Q,0); no halt@3M, score 3,337,
+    16/17 states used, 10@38 100@3,001 1000@121,818.
+  - BB(18): 18x2, 36/36, halt (R,1); no halt@3M, score 3,337, 16/18
+    used, milestones identical to BB(17) in budget (the 4th-iterate
+    level shows only past 3M).
+  - BB(19): 19x2, 38/38, halt (R,0); no halt@3M, score 3,837, 19/19
+    used, 10@50 100@2,372 1000@171,912.
+  - BB(20): 20x2, 40/40, halt (R,0); no halt@3M, score 3,776, 20/20
+    used, 10@69 100@1,743 1000@202,035.
+* Ordering assertions between rows (e.g. (f_{w+7})^2(5) vs (f_{w+3})^4(9))
+  are the table's own, recorded not asserted, per the file's standing rule.

@@ -63,25 +63,79 @@ BB(16): (f_{w+2})^10(9),
    defined, single halt row (P,0).  No halt in 3,000,000 steps locally.  Value is one
    more f_{w+2} iteration than the inherited BB(14) row ((f_{w+2})^9(f_{w+1}(3))) plus a bigger
    seed -- a bigger argument at the same f_{w+2} height, not a new height.)
-BB(17): inherited from BB(16)
-BB(18): f_{w+3}(114),
+BB(17): > (f_{w+3})^3(9),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LN_0RB1LI_1RZ1LO
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183: Jeff Ketchersid, Claude
+   and Gemini in 11/2026, claimed, never independently verified.  Own machine at
+   last -- no longer inherited from BB(16): the BB(16) body with the N/O/P tail
+   respliced (its 0RO0LO/1LP1RM/1RZ1LI chain becomes 1RQ0LO/1LP1LN/0RB1LI/1RZ1LO).
+   Not TNF-1RB (starts 1LB).  17 states / 2 symbols, all 34 rows defined, single
+   halt row (Q,0).  Local check 2026-11-04: no halt in 3,000,000 steps, score
+   3,337, states used 16/17 (Q idle in budget), milestones 10@38, 100@3,001,
+   1,000@121,818.)
+BB(18): > (f_{w+3})^4(9),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LN_0RB1LI_1RR0LO_0RO1RZ
+  (same 11/2026 Ketchersid/Claude/Gemini table row as BB(17), claimed.  The BB(17)
+   machine with one extra state R taking the halt: Q's 0-row now hands to R (1RR0LO)
+   and R halts on read 1 (0RO1RZ) -- the iterate count 3 -> 4 costs the single state.
+   18 states / 2 symbols, all 36 rows defined, single halt row (R,1).  Local check
+   2026-11-04: no halt in 3,000,000 steps, score 3,337, states used 16/18; in-budget
+   behaviour indistinguishable from the BB(17) row (same milestones -- the extra
+   level shows only past the budget, like the 16->17 family above).)
+
+BB(18) [superseded]: f_{w+3}(114),
 1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_1RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_0RQ0RG_0LG1LP_0LO1LP_1LQ0RR_1RZ0LP
   (reported 2026-10-29.  NEW HEIGHT for BB(16)..BB(19): f_{w+3}(114) = (f_{w+2})^114(114),
    against the BB(16) row's (f_{w+2})^10(9) -- an f_{w+2} iterate count, not an f_{w+2} argument,
    so the ordinal is a full level up.  The machine is the BB(16) row with two states
    (Q,R) spliced in, which is why 16 -> 18 costs only 2 states.  Not TNF-1RB.  18 states /
    2 symbols, all 36 rows defined, single halt row (R,0).  No halt in 3,000,000 steps.)
-BB(19): inherited from BB(18)
-BB(20): f_{omega+6}(f_{omega+6}(4)),
+   (Superseded 2026-11-04 by the (f_{w+3})^4(9) row above: a single f_{w+3} step at
+   114 loses to iterating f_{w+3}, since even the second iterate alone runs past
+   f_{w+3}(114); the old machine is kept above for its 16->18 splice history.)
+
+BB(19): > (f_{w+7})^2(5),
+1RQ1RL_0LI1RC_0LD1LF_0RA1LD_1RB1RE_1LH0LG_1LF1LG_1RE1RM_1LJ1LI_0LK1LI_1RL1RA_0RL0RE_0LN1RM_1LO0LO_1RE1LP_1LN1LN_1LR1RQ_1RZ1LS_0LE0LR
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183 -- Jacobzheng in 2026,
+   not independently verified.  Own machine again, no longer inherited: a body
+   entirely different from the 1LB family above, level f_{w+7}, iterate 2 at seed 5.
+   19 states / 2 symbols, all 38 rows defined, single halt row (R,0), all 19 states
+   used in budget.  Local check 2026-11-04: no halt in 3,000,000 steps, score 3,837,
+   milestones 10@50, 100@2,372, 1,000@171,912.  Whether (f_{w+7})^2(5) outstrips the
+   superseded (f_{w+3})^4(9) above is the table's own ordering assertion -- recorded,
+   not locally checkable, per the file's standing rule.)
+BB(20): > f_{w*2}((f_{w+2})^2(f_10(2))),
+1LH0LG_0LI1RC_0LD1LA_0RE1LD_1RQ1RL_1RB1RF_1LA1LG_1RF1RM_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LN1RM_0RF0LO_0RF1LP_0RF1LN_1LR1RQ_1RZ1LS_0LF1LT_0LF0LR
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183 -- Jacobzheng in 2026,
+   not independently verified.  Claim f_{w*2}(f_{w+2}^2(f_10(2))): the w*2 level step
+   taken at an f_{w+2} double iterate of f_10(2).  The BB(19) machine with K retargeted
+   (1RL1RA -> 1RL1RE) and the tail spread one state wider (S: 0LF1LT, new T: 0LF0LR);
+   the old 1RR-start machine below is a different build line entirely.  20 states /
+   2 symbols, all 40 rows defined, single halt row (R,0), all 20 states used in
+   budget.  Local check 2026-11-04: no halt in 3,000,000 steps, score 3,776,
+   milestones 10@69, 100@1,743, 1,000@202,035.)
+
+BB(20) [superseded]: f_{omega+6}(f_{omega+6}(4)),
 1RR---_0LJ0RC_1RB1LD_0LD1LE_1LF1RG_1LI0LE_0RE1LD_1RB1RH_1RH1RN_1LK1LJ_0LL1LJ_1RM1RA_0RM0RH_0LO1RN_1RH0LP_1RH1LQ_1RH1LO_1LS1RR_1RZ1LT_0LH0LS (not TNF-1RB, no  TNF-1RB best champion exists yet)
+  (Superseded 2026-11-04 by the Jacobzheng row above -- table ordering, not locally
+   checkable; machine kept.)
 
 BB(21): > (f_omega^2)^2(4^^341)
 This is the first instance where both exponents are used. It originally did (omega)^22, but after reading the wiki that is 100% wrong, and plus f_(omega)^22 is less than the previous one (f_omega+6(n) almost always outscales bare f_omega even repeated 22 times (thats just f_w+1 level)):
 0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_0LE1LR (also not tnf-1rb)
+  (Confirmed 2026-11-04 against the wiki Champions page rev 10183: the row's
+   flatten "fw22(4^^341)" reads f_{w^2}^2(4^^341) -- subscript omega^2, iterate
+   2 -- the same reading as (f_omega^2)^2 above, and the machine matches this
+   file's string verbatim (token 12 is 0LL1LM).  BB(16) also confirmed verbatim
+   (the wiki's 0RO0LO row, already recorded 2026-10-29).)
 22 thru 28: all open
 BB(29): f_(omega^omega)(3),
   (mxdys, 10/2026, claimed -- 'Claimed analysis by Claude never verified'.
    Machine is given on the wiki as a link, not inline.)
+  (2026-11-04 screenshot of the same row: the champions cell shows only the
+   footnote marker [1], which on the Champions page points at a Discord
+   message link, so the machine text is still not public text anywhere on
+   the page itself.)
 BB(30): open
 BB(31): f_(omega^^4)(3)   [omega^^4 = omega raised by tetration to height 4],
   (mxdys, 10/2026, claimed -- never independently verified.  Link on wiki, not inline.)
