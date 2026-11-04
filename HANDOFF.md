@@ -1036,3 +1036,44 @@ all three merge hunts (bisimulation, observed-context, row-pair).
     used, 10@69 100@1,743 1000@202,035.
 * Ordering assertions between rows (e.g. (f_{w+7})^2(5) vs (f_{w+3})^4(9))
   are the table's own, recorded not asserted, per the file's standing rule.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 10: THE U2 LAYOUT REWRITE (super epsilons flagging: the
+  parked lever attempted again) -- BLOCKED BY ARGUMENT, DRAFTS HALTED.
+-----------------------------------------------------------------------
+The round-5 parked lever (a tape-layout rewrite) was attempted once more
+under the super-epsilons flag.  Plan: the park visit placed MID-campaign
+(every arm = [the p-independent E-zone part] -> [the shared left rider
+to the park] -> [the park part] -> [the right return] -> [the push part]
+-> BR home), motivated by deleting the per-arm walk-back families
+(WBX/WB_P, WR_FS, WB_ABS, WR_A, ~21 states on sn=1) and the per-route
+walk-to-look clones.  Model semantics re-derived exactly first (the
+fixed-seed step: fs = dec-top-then-push NUM(sn+1) of sn+3 marks with
+p -= 1; pred = top c -> c-1 (c=1 -> the empty/halt site); the ATOM limit
+arm = widen 1->3 + p += sn; the head-empty rewrite = the L3-m1 p>=1 fs
+landing; int-1 chains are never canonical (the model asserts)).  Draft
+built at tools/eps1_u2.py before any gate ran.
+
+BLOCKED BY ARGUMENT.  Reading the actual post-minimize rows (the
+71-state dump regenerated this turn): the per-family X3/X4/X5 climb
+states are byte-identical shapes differing only in terminal successor
+(IN / DECF / ABS_E / RAW), the whole-battery hunt of record stays at
+the fixpoint, AND the rewrite's own returns fork identically: after a
+park visit the walk right must land differently per case, and the case
+bit cannot be carried to the landing position on this single-track 2-
+symbol tape.  The concrete dead ends, now argued not just probed:
+  - the sep cells are load-bearing 00 (the decode park count stops on
+    the first non-mark left of C0-3);
+  - the terminator pair's cells must stay 0 (the close + the chain
+    end);
+  - end+1 is a free blank but sits PAST the first 00 pair, which every
+    return's ride uses as its turn signal -- the walk never reads past
+    the trip point before turning;
+  - the sentinel proposal (a non-zero cell at the chain end) is eaten
+    by decode_tape's run counting: the cell right of an interior close
+    must be 0 or the run detection misreads it as the next entry.
+So the layout lever is doubly dead (round 9 probes it on the shipped
+tables; round 10 argues it for the redesign).  The U2 draft is kept in
+tools/eps1_u2.py as the halted design record, not a bearing build.
+The honest counts stay 71 / 72 / 76; no battery state changed and no
+run regressed.
