@@ -1122,3 +1122,22 @@ tape.  Scores at 2M are 1 436-1 629, milestones all in the 10@37-113,
 100@2 091-11 855, 1000@643k-1 223k band -- the same linear-pass head
 regime as the batch above, so the levels stay the claimant's, per the
 standing rule.
+
+-----------------------------------------------------------------------
+ADD: gem48 (ours, posted to the bbchallenge Discord 2026-11-04) --
+  gemini's 48-state 2-symbol f_eps1(3)-seed machine (epsilon1_tm.v,
+  received from gemini, audited + repaired by us; machine table is
+  UNCHANGED verbatim from the claimant; the binding artifact is
+  rocq/gemini_epsilon1_tm_48s_v2_fix.v = zero-axiom compiling copy).
+  CLAIM (gemini's words): "48 state 2 symbols marked eps1 machine that
+  transcends f_eps1(3)" with halt step T = 1641 + f_epseta0(f_epseta1[0](
+  f_epseta1[1](f_om^2(f_epseta1[2](f_om^3(f_epseta1(3))))))) > f_epseta1(3).
+  STATUS: INFORMAL.  The halt itself is not witnessed: no campaign-chain
+  witness from the step-1641 seed exists; T is NOT formally proven.
+  CHECKS (ours, on the exact table): bbmulti-style parse at 48x2 OK;
+  2 000 000 blank steps WITHOUT halt (tape 1242 cells, head 418);
+  boot/campaign milestones reproduce exactly: 18/20/352/702/1641,
+  5/135/139/284/350, base-worm halt 148 (head 4, tape [-1;0;1]).
+  COMPILATIONS tried and REJECTED: (n,2) -> (ceil(n/g), 2g) family,
+  tag-on-departure per-cell state -- INVALID (stale tags at revisits,
+  bisim fails at step 1 for all g; see HANDOFF round 13 + user proof).

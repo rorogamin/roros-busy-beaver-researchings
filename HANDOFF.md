@@ -1202,3 +1202,23 @@ HONEST RECORD (the standing bar): Theorem 3 (blank_halting_run_
   gemini_epsilon1_tm_48s_v2.v (verbatim), _v2_fix.v (compiling),
   _v2_fix_compile.log, tools/_check_gem48.py (v2-aware),
   _check_gem48_v2fix.txt.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 13: gem48 POSTED publicly (Discord, with the four
+  attachments staged in eps1machineattach/) + state-reduction compiler
+  ATTEMPTED AND REFUTED.
+1. DISCORD POST done; claim stated as informal (T not proven).
+2. COMPILER family FAILED: tag-on-departure (n,2) -> (ceil(n/g), 2g).
+   Bisim failed at step 1 for every g (compound read member "S02" at
+   cell -1 while M was at "S46"): the write lands on the DEPARTURE
+   cell, not the landing cell, so revisits read STALE tags and every
+   rewrite re-anchors on the stale member (error compounds). User
+   refutation: a 1-state machine keeps state only in the symbol it just
+   wrote - one cell behind the head - so revisits outrun it ("1,96 is
+   bad cause A1 row can only be re-entered one-step-stale"). The whole
+   cx-family pushed to the trash; tools/_gem48_compile.py kept with a
+   REJECTED banner as the lesson. LESSON: (n,2) -> (ceil(n/2), 4) folklore
+   fails for GENERIC machines; real state reduction needs either
+   machine-specific structure analysis or a multi-cell state FIELD
+   compiled the way our eps1 counters work (slow but honest).
+3. gem48 entered championsReal.txt (ADD, informal-marked).
