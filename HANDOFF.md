@@ -1665,3 +1665,76 @@ intact), and run the full 18432-case differential battery; then the
 k folds (the 4 STZ codes vs MID/CUR = the first merge candidates).
 Still no verified cycle; the last green remains round 19; odi/chain
 untouched; battery green throughout.
+
+-----------------------------------------------------------------------
+2026-11-04  ROUND 22: RESEARCH round (3 agents, parallel) -- the compile sits on precedent, with two honest warnings.
+-----------------------------------------------------------------------
+Research front A (how published compiles keep control small; source:
+arXiv:2107.12475v2 + arXiv:1110.2230 + arXiv:0707.4489):
+  Sterin-Woods M_{15,2} = 5 COLUMNS x (1 _sim + 2 read-fan states), the
+  ONLY fully documented worked compile; state count = a BOUNDED
+  per-source-state multiplier (not states x table size); the published
+  optimisations BELOW 3/col: `check_halt_b` excised (the source row
+  don't-cares), columns MERGED (`mul2_G_extra` serves two source
+  states), #; and the U(6,2) weak machine's speculate-and-repair
+  pattern: write the assumed update, verify by re-walk, backtrack
+  once -- states traded for a re-walk of tape (our +-1 trail repair
+  is exactly this shape).  The simple take-aways land on our side:
+  phase count is near per-source-state x per-symbol-direction in the
+  literature and is consistently FEWER than the state count; every
+  mechanism that avoids state blow-up = data-in-cells with
+  mark/restore (our arm/park = the same family).
+  WARNING 1 (unfavourable): a straight COLUMN compile of a 48-state
+  source lands at 96-144 states -- the round-15 shuttle guess is the
+  only arch that beats this gate, and must stay fixed-phase-set.
+  WARNING 2: the Neary-Woods Table 1 ledger is FLAT in the direction
+  k releases states (exchanging symbols for STATES is expensive);
+  going up in k is NOT itself a state reduction mechanism.  Our
+  record case therefore rests on the fixed-phase shuttle (phases ~
+  under 48), NOT on any exchange folklore.  No such compiled
+  "<48 states from a 40-60 state 2-symbol source" result is
+  published anywhere the agents could find: our case, if green, is
+  a novel artifact, and ONLY the shuttle route claims it.
+Research front B (halting conventions; sources: wiki.bbchallenge.org
+Turing_machine page, sligocki.com standard-TM-format, Michel's tmi,
+morphett/turingmachine.io convention pages):
+  THE FILED CONVENTION: the halt row does write w + move d + THEN
+  enters Z (bbchallenge: the extra halt state entered after the
+  final write and the one last move; Michel: "when the machine
+  stops, it writes, moves, and enters state H"; the final tape and
+  the step parity include that last write and that last move).
+  Morphett (our table format) halts on any state named halt* and
+  its page documents NOTHING beyond that: the mid-table write on
+  entry to halt is tracer-verified in OUR recorded gem48 halt@148
+  trace (the tape[-1;0;1], head 4), so treat the oracle gem48_run,
+  not the morphett page, as the halt-semantics authority here.
+  IMPLICATIONS LOCKED: (1) our 4 halt classes are ENTRY classes
+  only -- never a residual symbol on the final tape (byte-exact
+  battery enforces automatically); (2) NEVER implement halt as a
+  missing row (undefined transition halts skip the final write +
+  step = wrong by exactly one write/step = the classic
+  translation mismatch class); (3) any halt sweep must be
+  parity-neutral, i.e. our halt walk = the SAME write+repair
+  mechanics as the normal exec then STOP, no extra sweep.
+Research front C (the smallest 48-state-source compiles; sources:
+wiki.bbchallenge.org/wi/Cryptids + BB(15) paper + BB(5) STOC'26):
+  BAD CITATION CORRECTED: the ID I fed the agent for "bbchamp
+  records" (1301.6119) is an astrophysics paper on Jupiter's spot --
+  it was MY mistaken prompt seed, it never entered the repo (grep
+  checked), and no honest record intended it; ignore it.
+  THE DOCUMENTED LEDGER of compiles-of-record (Cryptids page):
+    (3,3) Bigfoot        -> (8,2) Sterin, -> (7,2) Iijil (2024);
+    (2,5) Hydra          -> (9,2) Iijil (2024) [prev. (10,2) Yuan];
+    (5,4) Erdos ternary  -> (15,2) Sterin-Woods (2107.12475);
+    (43,4) weak Collatz  -> (124,2) Sterin (BB(15) future-work note).
+  Both tiny compiles (7,9) beat the naive 3-per-source-state column
+  column count = hand semantics, not a compile rule; the ONLY
+  published compile whose source stretches into 40-60 states goes
+  UP (43 -> 124).  No general n-state source -> fewer-states
+  route exists in print anywhere the agents could find.
+  "phase x symbol = 1 state" as a counting convention appears
+  nowhere; "colour" = a different quantity (read,dir,write triples).
+Status: gem48 informal (T not red), the round-21 spec stands
+unverified, no compile claim.  The eps1 battery stays green; odi/
+chain untouched.  Nothing in this round is a green check: it is
+precedent lookup + convention locking + a bad-citation correction.
