@@ -1141,3 +1141,42 @@ ADD: gem48 (ours, posted to the bbchallenge Discord 2026-11-04) --
   COMPILATIONS tried and REJECTED: (n,2) -> (ceil(n/g), 2g) family,
   tag-on-departure per-cell state -- INVALID (stale tags at revisits,
   bisim fails at step 1 for all g; see HANDOFF round 13 + user proof).
+
+-----------------------------------------------------------------------
+ADD: loader3229, 2026-11-05/06 (Discord 1:08 AM, 9:36 AM, 9:42 PM)
+-----------------------------------------------------------------------
+ADD, not supersede.  Prior rows remain.  All levels are the claimant's
+own estimates; nothing here is Rocq-verified.  Checked locally only for
+shape and 2,000,000 blank-tape steps.
+
+BB(11,4): > f_{w*2}(2{11}6) steps.  (informal)
+1RK3LB1RZ2RA_0LG1LE1LD2RA_3RB1LB3LC2RC_3RE0LI3LC2RC_1RJ3RE3LH2LF_3RF2RF2LE1LF_3LC3LH2LJ2RG_0LE3RH1LI2RG_3RH1LH3LI2RI_0LB0LJ3LJ3RK_2LC0LD2RA3RK
+  Checked locally (tools/bbmulti.py, blank tape, 2,000,000 steps):
+  11x4, 44 of 44 transitions defined (halt entry 1RZ in A), no halt,
+  score 1,438; milestones 10@45, 100@6,331, 1,000@1,197,603; all 11
+  states visited; symbols 0..3 all written.  Same claimed level and
+  argument as the 2026-11-01 "potential" variant, but a different table
+  (44 defined, 0 undefined vs 41 defined, 3 undefined); not a level
+  upgrade.
+
+BB(4,7): claimant says > f_{w+3}(34) steps.  (informal)
+5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LC4LC6LC
+  AS POSTED THIS DOES NOT PARSE: states A/B/C have 7 actions but state D
+  has 8 -- 3RB 5LD 6LC 4LD 4LC 4LC 4LC 6LC.  A BB(4,7) machine must have
+  seven actions per state, so this is not entered as a champion.  The
+  existing BB(4,7) f_{w+2}(124) row stays; if the intended f_{w+3} table
+  is corrected it would supersede that row.  Two simple one-action
+  deletions (one 4LC, or the trailing 6LC) parse and run 2M steps without
+  halting, but neither is confirmed and neither is entered.
+
+BB(8,6): > f_{w^2+1}(f_w(31)) steps.  (informal)
+5LH3LB2LH2RA4LB1RZ_2RC3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE1LE4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG2LG5LG_0LC---1LH1LH---5RG
+  Checked locally (tools/bbmulti.py, blank tape, 2,000,000 steps):
+  8x6, 44 of 48 transitions defined (undefined D4, F2, H1, H4), no halt,
+  score 1,476; milestones 10@86, 100@6,282, 1,000@1,064,570; states 7/8
+  visited (G dormant), symbols 0..5 all written.  Same f_{w^2+1} level as
+  BBi(42)/BBi(43), but argument f_w(31) is far above 3 or 7; it supersedes
+  them on argument if the claim stands.
+
+Nothing here is verified beyond the local parse/run; the f_* levels are
+the claimant's and require a Rocq proof before use as theorem input.
