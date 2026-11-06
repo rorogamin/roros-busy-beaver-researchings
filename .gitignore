@@ -1,0 +1,16 @@
+.venv/
+vendor/
+runs/
+runs25/
+runs25b/
+runs3x3/
+logs/
+logs2/
+logs25/
+logs25b/
+tmp*/
+*.exe
+*.pb
+*.csv
+specimens/
+__pycache__/
