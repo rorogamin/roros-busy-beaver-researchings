@@ -1921,3 +1921,21 @@ omega-compressed f_* naming caveat from round 23 is unchanged.
   halts -- the actual forward orbit is at c=1,059,491,543,272,883 and would
   need of order 10^136 chains at observed increments.
 - No new holdout decided. New artifacts: delta.c, wall.py, wall_scan.py.
+
+-----------------------------------------------------------------------
+2026-11-06  ROUND 27: 758 wall extended to H-18,000,000 (10M values)
+-----------------------------------------------------------------------
+- Added exact 768-bit C scanners: `wallfast.c` (naive) and `wallmemo.c`
+  (merge-aware). Both self-test against c=3/12/14 and the 7,391-chain
+  H-8,000,001 value.
+- `wallfast.c`: first 10,000 values naively OK (262 s, 16 threads);
+  100-value cross-check blocks at k=1, k=5,000,000 and k=10,000,000 all OK.
+- `wallmemo.c`: k=1..10,000,000 all reach H; 10,488,713 chains total, 28 s,
+  16 threads. Extends the verified wall from H-8,000,000 to H-18,000,000
+  (10,000,000 new consecutive values). Each start stops at H or at a value
+  already proven to reach H; exact uint64 keys d=H-c.
+- Still conditional on the published A(a,c) rules and NOT a proof that 758
+  halts; the actual forward orbit at c=1,059,491,543,272,883 would need of
+  order 10^136 chains at observed increments.
+- Logs: `wallmemo_10M.log`, `wallfast_crosscheck.log`.
+- No new holdout decided. New artifacts: wallfast.c, wallmemo.c.
