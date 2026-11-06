@@ -180,6 +180,29 @@ to reach this wall.
 All 608 BB(6) holdouts and all 37 BB(2,5) holdouts were simulated to 10^8
 steps: no halts. This is only a lower-bound screen, not a decision.
 
+### 8. Deep screens (2026-11-06)
+
+`deep_screen.py` partitions a holdout list, runs `sim.exe` on 16 workers, and
+requires exactly one output row per machine.  The runs below all returned
+zero halts:
+
+* **608 BB(6)** at 10^9 (10^8 baseline): median score 7,276 -> 24,018,
+  median growth x3.009 (exponent 0.478); maximum score 5,706,863.  Top
+  machines are `1RB1RF_0RC1RD_1LC1LA_0LE1RE_1RA0RB_---0LC` (5,706,863)
+  and `1RB0LA_1RC---_0LD1RD_0RB0RE_0RF0LD_1LF0LA` (5,420,637).
+* **37 BB(2,5)** at 10^10 (10^8 baseline): median score 8,218 -> 77,981,
+  median growth x9.953 (exponent 0.499); maximum score 189,942 for
+  `1RB3LB---4LA1RB_2LA4LA4LB3RB1RA`.
+* **60 formal BB(2,5)** at 10^10 (10^9 baseline): median score 17,404 ->
+  52,540, median growth x2.734 (exponent 0.437); the 23 machines outside
+  the 37 are mostly shallow.  The two claimed deep halters
+  (`1RB3RB3LA4LA2RB_2LB3RA---1RA1LA` and
+  `1RB4RA1LA4RB2LA_2LB3LA1RB2RA---`) were still running at 10^10; this
+  does not confirm or refute their astronomical claims.
+
+These are lower bounds, not decisions.  Full tables and honest caveats are
+in `deep_holdout_results.txt`; raw summaries are in the `deep_*` directories.
+
 ## Honest verdict
 
 **No new holdout was decided.** All six BB(3,3) machines and all 37 BB(2,5)

@@ -1,0 +1,99 @@
+Deep holdout screens - 2026-11-06
+=================================
+
+Driver: bbwork/deep_screen.py.  It partitions a standard-format list, runs
+sim.exe on 16 workers, and rejects a run unless exactly one CSV row per
+machine is returned.  "No halt" here is a lower bound at the stated cap; it
+is not a decision and says nothing about the BB function.
+
+Commands
+--------
+py -3.14 deep_screen.py --list bb6_specs.txt --cap 1000000000 --jobs 16
+py -3.14 deep_screen.py --list Bb2x5_informalLast37.txt --cap 10000000000 --jobs 16
+py -3.14 deep_screen.py --list BB2x5_Rocq_holdouts_60.txt --cap 10000000000 --jobs 16 --strip-id
+
+Baselines used for growth: the same 608 BB(6) list at 10^8, the 37 list at
+10^8, and the 60 formal list at 10^9.
+
+1. BB(6): 608 machines
+----------------------
+10^9 steps: 608/608 rows, 0 halts, 220.0 s on 16 workers.
+  max score      5,706,863
+  mean score        48,754.85
+  head range       211,664 .. 14,095,448
+
+10^8 baseline: 608/608, 0 halts, max score 573,553.
+Growth 10^8 -> 10^9: median score x3.009, exponent p=0.478 (median),
+range x0.825 .. x13.318.
+
+Top 10^9 scores:
+  5,706,863  x9.95   1RB1RF_0RC1RD_1LC1LA_0LE1RE_1RA0RB_---0LC
+  5,420,637  x10.06  1RB0LA_1RC---_0LD1RD_0RB0RE_0RF0LD_1LF0LA
+  3,954,346  x9.86   1RB0LA_1RC---_0LD1RD_0RA0RE_0RF1RC_1LF0LA
+    206,609  x9.58   1RB0RD_1LC1LB_---1LD_1RA0RE_1RD0LF_1LE0LD
+    200,524  x9.72   1RB0RE_1RC0RE_1LD1RB_1LA0LA_1RF0LC_---0RC
+
+Largest positive growth with score >= 100 at 10^8:
+  x13.32 2,044 -> 27,221   1RB0RD_1RC0LF_0LA0RB_1RE---_1LB1RA_0LE0LF
+
+2. BB(2,5): 37 informal/latest holdouts
+---------------------------------------
+10^10 steps: 37/37 rows, 0 halts, 168.7 s on 16 workers.
+  max score        189,942
+  mean score        79,138.68
+  head range       300,283 .. 681,825
+
+10^8 baseline: 37/37, 0 halts, max score 18,925.
+Growth 10^8 -> 10^10: median score x9.953, exponent p=0.499,
+range x1.301 .. x17.375.
+
+Top 10^10 scores:
+  189,942  x10.04  1RB3LB---4LA1RB_2LA4LA4LB3RB1RA
+  175,850  x11.43  1RB3LB4LA0LB---_2LA0LA1RB0RA3RA
+  141,462  x9.98   1RB3RB---4RA2RA_2LA2RA3LB4LB1LB
+  138,393  x10.77  1RB2LB3LA0RA1LB_2LA4RA3RB3LA---
+  134,138  x10.02  1RB2LA1LA4RA2LA_0LA3RB3LB2RB---
+
+Largest positive growth with score >= 100 at 10^8:
+  x17.38 4,488 -> 77,981   1RB---4RB2RB4LA_2LB3LA3LB0RA0RB
+
+3. BB(2,5): 60 formal holdouts
+------------------------------
+10^10 steps: 60/60 rows, 0 halts, 237.1 s on 16 workers.
+  max score        189,942
+  mean score        53,218.42
+  head range       300,283 .. 681,825
+
+10^9 baseline: 60/60, 0 halts, max score 59,890.
+Growth 10^9 -> 10^10: median score x2.734, exponent p=0.437,
+range x1.013 .. x4.624.
+
+Top 10^10 scores:
+  189,942  x3.17   1RB3LB---4LA1RB_2LA4LA4LB3RB1RA
+  175,850  x4.62   1RB3LB4LA0LB---_2LA0LA1RB0RA3RA
+  141,462  x3.16   1RB3RB---4RA2RA_2LA2RA3LB4LB1LB
+  138,393  x3.05   1RB2LB3LA0RA1LB_2LA4RA3RB3LA---
+  134,138  x3.16   1RB2LA1LA4RA2LA_0LA3RB3LB2RB---
+
+Formal-only machines (60 minus the 37): 23.  All 23 are among the 60/60
+rows.  The three largest 10^10 scores are:
+  105,313  1RB2LA3LB4LB---_0LA4LB3RA4LA0RB
+   79,115  1RB3RB3LA4LA2RB_2LB3RA---1RA1LA
+   77,498  1RB4RA1LA4RB2LA_2LB3LA1RB2RA---
+The latter two are the BB(2,5) machines with claimed but unverified
+~7.3e28- and ~5.6e53-step halting analyses.  Neither halted by 10^10;
+this is only a deeper lower bound and does not reproduce or refute the
+claims.
+
+Interpretation
+--------------
+- No new holdout was decided.  Every machine survived its cap.
+- The 37-machine hard core scales almost exactly as sqrt(score) ~ steps
+  (median exponent 0.499), and the 608 BB(6) list is similar (0.478).
+  That is descriptive, not a proof of counter/bouncer behaviour.
+- The extra 23 formal BB(2,5) machines are mostly shallow; they lower the
+  60-list median but do not change the hard core.
+- Raw per-run outputs are in deep_test/ (608 at 10^8),
+  deep_bb6_specs_1000000000/, deep_37_1e8/, deep_37_1e10/,
+  deep_60_1e9/, and deep_60_1e10/.  results.csv is generated and ignored
+  by git; summary.txt is the compact evidence.

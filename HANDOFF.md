@@ -1962,3 +1962,20 @@ omega-compressed f_* naming caveat from round 23 is unchanged.
   nowhere near H-18,000,000.  The corpus (2024-07-14, 2025-07-01) records
   the wall approach as needing a uniform Delta-u bound and calls it
   Collatz-hard; no proof was produced.
+-----------------------------------------------------------------------
+2026-11-06  ROUND 29: deep holdout screens (608 BB6, 37/60 BB2,5)
+-----------------------------------------------------------------------
+- Added `bbwork/deep_screen.py`: parallel partitioner/runner that requires
+  exactly one simulator row per machine, stores raw parts and results.csv,
+  and writes a summary.  Full batch checks passed.
+- BB(6) 608 at 10^9 steps (baseline 10^8): 0 halts, 220.0 s, max score
+  5,706,863; median score 7,276 -> 24,018 (x3.009, exponent 0.478).
+- BB(2,5) 37 at 10^10 (baseline 10^8): 0 halts, 168.7 s, max score
+  189,942; median 8,218 -> 77,981 (x9.953, exponent 0.499).
+- BB(2,5) formal 60 at 10^10 (baseline 10^9): 0 halts, 237.1 s; the 23
+  formal-only machines are mostly shallow.  The two claimed deep halters
+  (7.3e28 and 5.6e53 steps) remain unhalted at 10^10, which is only a
+  lower bound.
+- Interpretation: empirical sqrt-like score growth, consistent with
+  counter/bouncer behavior; no proof.  No new holdout was decided.
+- Report: `bbwork/deep_holdout_results.txt`; README section 8 updated.
