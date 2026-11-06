@@ -10,11 +10,18 @@ verbatim so later work starts from the same inputs.
 |---|---|---|---|
 | BB(6) | `BB6_holdouts_608.txt` | BusyBeaverWiki, @mxdys, 30 Oct 2026 | 608 machines (up to equivalence), 608 unique specs, IDs 279–181655 |
 | BB(3,3) | `3x3_holdout_6.txt` | BusyBeaverWiki holdout file | 6 machines (2 documented equivalence pairs, 4 effective) |
-| BB(2,5) | `h25_37.txt` (from `bb2x5_holdouts37.txt`) | user-provided informal list, matches the wiki's 37 informal holdouts (9 Oct 2026) | 37 machines |
+| BB(2,5) | `Bb2x5_informalLast37.txt` (identical to `h25_37.txt`) | official wiki download; user states the 37 count is now formal (2026-11-06) | 37 machines |
 | BB(2,5) | `BB2x5_Rocq_holdouts_60.txt` | @mxdys, 8 Sep 2026 | 60 formal holdouts |
 
 The BB(6) file is in `<id> <standard-spec>` format; `bb.load_list` strips
 whitespace only, so scripts that read it should split the ID off first.
+
+The BB(2,5) 37-file is line-identical to `h25_37.txt`. `canon.py` fixes the
+blank symbol (0) and start state (A) and allows mirroring; under that
+symmetry it finds 37/37, 60/60 and 608/608 distinct classes — no duplicates
+in any of the three lists. All 37 classes lie inside the 60, and the BB(2,5)
+champion (`1RB3LA4RB0RB2LA_1LB2LA3LA1RA1RZ`) is in neither list. Full
+state/symbol permutations are not used because they create false duplicates.
 
 ## Tooling
 
@@ -34,6 +41,12 @@ whitespace only, so scripts that read it should split the ID off first.
 * `mergefind.c` — translation-normalized configuration hash search between two
   machines (with a skip window so the trivial shared prefix is not reported).
 * `factory.py` — random-machine specimen hunt.
+* `canon.py` — symmetry canonicalization with blank 0 and start state A fixed
+  (mirror allowed); used to deduplicate the 37, 60 and 608 lists.
+* `delta.c` — the published A(a,c) chain map for 758, with halting-value
+  enumeration and max-increment/chain-length scans.
+* `wall.py`, `wall_scan.py` — iterate the 758 chain map near the exploding
+  halting value H and scan consecutive c below the known wall.
 * `run_decide.sh`, `run_decide2.sh`, `qsim.sh` — wrappers for the
   [sligocki/busy-beaver](https://github.com/sligocki/busy-beaver) decider
   framework (`Enumerate.py`, `Quick_Sim.py`) used from a local venv
@@ -122,13 +135,48 @@ dominated by immediate halts; the interesting machines are structured, not
 sampled. The specimens and TSV are in `specimens/` as a record of the negative
 result. It is not a useful search method as written.
 
+### 6. BB(3,3) 758: validated chain map and a longer halting wall
+
+`delta.c` implements the wiki's A(a,c) rules for
+`1RB2LC1RC_2LC---2RB_2LA0LB0RA`. Validation:
+
+* all 26 published halting values below 10^6 are reproduced exactly; the
+  rule paths for 12, 14, 2331 and 2333 match the wiki labels (`ijjccjcd`,
+  `ijjbcjcd`, `jjjjjjjcbccccjbf`, `jjjjjjjbbccccjbf`);
+* the scan finds 36 halting values up to 2^30, matching the published count
+  (the 37th is 3,822,354,579);
+* direct simulation of the TM from the concrete A(1,12) tape halts after
+  5,153 executed steps, versus the rule-table cost 5,154 (the halting attempt
+  is not executed); A(1,14) gives 5,193 versus 5,194.
+
+For starting c ≤ 2^30 the maximum chain increment is Δc = 433 at
+c = 831,343,756 (maximum chain length 140 rules at the same c); for
+c ≤ 2^27 the maxima are Δc = 415 and 132 rules, both at c = 33,053,026.
+These are computed values, not a claim about a community record.
+
+The wall: let H = (3^307 − 8282708212)/13959275. The wiki reports that the
+consecutive A(1,c) stretch reaching H goes at least down to H−8,000,000.
+`wall.py` reaches H from H−8,000,001 after 7,391 chains, and `wall_scan.py`
+verified H−8,000,001 through H−8,001,000 all reach H (1,000 consecutive
+values, 16 workers, 277.6 s), extending the known lower bound to
+H−8,001,000. This is conditional on the published rules and does **not**
+prove 758 halts: the actual forward orbit is at c = 1,059,491,543,272,883,
+and with increments of order 10^2–10^3 it would need of order 10^136 chains
+to reach this wall.
+
+### 7. Screening the newest lists
+
+All 608 BB(6) holdouts and all 37 BB(2,5) holdouts were simulated to 10^8
+steps: no halts. This is only a lower-bound screen, not a decision.
+
 ## Honest verdict
 
 **No new holdout was decided.** All six BB(3,3) machines and all 37 BB(2,5)
-informal holdouts survived the heavy decider sweeps; the deep runs and the
+holdouts survived the heavy decider sweeps; the deep runs and the
 longitudinal attempt did not close the two claimed halting machines. The
-current lists are genuinely cryptid-hard (Collatz-like), and nothing in this
-session changes that.
+current lists are genuinely cryptid-hard (Collatz-like). The one new
+mathematical result is the longer verified wall for 758 (1,000 consecutive
+values below the previous bound); it does not decide that machine.
 
 What the session did produce, and what is checkable:
 
@@ -143,6 +191,12 @@ What the session did produce, and what is checkable:
    exact score and step count.
 4. Negative evidence: heavy deciders, deep simulation, and random sampling all
    fail to move the newest lists.
+5. A validated A(a,c) chain map for 758 and an extension of the known
+   exploding stretch from H−8,000,000 to H−8,001,000 (1,000 consecutive
+   values), conditional on the published rules.
+6. Symmetry deduplication of the 37, 60 and 608 lists (all duplicate-free;
+   37 ⊂ 60) and 10^8-step screens of the 608 BB(6) and 37 BB(2,5)
+   holdouts (no halts).
 
 ## Reproduce
 
@@ -151,7 +205,10 @@ py -3.14 iso.py                 # 153/758 isomorphism, 531/532 not isomorphic
 py -3.14 merge.py               # explicit 153/758 merge at the documented steps
 py -3.14 reach.py               # reachable-pair audit of the six 3x3 holdouts
 gcc -O3 -march=native -o sim.exe sim.c
+gcc -O3 -march=native -o delta.exe delta.c
 ./sim.exe -c 10000000 -f h25_37.txt -R -r 40
+./delta.exe 1073741824
+py -3.14 wall_scan.py 1 1000
 ```
 
 Deciders (requires the vendored framework and its venv):

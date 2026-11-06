@@ -1898,3 +1898,26 @@ omega-compressed f_* naming caveat from round 23 is unchanged.
   null result, specimens kept.
 - Verdict: no new holdout decided. The newest lists are cryptid-hard;
   the one solid result is the verified 153/758 pair. Artifacts in bbwork/.
+
+-----------------------------------------------------------------------
+2026-11-06  ROUND 26: formal BB(2,5) 37; validated 758 chain map; wall extended
+-----------------------------------------------------------------------
+- Official BB(2,5) 37-list downloaded (`Bb2x5_informalLast37.txt`),
+  line-identical to `h25_37.txt`; user states the 37 count is now formal.
+- `canon.py` (blank 0 and start A fixed, mirror allowed): 37/37, 60/60 and
+  608/608 distinct classes; no duplicates; 37 classes all inside the 60;
+  champion `1RB3LA4RB0RB2LA_1LB2LA3LA1RA1RZ` in neither list.
+- Screened 608 BB(6) and 37 BB(2,5) holdouts to 1e8 steps: no halts.
+- `delta.c` implements the 758 A(a,c) rules; all 26 published halting values
+  <1e6 reproduced, paths for 12/14/2331/2333 match; 36 halting values <=2^30
+  (published count); direct TM from A(1,12)/A(1,14) halts at 5,153/5,193
+  executed steps vs rule costs 5,154/5,194.
+- Scans: c<=2^30 max chain increment 433 at c=831,343,756, max chain 140
+  rules; c<=2^27 max 415 at c=33,053,026, max chain 132.
+- `wall.py`/`wall_scan.py`: H=(3^307-8282708212)/13959275; every c from
+  H-8,000,001 through H-8,001,000 reaches H (1,000 consecutive values,
+  16 workers, 277.6 s), extending the wiki's H-8,000,000 lower bound to
+  H-8,001,000. Conditional on the published chain rules; does NOT prove 758
+  halts -- the actual forward orbit is at c=1,059,491,543,272,883 and would
+  need of order 10^136 chains at observed increments.
+- No new holdout decided. New artifacts: delta.c, wall.py, wall_scan.py.
