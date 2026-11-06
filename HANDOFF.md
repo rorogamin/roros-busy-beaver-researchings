@@ -1871,3 +1871,30 @@ dual-verified against the machine at every recorded boundary, the FGH
 section needed only the same 4 shallow tactic classes as round 23, and
 the halt machine now has a real zero-axiom end-to-end chain proof.  The
 omega-compressed f_* naming caveat from round 23 is unchanged.
+
+-----------------------------------------------------------------------
+2026-11-05  ROUND 25: bbchallenge holdout excursion (bbwork/)
+-----------------------------------------------------------------------
+- Newest lists archived: BB6 608 (30 Oct 2026; 608 unique IDs, format
+  '<id> <spec>'), BB(3,3) 6 holdouts, BB(2,5) 37 informal + 60 formal.
+- Verified BB(3,3) 153 == 758: exact isomorphism (A->C->B->A, 1<->2,
+  mirror) and the documented merge at 1,790,901 / 1,841,608 steps
+  (normalized tape length 681, head offset 170 on both sides).
+- 531/532: NOT isomorphic. A transient config match exists at
+  531@29,156 / 532@20,000, but both read the differing cell (C,1) and
+  diverge 2 steps later; no stable merge within 2M steps. 397 vs 531:
+  no merge in 2M. The documented 531==532 equivalence was not reproduced
+  (likely a shared rule-system equivalence, not identical trajectories).
+- Decider sweeps (sligocki/busy-beaver, heavy parameters): 6/6 BB(3,3)
+  and 37/37 BB(2,5) remain unknown after 110s / 240s per machine.
+- Quick_Sim longitudinal on the two moderate-rigor BB(2,5) halting
+  claims (5.6e53 and 7.3e28 steps): 500k macro loops, no halt, no
+  general rules proven -- not independently reproduced.
+- Deep direct simulation: 2x5 holdouts #3/#4 to 1e10 steps, no halt;
+  both settle into clean two-block tapes 1...<1>3... (scores 71,186
+  and 85,815), consistent with bouncer/counter behaviour.
+- Factory: 40,000 random 2x5 machines at cap 1e6; longest halting run
+  found was 48 steps (random tables are dominated by immediate halts);
+  null result, specimens kept.
+- Verdict: no new holdout decided. The newest lists are cryptid-hard;
+  the one solid result is the verified 153/758 pair. Artifacts in bbwork/.
