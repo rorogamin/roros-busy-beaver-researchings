@@ -1946,12 +1946,15 @@ omega-compressed f_* naming caveat from round 23 is unchanged.
 - Appended the 2026-11-05/06 loader3229 batch to `championsReal.txt`:
   BB(11,4) > f_{w*2}(2{11}6) (11x4, 44/44 defined, no halt in 2M blank
   steps, score 1,438); BB(8,6) > f_{w^2+1}(f_w(31)) (8x6, 44/48 defined,
-  no halt in 2M, score 1,476, G dormant); and the posted BB(4,7)
-  f_{w+3}(34) row, which does NOT parse -- state D has 8 actions for a
-  7-symbol machine -- so it is recorded as malformed, not as a champion.
-- Existing BB(4,7) f_{w+2}(124) row retained; the malformed f_{w+3} row
-  is noted as the intended superseder only if corrected.
-- `_intake3229b.py` extended with the two valid rows; full 2M-step batch
+  no halt in 2M, score 1,476, G dormant); and the BB(4,7) f_{w+3}(34)
+  row.  The first paste had eight cells in D (3RB 5LD 6LC 4LD 4LC 4LC
+  4LC 6LC); dropping one repeated 4LC gives the seven-cell D
+  3RB5LD6LC4LD4LC4LC6LC, which parses and runs 2M steps without halting
+  (score 1,460; all four states visited).
+- Existing BB(4,7) f_{w+2}(124) row retained; the corrected f_{w+3} row
+  is entered as the intended superseder, with the exact source string
+  still to be reconfirmed by the claimant.
+- `_intake3229b.py` extended with all three rows; full 2M-step batch
   rerun and `_intake3229b_results.txt` refreshed.  Levels/arguments remain
   the claimant's estimates, not Rocq proofs.
 - 758 halting: still open.  The 10M wall extension is a one-sided basin

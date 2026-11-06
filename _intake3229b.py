@@ -51,11 +51,12 @@ MACHINES = [
   '1RK3LB1RZ2RA_0LG1LE1LD2RA_3RB1LB3LC2RC_3RE0LI3LC2RC_1RJ3RE3LH2LF_3RF2RF2LE1LF_3LC3LH2LJ2RG_0LE3RH1LI2RG_3RH1LH3LI2RI_0LB0LJ3LJ3RK_2LC0LD2RA3RK'),
  ('BB(8,6) [new 2026-11-06]', 'f_(w^2+1)(f_w(31))',
   '5LH3LB2LH2RA4LB1RZ_2RC3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE1LE4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG2LG5LG_0LC---1LH1LH---5RG'),
+ ('BB(4,7) [corrected 2026-11-06]', 'f_(w+3)(34)',
+  '5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LC6LC'),
 ]
 
-# The 2026-11-06 BB(4,7) f_(w+3)(34) string is malformed as posted
-# (state D has 8 actions for a 7-symbol machine); see championsReal.txt.
-# It is deliberately not run here until the claimant supplies a correction.
+# The 2026-11-06 BB(4,7) line had an extra repeated 4LC in state D;
+# the corrected seven-cell state D is entered here.  See championsReal.txt.
 
 BUDGET = 2_000_000
 MARKS = (10, 100, 1000, 10_000, 100_000, 1_000_000)
