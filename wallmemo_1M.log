@@ -1,0 +1,2 @@
+selftest ok (k=1: 7391 chains; k=2 merges after 4162 chains, path 4162, seen 11553)
+OK start=1 end=1000000 count=1000000 threads=16 total_chains=1295209 elapsed=4s

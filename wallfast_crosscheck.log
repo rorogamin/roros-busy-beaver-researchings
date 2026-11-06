@@ -1,0 +1,9 @@
+== block 1 ==
+selftest ok (H-8000001 reaches H in 7391 chains)
+OK start=1 end=100 count=100 threads=16 elapsed=3s
+== block 5000000 ==
+selftest ok (H-8000001 reaches H in 7391 chains)
+OK start=4999901 end=5000000 count=100 threads=16 elapsed=4s
+== block 10000000 ==
+selftest ok (H-8000001 reaches H in 7391 chains)
+OK start=9999901 end=10000000 count=100 threads=16 elapsed=6s

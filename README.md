@@ -47,6 +47,12 @@ state/symbol permutations are not used because they create false duplicates.
   enumeration and max-increment/chain-length scans.
 * `wall.py`, `wall_scan.py` — iterate the 758 chain map near the exploding
   halting value H and scan consecutive c below the known wall.
+* `wallfast.c` — exact naive 768-bit C scanner used for independent
+  cross-checks of individual blocks.
+* `wallmemo.c` — merge-aware exact scanner: each start stops at H or at a
+  value already proven to reach H, then marks the whole path proven.  This
+  turns a 7,391-chain run per value into roughly one chain per value on a
+  contiguous range.
 * `run_decide.sh`, `run_decide2.sh`, `qsim.sh` — wrappers for the
   [sligocki/busy-beaver](https://github.com/sligocki/busy-beaver) decider
   framework (`Enumerate.py`, `Quick_Sim.py`) used from a local venv
@@ -156,10 +162,15 @@ These are computed values, not a claim about a community record.
 
 The wall: let H = (3^307 − 8282708212)/13959275. The wiki reports that the
 consecutive A(1,c) stretch reaching H goes at least down to H−8,000,000.
-`wall.py` reaches H from H−8,000,001 after 7,391 chains, and `wall_scan.py`
-verified H−8,000,001 through H−8,001,000 all reach H (1,000 consecutive
-values, 16 workers, 277.6 s), extending the known lower bound to
-H−8,001,000. This is conditional on the published rules and does **not**
+`wall.py` reaches H from H−8,000,001 after 7,391 chains. The direct C
+translation `wallfast.c` independently verified the first 10,000 values
+naively (262 s, 16 threads) and 100-value blocks at k = 1, 5,000,000 and
+10,000,000. The merge-aware `wallmemo.c` then verified every c from
+H−8,000,001 through H−18,000,000 — **10,000,000 consecutive values** — in
+28 s on 16 threads, using only 10,488,713 chains. It stores exact 64-bit
+offsets d = H−c, so a hash hit is an exact value already proven to reach H,
+not a probabilistic filter. The known lower bound is therefore
+H−18,000,000, conditional on the published rules. This still does **not**
 prove 758 halts: the actual forward orbit is at c = 1,059,491,543,272,883,
 and with increments of order 10^2–10^3 it would need of order 10^136 chains
 to reach this wall.
@@ -175,8 +186,9 @@ steps: no halts. This is only a lower-bound screen, not a decision.
 holdouts survived the heavy decider sweeps; the deep runs and the
 longitudinal attempt did not close the two claimed halting machines. The
 current lists are genuinely cryptid-hard (Collatz-like). The one new
-mathematical result is the longer verified wall for 758 (1,000 consecutive
-values below the previous bound); it does not decide that machine.
+mathematical result is the longer verified wall for 758 (10,000,000
+consecutive values below the previous bound); it does not decide that
+machine.
 
 What the session did produce, and what is checkable:
 
@@ -192,8 +204,8 @@ What the session did produce, and what is checkable:
 4. Negative evidence: heavy deciders, deep simulation, and random sampling all
    fail to move the newest lists.
 5. A validated A(a,c) chain map for 758 and an extension of the known
-   exploding stretch from H−8,000,000 to H−8,001,000 (1,000 consecutive
-   values), conditional on the published rules.
+   exploding stretch from H−8,000,000 to H−18,000,000 (10,000,000 new
+   consecutive values), conditional on the published rules.
 6. Symmetry deduplication of the 37, 60 and 608 lists (all duplicate-free;
    37 ⊂ 60) and 10^8-step screens of the 608 BB(6) and 37 BB(2,5)
    holdouts (no halts).
@@ -206,9 +218,12 @@ py -3.14 merge.py               # explicit 153/758 merge at the documented steps
 py -3.14 reach.py               # reachable-pair audit of the six 3x3 holdouts
 gcc -O3 -march=native -o sim.exe sim.c
 gcc -O3 -march=native -o delta.exe delta.c
+gcc -O3 -march=native -pthread -o wallfast.exe wallfast.c
+gcc -O3 -march=native -pthread -o wallmemo.exe wallmemo.c
 ./sim.exe -c 10000000 -f h25_37.txt -R -r 40
 ./delta.exe 1073741824
-py -3.14 wall_scan.py 1 1000
+./wallfast.exe 1 100 16
+./wallmemo.exe 1 10000000 16
 ```
 
 Deciders (requires the vendored framework and its venv):
