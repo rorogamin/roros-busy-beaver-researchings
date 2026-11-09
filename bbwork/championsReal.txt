@@ -33,6 +33,12 @@ BB 1,2  thru 5,2: All solved, doesnt matter
 BB 2,3 and 2,4: Also solved.
 
 BB(6): 10^^10^^10^^8, 1RB1RA_1RC1RZ_1LD0RF_1RA0LE_0LD1RC_1RA0RE
+  Holdout 92633 `1RB0LF_1RC0RA_1LD0RB_0LE0LC_0LA0LC_0LB---` is proved
+  nonhalting in Lean 4: `is_not_halt : IsNotHalt target` and
+  `not_halts : ¬ Halts machine`. The audit has only the standard axioms
+  `propext`, `Classical.choice`, `Quot.sound`; no `sorry`, `admit`, or
+  `native_decide`. This is a new proof, not a ported old proof; source:
+  `bbwork/cryptids_a6/`, audit: `lake env lean artifacts/a6/Audit.lean`.
 BB(7): 3{20}3 (using the notation a{b}c where b is the amount of arrows), 1RB0RG_1RC1RB_0RD1RZ_0LE0LD_0LF1LE_1RA1LF_1LC0RB
 BB(8): f_omega(f_omega(f_omega(12))), 1RB0RA_1LC1LF_1RD0LB_1RA1LE_1LH0LC_1RG1LD_0RG0RF_1RG1RZ
 BB(9): f_omega(f_omega(f_omega(f_omega(f_omega(f_omega(f_omega(12))))))),
@@ -73,7 +79,19 @@ BB(17): > (f_{w+3})^3(9),
    halt row (Q,0).  Local check 2026-11-04: no halt in 3,000,000 steps, score
    3,337, states used 16/17 (Q idle in budget), milestones 10@38, 100@3,001,
    1,000@121,818.)
-BB(18): > (f_{w+3})^4(9),
+BB(18): > f_{w*2}^2(f_{w}^2(f_10(2)))*,
+1LH0LG_0LI1RC_0LD1LA_0RE1LD_0RH1RL_1RB1RF_1LA1LG_1RF1RM_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LN1RM_0LQ0LO_1LR1LP_0LQ1LN_0RO1LB_0LL1RZ
+  (supplied 2026-11-09.  NEW HEIGHT for BB(18): a w*2-level iterate, not an f_{w+3}
+   iterate count -- f_{w*2} applied twice at the f_{w} double iterate of f_10(2), against
+   the superseded (f_{w+3})^4(9) row below.  Own body again (1LH start; not the 1LB
+   14/16/17 family).  18 states / 2 symbols, all 36 rows defined, single halt row
+   (R,1) -- write 1, move right, halt.  Not independently verified, not locally
+   simulated here;
+   the ordering against the superseded row is the row's own claim, not locally
+   checkable, per the file's standing rule.  The value line is reproduced exactly as
+   supplied, including the trailing `*`; this file defines no other use of that marker.)
+
+BB(18) [superseded]: > (f_{w+3})^4(9),
 1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LN_0RB1LI_1RR0LO_0RO1RZ
   (same 11/2026 Ketchersid/Claude/Gemini table row as BB(17), claimed.  The BB(17)
    machine with one extra state R taking the halt: Q's 0-row now hands to R (1RR0LO)
@@ -82,6 +100,8 @@ BB(18): > (f_{w+3})^4(9),
    2026-11-04: no halt in 3,000,000 steps, score 3,337, states used 16/18; in-budget
    behaviour indistinguishable from the BB(17) row (same milestones -- the extra
    level shows only past the budget, like the 16->17 family above).)
+  (Superseded 2026-11-09 by the f_{w*2}^2(f_w^2(f_10(2))) row above: two w*2-level
+   iterates outrun any finite iterate of f_{w+3}.)
 
 BB(18) [superseded]: f_{w+3}(114),
 1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_1RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_0RQ0RG_0LG1LP_0LO1LP_1LQ0RR_1RZ0LP
@@ -459,7 +479,7 @@ BB(8,3): f_{w+1}((f_w)^4(f_7(2))), 1RD2RE2LA_2RC2LC2RB_1LH2RF1LA_2RC1RD2RB_---1L
    dormant, so the operative halt is still (F,0) -> 1RZ.)
 BB(8,3) [superseded]: f_{w+1}(f_w(f_7(2))), 1LD1LE2RA_1RE2LE2RB_1RD2RA2LC_1RB1RD2RB_1LH2RF1LC_1RZ0LF1LG_1RD2LG2LG_0LD1LH1LH
 BB(9,3) and BB(10,3): none
-BB(11,3): f_{w+3}(f_{w+3}(4)), 1LD2RG2LA_2LE2LH2RB_2LE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI---_0RC1LH2RG_1RC2LH1LA_1RI1RI1LJ_0LA2LK---_1RZ2LJ---
+BB(11,3) [superseded]: f_{w+3}(f_{w+3}(4)), 1LD2RG2LA_2LE2LH2RB_2LE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI---_0RC1LH2RG_1RC2LH1LA_1RI1RI1LJ_0LA2LK---_1RZ2LJ---
 BB(12,3 thru 35,3): none
 Writing e0 instead of epsilon_0 from now on.
 BB(36,3): f_e0(7)
@@ -478,7 +498,7 @@ BB(6,4) [superseded]: f_{w+1}(97), 0RC3LB2RD2RA_1LF3RB1LC2RA_3RB1LB3LC2RC_1RZ2LD
   (reported 2026-10-28; superseded by the row above.  f_{w+1}(97) is f_w iterated 98
    times -- above the BB(5,4) row's f_w(f_w(...)) nesting of depth 2.)
 BB(7,4): none
-BB(8,4): f_{w+2}((f_w)^4(12)), 1RC3LB2RD2RA_1RF3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ3RB_1LG2RD1LG3RG_0LH0LC0LH3RD
+BB(8,4) [superseded]: f_{w+2}((f_w)^4(12)), 1RC3LB2RD2RA_1RF3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ3RB_1LG2RD1LG3RG_0LH0LC0LH3RD
   (reported 2026-10-29; new champion, supersedes f_{w+2}(83) below.  Same f_{w+2} level, but
    the argument is now an f_w iterate, (f_w)^4(12) = f_w(f_w(f_w(f_w(12)))), instead of the
    plain 83 -- so the improvement is in the *argument* at that level, which is the largest
@@ -495,7 +515,7 @@ BB(8,4) [superseded]: f_{w+2}(14), 1LB3LB2RD2RA_1LH3RB1LC2RA_3RB1LB3LC2RC_0RF2LD
   (reported 2026-10-28; superseded by the row above.  f_{w+2}(14) is two full levels above
    the BB(6,4) row's f_{w+1}(97) -- an extra f_w iteration through the whole tower, not a
    bigger argument -- and it needs only 8 states because the row's successor field is reused.)
-BB(9,4): > f_{w+3}(16),
+BB(9,4) [superseded]: > f_{w+3}(16),
 2LI3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2LB---1LI3RF
   (reported 2026-10-30; new champion, supersedes the f_{w+3}(10) row below.  Same top
    level f_{w+3}; the iteration count at that level goes 10 -> 16.  The change is
@@ -1183,3 +1203,222 @@ BB(8,6): > f_{w^2+1}(f_w(31)) steps.  (informal)
 
 Nothing here is verified beyond the local parse/run; the f_* levels are
 the claimant's and require a Rocq proof before use as theorem input.
+
+-------------------------------------------------------------------------
+ADDITIONS -- loader3229, 2026-11-06/07 (BB(7,4), BB(8,3), BB(9,3), BB(7,6))
+-------------------------------------------------------------------------
+All four are informal.  The BB(8,3), BB(9,3) and BB(7,4) rows were reported
+on 2026-11-06 as built from Jacobzheng's BB(11,3) champion rather than the old
+BB(3,4) seed.  The BB(7,6) row was reported 2026-11-07.  Local checks below
+use tools/bbmulti.py on the blank tape for 2,000,000 steps; they establish
+only parse/size/no-halt in that window, not the claimed ordinal levels.
+
+BB(8,3): > f_{w+2}(4) steps.  (informal; higher claimed level than the
+existing f_{w+1} BB(8,3) row, so it supersedes it on level)
+2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD0RH_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_2RD1LF1LG
+  Local check: 8x3, 24 of 24 transitions defined (sole halt entry F2 -> 1RZ),
+  no halt in 2,000,000 steps, score 1,447; milestones 10@107, 100@5,588,
+  1,000@1,163,624; all 8 states visited; symbols 0..2 all written.
+
+BB(9,3): > f_{w+2}(16) steps.  (informal; new BB(9,3), no predecessor)
+2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD1RH_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_2LG1RI---_2RD0RI0RI
+  Local check: 9x3, 26 of 27 transitions defined (H2 is ---; sole halt entry
+  F2 -> 1RZ), no halt in 2,000,000 steps, score 1,457; milestones 10@91,
+  100@4,587, 1,000@1,128,703; all 9 states visited; symbols 0..2 all written.
+
+BB(7,4): > f_{w+2}(48) steps.  (informal; new BB(7,4), no predecessor)
+3RD1LE2RA---_0LE2LE2RB---_1RF1RC2RB---_0RC0LD3LA1LF_1RC2LE1LG0RD_0LA0LD1RZ2LF_1LD2RA2LG3RA
+  Local check: 7x4, 25 of 28 transitions defined (A3, B3, C3 are ---; sole
+  halt entry F2 -> 1RZ), no halt in 2,000,000 steps, score 1,488; milestones
+  10@68, 100@6,351, 1,000@1,023,987; all 7 states visited; symbols 0..3 all
+  written.
+
+BB(7,6): > f_(omega^2)(110) steps.  (informal; same f_{w^2} level as the
+current f_{w^2}(63) row, argument 110 against 63 -- a bigger argument at the
+same height, so the 63 row is superseded)
+5LG3LB---2RA4LB0LC_4LG3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE0LE4LC3LG5LE_5RB5RB2LB1LF---5LF_5LF---0LG1LG---5LG
+  Local check: 7x6, 37 of 42 transitions defined (A2, D4, F4, G1, G4 are
+  ---; no halt entry in the table), no halt in 2,000,000 steps, score 1,915;
+  milestones 10@46, 100@5,404, 1,000@337,069; all 7 states visited; symbols
+  0..5 all written.  The machine is not an edit of the f_{w^2}(63) row; its
+  A, E, F and G rows differ outright, including A0 2LE -> 5LG and the new
+  A2/A5 entries.
+
+BB(10,3): > f_{w+4}(f_{w+4}(4)) steps.  (informal; reported 2026-11-07,
+built from and claimed to beat Jacobzheng's original BB(11,3)
+f_{w+3}(f_{w+3}(4)) champion)
+1LD2RG2LA_2LE2LH2RB_2RE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ1LI_0RC1LH2RG_1RC2LH1LA_0LJ2LI---_1LA1RB---
+  Local check: 10x3, 28 of 30 transitions defined (I2 and J2 are ---; sole
+  halt entry F1 -> 1RZ), no halt in 2,000,000 steps, score 1,444; milestones
+  10@69, 100@5,747, 1,000@1,173,959; all 10 states visited; symbols 0..2 all
+  written.  The f_{w+4} level is the claimant's and is higher than the
+  ledger's BB(11,3) f_{w+3} row if the claim stands.  The old BB(11,3)
+  row is marked superseded by padding: a 10-state machine pads to 11
+  states at the same level, so the old 11-state bound is no longer best.
+
+BB(8,4): > f_{w+8}(f_{w+8}(4)) steps.  (informal; reported 2026-11-07)
+1LD2RG2LA---_2LE2LH2RB1LF_2LA1RC2RB---_0RC1RD0LG1RH_0LF1LE1LE3LB_1RG1RZ3RD3LF_0RC1LH2RG0LC_1RC2LH1LA2LB
+  Local check: 8x4, 30 of 32 transitions defined (A3 and C3 are ---; sole
+  halt entry F1 -> 1RZ), no halt in 2,000,000 steps, score 1,464;
+  milestones 10@71, 100@3,138, 1,000@1,103,510; all 8 states visited;
+  symbols 0..3 all written.  This supersedes the existing BB(8,4)
+  f_{w+2} row on claimed level; that row is marked superseded above.
+
+The levels remain the claimant's.  Only the local parse/run facts above are
+ours; none of these rows is a Rocq-verified halting-time theorem.
+
+-------------------------------------------------------------------------
+WIKI SYNC -- current Champions table, captured 2026-11-08
+-------------------------------------------------------------------------
+Source: https://wiki.bbchallenge.org/wiki/Champions
+Page last edited: 8 November 2026, 15:25 (live fetch 2026-11-08).
+
+ADD, not replace: every earlier row in this file is preserved, including
+rows already marked superseded.  The lines below are the exact bbchallenge
+machine strings linked from the wiki table and absent from this ledger at
+capture time.  The wiki's verification column is copied only as status;
+it is not a local proof claim.
+
+BB(2) -- wiki current, five tied champions (Tibor Radó; direct simulation):
+  1RB1LB_1LA1RZ
+  1RB0LB_1LA1RZ
+  1RB1RZ_1LB1LA
+  1RB1RZ_0LB1LA
+  0RB1RZ_1LA1RB
+
+BB(3) -- wiki current (Shen Lin; direct simulation):
+  1RB1RZ_1LB0RC_1LC1LA
+
+BB(4) -- wiki current (Allen Brady; direct simulation):
+  1RB1LB_1LA0LC_1RZ1LD_1RD0RA
+
+BB(5) -- wiki current (Heiner Marxen & Jürgen Buntrock, 1989; direct simulation):
+  1RB1LC_1RC1RB_1RD0LE_1LA1LD_1RZ0LA
+
+BB(14) -- wiki current, claimed by Jeff Ketchersid/Claude/Gemini, 11/2026 (wiki: not independently verified):
+  1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LK1RF_1RM0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_0LL0LL_0LN1LK_1RZ0LH_0LG1LJ
+
+BB(18) -- wiki current, claimed by Jeff Ketchersid/Claude/Gemini, 11/2026 (wiki: not independently verified):
+  1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LR_0RB1LI_1RZ1RR_1RN0LO
+
+BB(2,3) -- wiki current (Allen Brady, 1988; direct simulation):
+  1RB2LB1RZ_2LA2RB1LB
+
+BB(9,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH
+
+BB(10,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA_1RJ2LI2LB_0RF1LA0RI
+
+BB(11,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA_1RJ2LI2LB_0RF2LK0RI_2RG2RK1LK
+
+BB(12,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1RK1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI0RL_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_0LJ1RZ1LA_1LK0LL2LA_2LL0LE2LB
+
+BB(13,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1RK1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI0LM_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_0LJ1RZ1LA_1LK0LL2LB_2RG2RE2RL_1LL0RL0LK
+
+BB(2,4) -- wiki current (Terry & Shawn Ligocki, 2005; verified by Pascal Michel, Heiner Marxen, Allen Brady):
+  1RB2LA1RA1RA_1LB1LA3RB1RZ
+
+BB(5,4) -- wiki current, Jacobzheng (wiki: claimed by MiniMax; not independently verified):
+  1LD3LB---2RA_1LD3RB1LC2RA_3RB1LB3LC2RC_3RB---3LE3LD_------1LD1RZ
+
+BB(7,4) -- wiki current, Loader3229 (wiki: not independently verified):
+  3RD1LE2RA1LF_0LE2LE2RB2RD_1RF1RC2RB0LB_0RC0LD3RC2RA_1RC2LE1LG2RF_0LA0LD3LG1RZ_1LD2RA2LG0RB
+
+BB(12,4) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LH---1LD2RB_2LL3LA1RZ2RB_3RA1LA3LC2RC_3RE---3LC2RC_2LI3RE3LH2LF_3RF2RF2LE1LF_1LL3LH2LJ2RG_2LC3RH1LI2RG_3RH1LH3LI2RI_------3LJ3RK_------2RB3RK_3RB---1LL3LL
+
+BB(7,5) -- wiki current, Loader3229 (wiki: not independently verified):
+  2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LG4LD4LE_3RB---1LE4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+
+BB(3,7) -- wiki current, Loader3229 (wiki: not independently verified):
+  6LC3LB6RA2RA4LB5LC5LA_1RZ3RB1LC2RA3RB4LC5RA_3RB1LB3LC2RC4LC1RA6LA
+
+BB(4,7) -- wiki current, Loader3229 (wiki: not independently verified):
+  5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LD6LC
+
+Trivial -- wiki Zoology trivial champions (not a BB domain):
+  0RA_0RZ
+  0RA_0RB_0RZ
+
+Exact-string coverage: all 66 unique machine strings in the wiki Champions
+table now occur verbatim in this file.  The wiki also has rows with no
+machine string (BB(15), BB(16), BB(29), BB(31), BB(33), BB(48), BB(150),
+BB(1015), the conjectured BB(67), and legacy blank rows); those are not
+inserted as machines because the page prints no standard string for them.
+
+-------------------------------------------------------------------------
+LINKED-MACHINE ADDITIONS AND BB(48) -- 2026-11-08
+-------------------------------------------------------------------------
+ADD, not replace.  Exact machine data for the wiki rows that were still
+link-only, plus the machine representation for BB(48)/gem48.  This block
+comes after WIKI SYNC and supersedes only that block's closing list of
+rows said to have no inserted machine.
+
+ATTRIBUTION: BB(48)/gem48 is OUR machine.  We made it.  The older wording
+in the gem48 section above ("gemini's ... received from gemini") records
+the label on the original source file; for authorship, this block controls.
+
+BB(29) -- f_{omega^omega}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB29/hydra29.md
+  The hydra page says the analysis and Coq proofs done there confirm the
+  claim; this entry adds the exact published string, not a new proof.
+  Notation: 6 chars per state = symbol-0 action then symbol-1 action; one
+  action = write,dir,next.  "_" separates states.  State labels are A..Z
+  plus the three characters [ \ ] (29 states).
+  0LP1LD_---0LC_1LR0LB_1RF1LE_0LD1LD_0R[1RG_1RN0RK_0RI1RJ_1LZ1RH_0RH1RH_0RL1RM_1L\1RK_0RK1RK_0RO1RO_0L\1RN_1R[1LA_0RV0RV_0LT1LS_0R[1LT_0RY1LU_0LR1L\_0RW1RX_0RN1RV_0LC1RV_0LA1LZ_0LY1LY_0RQ0RH_1L]1LR_1LH1LZ
+
+BB(31) -- f_{omega^^4}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB31/hydra31.md
+  Verbatim published fixed-width string.  State labels are A..Z plus
+  [ \ ] ^ _ (31 states).  "_" is ALSO a state label here, so the string
+  must be parsed at a 7-character stride, not with str.split("_").
+  0RK1RK_---0LC_1LQ0LB_1RF1LE_0LD1LD_0R\1RG_1RM0RK_0RI1RJ_1L[1RH_0RH1RH_0RL1RA_1L]1RK_0RN1RN_0L]1RM_1R\1L^_0RW0RW_0LU1LR_0R\1LS_0L]1LT_0LQ1LU_0RZ1LV_0LS1L]_0RX1RY_0RM1RW_0LC1RW_0L^1L[_0LZ1LZ_0RP0RH_1L_1LQ_0LO1LD_1LH1L[
+
+BB(33) -- f_{omega^^6}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB33/hydra33.md
+  Verbatim published fixed-width string.  State labels are A..Z plus
+  [ \ ] ^ _ ` a (33 states).  "_" is ALSO a state label here; parse at a
+  7-character stride, not with str.split("_").
+  1LH1L^_---0LC_1LR0LB_1RF1LE_0LD1LD_0R_1RG_1RN0RK_0RI1RJ_1L^1RH_0RH1RH_0RL1RM_1L`1RK_0RK1RK_0RO1RO_0L`1RN_1R_1La_0RZ0RZ_0LX1LS_0R_1LT_0L`1LU_0LR1LV_0LS1LW_0LT1LX_0R]1LY_0LV1L`_0R[1R\_0RN1RZ_0LC1RZ_0La1L^_0L]1L]_0RQ0RH_1LA1LR_0LP1LD
+
+BB(48) -- OURS: gem48, 48 states, 2 symbols; f_epsilon_1(3)-seed claim.
+  Exact 96-transition table: rocq/gemini_epsilon1_tm_48s_v2_fix.v.
+  This is a machine representation, not a new divergence proof.  STATUS
+  remains INFORMAL exactly as recorded in the gem48 section above: the
+  1641-step seed and campaign milestones check, but no campaign-chain
+  witness for the claimed final halt exists here.
+  Extended-state string: state map S01..S25 -> A..Y, S26..S48 -> a..w;
+  Z = halt.  Six chars per state = symbol-0 action then symbol-1 action;
+  action = write,dir,next; "_" separates states.  Z is deliberately not
+  used as a state, so it is unambiguously the halt target.
+  1Lu0RZ_0LB0Lh_0RD1RC_0RE1RC_0RF1RE_1RJ1RE_0RH1RG_0LJ1RG_0RJ1RI_1LK1RI_0LL1LK_1Rf1LK_0RS0RN_0Lp1RG_0RO1RP_0RQ0RQ_0RR1RQ_0RS1RQ_0RT0LK_0LB0LK_0LV1LU_0Lc1LU_0Rt1RW_0RY1RX_0RI1RX_1RO1Rv_1Rf1Lb_0La1Lb_0RX1RC_1Rw0RX_0RM0RW_0RZ0Lh_0Li1Lm_0Ls0Lj_0Lg1Rk_0Rl0Lv_1Rq1Rl_0Ln1Lm_0Rk1Lm_0Lc1Lp_0LU1Rq_0Rr1Rq_1LA1Rq_0Lo1Ls_0Re0RB_1Rj1Lu_0Rt1Lv_0Le1Rd
+  Checked by reparsing this string: 48 segments, 96/96 transitions equal
+  to the Rocq table, every target round-trips; no errors.
+
+BB(150) -- f_lim(BMS)(10^^15).
+  Exact 150-state simulator source (Morphett "machine.json" gist):
+  https://gist.github.com/awmorp/c95a199c8e8a3dd56452f8b7e28fabbf
+  Raw: https://gist.githubusercontent.com/awmorp/c95a199c8e8a3dd56452f8b7e28fabbf/raw/machine.json
+  The gist program contains comments and multi-state superposition labels
+  (e.g. A1, S13, d0); it is the machine artifact but not a standard 150x2
+  single-letter string.  No string is fabricated here.
+
+BB(1015) -- Loader's Number, CatsAreFluffy 2024.
+  Commit: https://github.com/CatsAreFluffy/metamath-turing-machines/commit/85948b04fc4aeb983ca6d63d6aee5ad6ef308bfe
+  Exact files: blc_loader.nql, loader.blc (2016-byte compiled artifact),
+  output_loader.txt.  The wiki prints no standard 1015-state string; the
+  commit is the machine source and is linked here, not retyped.
+
+BB(67) -- q^81(q(5) - 2), conjectured.
+  The full 67-entry tuple table is already present earlier in this file
+  under "BB(67):"; it is not duplicated here.  It uses state indices 0..66
+  and halt = -1, so it is a tuple table, not a standard single-letter
+  string.
+
+CORRECTION: BB(29), BB(31), BB(33), and BB(48) are no longer in the
+"no machine string" list at the end of WIKI SYNC; their data is above.
+BB(67) was already tabulated; BB(150) and BB(1015) remain link-only.

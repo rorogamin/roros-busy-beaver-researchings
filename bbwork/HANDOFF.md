@@ -1979,3 +1979,79 @@ omega-compressed f_* naming caveat from round 23 is unchanged.
 - Interpretation: empirical sqrt-like score growth, consistent with
   counter/bouncer behavior; no proof.  No new holdout was decided.
 - Report: `bbwork/deep_holdout_results.txt`; README section 8 updated.
+-----------------------------------------------------------------------
+2026-11-07  ROUND 30: loader3229 2026-11-06/07 batch (four new machines)
+-----------------------------------------------------------------------
+- Appended to `championsReal.txt`: BB(8,3) > f_{w+2}(4), BB(9,3) >
+  f_{w+2}(16), BB(7,4) > f_{w+2}(48), and BB(7,6) > f_{w^2}(110).  All
+  are informal; the first three are built from Jacobzheng's BB(11,3)
+  seed, and the BB(7,6) argument 110 supersedes the previous 63 row at
+  the same level.
+- Local blank-tape checks at 2,000,000 steps (`tools/bbmulti.py`):
+  BB(8,3) 8x3, 24/24 defined, score 1,447; BB(9,3) 9x3, 26/27 defined,
+  score 1,457; BB(7,4) 7x4, 25/28 defined, score 1,488; BB(7,6) 7x6,
+  37/42 defined, score 1,915.  None halted; all states visited; all
+  four rows are now in `_intake3229b.py`.
+- The 2026-11-05/06 BB(11,4), BB(4,7) and BB(8,6) rows were already in
+  the file from round 28; the new paste's versions of those three are
+  exact duplicates of the existing rows, not additional machines.
+- Levels/arguments remain loader3229's estimates, not Rocq theorems.
+-----------------------------------------------------------------------
+2026-11-07  ROUND 31: new BB(10,3) loader3229 row
+-----------------------------------------------------------------------
+- Appended `BB(10,3): > f_{w+4}(f_{w+4}(4))` (informal).  Machine:
+  1LD2RG2LA_2LE2LH2RB_2RE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ1LI_0RC1LH2RG_1RC2LH1LA_0LJ2LI---_1LA1RB---
+  Reported as built from and beating Jacobzheng's original BB(11,3)
+  f_{w+3}(f_{w+3}(4)) champion.
+- Local check: 10x3, 28/30 transitions defined (I2, J2 are ---; sole halt
+  entry F1 -> 1RZ), no halt in 2,000,000 blank-tape steps, score 1,444;
+  milestones 10@69, 100@5,747, 1,000@1,173,959; all 10 states visited;
+  symbols 0..2 all written.  Level remains the claimant's estimate.
+-----------------------------------------------------------------------
+2026-11-07  ROUND 32: BB(2,5) formal 37 cycle screen at 10^10
+-----------------------------------------------------------------------
+- Added `bbwork/cycle_screen.py`, a resume-aware parallel driver for the
+  exact translated-configuration detector.  It requires one recognised
+  status line per machine and one log per index.
+- Ran all 37 formal BB(2,5) holdouts at 10^10 steps with 10^7 checkpoints
+  and 8 workers: 37/37 NO_CYCLE, 0 cycles, 0 halts, 0 errors.  Wall time
+  275.2 s; slowest machine 73.4 s.
+- This extends the previous 10^9/10^6 screen.  It rules out only cycles
+  whose checkpoint period divides 10^7 within 10^10 steps; it is not a
+  nonhalting proof.  Artifacts: `bbwork/cycle37_1e10/`.
+- The new BB(10,3) ledger row is present and its 2M-step check passes.
+  Added rank 14 for `f_{w+4}`/`f_{omega+4}` to the external audit; the
+  old BB(11,3) row is marked `[superseded]` because padding the 10-state
+  machine preserves the level.  The audit now has 5 inversions, all
+  inherited, and still exits 1 on 6 notation ambiguities.
+-----------------------------------------------------------------------
+2026-11-07  ROUND 33: new BB(8,4) loader3229 row
+-----------------------------------------------------------------------
+- Appended `BB(8,4): > f_{w+8}(f_{w+8}(4))` (informal).  Machine:
+  1LD2RG2LA---_2LE2LH2RB1LF_2LA1RC2RB---_0RC1RD0LG1RH_0LF1LE1LE3LB_1RG1RZ3RD3LF_0RC1LH2RG0LC_1RC2LH1LA2LB
+- Local check: 8x4, 30/32 transitions defined (A3, C3 are ---; sole halt
+  entry F1 -> 1RZ), no halt in 2,000,000 blank-tape steps, score 1,464;
+  milestones 10@71, 100@3,138, 1,000@1,103,510; all 8 states visited;
+  symbols 0..3 all written.
+- Existing BB(8,4) f_{w+2} and BB(9,4) f_{w+3} rows marked
+  `[superseded]` on claimed level.
+  Added rank 16 for `f_{w+8}`/`f_{omega+8}` to the external audit; the
+  10^11 BB(2,5) cycle extension was interrupted and is not claimed.
+-----------------------------------------------------------------------
+2026-11-07  ROUND 34: SUPER71/SUPER72 formal halting proof checked
+-----------------------------------------------------------------------
+- Rechecked `cryptids/super/Super.v` under Rocq 9.1.  `coqc -q Super.v`
+  exits 0 and `coqchk -Q . "" Super` exits 0.  `Print Assumptions` on
+  `super71_halts`, `super72_halts`, and `runs_inj` reports "Closed under
+  the global context" -- no axioms, no admitted proofs.
+- The proved machines are now emitted from the same `build.py` tables used
+  by `gen_super_v.py`:
+    SUPER71.tm  71 states, blank L1, exact halt at 54 steps;
+    SUPER72.tm  72 states, blank L1, exact halt at 488 steps.
+  Regenerating `Super.v` is byte-identical (SHA-256 6d57a598...ecbf78).
+  Independent Morphett-table simulation, not the Rocq evaluator, reaches
+  HALT at 54/488; all 71/72 states are declared.
+- Scope: this is an exact halting-time proof for those two finite tables.
+  It does not prove termination at rank >= 2, the tower claim, or any
+  BB/champion level.  `SUPER75.tm` and `SUPER98.tm` remain lower-bound
+  artifacts.  No ledger row was added.

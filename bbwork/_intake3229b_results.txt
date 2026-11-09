@@ -48,3 +48,15 @@
   milestones: 10@86, 100@6,282, 1,000@1,064,570; states visited 7/8; symbols written [0, 1, 2, 3, 4, 5]
   BB(4,7) [corrected 2026-11-06] 4x7, 28 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,460
   milestones: 10@90, 100@4,760, 1,000@1,116,900; states visited 4/4; symbols written [1, 2, 3, 4, 5, 6]
+  BB(8,3) [new 2026-11-06] 8x3, 24 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,447
+  milestones: 10@107, 100@5,588, 1,000@1,163,624; states visited 8/8; symbols written [0, 1, 2]
+  BB(9,3) [new 2026-11-06] 9x3, 26 defined transitions, undefined=1: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,457
+  milestones: 10@91, 100@4,587, 1,000@1,128,703; states visited 9/9; symbols written [0, 1, 2]
+  BB(7,4) [new 2026-11-06] 7x4, 25 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,488
+  milestones: 10@68, 100@6,351, 1,000@1,023,987; states visited 7/7; symbols written [0, 1, 2, 3]
+  BB(7,6) [new 2026-11-07] 7x6, 37 defined transitions, undefined=5: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,915
+  milestones: 10@46, 100@5,404, 1,000@337,069; states visited 7/7; symbols written [0, 1, 2, 3, 4, 5]
+  BB(10,3) [new 2026-11-07] 10x3, 28 defined transitions, undefined=2: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,444
+  milestones: 10@69, 100@5,747, 1,000@1,173,959; states visited 10/10; symbols written [0, 1, 2]
+  BB(8,4) [new 2026-11-07] 8x4, 30 defined transitions, undefined=2: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,464
+  milestones: 10@71, 100@3,138, 1,000@1,103,510; states visited 8/8; symbols written [0, 1, 2, 3]
