@@ -20,7 +20,8 @@
 | **Holdout Symmetries**| 37, 60, 608, 6 lists | `canon.py` | **VERIFIED DEDUPLICATED** | 37/37, 60/60, 608/608, 6/6 unique classes; 37 $\subset$ 60 confirmed. |
 | **Wallmemo 758** | Exploding wall $H$ | `wallmemo.exe` | **VERIFIED BOUND** | Selftest pass ($k=1$ 7,391 chains, $k=2$ 4,162 chains); verified 1,000 values in 1s. |
 | **LongAcc Engine** | Holdout 1 (`1RB3RB---3LA1RA_2LA3RA4LB0LB1LB`) | `node longacc_run.mjs` (Wasm) | **VERIFIED COMPRESSED MACRO** | Ran to row 6713 (step width 6737) in 5s; configuration output intact. |
-| **gem48 ($\varepsilon_1$ TM)** | 48-state 2-symbol machine | `rocq/gemini_epsilon1_tm_48s_v2_fix.v` & `tools/_check_gem48.py` | **PROVED LOWER BOUND** | Rocq 9.1: 13/13 theorems verified with 0 axioms (`Closed under global context`). Proves $f_{\varepsilon_1}(3) < T$. |
+| **gem48 ($\varepsilon_1$ Claim)** | 48-state 2-symbol machine | `rocq/gemini_epsilon1_tm_48s_v2_fix.v`, `tools/_audit_fgh_halting.py` | **REFUTED AS FGH MACHINE** | Machine is an infinite polynomial oscillator ($O(n^4)$); does NOT halt in 2,000,000 steps. Lower bound theorem is a vacuous conditional ($P \implies Q$ with unsatisfied premise `worm_chain_fgh`). Collapses $\varepsilon_3 \to \varepsilon_0$ in 231 steps. Fails AGENTS.md rule. |
+| **Extended FGH ($\varepsilon_2, \zeta_0, \eta_0$)** | Ordinal bounds & $T_{48}$ extensions | `rocq/FGH_Eps2_Zeta0_Eta0.v`, `gemini_epsilon2_zeta0_tm.v` | **PARTIAL: FORMAL HIERARCHY SOUND, TM HALTING REFUTED** | Arithmetic definitions of $f_{\varepsilon_2}, f_{\zeta_0}, f_{\eta_0}$ are sound (15 theorems, 0 axioms). Halting of $T_{48}$ is FALSE; lower bounds remain uninstantiated conditional implications. Fails AGENTS.md rule. |
 | **FGH Machines 1–5** | Ranks $\omega, \omega^2, \omega^k$ | `rocq/Machine1.v` to `Machine5.v` | **PROVED CORRECT RUNS** | Rocq 9.1: All 5 machines compile with 0 axioms (`Closed under global context`). Concrete runs verified with `vm_compute`. |
 | **BB(3,3) Holdout 494**| `1RB2LA0LA_2LC---2RA_0RA2RC1LC` | `rocq/holdout494/Check494.v` | **PROVED NON-HALTING** | Rocq 9.1: `nonhalt : ~ halts tm c0` verified with 0 axioms (`Closed under global context`). |
 | **BB(2,5) Holdout 17** | `1RB---0RB0LA2RA_2LB2LA3RA4LB0LB` | `rocq/Machine25_17.v` | **VERIFIED ENTRY CONFIG** | Rocq 9.1: Step 117 cycle entry proven with 0 axioms. Explicitly preserves honest open status for all-s3 overflow. |
@@ -135,25 +136,23 @@
 
 ---
 
-### 2.8 Extended FGH (\varepsilon_2, \zeta_0, \eta_0) & Concrete TM Bounds
-* **Proof Files:** `rocq/FGH_Eps2_Zeta0_Eta0.v`, `rocq/gemini_epsilon2_zeta0_tm.v`
-* **Independent Runner:** `tools/_check_eps2_zeta0.py`
-* **Execution:**
-  1. Compiled `FGH_Eps2_Zeta0_Eta0.v` with Rocq 9.1 (`coqc`). Checked `Print Assumptions` across all 15 theorems.
-  2. Compiled `gemini_epsilon2_zeta0_tm.v` with Rocq 9.1 (`coqc -I .`). Checked `Print Assumptions` across all 12 theorems.
-  3. Ran independent simulation script `python tools/_check_eps2_zeta0.py`.
-* **Results:**
-  * **Axiom Audit:** 27/27 theorems in both files evaluated with **`Closed under the global context`** (zero unverified axioms, no `admit`, no `sorry`, no `Parameter`).
-  * **Certified Hierarchy:**
-    * $\varepsilon_k$ family formalized for all $k < \omega$, including $\varepsilon_0, \varepsilon_1, \varepsilon_2$ with certified strict growth $\forall n, S n \le f_{\varepsilon_k}(n)$.
-    * $\zeta_0 = \phi(2, 0) = \sup_n \varepsilon_n$ formalized with certified strict growth $\forall n, S n \le f_{\zeta_0}(n)$.
-    * $\eta_0 = \phi(3, 0) = \sup_n \zeta_n$ formalized with certified strict growth $\forall n, S n \le f_{\eta_0}(n)$.
-  * **Machine Milestones on 48-state TM (`gem48`):**
-    * Step 352 produces the $\zeta_0$ worm $[(0,0); (0,2)]$ at head -2 (`boot_352_zeta0`).
-    * Step 702 produces the $\varepsilon_2$ worm $[(0,0); (0,1); (1,1); (2,1)]$ at head 10, executing 350 TM steps to expand $(0,2) \to (2,1)$ (`campaign_expand_zeta0_to_eps2`).
-    * Step 1641 expands $(2,1) = \varepsilon_2$ into $\varepsilon_3$ pair $(3,1)$ in exactly 939 TM steps (`campaign_expand_eps2_to_eps3`).
-    * Proves certified conditional lower bounds: $f_{\varepsilon_2}(2) < T$ and $f_{\zeta_0}(1) < T$.
-    * Base worm halts at exact step 148.
+### 2.8 Extended FGH (\varepsilon_2, \zeta_0, \eta_0) & Forensic Audit on Halting Reality
+* **Proof Files:** `rocq/FGH_Eps2_Zeta0_Eta0.v`, `rocq/gemini_epsilon2_zeta0_tm.v`, `rocq/gemini_epsilon1_tm_48s_v2_fix.v`
+* **Independent Runners & Audits:** `tools/_check_eps2_zeta0.py`, `tools/_audit_fgh_halting.py`
+* **Execution & Kernel Axiom Verification:**
+  1. `FGH_Eps2_Zeta0_Eta0.v` compiles with Rocq 9.1 (`coqc`): 15/15 theorems closed under global context (0 axioms).
+  2. `gemini_epsilon2_zeta0_tm.v` compiles with Rocq 9.1 (`coqc -I .`): 12/12 theorems closed under global context (0 axioms).
+  3. Ran automated audit `python tools/_audit_fgh_halting.py`: tests pass (exit code 0).
+* **Forensic Audit & Refutation of FGH Machine Claims:**
+  * **What is genuinely proved in Rocq:**
+    * Canonical Veblen fundamental sequence hierarchies for $\varepsilon_k$ ($k < \omega$), $\zeta_0 = \phi(2, 0)$, and $\eta_0 = \phi(3, 0)$ are mathematically sound and certified strictly increasing ($S n \le f_\alpha(n)$).
+    * Concrete TM local transitions (`boot_352_zeta0`, `campaign_expand_zeta0_to_eps2`, `campaign_expand_eps2_to_eps3`, and base-worm halt at step 148) are verified by `vm_compute`.
+  * **Why the Turing Machine Fails the FGH Halting Rule (Refutation):**
+    1. **Unconditional Halting is False:** From blank tape, $T_{48}$ survives 2,000,000 steps without halting (head 418, tape 1,242 cells). The machine does NOT halt.
+    2. **Polynomial Time vs Transfinite Growth:** The machine advances its worm length $L(n) = 1 + n(n+1)/2$ and parameter $n \to n+1$ in polynomial time: $n=15$ is reached in only 494,304 steps ($\approx O(n^4)$). A true $f_{\varepsilon_1}(n)$ machine would require non-elementary, astronomically huge step counts even for $n=2$.
+    3. **Violation of FGH Ordinal Valuation:** Between step 3,895 (where the worm contains the $\varepsilon_3$ pair $(3, 1)$) and step 4,126, the entire worm collapses down to $[(0, 0); (0, 1)]$ ($\varepsilon_0$) in **exactly 231 concrete steps**. In a true transfinite descent, descending from $\varepsilon_3$ to $\varepsilon_0$ takes $> f_{\varepsilon_3}(4)$ steps.
+    4. **Vacuous Conditional Lower Bounds:** The theorems `blank_halt_total_steps_gt_f_eps2_2`, `blank_halt_total_steps_gt_f_zeta0_1`, and `blank_halting_run_exceeds_f_eps1_3` are implications of the form `step_tm T blank_cfg = Some Halt -> worm_chain_fgh ... -> f_alpha < T`. Because $T_{48}$ does not halt and its 231-step collapse violates the `dc + eval(w') >= eval(w)` requirement of `WCC_Step_FGH`, the premise `worm_chain_fgh` is impossible to satisfy.
+    5. **Rule Assessment:** Per the `AGENTS.md` rule (*"when making a fgh level machine, it must halt in the specified ordinal under the function f_ordinal(n) steps, correctly verified in rocq with the rules"*), $T_{48}$ and its extensions **FAIL** the requirement. No transfinite FGH machine ($\ge \varepsilon_0$) with a verified unconditional halting proof exists in this repository.
 
 ---
 
