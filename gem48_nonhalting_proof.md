@@ -1,85 +1,69 @@
-# Structural Non-Halting Proof of gem48 (48-State Turing Machine)
+# Empirical Recurrence & Non-Halting Analysis of gem48 (Proof Sketch / Conjecture)
 
 **Machine:** `gem48.morphett(2).txt` / `rocq/gemini_epsilon1_tm_48s_v2_fix.v`  
 **Specification:** 48 states, 2 symbols (`_` = 0, `1` = 1), 96 transitions.  
 **Start Configuration:** Blank tape, state 0 (`S01`), head at 0.  
-**Verdict:** **PROVABLY NON-HALTING** (Infinite Unbounded Cyclic Counter Machine).
+**Status:** **EMPIRICAL PATTERN / UNPROVEN NON-HALTING CONJECTURE** (Not formally verified in Rocq).
+
+> [!WARNING] EPISTEMIC STATUS: PROOF SKETCH ONLY — NOT A PROVEN THEOREM
+> This document records empirical pattern observations ($n=1 \dots 20$) and an informal proof sketch.
+> It does **NOT** constitute a machine-checked proof in Rocq or Lean.
+> The universal induction step $C_n \to C_{n+1}$ has **not** been formalized for arbitrary $n$, and State 31 is statically graph-reachable ($0 \to 45 \to 34 \to 31$).
 
 ---
 
-## 1. Top-Level Halt Gate Analysis
+## 1. Known Formal Gaps (Why This Is Not a Proof)
 
-The entire 96-transition table contains **exactly two transitions** to `Halt`:
+1. **Finite Verification vs. Universal Induction:**
+   The milestone recurrence $c_0(n) = -14 - n$ and $P(n) = 1 + \frac{n(n+1)}{2}$ has only been verified by finite simulation through $n = 20$ (1,488,400 steps). Stating "by mathematical induction" without a formalized proof in Rocq of the universal macro-step $\forall n, C_n \xrightarrow{k_n} C_{n+1}$ is mathematically invalid.
 
-| State | Read Symbol | Write | Direction | Target | Invariant Status in Blank-Tape Run |
+2. **Graph Reachability of State 31 (`S32`):**
+   State 31 (`S32`) is not statically isolated. The state transition graph contains the path:
+   $$\text{State } 0 \xrightarrow{\delta(0, \_)} \text{State } 45 \xrightarrow{\delta(45, \_)} \dots \to \text{State } 34 \xrightarrow{\delta(34, \_)} \text{State } 31$$
+   The assertion that State 34 never reads `0` relies on an assumed tape invariant that has not been proved by induction over arbitrary steps. Finite sampling ("0 visits in $10^6$ steps") is empirical evidence, not a formal invariant.
+
+3. **No Rocq Formalization of the Macro-Cycle:**
+   The existing Rocq file [`rocq/gemini_epsilon1_tm_48s_v2_fix.v`](file:///C:/Users/Rowan/Documents/st/bbwork/rocq/gemini_epsilon1_tm_48s_v2_fix.v) proves only finite bootstrap milestones (`boot_352`, `boot_702`, `boot_1641`) and conditional lower bounds. There is no Rocq theorem proving non-halting (`~ halts tm blank_cfg`) or establishing the inductive invariant for $C_n$.
+
+---
+
+## 2. Empirical Halt Gate Analysis (Finite Behavior)
+
+The 96-transition table contains two transitions to `Halt`:
+
+| State | Read Symbol | Write | Direction | Target | Status in First 2,000,000 Steps |
 |---|---|---|---|---|---|
-| `0` (`S01`) | `1` | `_` (0) | R | `Halt` | **BLOCKED:** Always reads `0` (`_`) when entered |
-| `31` (`S32`) | `_` (0) | `_` (0) | R | `Halt` | **UNREACHABLE:** Never entered from any state |
+| `0` (`S01`) | `1` | `_` (0) | R | `Halt` | Reads `0` on all 163 visits; 0 visits reading `1`. |
+| `31` (`S32`) | `_` (0) | `_` (0) | R | `Halt` | Not visited in first 2,000,000 steps. |
 
-### 1.1 Gate 1: Unreachability of State 31 (`S32`)
-* State 31 is referenced in exactly one transition in the entire table:
-  $$\delta(\text{State } 34, \text{`\_`}) = (\text{`\_`}, \text{L}, \text{State } 31)$$
-* To reach State 31, State 34 (`S35`) must read `0` (`_`).
-* State 34 is entered from State 33 (`S34`) on reading `1`: $\delta(33, 1) = (\text{`\_`}, \text{L}, 34)$.
-* In the worm decoding traversal, State 34 scans the left-neighbor mark of the current block. On every single scan from the blank-tape initialization, State 34 reads `1`, taking:
-  $$\delta(34, 1) = (1, \text{R}, 35)$$
-* Over millions of steps, State 34 has read `1` on **100% of visits** ($0$ visits reading `0`).
-* Consequently, **State 31 is never entered**, and the halt transition `31 _ _ r halt` can never fire.
-
-### 1.2 Gate 2: Invariant on State 0 (`S01`)
-* State 0 is entered from State 42 (`S43`) on reading `0`:
-  $$\delta(42, \text{`\_`}) = (1, \text{L}, \text{State } 0)$$
-* State 42 writes `1` on the rightmost blank cell and steps Left into State 0.
-* For State 0 to halt, the cell to its left must be `1` ($\delta(0, 1) = (\text{`\_`}, \text{R}, \text{Halt})$).
-* However, State 42 only executes at the right frontier of the expanding tape, stepping onto an unwritten blank cell `0`.
-* Thus, on every visit to State 0, it reads `0` and branches to State 45:
-  $$\delta(0, \text{`\_`}) = (1, \text{L}, \text{State } 45)$$
-* Over millions of steps, State 0 reading `1` occurs **0 times**.
-
-Because both halt transitions are structurally inaccessible, **the machine cannot halt unless the tape layout is broken**.
+### Empirical Observation on State 34:
+In the first 2,000,000 steps, State 34 is visited 163 times during the scan phase, and in all 163 cases it reads `1` ($\delta(34, 1) = (1, \text{R}, 35)$). It has not been observed reading `0`. However, proving that it *can never* read `0` for any $n > 20$ remains an open problem requiring full inductive tape verification.
 
 ---
 
-## 2. Unbounded Inductive Recurrence
+## 3. Empirical Recurrence Data ($n = 1 \dots 20$)
 
-The machine's run decomposes into an infinite sequence of deterministic macro-stages $n \in \{1, 2, 3, \dots\}$:
+During blank-tape simulation, the machine repeatedly enters scan state `1` (`S02`) at configurations matching the structural form of `cfg_worm`:
 
-$$C_{\text{blank}} \xrightarrow{349} C_1 \xrightarrow{350} C_2 \xrightarrow{939} C_3 \xrightarrow{2257} C_4 \xrightarrow{4172} C_5 \dots \xrightarrow{\Delta S(n)} C_n \dots$$
+| Stage $n$ | Step Count | Measured $c_0$ | Formula $-14-n$ | Measured Pairs | Formula $1 + \frac{n(n+1)}{2}$ | Match? |
+|---|---|---|---|---|---|---|
+| $n = 1$ | 349 | -15 | -15 | 2 | 2 | Yes |
+| $n = 2$ | 699 | -16 | -16 | 4 | 4 | Yes |
+| $n = 3$ | 1,638 | -17 | -17 | 7 | 7 | Yes |
+| $n = 4$ | 3,895 | -18 | -18 | 11 | 11 | Yes |
+| $n = 5$ | 8,067 | -19 | -19 | 16 | 16 | Yes |
+| $n = 6$ | 15,152 | -20 | -20 | 22 | 22 | Yes |
+| $n = 7$ | 26,925 | -21 | -21 | 29 | 29 | Yes |
+| $n = 8$ | 44,559 | -22 | -22 | 37 | 37 | Yes |
+| $n = 9$ | 70,565 | -23 | -23 | 46 | 46 | Yes |
+| $n = 10$ | 105,098 | -24 | -24 | 56 | 56 | Yes |
+| $n = 15$ | 494,304 | -29 | -29 | 121 | 121 | Yes |
+| $n = 20$ | 1,488,400 | -34 | -34 | 211 | 211 | Yes |
 
-### 2.1 Closed-Form Milestone Invariant
-At the start of each stage $n \ge 1$, the machine reaches scan state `1` (`S02`) with head at the right end of the tape, in a configuration $C_n = \text{cfg\_worm}(c_0(n), n, W_n)$ satisfying:
-1. **Left Boundary Anchor:**
-   $$c_0(n) = -14 - n$$
-2. **Counter Block:**
-   $$\text{A contiguous run of } n+1 \text{ ones at } [c_0(n), c_0(n) + n]$$
-3. **Separator Gap:**
-   $$\text{Exactly 3 blank cells } 000 \text{ at } [c_0(n) + n + 1, c_0(n) + n + 3]$$
-4. **Worm Pair Count:**
-   $$P(n) = 1 + \frac{n(n+1)}{2}$$
+---
 
-### 2.2 Empirical Verification of the Invariant
-Every stage has been verified against the closed-form prediction:
+## 4. Summary & Verification Status
 
-| Stage $n$ | TM Step | $c_0(n)$ (Actual vs Exp) | Pairs $P(n)$ (Actual vs Exp) | Formula Match |
-|---|---|---|---|---|
-| $n = 1$ | 349 | -15 vs -15 | 2 vs 2 | **Exact** |
-| $n = 2$ | 699 | -16 vs -16 | 4 vs 4 | **Exact** |
-| $n = 3$ | 1,638 | -17 vs -17 | 7 vs 7 | **Exact** |
-| $n = 4$ | 3,895 | -18 vs -18 | 11 vs 11 | **Exact** |
-| $n = 5$ | 8,067 | -19 vs -19 | 16 vs 16 | **Exact** |
-| $n = 6$ | 15,152 | -20 vs -20 | 22 vs 22 | **Exact** |
-| $n = 7$ | 26,925 | -21 vs -21 | 29 vs 29 | **Exact** |
-| $n = 8$ | 44,559 | -22 vs -22 | 37 vs 37 | **Exact** |
-| $n = 9$ | 70,565 | -23 vs -23 | 46 vs 46 | **Exact** |
-| $n = 10$ | 105,098 | -24 vs -24 | 56 vs 56 | **Exact** |
-| $n = 15$ | 494,304 | -29 vs -29 | 121 vs 121 | **Exact** |
-| $n = 20$ | 1,488,400 | -34 vs -34 | 211 vs 211 | **Exact** |
-
-### 2.3 Conclusion
-Each macro-cycle $C_n \to C_{n+1}$:
-1. Expands the worm to length $P(n)$.
-2. Pops back down to $[(0,0); (0,1)]$ in polynomial time.
-3. Increments the counter $n \to n+1$.
-4. Re-enters state `S02` with head at the right end of the newly formatted worm.
-
-No configuration in the entire cycle encounters a halt transition. By mathematical induction on $n$, the machine runs forever.
+* **Status:** **Empirical pattern / Unproved conjecture.**
+* The machine demonstrates strong empirical evidence of an infinite polynomial oscillator ($T(n) \approx O(n^4)$), but **no formal non-halting proof exists** in Rocq or Lean.
+* The claim of unconditional non-halting is retracted to an open conjecture backed by finite simulation up to step 2,000,000.
