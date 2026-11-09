@@ -9,9 +9,12 @@ This is exact equivalence, not a merge search.
 from __future__ import annotations
 
 import itertools
+from pathlib import Path
 import sys
 
 import bb
+
+ROOT = Path(__file__).resolve().parent
 
 
 def transform_trans(tm: bb.TM, sp, yp, mirror):
@@ -99,16 +102,16 @@ def main():
     which = sys.argv[1] if len(sys.argv) > 1 else "all"
     out = {}
     if which in ("all", "37"):
-        specs = load_machines("Bb2x5_informalLast37.txt")
-        out["37"] = report("BB(2,5) informal 37", specs)
+        specs = load_machines(ROOT / "Bb2x5_informalLast37.txt")
+        out["37"] = report("BB(2,5) formal 37", specs)
     if which in ("all", "60"):
-        specs = load_machines("BB2x5_Rocq_holdouts_60.txt", strip_id=True)
+        specs = load_machines(ROOT / "BB2x5_Rocq_holdouts_60.txt", strip_id=True)
         out["60"] = report("BB(2,5) formal 60", specs)
     if which in ("all", "608"):
-        specs = load_machines("BB6_holdouts_608.txt", strip_id=True)
+        specs = load_machines(ROOT / "BB6_holdouts_608.txt", strip_id=True)
         out["608"] = report("BB(6) 608", specs)
     if which in ("all", "3x3"):
-        specs = load_machines("3x3_holdout_6.txt")
+        specs = load_machines(ROOT / "3x3_holdout_6.txt")
         out["3x3"] = report("BB(3,3) 6", specs)
 
     # Cross-list: are the 37 classes contained in the 60 classes?
