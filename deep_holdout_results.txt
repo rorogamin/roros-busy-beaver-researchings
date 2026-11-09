@@ -36,7 +36,7 @@ Top 10^9 scores:
 Largest positive growth with score >= 100 at 10^8:
   x13.32 2,044 -> 27,221   1RB0RD_1RC0LF_0LA0RB_1RE---_1LB1RA_0LE0LF
 
-2. BB(2,5): 37 informal/latest holdouts
+2. BB(2,5): 37 formal holdouts
 ---------------------------------------
 10^10 steps: 37/37 rows, 0 halts, 168.7 s on 16 workers.
   max score        189,942

@@ -18,9 +18,10 @@ Run: python tools/_check_gem48.py
 """
 import re
 import sys
+from pathlib import Path
 
-import sys
-V_PATH = sys.argv[1] if len(sys.argv) > 1 else r'C:\Users\Rowan\Downloads\epsilon1_tm.v'
+DEFAULT_V = Path(__file__).resolve().parent.parent / 'rocq' / 'gemini_epsilon1_tm_48s_v2_fix.v'
+V_PATH = sys.argv[1] if len(sys.argv) > 1 else str(DEFAULT_V)
 
 # ---------------------------------------------------------------- parsing
 src = open(V_PATH, encoding='utf-8').read()

@@ -20,6 +20,9 @@
 | **Holdout Symmetries**| 37, 60, 608, 6 lists | `canon.py` | **VERIFIED DEDUPLICATED** | 37/37, 60/60, 608/608, 6/6 unique classes; 37 $\subset$ 60 confirmed. |
 | **Wallmemo 758** | Exploding wall $H$ | `wallmemo.exe` | **VERIFIED BOUND** | Selftest pass ($k=1$ 7,391 chains, $k=2$ 4,162 chains); verified 1,000 values in 1s. |
 | **LongAcc Engine** | Holdout 1 (`1RB3RB---3LA1RA_2LA3RA4LB0LB1LB`) | `node longacc_run.mjs` (Wasm) | **VERIFIED COMPRESSED MACRO** | Ran to row 6713 (step width 6737) in 5s; configuration output intact. |
+| **gem48 ($\varepsilon_1$ TM)** | 48-state 2-symbol machine | `rocq/gemini_epsilon1_tm_48s_v2_fix.v` & `tools/_check_gem48.py` | **PROVED LOWER BOUND** | Rocq 9.1: 13/13 theorems verified with 0 axioms (`Closed under global context`). Proves $f_{\varepsilon_1}(3) < T$. |
+| **CET Formal Proof** | Non-quasi-halting witness | `bb-variants/CET/NonQuasiHalting_CET1.v` | **PROVED THEOREM** | Rocq 9.1: `formal_certificate_structure` verified with 0 axioms. |
+| **CET Simulator** | CET(1) & CET(2) champions | `python cet_cli.py run` | **VERIFIED EXACT MATCH** | CET(1) halts at step 1 (cell 1); CET(2) halts at step 97 (cell -1). Exact match to Nath76 champions. |
 
 ---
 
@@ -100,12 +103,41 @@
 
 ---
 
+### 2.6 gem48 ($\varepsilon_1$ Machine) Rocq 9.1 Verification
+* **File:** `rocq/gemini_epsilon1_tm_48s_v2_fix.v`
+* **Independent Runner:** `tools/_check_gem48.py`
+* **Execution:**
+  1. Compiled and checked `gemini_epsilon1_tm_48s_v2_fix.v` with Rocq 9.1.0 (`coqc`). Checked `Print Assumptions` across all 13 core theorems (`boot_18`, `boot_352`, `boot_702`, `boot_1641`, `campaign_halt`, `campaign_rule2_cantor`, `campaign_rule3_eps0`, `halts_on_base_worm`, `runtime_gt_f_eps1_3`, `blank_halt_decomposes_at_1641`, `worm_campaign_chain_sound`, `blank_halting_run_exceeds_f_eps1_3`, `blank_halt_total_steps_gt_f_eps1_3`).
+  2. Executed independent simulation script `python tools/_check_gem48.py`.
+* **Results:**
+  * **Axiom Audit:** All 13 theorems evaluated with **`Closed under the global context`** (zero unverified axioms, no `sorry`, no `admit`).
+  * **Simulation Check:** Verified all 5 bootstrap milestones (`boot_18`, `boot_20`, `boot_352`, `boot_702`, `boot_1641`), verified all campaign faithfulness lemmas, verified base worm halt at step 148, and verified blank tape run survives beyond 2,000,000 steps without halting.
+  * **Conclusion:** Proves machine-checked lower bound $f_{\varepsilon_1}(3) < T$ under standard FGH definitions in Rocq.
+
+---
+
+### 2.7 Catch-Em-Turing (CET) Variant Verification
+* **Proof File:** `bb-variants/CET/NonQuasiHalting_CET1.v`
+* **CLI Visualizer:** `bb-variants/CET/cet_cli.py`
+* **Execution:**
+  1. Compiled `NonQuasiHalting_CET1.v` with Rocq 9.1.0. Checked `Print Assumptions formal_certificate_structure`.
+  2. Executed `python cet_cli.py run --preset cet1` and `python cet_cli.py run --preset cet2`.
+* **Results:**
+  * **Axiom Audit:** `formal_certificate_structure` returned **`Closed under the global context`** (zero unverified axioms). Proves infinite collision witness guarantees non-quasi-halting.
+  * **Simulation Verification:**
+    * CET(1): Terminates by collision on step 1 at cell 1 (Exact match).
+    * CET(2): Terminates by collision on step 97 at cell -1 (Exact match to Nath76 champion).
+  * **Documented Champions:** CET(3) = 3,092,745,703 steps; CET(4) = 4,622,083,548 steps; CET(2, 3 sym) = 1,528,952,999 steps; MCET(3) = 211,190,346 steps.
+
+---
+
 ## 3. Issues and Caveats Found During Verification
 
 1. **Interrupted $10^{11}$ Cycle Runs:**
    * Directories `cycle37_1e11/logs` and `cycle37_1e11_coarse/logs` contain zero-byte `.out` files. The previous run was killed before recording completed status lines.
-2. **Path Dependency in `canon.py`:**
-   * Running `python canon.py` from the root workspace fails with `FileNotFoundError` because it looks for `Bb2x5_informalLast37.txt` in the current working directory. It must be run with working directory set to `bbwork/`.
+2. **Fixed Path Dependencies:**
+   * `canon.py`: Patched path resolution to `ROOT = Path(__file__).resolve().parent`.
+   * `tools/_check_gem48.py`: Patched default path from external `Downloads/` directory to relative repository path `rocq/gemini_epsilon1_tm_48s_v2_fix.v`.
 3. **Module Search Path for `Machine14Bridge.lean`:**
    * Direct invocation via `lean Machine14Bridge.lean` fails to resolve `Machine14TwoSided.olean` unless `LEAN_PATH="."` is set.
 4. **`bigfoot_formal` Mathlib Checkout:**
