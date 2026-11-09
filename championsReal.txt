@@ -1,0 +1,1424 @@
+
+Conventions:
+  f_{w+2}, f_{omega+6}   braces always.  Unbraced, the '+2' looks like an addition
+                         *outside* the subscript, and a level parser splits there.
+  (f_{w+2})^114(9)       a superscript is an ITERATE COUNT in this file (the wiki's
+                         '>fω22(4↑↑341)' means f_omega iterated 22 times), so it goes
+                         outside parens.  Bare, it reads as an ordinal power sitting
+                         in the index -- a whole Veblen level out.
+  f_(omega^omega)(75500) but a superscript that is itself an ORDINAL is not an iterate
+                         count at all.  (f_x)^n(a) is x folded n times on a, so at
+                         n = omega there is no value to have: the folds are increasing
+                         and each one is at least n, hence sup_n (f_omega)^n(a) = omega,
+                         which is not a step count any halting run can have.  An ordinal
+                         "iterate count" therefore names a LEVEL, and the level is the
+                         diagonal taken over the index, not the composition:
+                             sup_n f_{omega+n} = f_{omega*2}
+                             sup_n f_{omega^n} = f_{omega^omega}
+                         omega^omega is the second, so it goes inside the parens and is
+                         spelled out.  Finite counts go outside as (f_x)^k; those are
+                         literal folds and do have a value, so (f_omega)^22 is fine.
+  f_(omega^2)(n)         an ordinal index, and also exactly what an ambiguous wiki
+                         row writes when it means f_omega folded twice.  Default to
+                         the fold (rank 10, still under f_{omega+1}); take the ordinal
+                         (rank 17, above every f_{omega+k}, below f_{omega^omega})
+                         only when the fold would put the row below a row at a
+                         smaller (n,m), which monotonicity forbids.  ledger_audit.py
+                         applies this and prints which reading it took.
+  BB(n,m) is monotone in both n and m (pad a machine with unused states/symbols), so a
+  row's level is never below a row at a smaller (n,m).  Rows below are per-machine
+  analyses, not class optima; ledger_audit.py lists any that sit under an inherited bound.
+
+BB 1,2  thru 5,2: All solved, doesnt matter
+BB 2,3 and 2,4: Also solved.
+
+BB(6): 10^^10^^10^^8, 1RB1RA_1RC1RZ_1LD0RF_1RA0LE_0LD1RC_1RA0RE
+  Holdout 92633 `1RB0LF_1RC0RA_1LD0RB_0LE0LC_0LA0LC_0LB---` is proved
+  nonhalting in Lean 4: `is_not_halt : IsNotHalt target` and
+  `not_halts : ¬ Halts machine`. The audit has only the standard axioms
+  `propext`, `Classical.choice`, `Quot.sound`; no `sorry`, `admit`, or
+  `native_decide`. This is a new proof, not a ported old proof; source:
+  `bbwork/cryptids_a6/`, audit: `lake env lean artifacts/a6/Audit.lean`.
+BB(7): 3{20}3 (using the notation a{b}c where b is the amount of arrows), 1RB0RG_1RC1RB_0RD1RZ_0LE0LD_0LF1LE_1RA1LF_1LC0RB
+BB(8): f_omega(f_omega(f_omega(12))), 1RB0RA_1LC1LF_1RD0LB_1RA1LE_1LH0LC_1RG1LD_0RG0RF_1RG1RZ
+BB(9): f_omega(f_omega(f_omega(f_omega(f_omega(f_omega(f_omega(12))))))),
+ 	1RB0RA_1LC1LF_1RD0LB_1RA1LE_0LH0LC_1RG1LD_0RG0RF_0LI1RZ_1RI1RC
+BB(10): f_{omega+1}(2{36}3),
+ 	1RB0RA_1LC1LF_1RD0LB_1RA1LE_1LI0LC_0RG1LD_1RH1LG_1LC0RG_0LJ0LI_1RZ0LC
+BB(11): f_{omega+1}(f_omega(f_omega(5))),
+1RG0LH_1RK1RC_0LD1LA_0RE1LD_0LI1RF_1RZ0RG_1RB1RG_1LA1LH_0LK0LJ_1LH1LI_1LJ1RE
+(TNF-1RB, same machine: 1RB0LG_1RC1RB_1RD1RH_1LE1RJ_1LG1LF_0LD0LE_1LA1LG_0LI1LA_0RJ1LI_0LF1RK_---0RB)
+BB(12): f_{omega+2}(f_{omega+1}(f_{omega+1}(3))),
+1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LK1RF_1RG0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_1RZ0LL_0LH1LK
+BB(13): (f_{omega+2})^6((f_{omega+1})^2(3)),
+1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LK1RF_1RM0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_0LL0LL_0LH1LK_1RZ0LH
+  (reported 2026-10-28 by Jeff Ketchersid; 12-state w+2 machine with the halt step
+   redirected into a parity-check gadget. Proof: https://github.com/jeff87654/busy-beaver/tree/main/BB13/verify_m13b)
+BB(13) [superseded]: f_{omega+2}(f_omega(20)),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_0LG1RI_1RE0RH_1LF0RC_1RM0LE_1LA1LE_0LL1LB_0RM1LL_1RZ1RH
+BB(14): (f_{omega+2})^9((f_{omega+1})^2(3)),
+1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LK1RF_1RM0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_0LN0LL_0LH1LK_1RZ0LH_0RJ0LI
+  (reported 2026-10-28 by Jeff Ketchersid; same parity-gadget lift, 9 iterations.
+   Proof: https://github.com/jeff87654/busy-beaver/tree/main/BB14/verify_m14b)
+BB(14) [superseded]: f_{omega+2}(f_{omega+2}(f_{omega+2}(15))),
+1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LN1RF_1LJ0RA_1RA0LH_1LG1LH_1RK0LM_1RZ0LE_0LE0RJ_1LH1LM_0LH0LL_0LG1LN
+BB(15): inherited from BB(14) (no separate 15-state record)
+BB(16): (f_{w+2})^10(9),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_0RO0LO_1LP1RM_1RZ1LI
+  (reported 2026-10-29.  Not TNF-1RB (starts 1LB).  16 states / 2 symbols, all 32 rows
+   defined, single halt row (P,0).  No halt in 3,000,000 steps locally.  Value is one
+   more f_{w+2} iteration than the inherited BB(14) row ((f_{w+2})^9(f_{w+1}(3))) plus a bigger
+   seed -- a bigger argument at the same f_{w+2} height, not a new height.)
+BB(17): > (f_{w+3})^3(9),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LN_0RB1LI_1RZ1LO
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183: Jeff Ketchersid, Claude
+   and Gemini in 11/2026, claimed, never independently verified.  Own machine at
+   last -- no longer inherited from BB(16): the BB(16) body with the N/O/P tail
+   respliced (its 0RO0LO/1LP1RM/1RZ1LI chain becomes 1RQ0LO/1LP1LN/0RB1LI/1RZ1LO).
+   Not TNF-1RB (starts 1LB).  17 states / 2 symbols, all 34 rows defined, single
+   halt row (Q,0).  Local check 2026-11-04: no halt in 3,000,000 steps, score
+   3,337, states used 16/17 (Q idle in budget), milestones 10@38, 100@3,001,
+   1,000@121,818.)
+BB(18): > f_{w*2}^2(f_{w}^2(f_10(2)))*,
+1LH0LG_0LI1RC_0LD1LA_0RE1LD_0RH1RL_1RB1RF_1LA1LG_1RF1RM_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LN1RM_0LQ0LO_1LR1LP_0LQ1LN_0RO1LB_0LL1RZ
+  (supplied 2026-11-09.  NEW HEIGHT for BB(18): a w*2-level iterate, not an f_{w+3}
+   iterate count -- f_{w*2} applied twice at the f_{w} double iterate of f_10(2), against
+   the superseded (f_{w+3})^4(9) row below.  Own body again (1LH start; not the 1LB
+   14/16/17 family).  18 states / 2 symbols, all 36 rows defined, single halt row
+   (R,1) -- write 1, move right, halt.  Not independently verified, not locally
+   simulated here;
+   the ordering against the superseded row is the row's own claim, not locally
+   checkable, per the file's standing rule.  The value line is reproduced exactly as
+   supplied, including the trailing `*`; this file defines no other use of that marker.)
+
+BB(18) [superseded]: > (f_{w+3})^4(9),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LN_0RB1LI_1RR0LO_0RO1RZ
+  (same 11/2026 Ketchersid/Claude/Gemini table row as BB(17), claimed.  The BB(17)
+   machine with one extra state R taking the halt: Q's 0-row now hands to R (1RR0LO)
+   and R halts on read 1 (0RO1RZ) -- the iterate count 3 -> 4 costs the single state.
+   18 states / 2 symbols, all 36 rows defined, single halt row (R,1).  Local check
+   2026-11-04: no halt in 3,000,000 steps, score 3,337, states used 16/18; in-budget
+   behaviour indistinguishable from the BB(17) row (same milestones -- the extra
+   level shows only past the budget, like the 16->17 family above).)
+  (Superseded 2026-11-09 by the f_{w*2}^2(f_w^2(f_10(2))) row above: two w*2-level
+   iterates outrun any finite iterate of f_{w+3}.)
+
+BB(18) [superseded]: f_{w+3}(114),
+1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_1RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_0RQ0RG_0LG1LP_0LO1LP_1LQ0RR_1RZ0LP
+  (reported 2026-10-29.  NEW HEIGHT for BB(16)..BB(19): f_{w+3}(114) = (f_{w+2})^114(114),
+   against the BB(16) row's (f_{w+2})^10(9) -- an f_{w+2} iterate count, not an f_{w+2} argument,
+   so the ordinal is a full level up.  The machine is the BB(16) row with two states
+   (Q,R) spliced in, which is why 16 -> 18 costs only 2 states.  Not TNF-1RB.  18 states /
+   2 symbols, all 36 rows defined, single halt row (R,0).  No halt in 3,000,000 steps.)
+   (Superseded 2026-11-04 by the (f_{w+3})^4(9) row above: a single f_{w+3} step at
+   114 loses to iterating f_{w+3}, since even the second iterate alone runs past
+   f_{w+3}(114); the old machine is kept above for its 16->18 splice history.)
+
+BB(19): > (f_{w+7})^2(5),
+1RQ1RL_0LI1RC_0LD1LF_0RA1LD_1RB1RE_1LH0LG_1LF1LG_1RE1RM_1LJ1LI_0LK1LI_1RL1RA_0RL0RE_0LN1RM_1LO0LO_1RE1LP_1LN1LN_1LR1RQ_1RZ1LS_0LE0LR
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183 -- Jacobzheng in 2026,
+   not independently verified.  Own machine again, no longer inherited: a body
+   entirely different from the 1LB family above, level f_{w+7}, iterate 2 at seed 5.
+   19 states / 2 symbols, all 38 rows defined, single halt row (R,0), all 19 states
+   used in budget.  Local check 2026-11-04: no halt in 3,000,000 steps, score 3,837,
+   milestones 10@50, 100@2,372, 1,000@171,912.  Whether (f_{w+7})^2(5) outstrips the
+   superseded (f_{w+3})^4(9) above is the table's own ordering assertion -- recorded,
+   not locally checkable, per the file's standing rule.)
+BB(20): > f_{w*2}((f_{w+2})^2(f_10(2))),
+1LH0LG_0LI1RC_0LD1LA_0RE1LD_1RQ1RL_1RB1RF_1LA1LG_1RF1RM_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LN1RM_0RF0LO_0RF1LP_0RF1LN_1LR1RQ_1RZ1LS_0LF1LT_0LF0LR
+  (bbchallenge wiki Champions page 2026-11-04, rev 10183 -- Jacobzheng in 2026,
+   not independently verified.  Claim f_{w*2}(f_{w+2}^2(f_10(2))): the w*2 level step
+   taken at an f_{w+2} double iterate of f_10(2).  The BB(19) machine with K retargeted
+   (1RL1RA -> 1RL1RE) and the tail spread one state wider (S: 0LF1LT, new T: 0LF0LR);
+   the old 1RR-start machine below is a different build line entirely.  20 states /
+   2 symbols, all 40 rows defined, single halt row (R,0), all 20 states used in
+   budget.  Local check 2026-11-04: no halt in 3,000,000 steps, score 3,776,
+   milestones 10@69, 100@1,743, 1,000@202,035.)
+
+BB(20) [superseded]: f_{omega+6}(f_{omega+6}(4)),
+1RR---_0LJ0RC_1RB1LD_0LD1LE_1LF1RG_1LI0LE_0RE1LD_1RB1RH_1RH1RN_1LK1LJ_0LL1LJ_1RM1RA_0RM0RH_0LO1RN_1RH0LP_1RH1LQ_1RH1LO_1LS1RR_1RZ1LT_0LH0LS (not TNF-1RB, no  TNF-1RB best champion exists yet)
+  (Superseded 2026-11-04 by the Jacobzheng row above -- table ordering, not locally
+   checkable; machine kept.)
+
+BB(21): > (f_omega^2)^2(4^^341)
+This is the first instance where both exponents are used. It originally did (omega)^22, but after reading the wiki that is 100% wrong, and plus f_(omega)^22 is less than the previous one (f_omega+6(n) almost always outscales bare f_omega even repeated 22 times (thats just f_w+1 level)):
+0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_0LE1LR (also not tnf-1rb)
+  (Confirmed 2026-11-04 against the wiki Champions page rev 10183: the row's
+   flatten "fw22(4^^341)" reads f_{w^2}^2(4^^341) -- subscript omega^2, iterate
+   2 -- the same reading as (f_omega^2)^2 above, and the machine matches this
+   file's string verbatim (token 12 is 0LL1LM).  BB(16) also confirmed verbatim
+   (the wiki's 0RO0LO row, already recorded 2026-10-29).)
+22 thru 28: all open
+BB(29): f_(omega^omega)(3),
+  (mxdys, 10/2026, claimed -- 'Claimed analysis by Claude never verified'.
+   Machine is given on the wiki as a link, not inline.)
+  (2026-11-04 screenshot of the same row: the champions cell shows only the
+   footnote marker [1], which on the Champions page points at a Discord
+   message link, so the machine text is still not public text anywhere on
+   the page itself.)
+BB(30): open
+BB(31): f_(omega^^4)(3)   [omega^^4 = omega raised by tetration to height 4],
+  (mxdys, 10/2026, claimed -- never independently verified.  Link on wiki, not inline.)
+BB(32): open
+BB(33): f_(omega^^6)(3),
+  (mxdys, 10/2026, claimed -- never independently verified.  Link on wiki, not inline.)
+34 thru 39: all open
+BB(40): f_(omega^omega)(75500),
+0 _ 1 l 22
+0 1 _ l 7
+1 _ 1 r 10
+1 1 1 r 2
+2 _ _ l 38
+2 1 1 r 3
+3 _ _ l 11
+3 1 1 r 4
+4 _ _ l 5
+4 1 1 r 4
+5 _ _ r 20
+5 1 _ l 0
+6 _ _ r 1
+6 1 1 r 6
+7 _ 1 l 8
+7 1 1 l 7
+8 _ _ r 31
+8 1 _ l 9
+9 _ _ r 8
+9 1 _ r 5
+10 _ _ l 37
+10 1 1 r halt
+11 _ 1 r 12
+11 1 1 l 11
+12 _ _ r 13
+12 1 1 r 12
+13 1 1 r 14
+14 _ _ l 15
+14 1 1 r 12
+15 _ 1 r 19
+15 1 _ l 17
+16 _ 1 l 15
+16 1 1 l 17
+17 _ _ l 16
+17 1 _ l 18
+18 _ 1 l 16
+18 1 1 l 18
+19 _ _ l 9
+19 1 1 r 19
+20 _ _ r 21
+20 1 1 r 20
+21 _ 1 r 22
+21 1 1 r 20
+22 _ _ l 23
+22 1 1 l 27
+23 _ _ l 24
+23 1 1 l 23
+24 _ _ l 27
+24 1 _ l 25
+25 _ _ l 26
+25 1 1 l 25
+26 _ 1 l 8
+26 1 1 l 25
+27 _ _ l 28
+27 1 1 l 27
+28 _ _ l 2
+28 1 _ l 29
+29 _ _ l 30
+29 1 1 l 29
+30 _ _ r 31
+30 1 1 l 29
+31 _ 1 l 19
+31 1 _ r 33
+32 _ 1 r 6
+32 1 _ l 36
+33 _ _ r 34
+33 1 _ r 35
+34 _ 1 l 36
+34 1 1 r 33
+35 _ 1 r 34
+35 1 1 r 35
+36 _ _ l 37
+36 1 1 l 36
+37 _ 1 l 32
+37 1 1 l 36
+38 _ 1 l 39
+38 1 1 l 38
+39 _ 1 l 37
+39 1 1 l 39
+BB(41): f_(omega^omega)(f_(omega^omega)(f_(omega^omega)(f_(omega^omega)(32)))),
+0 _ 1 l 13
+0 1 _ l 7
+1 _ 1 r 40
+1 1 1 r 2
+2 _ _ l 38
+2 1 1 r 3
+3 _ _ l 11
+3 1 1 r 4
+4 _ _ l 5
+4 1 1 r 4
+5 _ _ r 20
+5 1 _ l 0
+6 _ _ r 1
+6 1 1 r 6
+7 _ 1 l 8
+7 1 1 l 7
+8 _ _ r 31
+8 1 _ l 9
+9 _ _ r 8
+9 1 _ r 5
+10 _ 1 l 32
+10 1 _ l 10
+11 _ 1 r 12
+11 1 1 l 11
+12 _ _ r 13
+12 1 1 r 12
+13 _ _ l 22
+13 1 1 r 14
+14 _ _ l 15
+14 1 1 r 12
+15 _ 1 r 19
+15 1 _ l 17
+16 _ 1 l 15
+16 1 1 l 17
+17 _ _ l 16
+17 1 _ l 18
+18 _ 1 l 16
+18 1 1 l 18
+19 _ _ l 9
+19 1 1 r 19
+20 _ _ r 21
+20 1 1 r 20
+21 _ 1 r 22
+21 1 1 r 20
+22 _ _ l 23
+22 1 1 l 27
+23 _ _ l 24
+23 1 1 l 23
+24 _ _ l 27
+24 1 _ l 25
+25 _ _ l 26
+25 1 1 l 25
+26 _ 1 l 8
+26 1 1 l 25
+27 _ _ l 28
+27 1 1 l 27
+28 _ _ l 2
+28 1 _ l 29
+29 _ _ l 30
+29 1 1 l 29
+30 _ _ r 31
+30 1 1 l 29
+31 _ 1 l 19
+31 1 _ r 33
+32 _ 1 r 6
+32 1 _ l 36
+33 _ _ r 34
+33 1 _ r 35
+34 _ 1 l 36
+34 1 1 r 33
+35 _ 1 r 34
+35 1 1 r 35
+36 _ _ l 37
+36 1 1 l 36
+37 _ 1 l 32
+37 1 1 l 36
+38 _ 1 l 39
+38 1 1 l 38
+39 _ 1 l 37
+39 1 1 l 39
+40 _ _ l 10
+40 1 1 r halt
+42 thru 50: all open
+BB(51): f_(epsilon_0+1)(8),
+M = (
+0:     ((1, -1, 0), (0, -1, 1)),
+1:     ((1, -1, 0), (1, 1, 2)),
+2:     ((1, -1, 2), (0, -1, 4)),
+3:     ((0, -1, 10), (1, -1, 4)),
+4:     ((0, -1, 3), (0, -1, 5)),
+5:     ((1, -1, 4), (1, 1, 6)),
+6:     ((1, -1, 7), (0, -1, 15)),
+7:     ((0, -1, 8), (1, -1, 7)),
+8:     ((0, -1, 9), (1, -1, 7)),
+9:     ((1, 1, 11), (1, -1, 9)),
+10:    ((0, -1, 20), (0, -1, 17)),
+11:    ((0, 1, 12), (1, 1, 11)),
+12:    ((0, 1, 13), (1, 1, 13)),
+13:    ((1, -1, 14), (1, 1, 12)),
+14:    ((0, -1, 6), (1, -1, 10)),
+15:    ((0, -1, 16), (1, -1, 16)),
+16:    ((1, -1, 20), (1, -1, 15)),
+17:    ((0, -1, 18), (1, -1, 18)),
+18:    ((1, 1, 19), (1, -1, 17)),
+19:    ((1, -1, 19), (1, -1, 20)),
+20:    ((0, -1, 50), (0, -1, 21)),
+21:    ((0, 1, 43), (0, -1, 9)),
+22:    ((0, 1, 22), (1, 1, 23)),
+23:    ((1, 1, 26), (0, -1, 24)),
+24:    ((1, -1, 25), (0, -1, 24)),
+25:    ((1, 1, 25), (1, 1, 22)),
+26:    ((0, 1, 50), (0, 1, 27)),
+27:    ((1, 1, 26), (1, -1, 35)),
+28:    ((0, 1, 29), (0, 1, 30)),
+29:    ((0, -1, 4), (1, 1, 28)),
+30:    ((1, -1, 31), (1, -1, 0)),
+31:    ((0, -1, 32), (1, -1, 33)),
+32:    ((0, -1, 33), (1, -1, 31)),
+33:    ((0, -1, 34), (0, -1, 35)),
+34:    ((0, -1, 37), (1, -1, 33)),
+35:    ((1, 1, 36), (1, 1, 38)),
+36:    ((0, 1, 37), (1, 1, 28)),
+37:    ((0, -1, 29), (1, 1, 36)),
+38:    ((1, 1, 38), (1, 1, 39)),
+39:    ((0, 1, 38), (1, 1, 40)),
+40:    ((0, 1, 41), (1, -1, 42)),
+41:    ((1, -1, 49), (1, 1, 40)),
+42:    ((1, 1, 36), (0, -1, 42)),
+43:    ((0, 1, 44), (1, 1, 44)),
+44:    ((1, -1, 45), (1, 1, 43)),
+45:    ((0, -1, 46), (1, -1, 46)),
+46:    ((0, 1, 22), (1, -1, 45)),
+47:    ((1, -1, 41), (1, -1, 47)),
+48:    ((0, -1, 47), (0, -1, 49)),
+49:    ((1, -1, 22), (1, -1, 48)),
+50:    ((0, -1, 48), (1, 1, halt))
+)
+ 
+(start from state 30)
+
+BB(150): f_lim(BMS)(10^^15),
+Machine too large to show, already shown earlier anyway. (Also, some machine codes i show here are in different syntax.)
+
+BB(1015): Loader's Number
+No machine linked on bbchallenge wiki page.
+
+BB(67): q^81(q(5) - 2), q(n) from laver tables,
+M = (
+    ((1, 1, 1), (0, -1, 3)),
+    ((0, -1, 2), (0, 1, 1)),
+    ((1, 1, 0), (1, -1, 2)),
+    ((0, -1, 4), (1, -1, 0)),
+    ((0, -1, 2), (1, -1, 5)),
+    ((0, 1, 26), (0, 1, 5)),
+    ((1, -1, 57), (0, 1, 26)),
+    ((0, 1, 38), (1, 1, 8)),
+    ((0, 1, 9), (1, 1, 8)),
+    ((0, 1, 62), (0, 1, 10)),
+    ((0, -1, 16), (0, -1, 11)),
+    ((1, -1, 12), (1, -1, 11)),
+    ((0, 1, 15), (0, 1, 13)),
+    ((1, 1, 14), (1, 1, 13)),
+    ((0, -1, 16), (0, -1, 11)),
+    ((0, 1, 10), (1, 1, 15)),
+    ((1, -1, 33), (0, -1, 17)),
+    ((1, -1, 18), (1, -1, 17)),
+    ((0, -1, 19), (1, -1, 18)),
+    ((0, -1, 20), (1, -1, 19)),
+    ((0, 1, 22), (1, -1, 21)),
+    ((1, 1, 21), (0, 1, 22)),
+    ((0, 1, 23), (1, 1, 22)),
+    ((1, -1, 24), (1, 1, 23)),
+    ((1, -1, 30), (0, 1, 25)),
+    ((1, -1, 26), (1, 1, 25)),
+    ((0, 1, 6), (0, -1, 27)),
+    ((0, -1, 28), (1, -1, 27)),
+    ((0, -1, 29), (1, -1, 28)),
+    ((1, -1, 20), (1, -1, 29)),
+    ((1, 1, 32), (0, -1, 31)),
+    ((1, -1, 32), (1, -1, 31)),
+    ((0, 1, 7), (0, -1, 30)),
+    ((0, -1, 34), (0, -1, 33)),
+    ((0, -1, 34), (0, -1, 35)),
+    ((0, 1, 37), (1, 1, 36)),
+    ((0, 1, 36), (1, -1, 16)),
+    ((0, 1, 37), (0, 1, 7)),
+    ((0, 1, 39), (0, 1, 7)),
+    ((0, -1, 44), (0, -1, 40)),
+    ((0, -1, 41), (1, -1, 40)),
+    ((1, 1, 42), (1, -1, 41)),
+    ((0, 1, 43), (1, 1, 42)),
+    ((1, 1, 39), (1, 1, 43)),
+    ((0, -1, 45), (1, -1, 44)),
+    ((0, -1, 47), (0, -1, 46)),
+    ((1, -1, 45), (1, -1, 46)),
+    ((1, -1, 47), (1, 1, 48)),
+    ((0, -1, 49), (1, 1, 48)),
+    ((0, 1, 56), (0, -1, 50)),
+    ((0, 1, 49), (0, 1, 51)),
+    ((1, 1, 52), (1, 1, 51)),
+    ((0, -1, 55), (0, -1, 53)),
+    ((1, -1, 54), (1, -1, 53)),
+    ((0, 1, 51), (0, 1, 51)),
+    ((0, -1, 50), (1, -1, 55)),
+    ((1, -1, 57), (1, 1, 56)),
+    ((1, -1, 61), (0, -1, 58)),
+    ((1, 1, 59), (1, -1, 58)),
+    ((0, -1, 60), (0, 1, 56)),
+    ((1, 1, 61), (1, -1, 60)),
+    ((1, -1, 66), (0, 1, 7)),
+    ((0, 1, 63), (0, 1, 62)),
+    ((0, 1, 63), (0, 1, 64)),
+    ((0, -1, 65), (1, 1, -1)),
+    ((0, -1, 65), (1, -1, 66)),
+    ((0, -1, 40), (1, -1, 66))
+)
+
+(start from state 0)
+
+BB(3,3): 10^17, 0RB2LA1RA_1LA2RB1RC_1RZ1LB1LC (i recommend you dont search here, there is only 6 holdouts left.)
+BB(4,3): 10{4}4,  	1RB1RD1LC_2LB1RB1LC_1RZ1LA1LD_0RB2RA2RD
+BB(5,3): none
+BB(6,3): f_omega(f_omega(10^^^6)), 1LE2LD2LC_2RB1RB1RA_2RB1LC0LC_1RB1LD2LD_2RD2LE2LF_1RZ---1LE
+BB(7,3): none
+ima start putting the letter w instead of omega from now on
+BB(8,3): f_{w+1}((f_w)^4(f_7(2))), 1RD2RE2LA_2RC2LC2RB_1LH2RF1LA_2RC1RD2RB_---1LC2RE_1RZ0LF1LG_1RD2LG2LG_0LA0LD1LH
+  (reported 2026-10-29. Same seed f_7(2) under the same outer f_{w+1}; the inner
+   f_w is iterated 4x instead of once. Only a small step-count increase.
+   NOTE: (E,0) is --- and (F,0) is 1RZ -- both spellings are HALTS (--- = no
+   transition exists, Z = enter the halt state), so this machine has TWO halt
+   triggers. Over 8e6 steps E is
+   read 1,995,626x on a 1 and 4,122x on a 2, and never once on a 0 -- (E,0) is
+   dormant, so the operative halt is still (F,0) -> 1RZ.)
+BB(8,3) [superseded]: f_{w+1}(f_w(f_7(2))), 1LD1LE2RA_1RE2LE2RB_1RD2RA2LC_1RB1RD2RB_1LH2RF1LC_1RZ0LF1LG_1RD2LG2LG_0LD1LH1LH
+BB(9,3) and BB(10,3): none
+BB(11,3) [superseded]: f_{w+3}(f_{w+3}(4)), 1LD2RG2LA_2LE2LH2RB_2LE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI---_0RC1LH2RG_1RC2LH1LA_1RI1RI1LJ_0LA2LK---_1RZ2LJ---
+BB(12,3 thru 35,3): none
+Writing e0 instead of epsilon_0 from now on.
+BB(36,3): f_e0(7)
+BB(37,3): f_e0(373676378), no machine linked (same with one above)
+BB(3,4): 2{15}5, 1RB3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC
+BB(4,4): > 2{509}3 (a lower bound: 2 with 509 arrows then 3), 0LB3LB1RZ2RA_1LD3RB1LC2RA_3RB1LB3LC2RC_0RD2RC2LB0RA
+  (reported by loader3229, 2026-10-27; supersedes 2{194}4.  Local check: runs 2,000,000 steps
+   with a dense tape of 1976 cells growing leftward, head at -1158 -- alive and super-linear,
+   consistent with the claimed 2{509}3.  The claim itself is not simulated by us.)
+BB(5,4): f_w(f_w(10{4}10^^65533)), 1LD2RA3RB1LC_1LD2LA3RB---_2RA1LA3RC2LC_2RA---2LD2LE_------1RZ1LD
+BB(6,4): f_{w+1}(10^^65533), 1LF2RA3RB---_3RD2LB3RB1LC_2RA1LB3RC2LC_1LD2RE0LA1LD_1RZ0LE1LF---_2RA---2LF2LF
+  (reported 2026-10-29; new champion, supersedes f_{w+1}(97) below.  The ARGUMENT is now a
+   tower -- 10^^65533, the same ladder BB(2,5) sits on -- so this row is f_{w+1} of a tower,
+   which beats f_{w+1} of any fixed number, not just a bigger one.)
+BB(6,4) [superseded]: f_{w+1}(97), 0RC3LB2RD2RA_1LF3RB1LC2RA_3RB1LB3LC2RC_1RZ2LD1LD2LE_3RE3LB2RE2LE_2RB2LF0LB2RF
+  (reported 2026-10-28; superseded by the row above.  f_{w+1}(97) is f_w iterated 98
+   times -- above the BB(5,4) row's f_w(f_w(...)) nesting of depth 2.)
+BB(7,4): none
+BB(8,4) [superseded]: f_{w+2}((f_w)^4(12)), 1RC3LB2RD2RA_1RF3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ3RB_1LG2RD1LG3RG_0LH0LC0LH3RD
+  (reported 2026-10-29; new champion, supersedes f_{w+2}(83) below.  Same f_{w+2} level, but
+   the argument is now an f_w iterate, (f_w)^4(12) = f_w(f_w(f_w(f_w(12)))), instead of the
+   plain 83 -- so the improvement is in the *argument* at that level, which is the largest
+   single step available without changing height.  Not TNF-1RB (starts 1RC).  Local check:
+   8 states / 4 symbols, all 32 rows defined, single halt row (F,2).  No halt in
+   3,000,000 steps.)
+BB(8,4) [superseded]: f_{w+2}(83), 1LH3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG1RZ------_1LG2RD1LG3RG_0LB---0LH2RB
+  (reported 2026-10-29; new champion, supersedes f_{w+2}(14) below.  Same f_{w+2} level -- the
+   extra f_w iteration through the tower is unchanged -- so this is a bigger argument at the
+   same height, not a new height.  Halt entry unchanged (F on 1).  Local check: 8 states /
+   4 symbols, 29 of 32 rows defined, no undefined row and no halt in 3,000,000 steps, tape
+   1664 cells.)
+BB(8,4) [superseded]: f_{w+2}(14), 1LB3LB2RD2RA_1LH3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG1RZ------_1LG2RD1LG3RG_3RD------0LH
+  (reported 2026-10-28; superseded by the row above.  f_{w+2}(14) is two full levels above
+   the BB(6,4) row's f_{w+1}(97) -- an extra f_w iteration through the whole tower, not a
+   bigger argument -- and it needs only 8 states because the row's successor field is reused.)
+BB(9,4) [superseded]: > f_{w+3}(16),
+2LI3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2LB---1LI3RF
+  (reported 2026-10-30; new champion, supersedes the f_{w+3}(10) row below.  Same top
+   level f_{w+3}; the iteration count at that level goes 10 -> 16.  The change is
+   entirely in the boot routing, not the depth: A0 0LB -> 2LI, B0 2LI -> 2LC, and row
+   I becomes 2LB---1LI3RF.  Six more f_{w+2} iterations sitting above the same tower is
+   worth vastly more than any fixed deepening of the inner f_w argument -- the same
+   reason 2 -> 10 was the previous record.  It also costs a row: (I,1) is now undefined
+   as well, so there are three halt triggers instead of two.  Not TNF-1RB (starts 2LI).
+   Local check: 9 states / 4 symbols, 33 of 36 rows defined, undefined cells (F,3),
+   (H,1), (I,1), one explicit halt row (F,2) -> 1RZ.  No halt in 3,000,000 steps; tape
+   1703 cells, lo -1689, hi 14, head -680, growing leftward.)
+BB(9,4) [superseded]: > f_{w+3}(10),
+0LB3LB2RD2RA_2LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2RI3RF2RB1LI
+  (reported 2026-10-30; superseded by the row above.  f_{w+3}(10) is f_{w+2}
+   iterated TEN times on 10; the (f_{w+2})^2 row below was f_{w+2} applied twice.  The top level
+   is therefore unchanged and the entire improvement is the iteration count at that
+   level, 2 -> 10, which is worth vastly more than its own deeper argument (f_w)^4(12):
+   one extra f_{w+2} already sits above any fixed number of f_w's.  The wiki flags this
+   one |halt, i.e. a known-halting machine, unlike the (f_{w+2})^2 row below, which was still
+   alive at 3e6 steps.  Not TNF-1RB (starts 0LB).  Local check: 9 states / 4 symbols,
+   34 of 36 rows defined, two undefined cells (F,3) and (H,1), one explicit halt row
+   (F,2) -> 1RZ.  No halt in 3,000,000 steps; tape 1699 cells, head -660, growing
+   leftward.)
+BB(9,4) [superseded]: > (f_{w+2})^2((f_w)^4(12)),
+0RB3LB2RD2RA_0LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH3LC0LH3RD_1LA------1RA
+  (reported 2026-10-29; superseded by the row above.  f_{w+2} applied
+   TWICE, against that row's single f_{w+2} -- an extra f_{w+2} iteration, which is a
+   bigger step than the BB(8,4) row's own improvement (which only deepened the inner
+   f_w argument).  Not TNF-1RB (starts 0RB).  Local check: 9 states / 4 symbols, 33 of 36
+   rows defined, three undefined cells -> three halt triggers: (G,2), (I,1), (I,2).  No halt
+   in 3,000,000 steps.)
+BB(10,4) thru BB(30,4): none
+BB(31,4): Same as BB(37,3)
+BB(2,5): Not recommended to search here, only about 50 holdouts remain: 10^10^10^3314360, 1RB3LA4RB0RB2LA_1LB2LA3LA1RA1RZ
+BB(3,5): f_w(2{15}5) (wait thats just the BB(3,4) champion with a fast growing hierarchy around it), 1RB3LB4LC2RA4LB_2LC3RB1LC2RA1RZ_3RB1LB3LC2RC4LC
+BB(4,5): f_{w+1}(27041)  (=~ g27041 > g64), 1RB3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_2RC2RD1RZ4RB1LC
+  (reported 2026-10-28; SUPERSEDES the f_w(2{194}4) row below.  f_{w+1}(27041) is f_w iterated
+   27042 times, and one extra application of f_w beats any fixed argument below w^2 -- which is
+   why this is above the f_w(2{509}3) lift too, not just above f_w(2{194}4).)
+BB(4,5) [superseded]: f_w(2{194}4) (the BB(4,4) champion, same trick), 1LD3LB4LC2RA4LB_2LC3RB1LC2RA1RZ_3RB1LB3LC2RC4LC_1RD3RA2LB0LC---
+  (stale as of 2026-10-27: the 4,4 champion is now 0LB3LB1RZ2RA_1LD3RB1LC2RA_3RB1LB3LC2RC_0RD2RC2LB0RA
+   at 2{509}3, so this row is at least f_w(2{509}3) once the same 5-symbol lift is compiled.)
+-- nothing here --
+BB(19,5): f_e0(1.7 * 10^352), 1RB2LA1RA2LB2LA_0LA2RB3RB4RA1LQ_1RZ1RC2LD------_0LK3RD2RD2RD4RD_------0RH1LS0RF_1LG1RF2RF---4RF_4LE1LG2LG---4LG_0LI1RH2RH---4RH_0RK0LJ------4RK_2LE1LJ2LJ---4LJ_4RP---0LE---0LK_2RQ---2LL---4LL_2LN---2RM3RM4RM_4RQ2RQ2LN3LN4LN_4LN---2RO3RO4RO_3LL1LP2LP1LQ4LP_1RC3RR1RM3LP0RO_3LL1RR2RR0RR4RR_1RC1LS2LS1LS4LS
+OMEGA = capital omega, so OMEGA_2 = Omega_2 and OMEGA_w = Omega_omega
+BB(94,5): f_psi_0(OMEGA_2)(1.7 * 10^352)
+BB(2,6): 10^^10^^10^10^115, 1RB3RB5RA1LB5LA2LB_2LA2RA4RB1RZ3LB2LA
+BB(3,6): f_w(f_w(f_w(15))), 1RB3LB4LC2RA4LB5LB_2LC3RB1LC2RA5LC1RZ_3RB1LB3LC2RC4LC5LC
+  (reported 2026-10-28; new champion.  The BB(3,5) champion's pattern lifted one more
+   symbol: each rung adds one more f_w, so the argument 15 is unchanged and only the
+   nesting depth grows with the alphabet.)
+BB(4,6) [superseded]: > f_{w+1}(2{15}5), 1RB3LB5LD2RA4LB5LB_2LC3RB1LC2RA3LC1RZ_3RB1LB3LC2RC4LC5LC_3RC---4LD4LD------
+  (reported 2026-10-30 by loader3229 on the bbchallenge wiki; > f_{w+1}(2{15}5) steps.
+   BB(3,6) is f_w(f_w(f_w(15))) = (f_w)^3(15), so the new step is the w+1 frontier:
+   the same three-rung w-ladder under one more level, and the argument jumps from 15
+   to the tetration 2{15}5.)
+  (superseded 2026-11-01 by the BB(4,6) row in the 6-symbol section below:
+   f_{w+1}(f_{w+1}(62)) applies the same level to the argument f_{w+1}(62),
+   about 2{63}62 -- sixty-three arrows against fifteen -- so the bound down
+   there is the larger one.)
+BB(61,6): Same step count as BB(94,5)
+BB(2,7): 10^^10^^10^^155, 1RB3RB4LA1LB5LA6LB5RA_2LA6RA4RB1RZ3LB6LA4RB 
+BB(3,7): f_w(f_w(f_w(f_w(15)))), 1RB3LB4LC2RA4LB5LB6LB_2LC3RB1LC2RA5LC6LC1RZ_3RB1LB3LC2RC4LC5LC6LC
+  (reported 2026-10-28; new champion, one rung above the BB(3,6) row.)
+BB(18,7): same as BB(19,5), 1RB2LA1RA2LB2LA------_0LA2RB3RB4RA1LP------_0RZ1RC2LD------------_0LJ3RD2RD2RD4RD------_4LE1LE0RG1LR0RF2LE4LE_1LE1RF5RF---6RF------_0LH1RG2RG---4RG------_0RJ0LI------4RJ------_2LE1LI2LI---4LI------_4RO---0LE---0LJ------_2RP---2LK---4LK------_2LM---2RL3RL4RL------_4RP2RP2LM3LM4LM------_4LM---2RN3RN4RN------_3LK1LO2LO1LP4LO------_1RC3RQ1RL3LO0RN------_3LK1RQ2RQ0RQ4RQ------_1RC1LR2LR1LR4LR------
+BB(56,7): (f_e0)^F(k0) -- the (18,7) f_e0 engine applied F TIMES, F = the round-0 extent read off
+  the tape (the fuel is measured, not a constant).  Strictly above BB(18,7)/BB(19,5) (one
+  application), below BB(46,7)/BB(61,6) (psi_0(OMEGA_2)).  Glue kernel-checked (LadderGlue.lean,
+  native_decide, no sorry); the engine's own round on `3^n 4 1 2` is assumed exactly as for every
+  other e0 machine in this list.  56 states, 7 symbols:
+  M = (
+     0: ((1, 1, 1), (2, -1, 0), (1, 1, 0), (2, -1, 1), (2, -1, 0), (0, -1, hr), (0, -1, hr)),
+     1: ((0, -1, 0), (2, 1, 1), (3, 1, 1), (4, 1, 0), (1, -1, 15), (0, -1, hr), (0, -1, hr)),
+     2: ((0, -1, 18), (1, 1, 2), (2, -1, 3), (0, -1, hr), (0, -1, hr), (0, -1, hr), (0, -1, hr)),
+     3: ((0, -1, 9), (3, 1, 3), (2, 1, 3), (2, 1, 3), (4, 1, 3), (0, -1, hr), (0, -1, hr)),
+     4: ((4, -1, 4), (1, -1, 4), (0, 1, 6), (1, -1, 17), (0, 1, 5), (2, -1, 4), (4, -1, 4)),
+     5: ((1, -1, 4), (1, 1, 5), (5, 1, 5), (0, -1, hr), (6, 1, 5), (0, -1, hr), (0, -1, hr)),
+     6: ((0, -1, 7), (1, 1, 6), (2, 1, 6), (0, -1, hr), (4, 1, 6), (0, -1, hr), (0, -1, hr)),
+     7: ((0, 1, 9), (0, -1, 8), (0, -1, hr), (0, -1, hr), (4, 1, 9), (0, -1, hr), (0, -1, hr)),
+     8: ((2, -1, 4), (1, -1, 8), (2, -1, 8), (0, -1, hr), (4, -1, 8), (0, -1, hr), (0, -1, hr)),
+     9: ((4, 1, 14), (0, -1, hr), (0, -1, 4), (0, -1, hr), (0, -1, 9), (0, -1, hr), (0, -1, hr)),
+    10: ((2, 1, 15), (0, -1, hr), (2, -1, 10), (0, -1, hr), (4, -1, 10), (0, -1, hr), (0, -1, hr)),
+    11: ((2, -1, 12), (0, -1, hr), (2, 1, 11), (3, 1, 11), (4, 1, 11), (0, -1, hr), (0, -1, hr)),
+    12: ((4, 1, 15), (2, 1, 15), (2, -1, 12), (3, -1, 12), (4, -1, 12), (0, -1, hr), (0, -1, hr)),
+    13: ((4, -1, 12), (0, -1, hr), (2, 1, 13), (3, 1, 13), (4, 1, 13), (0, -1, hr), (0, -1, hr)),
+    14: ((3, -1, 10), (1, -1, 14), (2, -1, 14), (1, -1, 15), (4, -1, 14), (0, -1, hr), (0, -1, hr)),
+    15: ((1, 1, 2), (3, 1, 16), (1, 1, 11), (3, -1, 14), (0, 1, 13), (0, -1, hr), (0, -1, hr)),
+    16: ((3, -1, 10), (1, 1, 16), (2, 1, 16), (0, 1, 16), (4, 1, 16), (0, -1, hr), (0, -1, hr)),
+    17: ((1, 1, 2), (1, -1, 17), (2, -1, 17), (1, -1, 17), (4, -1, 17), (0, -1, hr), (0, -1, hr)),
+    18: ((0, -1, 19), (1, 1, 18), (2, 1, 18), (3, 1, 18), (4, 1, 18), (5, 1, 18), (6, 1, 18)),
+    19: ((0, -1, 19), (1, 1, 20), (2, 1, 20), (3, 1, 20), (4, 1, 20), (5, 1, 20), (6, 1, 20)),
+    20: ((4, 1, 21), (1, 1, 18), (2, 1, 18), (3, 1, 18), (4, 1, 18), (5, 1, 18), (6, 1, 18)),
+    21: ((6, 1, 22), (6, 1, 22), (6, 1, 22), (6, 1, 22), (6, 1, 22), (6, 1, 22), (6, 1, 22)),
+    22: ((6, 1, 23), (6, 1, 23), (6, 1, 23), (6, 1, 23), (6, 1, 23), (6, 1, 23), (6, 1, 23)),
+    23: ((6, 1, 24), (6, 1, 24), (6, 1, 24), (6, 1, 24), (6, 1, 24), (6, 1, 24), (6, 1, 24)),
+    24: ((6, -1, 25), (6, -1, 25), (6, -1, 25), (6, -1, 25), (6, -1, 25), (6, -1, 25), (6, -1, 25)),
+    25: ((0, -1, 32), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    26: ((0, -1, 32), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 27)),
+    27: ((0, -1, 32), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 28)),
+    28: ((0, -1, 32), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 29)),
+    29: ((0, 1, 30), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 29)),
+    30: ((0, -1, hr), (0, -1, hr), (0, -1, hr), (0, -1, hr), (0, -1, hr), (6, 1, 31), (6, 1, 30)),
+    31: ((3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (5, 1, 31), (6, 1, 31)),
+    32: ((0, -1, 33), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    33: ((0, -1, 34), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    34: ((0, -1, 35), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    35: ((0, -1, 36), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    36: ((0, -1, 37), (1, -1, 25), (2, -1, 25), (3, -1, 25), (4, -1, 25), (5, -1, 25), (6, -1, 26)),
+    37: ((6, 1, 38), (6, 1, 38), (6, 1, 38), (6, 1, 38), (6, 1, 38), (6, 1, 38), (6, 1, 38)),
+    38: ((6, 1, 39), (6, 1, 39), (6, 1, 39), (6, 1, 39), (6, 1, 39), (6, 1, 39), (6, 1, 39)),
+    39: ((6, 1, 40), (6, 1, 40), (6, 1, 40), (6, 1, 40), (6, 1, 40), (6, 1, 40), (6, 1, 40)),
+    40: ((6, 1, 41), (6, 1, 41), (6, 1, 41), (6, 1, 41), (6, 1, 41), (6, 1, 41), (6, 1, 41)),
+    41: ((5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 42)),
+    42: ((5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 43)),
+    43: ((5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 44)),
+    44: ((5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 41), (5, 1, 45)),
+    45: ((3, 1, 46), (3, 1, 46), (3, 1, 46), (3, 1, 46), (3, 1, 46), (3, 1, 46), (3, 1, 46)),
+    46: ((3, 1, 47), (3, 1, 47), (3, 1, 47), (3, 1, 47), (3, 1, 47), (3, 1, 47), (3, 1, 47)),
+    47: ((3, 1, 48), (3, 1, 48), (3, 1, 48), (3, 1, 48), (3, 1, 48), (3, 1, 48), (3, 1, 48)),
+    48: ((3, 1, 49), (3, 1, 49), (3, 1, 49), (3, 1, 49), (3, 1, 49), (3, 1, 49), (3, 1, 49)),
+    49: ((4, 1, 54), (4, 1, 54), (4, 1, 54), (4, 1, 54), (4, 1, 54), (4, 1, 54), (4, 1, 54)),
+    50: ((3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 51)),
+    51: ((3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 52)),
+    52: ((3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 53)),
+    53: ((3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (3, 1, 50), (4, 1, 54)),
+    54: ((1, 1, 55), (1, 1, 55), (1, 1, 55), (1, 1, 55), (1, 1, 55), (1, 1, 55), (1, 1, 55)),
+    55: ((2, 1, 0), (2, 1, 0), (2, 1, 0), (2, 1, 0), (2, 1, 0), (2, 1, 0), (2, 1, 0)),
+  )
+
+BB(46,7): Same as BB(61,6) 
+BB(134,7): f_psi_0(OMEGA_w)(2050)
+BB(2,8): 10^^^5 with the last ten replaced with 155, 1RB3RB4LA1LB5LA6LB5RA1RZ_2LA6RA4RB7RA3LB6LA4RB4RA
+BB(3,8): f_w(f_w(f_w(f_w(f_w(15))))), 1RB3LB4LC2RA4LB5LB6LB7LB_2LC3RB1LC2RA5LC6LC7LC1RZ_3RB1LB3LC2RC4LC5LC6LC7LC
+  (reported 2026-10-28; new champion, one rung above the BB(3,7) row.)
+BB(17,8): Same as BB(18,7), 1RB2LA1RA2LB2LA---------_0LA2RB3RB4RA1LO---------_0RZ1RC2LD---------------_0LJ3RD2RD2RD4RD---------_4LE1LE0RG1LQ0RF2LE4LE---_1LE1RF5RF---6RF---------_0LH1RG2RG---4RG---------_0RJ0LI------4RJ---------_2LE1LI2LI---4LI---------_4RN---0LE---0LJ---------_2RO2RO2LK3LK4LK2LK4LK4RO_2LK---5RL3RL6RL---------_4LK---5RM3RM6RM---------_3LK1LN2LN1LO4LN---------_1RC3RP1RL3LN7RM---------_3LK1RP2RP0RP4RP---------_1RC1LQ2LQ1LQ4LQ---------
+BB(2,9): 10^^^6 but the last 10 is replaced with 155, 1RB3RB4LA1LB5LA6LB5RA8RA1RZ_2LA6RA4RB7RA3LB6LA4RB4RA4RA
+BB(3,9): f_w(f_w(f_w(f_w(f_w(f_w(15)))))), 1RB3LB4LC2RA4LB5LB6LB7LB8LB_2LC3RB1LC2RA5LC6LC7LC8LC1RZ_3RB1LB3LC2RC4LC5LC6LC7LC8LC
+  (reported 2026-10-28; new champion, one rung above the BB(3,8) row.)
+BB(42,9): Same as BB(46,7) 
+Thats all of them.
+
+==========================================================================
+ADDITIONS -- loader3229 multi-symbol champions, 2026-10-27 .. 2026-11-01
+==========================================================================
+
+None of these machines are ours.  Every one was found and reported by
+loader3229 (bbchallenge Discord), and every level below is his own estimate.
+Rows he flagged "(predicted, not formal)" stay flagged here.  Nothing in this
+section is verified in this repository, and none of it can be checked by
+simulation: the step counts are past what a simulator reaches.
+
+Notation, as in the rest of this file: one block per state, three-character
+transitions <write><move><next state> per symbol in order.  A dash run is an
+undefined transition, so a block may be shorter than 3 x alphabet characters
+and has to be read tolerantly.  Z is the halt.
+
+Already recorded above, from the same source:
+  BB(4,4)   2{509}3                0LB3LB1RZ2RA_1LD3RB1LC2RA_3RB1LB3LC2RC_0RD2RC2LB0RA
+  BB(4,5)   f_{w+1}(27041)         1RB3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_2RC2RD1RZ4RB1LC
+  BB(3,5)..BB(3,9)  the f_w ladder 1RB3LB4LC2RA4LB[5LB...]_2LC3RB1LC2RA[5LC...]1RZ_...
+  BB(4,6)   f_{w+1}(2{15}5)   [superseded]   1RB3LB5LD2RA4LB5LB_2LC3RB1LC2RA3LC1RZ_3RB1LB3LC2RC4LC5LC_3RC---4LD4LD------
+  BB(6,4)   f_{w+1}(97)   [superseded]
+  BB(8,4)   f_{w+2}(83)   [superseded]
+  BB(8,4)   f_{w+2}((f_w)^4(12))
+  BB(9,4)   f_{w+3}(10) [superseded], f_{w+3}(16), (f_{w+2})^2((f_w)^4(12))
+
+--------------------------------------------------------------------------
+Open question on the BB(3,6) rung (2026-10-27, 07:59)
+--------------------------------------------------------------------------
+For 1RB3LB4LC2RA4LB5LB_2LC3RB1LC2RA5LC1RZ_3RB1LB3LC2RC4LC5LC he reports
+
+    0^inf B(k,0,0) 4 0^inf  ->  0^inf B(k',0,0) 5 0^inf
+
+with B the configuration from sligocki's bb-3-4-a14 analysis, and asks what the
+relation between k and k' is.  Unanswered in the source.  Recorded as an open
+question, not a result.
+
+--------------------------------------------------------------------------
+BB(4,4), lifted from the BB(3,4) champion (2026-10-27, 09:53)
+--------------------------------------------------------------------------
+1LD3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_1RD3RA2LB0LC
+  predicted sigma score 2{194}4 + 194.  (predicted, not formal)
+  The 5-symbol lift of this machine is the BB(4,5) [superseded] row above.
+
+BBi(12) 0RD3LB---2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_1RB---------
+  more than 2{18}3 steps.
+BBi(13) 1LD3LB---2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0LB---2LB---
+  more than 2{98}4 steps.
+
+--------------------------------------------------------------------------
+BB(4,5) BBi pair (2026-10-28, 01:01); the BB(4,5) row itself is above
+--------------------------------------------------------------------------
+BBi(17) 1RB3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_3RC------3RA---
+  more than f_{w+1}(11) steps.
+BBi(18) 1RB3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1LC3LC---1RD---
+  more than f_{w+1}(2611) steps.
+  Reported as BBi(18) > Graham's number, and BB(4,5) > Graham's number; both
+  predicted.  Current champions as of 2026-10-29 00:00 UTC, his words.
+
+--------------------------------------------------------------------------
+BB(5,5) (2026-10-31, 06:41) -- also the current BBi(20) champion
+--------------------------------------------------------------------------
+1LB3LB4LC2RA4LB_3LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ------4LD4LE_3RB------4LE3LC
+  more than f_{w+1}(f_w(f_w(f_w(f_w(6))))) steps.  (predicted, not formal)
+
+--------------------------------------------------------------------------
+BB(6,5) family (2026-10-31)
+--------------------------------------------------------------------------
+BBi(21) 4RF3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_3RB------4LE3LC_3RC------------
+  more than f_{w+2}(4) steps.
+BBi(22) 1RC3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_3RB------4LE3LC_2LE3RC---------
+  more than f_{w+2}(9) steps.
+BB(6,5) 0LB3LB4LC2RA4LB_1LF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ------4LD4LE_3RB------4LE3LC_4RF3RE---0RA3LC
+  more than f_{w+2}(126) steps.  (informal)
+BB(6,5) 0LF3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ------4LD4LE_3RB------4LE3LC_2LE2RB1LF1RB1LA
+  more than f_{w+2}(176) steps.  (predicted, not formal)  Supersedes the 126 row.
+BB(6,5) 2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LA4LD4LE_3RB---0RD4LE3LC_4LC------3LF3LF
+  more than f_{w+3}(11) steps.  (predicted, not formal)  Also the current
+  BBi(26) champion.  A whole level above f_{w+2}(176), not a bigger argument.
+
+--------------------------------------------------------------------------
+BB(7,5) family (2026-10-31, 11:26)
+--------------------------------------------------------------------------
+BBi(27) 0LG3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---3LF---4LD4LE_3RB------4LE3LC_4LC------3LF3LF_1RB---1LG1LF---
+  more than f_{w+3}(17) steps.
+BB(7,5) 2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---3LF1LG4LD4LE_3RB---1LE4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+  more than f_{w+3}(f_{w+3}(10)) steps.  (informal)
+
+--------------------------------------------------------------------------
+BB(8,5) family (2026-10-31 .. 2026-11-01)
+--------------------------------------------------------------------------
+BBi(28) 1RG3LB---2RA---_------1LD2RA---_3RB1LB3LC2RC---_3RE---3LC2RC---_---3RE---4LH---_4RA3LG---2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+  more than f_{w*2}(17) steps.
+
+BB(8,5) 0LB3LB1RZ2RA4RB_0LD1RB1LD2RA1LE_3RB1LB3LC2RC3LF_3RE2LF3LC2RC4LF_0LF3RE0LG4LH2LB_0LE3LG4LC2RF4LG_1LC3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+  more than f_{w*2}(32) steps.  (informal)  His note on this one: "You can
+  prove this in Coq now."
+
+BBi(29) .. BBi(34): no strings in the source message; he points at the
+  Instruction-Limited Busy Beaver wiki page.
+
+BB(8,5) / BBi(36)
+2RG3LB4LC2RA4LB_1RZ---1LD2RA4LD_3RB1LB3LC2RC4LC_3RE---3LC2RC3LC_---3RE4LE4LH4RB_4LE3LG3LB2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+  more than f_{w*2+1}(93) steps.  This is the f_{w*2+1} champion in 5 symbols he
+  said he would stop at; the BBi(29)..BBi(34) blocks are the rungs before it.
+  A level at w*2+1 is far past anything f_{w*2} reaches, and it is the first
+  loader3229 row in this file above w*2.
+
+--------------------------------------------------------------------------
+BB(11,4) (2026-11-01, 07:06)
+--------------------------------------------------------------------------
+1RG3LB1RZ2RA_2LD---1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_---3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_---3RH1LI2RG_3RH1LH3LI2RI_------3LJ3RK_------2RA3RK
+  more than f_{w*2}(21) steps.  (informal)  His words: "I just found this
+  BB(11,4) machine that reached f_(w*2)."  There are already seventeen
+  4-symbol rows in this file (BB(3,4) through BB(9,4), BBi(12), BBi(13) and
+  the restated champions), so this is neither the first nor the cheapest --
+  checked with `tools/find_alphabets.py`, which groups every row in the file
+  by its written alphabet.  What it is: the first 4-symbol row here *above
+  w+3*.  The 4-symbol ladder stops at BB(9,4) with f_{w+3}(16) in 9 states,
+  and the other w*2 rows are all 5-symbol -- 8 states with argument 32, and
+  BBi(28) with 28 states and argument 17.  So 11 states in 4 symbols is one
+  rung above the best 4-symbol row at two extra states, while its argument
+  (21) is *below* the 8-state 5-symbol row's 32: at 4 symbols you buy the
+  level, not the argument.  That is the trade BB(18,7) shows for eps_0
+  below -- the level is not bought by tape alphabet.
+
+--------------------------------------------------------------------------
+Status of this section
+--------------------------------------------------------------------------
+Recorded, not verified.  Nothing here has been checked by this repository, and
+the f_{...} levels are the reporter's own estimates.  Any use of these rows as
+evidence must carry that caveat.
+
+--------------------------------------------------------------------------
+BB(11,4) variants (2026-11-01, 12:03)
+--------------------------------------------------------------------------
+1RG3LB1RZ2RA_0LG0LE1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_0LC3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_3LG3RH1LI2RG_3RH1LH3LI2RI_0LH2LI3LJ3RK_------2RA3RK
+  "a potential BB(11,4) machine, that probably can reach f_(w*2)(2{11}6)
+  steps."  (informal)
+
+1RG3LB1RZ2RA_0LG---1LD2RA_3RB1LB3LC2RC_3RE0LA3LC2RC_1RI3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_0RG3RH1LI2RG_3RH1LH3LI2RI_------3LJ3RK_------2RA3RK
+  "also a BB(11,4) machine for more than f_(w*2)(98) steps."  (informal)
+
+Both are the 07:06 row above with the grid untouched: eleven states A..K, four
+symbols {0,1,2,3}, one halt entry (1RZ in state A), every target letter inside
+A..K.  The differences sit in the lift states, where a defined entry replaces
+an undefined one:
+  machine 1  B 2LD---1LD2RA -> 0LG0LE1LD2RA,  E ---3RE3LH2LF -> 0LC3RE3LH2LF,
+             H ---3RH1LI2RG -> 3LG3RH1LI2RG,  J ------3LJ3RK -> 0LH2LI3LJ3RK
+  machine 2  B 2LD---1LD2RA -> 0LG---1LD2RA,  D 3RE---3LC2RC -> 3RE0LA3LC2RC,
+             E ---3RE3LH2LF -> 1RI3RE3LH2LF,  H ---3RH1LI2RG -> 0RG3RH1LI2RG
+Blank entries: 3 in machine 1, 5 in machine 2, 8 in the 07:06 row.  The
+variants buy their level by defining transitions, not by adding states.
+Simulated from a blank tape here for 50 000 steps: neither halts, both still
+running, head walking left.  That is all this repository checked; the levels
+are his.
+
+If the 2{11}6 estimate stands, machine 1 is the w*2 champion in four symbols on
+argument as well as on level: every other w*2 row in this file has argument
+17, 21, 32 or 98, and 2{11}6 is an arrow tower, not a tower height.  The level
+itself is not bought by the alphabet -- 8 states / 5 symbols already reaches
+f_{w*2}(32) -- so in four symbols w*2 costs 11 states, three more.
+
+================================================================================
+loader3229, 6-symbol machines (28 Oct-2 Nov).  Notation as in this file: `_`
+separates states in order A, B, C, ...; each state lists one 3-char action per
+read symbol starting at the blank; `---` is no transition; Z halts.  So block
+length / 3 = symbols and the number of blocks = states.
+
+BB(4,6): f_{omega+1}, "more than f_{omega+1}(f_{omega+1}(62))" steps
+3LD3LB5LD2RA4LB3RD_1RZ3RB1LC2RA3RD1RC_3RB1LB3LC2RC4LC0LA_3RB1RC5LC4LD4LC4LD
+
+BB(4,6): f_{omega+2}, "more than f_{omega+2}(29)" steps
+5LD3LB5LC2RA4LB4LC_1RZ3RB1LC2RA3RD0LA_3RB1LB3LC2RC4LC1RA_3RB0LA2LC4LD4LC4LD
+
+BB(5,6): f_{omega+3}, "more than f_{omega+3}(31)" steps
+1LE3LB2LA2RA4LB5RA_1RZ3RB1LC2RA3RD4RA_3RB1LB3LC2RC4LC2LB_3RB0LA5LE4LD4LC4LD_4LC5LC0RE5LE1RE2RE
+
+BB(6,6) [superseded]: f_{omega*2}, "more than f_{omega*2}(36)" steps
+5RB3LB1RZ2RA4LB---_2LC3RB1LD2RA3LF---_3RB1LB3LC2RC4LC0LE_3RB3RD3LC2RC---3RE_5RC3RE1RB4LC------_5RB------1LF------
+
+BB(6,6): f_{omega*2}, "more than f_{omega*2}(89)" steps
+4LF3LB1RZ2RA4LB---_2LC3RB1LD2RA3LF---_3RB1LB3LC2RC4LC0LE_3RB---3LC2RC---3RE_5RC3RE---4LC------_5RB0LF1RB1LF---5RB
+  (reported 2026-11-03 10:01 by loader3229: "Found another BB(6,6)".  Same
+   f_{omega*2} level as the superseded row above, argument 89 against 36 --
+   a bigger argument at the same height, so the row above is superseded.  A
+   different machine, not an edit of the old one: six cells differ --
+   A sym0 5RB -> 4LF, D sym1 3RD -> ---, E sym2 1RB -> ---, F sym1 --- ->
+   0LF, F sym2 --- -> 1RB, F sym5 --- -> 5RB.  Local check
+   (tools/bbmulti.py), blank tape, 2 000 000 steps: 6 states x 6 symbols,
+   28 of 36 transitions defined, no halt, score 1 650, milestones 10@121,
+   100@5 940, 1000@607 129, symbols 0..5 all written, all six states
+   visited.  Seeded with a single 1 under the head it does not halt within
+   100 000 steps (score 379; at a seed in C0-1 it halts at 14) -- the
+   blank-tape phase is load bearing here too, so its run length only shows
+   on the blank.  The level is his claim.)
+
+BB(7,6) [superseded]: f_{omega^2}, "more than f_{omega^2}(5)" steps
+2LG3LB1RZ2RA4LB---_4LG3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE---4LC3LG5LE_5RB5RB---1LF---5LF_5LF---1LC1LG---5LG
+
+(2026-11-02, 04:12) Open question from yves30. after the row above: "Is there
+  a hope: 1) to get to f_{w^w} in this search, or even further?  2) to systematize
+  the method so that it could be updated as soon as new champions are found in
+  bb7, 3x4, 4x3, 2x6, ..."  Unanswered in the source; recorded as an open
+  question, not a result.
+
+BB(7,6): f_{omega^2}, "more than f_{omega^2}(28)" steps
+2LF3LB1RZ2RA4LB3LD_3LA3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE---4LC3LG5LE_5RB5RB0LF1LF---5LF_5LF------1LG---5LG
+  (reported 2026-11-02 09:16 by loader3229: "Found another BB(7,6)".  Same
+   f_{omega^2} level as the row above, argument 28 against 5 -- a bigger
+   argument at the same height, so the row above is superseded.  A different
+   machine, not an edit of the old one: five cells differ -- A sym0 2LG -> 2LF
+   and sym4 --- -> 3LD, B sym0 4LG -> 3LA, F sym2 --- -> 0LF, G sym2 1LC -> ---.
+   Local check (tools/bbmulti.py), blank tape, 2 000 000 steps: 7 states x
+   6 symbols, 36 of 42 transitions defined, no halt, score 1 614, milestones
+   10@86, 100@5 425, 1000@675 755, symbols 0..5 all written.  6 of 7 states
+   visited -- G is dormant: only E on symbol 4 enters it, and E (1 279 visits
+   in 4 000 000 steps) never reads a 4.  At 4 000 000 steps it has the same
+   shape as the rows above: A visited 2 725 times against ~10^6 in B/C/D, A's
+   gaps 1-7 steps at the start, 6 433 at the end, tape 2 035 marks over
+   lo -2 031, hi 5 -- linear passes over a ~2 000-cell tape, head walking
+   left.  The level is his claim.)
+
+BB(7,6): f_{omega^2}, "more than f_{omega^2}(63)" steps
+2LE3LB1RZ2RA4LB2LD_0LA3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE0LG4LC3LG5LE_5RB5RB---1LF---5LF_5LF---3RC1LG---5LG
+  (reported 2026-11-04 8:33 PM by loader3229: "Found another BB(7,6)".  Same
+   f_{omega^2} level as the 28 row, argument 63 against 28 -- a bigger
+   argument at the same height, so the BB(7,6) f_{omega^2}(28) row is
+   superseded.  A different machine, not an edit of the old one: six cells
+   differ -- A sym0 2LF -> 2LE, A sym5 3LD -> 2LD, B sym0 3LA -> 0LA, E sym2
+   --- -> 0LG, F sym2 0LF -> ---, G sym2 --- -> 3RC.  Local check
+   (tools/bbmulti.py + in-line recount), blank tape, 2 000 000 steps:
+   7 states x 6 symbols, 37 of 42 transitions defined, no halt, score 1 755,
+   milestones 10@99, 100@4 737, 1000@448 019, symbols 0..5 all written.
+   Unlike the superseded row, all 7 states are visited: in 4 000 000 steps
+   A 2 913, B 1 994 889, C 1 000 256, D 993 885, E 6 373, F 65, G 1 619 --
+   G is live here (E sym2 now runs the day-G gate, F's sym2 slot went to
+   --- and G's empty sym2 slot takes 3RC), though F at 65 visits in 4M
+   steps is still marginal.  A's gaps 1-30 steps at the start, last three
+   at 6 401/6 409/6 417 -- the same linear-pass shape over a tape that is
+   2 178 marks over lo -2 172, hi 5, head walking left.  The level is his
+      claim.)
+
+BB(8,6) / BBi(42): f_{omega^2+1}, "more than f_{omega^2+1}(3)" steps   
+  (his words: "Found a BB(8,6) reached iterated f_(omega^2)".  First row here
+   above omega^2, so the highest level recorded in this file.  The machine:
+3RG3LB2LH2RA4LB1RZ_2LD3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE---4LC3LG5LE_5RB5RB1RG1LF5LF5LF_5LF4RG1LB1LG2LG5LG_------1LH1LH---5RG
+  8 states x 6 symbols, 43 of 48 transitions defined (undefined: D sym4,
+   E sym2, H sym0/1/4).  It is the omega^2(63) row edited, not a new build:
+   10 cells change across the seven old states (A sym0 2LE -> 3RG, A sym2
+   1RZ -> 2LH, A sym5 2LD -> 1RZ, B sym0 0LA -> 2LD, F sym2 --- -> 1RG,
+   F sym4 --- -> 5LF, G sym1 --- -> 4RG, G sym2 3RC -> 1LB, G sym4 --- ->
+   2LG) and a new 8th state H is added (--- on sym0/1/4, 1LH on sym2 and
+   sym3, 5RG on sym5).  A sym5 now halts (1RZ); in the 63 row A sym5 was
+   the 2LD lift.  Local check (tools/bbmulti.py + in-line recount), blank
+   tape, 2 000 000 steps: no halt, score 1 485, milestones 10@44, 100@5 812,
+   1000@1 034 652, symbols 1..5 all written (0 is never written here: 4M
+   steps, no zero-write).  4 000 000-step visits: A 2 448, B 1 995 851,
+   C 1 003 331, D 998 279, E 38, F 37, G 16, H 0.  H is dormant exactly as
+   G was in the omega^2(28) row: only A on read 2 enters H (besides H sym2/3
+   self-entries), and A never reads a 2 in 4 000 000 steps (reads 0:2,
+   1:1 888, 3:554, 4:4).  E/F/G are near-dormant slap states (38/37/16 visits
+   in 4M).  A's gaps 1-37 steps at the start, last three 6 425/6 433/6 441
+   -- same linear-pass shape, tape 1 904 marks over lo -1 895, hi 8.  Seeded
+   with a single 1 it does not halt within 100 000 steps (score 324).  The
+   level is his claim: omega^2+1 means f_{omega^2} composed on itself, past
+   anything an omega^2 row reaches.)
+
+BB(8,6) / BBi(43): f_{omega^2+1}, "for more than f_{omega^2+1}(7)" steps   
+  (his words: "Found a BB(8,6) reached f_(omega^2+1)".  Second BB(8,6) of the
+   night, an hour after BBi(42); the argument 7 is the smallest so far on a
+   level this high.  The machine:
+0LC3LB2LH2RA4LB---_3LH3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2LD3RD_5RB3RE---4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG5LD5LG_3LE---1LH1LH---5RG
+  8 states x 6 symbols, 43 of 48 transitions defined (undefined: A sym5,
+   E sym2, F sym2, H sym1/4); no explicit Z cell at all this time -- the five
+   undefined cells are the halting doors (BBi(42) halted via A sym5 1RZ).
+   It is BBi(42) edited in 7 cells: A sym0 3RG -> 0LC, A sym5 1RZ -> ---,
+   B sym0 2LD -> 3LH, D sym4 --- -> 2LD, F sym2 1RG -> ---, G sym4 2LG ->
+   5LD, H sym0 --- -> 3LE.  Local check (tools/bbmulti.py), blank tape,
+   2 000 000 steps: no halt, score 1 440, milestones 10@92, 100@6 340,
+   1000@1 190 332.  4 000 000-step visits: A 1 904, B 1 997 387,
+   C 1 001 571, D 999 080, E 12, F 16, G 12, H 18.  H is NOT dormant here,
+   opposite of BBi(42): H runs only during boot -- all 18 visits inside the
+   first ~160 steps (trace starts at step 3), entered from B on the blank
+   twice and A on read 2 once (A reads a 2 exactly once in 4 000 000 steps),
+   plus H's own sym2/3 self-entries; after boot nothing re-enters H.  Boot-
+   bound too: the run's only 0-over-write of a mark happens at step 101
+   (the other 0-write is A on the blank at step 0, a no-op).  Tape at 4M:
+   1 859 marks over lo -1 856, hi 2; A's gaps 1-41 steps at the start, last
+   six 6 401/6 409/6 417/6 425/6 433/6 441 -- same linear-pass shape as the
+   rest of the family (1 843 of A's 1 904 reads are a 1).  Seeded with a
+   single 1 it does not halt within 100 000 steps (score 336).  The level
+   is his claim.)
+
+What this repository checked (tools/bbmulti.py), blank tape, 2 000 000 steps:
+every string parses at its stated size (4x6, 4x6, 5x6, 6x6, 7x6, 7x6, 7x6, 8x6, 8x6), none halts --
+which the claims require, since their stated run lengths are far past simulation
+-- and every symbol 1..5 is actually used, so none of the six-symbol alphabets
+is padding.Every state is visited in the other five; in the f_{w^2}(28) row G is
+dormant (only E on symbol 4 enters it, and E reads no 4 in 4 000 000
+steps), while in the f_{w^2}(63) row all seven states visited in
+4 000 000 steps (F only 65 times, still marginal), and in the
+first BB(8,6) omega^2+1 row (BBi(42)) H is dormant (only A on read 2
+enters it, and A reads no 2 in 4 000 000 steps); in the second (BBi(43))
+H runs only during boot -- B's blank door 3LH fires twice in the first
+~160 steps, H's 18 visits all land inside boot, and nothing re-enters
+H after step ~157 in 4 000 000 steps.
+Score (marks on tape) at the end of the budget and the step at which each score
+was first reached:
+
+  BB(4,6) f_{w+1}   score 1 488   10@93     100@6 342      1000@1 022 178
+  BB(4,6) f_{w+2}   score 1 464   10@92     100@4 850      1000@1 103 422
+  BB(5,6) f_{w+3}   score 1 462   10@86     100@3 924      1000@1 112 672
+  BB(6,6) f_{w*2}   score 1 650   10@121    100@5 940      1000@ 607 129
+  BB(7,6) f_{w^2}   score 1 497   10@47     100@5 793      1000@  995 961
+  BB(7,6) f_{w^2}(28)  score 1 614   10@86     100@5 425      1000@675 755
+  BB(7,6) f_{w^2}(63)  score 1 755   10@99     100@4 737      1000@448 019
+  BB(8,6) f_{w^2+1}   score 1 485   10@44     100@5 812      1000@1 034 652
+  BB(8,6) f_{w^2+1}b  score 1 440   10@92     100@6 340      1000@1 190 332
+
+Undefined transitions: 0, 0, 0, 8, 7, 6, 5, 5, 5.  Per-state visit counts after 4 000 000
+steps put the outer recurrence in state A for every machine (
+about 1 900-2 700 visits
+there against ~2 000 000 in the inner states), and A's gaps run from ~3 steps
+at the start to ~6 441 at the end of the budget -- the added row: 1-7 at the
+start, 6 433 at the end, tape 2 035 marks over lo -2 031, hi 5; newest row
+BBi(43): gaps 1-41 at the start, 6 441 at the end, tape 1 859 marks over
+lo -1 856, hi 2.  In the first
+few million steps every machine is doing linear passes over a tape that is only
+~1 900-2 000 cells wide.  That
+is the low-level head of these machines, not their claimed level -- the levels
+only show in the run length, which is why nothing here can be checked by
+simulation and why the levels remain his claim, as with the rows above.
+Seeding these machines with 1^n does not help: measured 2026-11-02 with a
+single 1 under the head, three machines halt in 2-32 steps (state B on the
+blank is the Z row; the superseded BB(6,6) row halts at 32, re-checked
+2026-11-03), and the current BB(6,6), each BB(4,6)/BB(5,6) row and none of the
+BB(7,6)/BB(8,6) rows halts within 100 000 steps (score 374 for the
+f_{w^2}(63) row, 324 for the first BB(8,6) and 336 for the second (BBi(43)), measured 2026-11-04; 379, 374
+and 398 for the earlier rows) -- for those rows the blank-tape phase is load bearing.
+
+-----------------------------------------------------------------------
+2026-11-04  ADD: loader3229's next BB(n,m) level-claim batch (bbchallenge
+  Discord Oct 29 - Nov 3, transcribed verbatim, ADD not supersede).
+  All levels are the claimant's own words only; "predicted, not formal"
+  unless the line says otherwise; two rows carry his "you can prove this
+  in Coq now" note (the f_(w*2)(32) row and BBi(36)).  nickdrozd confirmed
+  the first row Oct 29 ("#2 for BBi(8)").  Claims restated with w = omega
+  in the file's normal braces-less style; the 2{15}5 and 2{11}6 terms are
+  the claimant's arrow-notation (as in BB(7)'s 3{20}3 above).
+
+  1. BB(8,4):  1LH3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG1RZ------_1LG2RD1LG3RG_0LB---0LH2RB
+     > f_(w+2)(83).  CONFIRMED by nickdrozd 10/29; "#2 for BBi(8)".
+  2. BB(8,4):  1RC3LB2RD2RA_1RF3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ3RB_1LG2RD1LG3RG_0LH0LC0LH3RD
+     > f_(w+2)(f_w(f_w(f_w(f_w(12))))).  predicted, not formal.
+  3. BB(9,4):  0RB3LB2RD2RA_0LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH3LC0LH3RD_1LA------1RA
+     > f_(w+2)(f_(w+2)(f_w(f_w(f_w(f_w(12)))))).  predicted, not formal.
+  4. BB(9,4):  0LB3LB2RD2RA_2LI3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2RI3RF2RB1LI
+     > f_(w+3)(10).  predicted, not formal.
+  5. BB(9,4):  2LI3LB2RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_0RF2LD1LD2LE_
+     3RE3LB2RE2LE_0LG0LH1RZ---_1LG2RD1LG3RG_0LH---0LH3RD_2LB---1LI3RF
+     > f_(w+3)(16).  predicted, not formal.
+  6. BB(4,6):  1RB3LB5LD2RA4LB5LB_2LC3RB1LC2RA3LC1RZ_3RB1LB3LC2RC4LC5LC_
+     3RC---4LD4LD------
+     > f_(w+1)(2{15}5).  predicted, not formal.
+  7. BB(5,5)  [BBi(20) champion per claimant]:
+     1LB3LB4LC2RA4LB_3LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ------4LD4LE_
+     3RB------4LE3LC
+     > f_(w+1)(f_w(f_w(f_w(f_w(6))))).  predicted, not formal.
+  8. BB(6,5)  [BBi(21) per claimant]:
+     4RF3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_
+     3RB------4LE3LC_3RC------------
+     > f_(w+2)(4).  informal.
+  9. BB(6,5)  [BBi(22) per claimant]:
+     1RC3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---------4LD4LE_
+     3RB------4LE3LC_2LE3RC---------
+     > f_(w+2)(9).  informal.
+  10. BB(6,5): 0LB3LB4LC2RA4LB_1LF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      1RZ------4LD4LE_3RB------4LE3LC_4RF3RE---0RA3LC
+      > f_(w+2)(126).  predicted, not formal.
+  11. BB(6,5): 0LF3LB4LC2RA4LB_4RF3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      1RZ------4LD4LE_3RB------4LE3LC_2LE2RB1LF1RB1LA
+      > f_(w+2)(176).  predicted, not formal.
+  12. BB(6,5)  [BBi(26) champion per claimant]:
+      2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LA4LD4LE_
+      3RB---0RD4LE3LC_4LC------3LF3LF
+      > f_(w+3)(11).  predicted, not formal.
+  13. BB(7,5)  [BBi(27) per claimant]:
+      0LG3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_---3LF---4LD4LE_
+      3RB------4LE3LC_4LC------3LF3LF_1RB---1LG1LF---
+      > f_(w+3)(17).  informal.
+  14. BB(7,5): 2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_
+      ---3LF1LG4LD4LE_3RB---1LE4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+      > f_(w+3)(f_(w+3)(10)).  informal.
+  15. BB(8,5)  [BBi(28) per claimant]:
+      1RG3LB---2RA---_------1LD2RA---_3RB1LB3LC2RC---_3RE---3LC2RC---_
+      ---3RE---4LH---_4RA3LG---2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+      > f_(w*2)(17).  informal.
+  16. BB(8,5): 0LB3LB1RZ2RA4RB_0LD1RB1LD2RA1LE_3RB1LB3LC2RC3LF_
+      3RE2LF3LC2RC4LF_0LF3RE0LG4LH2LB_0LE3LG4LC2RF4LG_1LC3RG1LH2RF2RA_
+      3RG1LG3LH2RH4LH
+      > f_(w*2)(32).  "Informal result. You can prove this in Coq now."
+  17. BB(8,5)  [BBi(36) per claimant]:
+      2RG3LB4LC2RA4LB_1RZ---1LD2RA4LD_3RB1LB3LC2RC4LC_3RE---3LC2RC3LC_
+      ---3RE4LE4LH4RB_4LE3LG3LB2RF4LG_2LH3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+      > f_(w*2+1)(93).  "Informal result. You can prove this in Coq now."
+  18. BB(11,4): 1RG3LB1RZ2RA_2LD---1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_
+      ---3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_---3RH1LI2RG_3RH1LH3LI2RI_
+      ------3LJ3RK_------2RA3RK
+      > f_(w*2)(21).  predicted, not formal.
+  19. BB(11,4)  [claimant: "potential... probably can reach"]:
+      1RG3LB1RZ2RA_0LG0LE1LD2RA_3RB1LB3LC2RC_3RE---3LC2RC_0LC3RE3LH2LF_
+      3RF2RF2LE1LF_2LC3LH2LJ2RG_3LG3RH1LI2RG_3RH1LH3LI2RI_0LH2LI3LJ3RK_
+      ------2RA3RK
+      > f_(w*2)(2{11}6).  potential only.
+  20. BB(11,4): 1RG3LB1RZ2RA_0LG---1LD2RA_3RB1LB3LC2RC_3RE0LA3LC2RC_
+      1RI3RE3LH2LF_3RF2RF2LE1LF_2LC3LH2LJ2RG_0RG3RH1LI2RG_3RH1LH3LI2RI_
+      ------3LJ3RK_------2RA3RK
+      > f_(w*2)(98).  proved in coq per claimant.
+  21. BB(3,7): 6LC3LB6RA2RA4LB5LC5LA_1RZ3RB1LC2RA3RB4LC5RA_
+      3RB1LB3LC2RC4LC1RA6LA
+      > f_(w+1)(117)  -- claimant: "beats Graham's number".  informal.
+  22. BB(4,7): 6LD3LB5LD2RA4LB3LC5LA_1RZ3RB1LC2RA3RD---2RA_
+      3RB1LB3LC2RC4LC3LC5LD_3RB---6LC4LD4LC4LD---
+      > f_(w+2)(124).  informal.
+
+What this repository checked (tools/bbmulti.py, driver _intake3229b.py,
+blank tape, 2 000 000 steps, 2026-11-04): every string parses at its
+stated size, none halts within the budget (their claimed run lengths
+are far past simulation, so no-halt is necessary not sufficient), and
+the per-machine numbers:
+  BB(8,4) 8x4, 29 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,419
+    milestones: 10@98, 100@11,966, 1,000@1,268,758; states visited 8/8; symbols written [0, 1, 2, 3]
+    BB(8,4) 8x4, 32 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,443
+    milestones: 10@109, 100@6,474, 1,000@1,179,546; states visited 8/8; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 33 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,444
+    milestones: 10@108, 100@6,113, 1,000@1,175,917; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 34 defined transitions, undefined=2: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,452
+    milestones: 10@100, 100@4,731, 1,000@1,147,399; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(9,4) 9x4, 33 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,458
+    milestones: 10@58, 100@3,719, 1,000@1,126,035; states visited 9/9; symbols written [0, 1, 2, 3]
+    BB(4,6) 4x6, 21 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,446
+    milestones: 10@54, 100@5,678, 1,000@1,168,698; states visited 3/4; symbols written [1, 2, 3]
+    BB(5,5) [BBi(20) champion] 5x5, 21 defined transitions, undefined=4: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,431
+    milestones: 10@58, 100@6,672, 1,000@1,223,424; states visited 5/5; symbols written [1, 2, 3, 4]
+    BB(6,5) [BBi(21)] 6x5, 21 defined transitions, undefined=9: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,431
+    milestones: 10@45, 100@6,659, 1,000@1,223,411; states visited 6/6; symbols written [1, 2, 3, 4]
+    BB(6,5) [BBi(22)] 6x5, 22 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,436
+    milestones: 10@37, 100@6,297, 1,000@1,204,849; states visited 6/6; symbols written [1, 2, 3, 4]
+    BB(6,5) 6x5, 25 defined transitions, undefined=5: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,538
+    milestones: 10@85, 100@10,723, 1,000@870,900; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(6,5) 6x5, 26 defined transitions, undefined=4: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,629
+    milestones: 10@45, 100@2,091, 1,000@643,552; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(6,5) [BBi(26) champion] 6x5, 27 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,441
+    milestones: 10@44, 100@6,171, 1,000@1,186,523; states visited 6/6; symbols written [0, 1, 2, 3, 4]
+    BB(7,5) [BBi(27)] 7x5, 27 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,446
+    milestones: 10@55, 100@5,383, 1,000@1,168,403; states visited 7/7; symbols written [0, 1, 2, 3, 4]
+    BB(7,5) 7x5, 29 defined transitions, undefined=6: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,440
+    milestones: 10@44, 100@6,163, 1,000@1,190,155; states visited 6/7; symbols written [1, 2, 3, 4]
+    BB(8,5) [BBi(28)] 8x5, 28 defined transitions, undefined=12: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,509
+    milestones: 10@54, 100@5,827, 1,000@955,391; states visited 8/8; symbols written [1, 2, 3, 4]
+    BB(8,5) 8x5, 40 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,567
+    milestones: 10@87, 100@7,299, 1,000@790,237; states visited 8/8; symbols written [0, 1, 2, 3, 4]
+    BB(8,5) [BBi(36)] 8x5, 37 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,572
+    milestones: 10@113, 100@4,650, 1,000@777,228; states visited 8/8; symbols written [1, 2, 3, 4]
+    BB(11,4) 11x4, 36 defined transitions, undefined=8: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,470
+    milestones: 10@61, 100@3,316, 1,000@1,084,928; states visited 11/11; symbols written [1, 2, 3]
+    BB(11,4) [potential, "probably can reach"] 11x4, 41 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,438
+    milestones: 10@39, 100@6,407, 1,000@1,197,679; states visited 11/11; symbols written [0, 1, 2, 3]
+    BB(11,4) 11x4, 39 defined transitions, undefined=5: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,617
+    milestones: 10@69, 100@8,083, 1,000@675,212; states visited 11/11; symbols written [0, 1, 2, 3]
+    BB(3,7) 3x7, 21 defined transitions, undefined=0: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,585
+    milestones: 10@96, 100@10,995, 1,000@748,533; states visited 3/3; symbols written [1, 2, 3, 4, 5, 6]
+    BB(4,7) 4x7, 25 defined transitions, undefined=3: blank tape 2,000,000 steps: halted=False steps=2,000,000 score=1,547
+    milestones: 10@94, 100@11,855, 1,000@844,559; states visited 4/4; symbols written [1, 2, 3, 4, 5, 6]
+Observations: every state visited except in the BB(7,5) iterated row
+(6/7); symbols 0..4 all written in the rows that carry a 0-write row,
+the rest write 1..4 and their 0-symbol is only ever read-left as blank
+tape.  Scores at 2M are 1 436-1 629, milestones all in the 10@37-113,
+100@2 091-11 855, 1000@643k-1 223k band -- the same linear-pass head
+regime as the batch above, so the levels stay the claimant's, per the
+standing rule.
+
+-----------------------------------------------------------------------
+ADD: gem48 (ours, posted to the bbchallenge Discord 2026-11-04) --
+  gemini's 48-state 2-symbol f_eps1(3)-seed machine (epsilon1_tm.v,
+  received from gemini, audited + repaired by us; machine table is
+  UNCHANGED verbatim from the claimant; the binding artifact is
+  rocq/gemini_epsilon1_tm_48s_v2_fix.v = zero-axiom compiling copy).
+  CLAIM (gemini's words): "48 state 2 symbols marked eps1 machine that
+  transcends f_eps1(3)" with halt step T = 1641 + f_epseta0(f_epseta1[0](
+  f_epseta1[1](f_om^2(f_epseta1[2](f_om^3(f_epseta1(3))))))) > f_epseta1(3).
+  STATUS: INFORMAL.  The halt itself is not witnessed: no campaign-chain
+  witness from the step-1641 seed exists; T is NOT formally proven.
+  CHECKS (ours, on the exact table): bbmulti-style parse at 48x2 OK;
+  2 000 000 blank steps WITHOUT halt (tape 1242 cells, head 418);
+  boot/campaign milestones reproduce exactly: 18/20/352/702/1641,
+  5/135/139/284/350, base-worm halt 148 (head 4, tape [-1;0;1]).
+  COMPILATIONS tried and REJECTED: (n,2) -> (ceil(n/g), 2g) family,
+  tag-on-departure per-cell state -- INVALID (stale tags at revisits,
+  bisim fails at step 1 for all g; see HANDOFF round 13 + user proof).
+
+-----------------------------------------------------------------------
+ADD: loader3229, 2026-11-05/06 (Discord 1:08 AM, 9:36 AM, 9:42 PM)
+-----------------------------------------------------------------------
+ADD, not supersede.  Prior rows remain.  All levels are the claimant's
+own estimates; nothing here is Rocq-verified.  Checked locally only for
+shape and 2,000,000 blank-tape steps.
+
+BB(11,4): > f_{w*2}(2{11}6) steps.  (informal)
+1RK3LB1RZ2RA_0LG1LE1LD2RA_3RB1LB3LC2RC_3RE0LI3LC2RC_1RJ3RE3LH2LF_3RF2RF2LE1LF_3LC3LH2LJ2RG_0LE3RH1LI2RG_3RH1LH3LI2RI_0LB0LJ3LJ3RK_2LC0LD2RA3RK
+  Checked locally (tools/bbmulti.py, blank tape, 2,000,000 steps):
+  11x4, 44 of 44 transitions defined (halt entry 1RZ in A), no halt,
+  score 1,438; milestones 10@45, 100@6,331, 1,000@1,197,603; all 11
+  states visited; symbols 0..3 all written.  Same claimed level and
+  argument as the 2026-11-01 "potential" variant, but a different table
+  (44 defined, 0 undefined vs 41 defined, 3 undefined); not a level
+  upgrade.
+
+BB(4,7): claimant says > f_{w+3}(34) steps.  (informal)
+5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LC6LC
+  The first copy of this row had an extra repeated 4LC in state D:
+  3RB 5LD 6LC 4LD 4LC 4LC 4LC 6LC (eight cells).  A BB(4,7) state has
+  seven; dropping one of the three identical 4LC cells gives the row
+  above, 3RB 5LD 6LC 4LD 4LC 4LC 6LC.  Checked locally (tools/bbmulti.py,
+  blank tape, 2,000,000 steps): 4x7, 28 of 28 transitions defined, no
+  halt, score 1,460; milestones 10@90, 100@4,760, 1,000@1,116,900; all
+  four states visited; symbols 1..6 written.  This supersedes the
+  existing BB(4,7) f_{w+2}(124) row on claimed level, but the exact
+  corrected string should still be reconfirmed by the claimant.  The
+  alternative one-cell repair (drop the trailing 6LC instead) also
+  parses and runs 2M steps without halting, score 1,461; it is not used.
+BB(8,6): > f_{w^2+1}(f_w(31)) steps.  (informal)
+5LH3LB2LH2RA4LB1RZ_2RC3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE1LE4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG2LG5LG_0LC---1LH1LH---5RG
+  Checked locally (tools/bbmulti.py, blank tape, 2,000,000 steps):
+  8x6, 44 of 48 transitions defined (undefined D4, F2, H1, H4), no halt,
+  score 1,476; milestones 10@86, 100@6,282, 1,000@1,064,570; states 7/8
+  visited (G dormant), symbols 0..5 all written.  Same f_{w^2+1} level as
+  BBi(42)/BBi(43), but argument f_w(31) is far above 3 or 7; it supersedes
+  them on argument if the claim stands.
+
+Nothing here is verified beyond the local parse/run; the f_* levels are
+the claimant's and require a Rocq proof before use as theorem input.
+
+-------------------------------------------------------------------------
+ADDITIONS -- loader3229, 2026-11-06/07 (BB(7,4), BB(8,3), BB(9,3), BB(7,6))
+-------------------------------------------------------------------------
+All four are informal.  The BB(8,3), BB(9,3) and BB(7,4) rows were reported
+on 2026-11-06 as built from Jacobzheng's BB(11,3) champion rather than the old
+BB(3,4) seed.  The BB(7,6) row was reported 2026-11-07.  Local checks below
+use tools/bbmulti.py on the blank tape for 2,000,000 steps; they establish
+only parse/size/no-halt in that window, not the claimed ordinal levels.
+
+BB(8,3): > f_{w+2}(4) steps.  (informal; higher claimed level than the
+existing f_{w+1} BB(8,3) row, so it supersedes it on level)
+2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD0RH_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_2RD1LF1LG
+  Local check: 8x3, 24 of 24 transitions defined (sole halt entry F2 -> 1RZ),
+  no halt in 2,000,000 steps, score 1,447; milestones 10@107, 100@5,588,
+  1,000@1,163,624; all 8 states visited; symbols 0..2 all written.
+
+BB(9,3): > f_{w+2}(16) steps.  (informal; new BB(9,3), no predecessor)
+2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD1RH_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_2LG1RI---_2RD0RI0RI
+  Local check: 9x3, 26 of 27 transitions defined (H2 is ---; sole halt entry
+  F2 -> 1RZ), no halt in 2,000,000 steps, score 1,457; milestones 10@91,
+  100@4,587, 1,000@1,128,703; all 9 states visited; symbols 0..2 all written.
+
+BB(7,4): > f_{w+2}(48) steps.  (informal; new BB(7,4), no predecessor)
+3RD1LE2RA---_0LE2LE2RB---_1RF1RC2RB---_0RC0LD3LA1LF_1RC2LE1LG0RD_0LA0LD1RZ2LF_1LD2RA2LG3RA
+  Local check: 7x4, 25 of 28 transitions defined (A3, B3, C3 are ---; sole
+  halt entry F2 -> 1RZ), no halt in 2,000,000 steps, score 1,488; milestones
+  10@68, 100@6,351, 1,000@1,023,987; all 7 states visited; symbols 0..3 all
+  written.
+
+BB(7,6): > f_(omega^2)(110) steps.  (informal; same f_{w^2} level as the
+current f_{w^2}(63) row, argument 110 against 63 -- a bigger argument at the
+same height, so the 63 row is superseded)
+5LG3LB---2RA4LB0LC_4LG3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE0LE4LC3LG5LE_5RB5RB2LB1LF---5LF_5LF---0LG1LG---5LG
+  Local check: 7x6, 37 of 42 transitions defined (A2, D4, F4, G1, G4 are
+  ---; no halt entry in the table), no halt in 2,000,000 steps, score 1,915;
+  milestones 10@46, 100@5,404, 1,000@337,069; all 7 states visited; symbols
+  0..5 all written.  The machine is not an edit of the f_{w^2}(63) row; its
+  A, E, F and G rows differ outright, including A0 2LE -> 5LG and the new
+  A2/A5 entries.
+
+BB(10,3): > f_{w+4}(f_{w+4}(4)) steps.  (informal; reported 2026-11-07,
+built from and claimed to beat Jacobzheng's original BB(11,3)
+f_{w+3}(f_{w+3}(4)) champion)
+1LD2RG2LA_2LE2LH2RB_2RE1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ1LI_0RC1LH2RG_1RC2LH1LA_0LJ2LI---_1LA1RB---
+  Local check: 10x3, 28 of 30 transitions defined (I2 and J2 are ---; sole
+  halt entry F1 -> 1RZ), no halt in 2,000,000 steps, score 1,444; milestones
+  10@69, 100@5,747, 1,000@1,173,959; all 10 states visited; symbols 0..2 all
+  written.  The f_{w+4} level is the claimant's and is higher than the
+  ledger's BB(11,3) f_{w+3} row if the claim stands.  The old BB(11,3)
+  row is marked superseded by padding: a 10-state machine pads to 11
+  states at the same level, so the old 11-state bound is no longer best.
+
+BB(8,4): > f_{w+8}(f_{w+8}(4)) steps.  (informal; reported 2026-11-07)
+1LD2RG2LA---_2LE2LH2RB1LF_2LA1RC2RB---_0RC1RD0LG1RH_0LF1LE1LE3LB_1RG1RZ3RD3LF_0RC1LH2RG0LC_1RC2LH1LA2LB
+  Local check: 8x4, 30 of 32 transitions defined (A3 and C3 are ---; sole
+  halt entry F1 -> 1RZ), no halt in 2,000,000 steps, score 1,464;
+  milestones 10@71, 100@3,138, 1,000@1,103,510; all 8 states visited;
+  symbols 0..3 all written.  This supersedes the existing BB(8,4)
+  f_{w+2} row on claimed level; that row is marked superseded above.
+
+The levels remain the claimant's.  Only the local parse/run facts above are
+ours; none of these rows is a Rocq-verified halting-time theorem.
+
+-------------------------------------------------------------------------
+WIKI SYNC -- current Champions table, captured 2026-11-08
+-------------------------------------------------------------------------
+Source: https://wiki.bbchallenge.org/wiki/Champions
+Page last edited: 8 November 2026, 15:25 (live fetch 2026-11-08).
+
+ADD, not replace: every earlier row in this file is preserved, including
+rows already marked superseded.  The lines below are the exact bbchallenge
+machine strings linked from the wiki table and absent from this ledger at
+capture time.  The wiki's verification column is copied only as status;
+it is not a local proof claim.
+
+BB(2) -- wiki current, five tied champions (Tibor Radó; direct simulation):
+  1RB1LB_1LA1RZ
+  1RB0LB_1LA1RZ
+  1RB1RZ_1LB1LA
+  1RB1RZ_0LB1LA
+  0RB1RZ_1LA1RB
+
+BB(3) -- wiki current (Shen Lin; direct simulation):
+  1RB1RZ_1LB0RC_1LC1LA
+
+BB(4) -- wiki current (Allen Brady; direct simulation):
+  1RB1LB_1LA0LC_1RZ1LD_1RD0RA
+
+BB(5) -- wiki current (Heiner Marxen & Jürgen Buntrock, 1989; direct simulation):
+  1RB1LC_1RC1RB_1RD0LE_1LA1LD_1RZ0LA
+
+BB(14) -- wiki current, claimed by Jeff Ketchersid/Claude/Gemini, 11/2026 (wiki: not independently verified):
+  1RB1RA_1RI1RC_0LD1LG_0RE1LD_1LK1RF_1RM0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_0LL0LL_0LN1LK_1RZ0LH_0LG1LJ
+
+BB(18) -- wiki current, claimed by Jeff Ketchersid/Claude/Gemini, 11/2026 (wiki: not independently verified):
+  1LB1LA_1RC0LA_1RD1RC_1RE1RK_1RF0LJ_1LG1RI_1RM0LM_1LG0RC_0RN0LE_1LA1LE_0LL1LB_0RM1LL_1LF1RH_1RQ0LO_1LP1LR_0RB1LI_1RZ1RR_1RN0LO
+
+BB(2,3) -- wiki current (Allen Brady, 1988; direct simulation):
+  1RB2LB1RZ_2LA2RB1LB
+
+BB(9,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH
+
+BB(10,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA_1RJ2LI2LB_0RF1LA0RI
+
+BB(11,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA_1RJ2LI2LB_0RF2LK0RI_2RG2RK1LK
+
+BB(12,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1RK1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI0RL_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_0LJ1RZ1LA_1LK0LL2LA_2LL0LE2LB
+
+BB(13,3) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LD2RG2LA_2LE2LH2RB_1RK1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI0LM_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_0LJ1RZ1LA_1LK0LL2LB_2RG2RE2RL_1LL0RL0LK
+
+BB(2,4) -- wiki current (Terry & Shawn Ligocki, 2005; verified by Pascal Michel, Heiner Marxen, Allen Brady):
+  1RB2LA1RA1RA_1LB1LA3RB1RZ
+
+BB(5,4) -- wiki current, Jacobzheng (wiki: claimed by MiniMax; not independently verified):
+  1LD3LB---2RA_1LD3RB1LC2RA_3RB1LB3LC2RC_3RB---3LE3LD_------1LD1RZ
+
+BB(7,4) -- wiki current, Loader3229 (wiki: not independently verified):
+  3RD1LE2RA1LF_0LE2LE2RB2RD_1RF1RC2RB0LB_0RC0LD3RC2RA_1RC2LE1LG2RF_0LA0LD3LG1RZ_1LD2RA2LG0RB
+
+BB(12,4) -- wiki current, Loader3229 (wiki: not independently verified):
+  1LH---1LD2RB_2LL3LA1RZ2RB_3RA1LA3LC2RC_3RE---3LC2RC_2LI3RE3LH2LF_3RF2RF2LE1LF_1LL3LH2LJ2RG_2LC3RH1LI2RG_3RH1LH3LI2RI_------3LJ3RK_------2RB3RK_3RB---1LL3LL
+
+BB(7,5) -- wiki current, Loader3229 (wiki: not independently verified):
+  2LE3LB4LC2RA4LB_4RA3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LG4LD4LE_3RB---1LE4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+
+BB(3,7) -- wiki current, Loader3229 (wiki: not independently verified):
+  6LC3LB6RA2RA4LB5LC5LA_1RZ3RB1LC2RA3RB4LC5RA_3RB1LB3LC2RC4LC1RA6LA
+
+BB(4,7) -- wiki current, Loader3229 (wiki: not independently verified):
+  5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LD6LC
+
+Trivial -- wiki Zoology trivial champions (not a BB domain):
+  0RA_0RZ
+  0RA_0RB_0RZ
+
+Exact-string coverage: all 66 unique machine strings in the wiki Champions
+table now occur verbatim in this file.  The wiki also has rows with no
+machine string (BB(15), BB(16), BB(29), BB(31), BB(33), BB(48), BB(150),
+BB(1015), the conjectured BB(67), and legacy blank rows); those are not
+inserted as machines because the page prints no standard string for them.
+
+-------------------------------------------------------------------------
+LINKED-MACHINE ADDITIONS AND BB(48) -- 2026-11-08
+-------------------------------------------------------------------------
+ADD, not replace.  Exact machine data for the wiki rows that were still
+link-only, plus the machine representation for BB(48)/gem48.  This block
+comes after WIKI SYNC and supersedes only that block's closing list of
+rows said to have no inserted machine.
+
+ATTRIBUTION: BB(48)/gem48 is OUR machine.  We made it.  The older wording
+in the gem48 section above ("gemini's ... received from gemini") records
+the label on the original source file; for authorship, this block controls.
+
+BB(29) -- f_{omega^omega}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB29/hydra29.md
+  The hydra page says the analysis and Coq proofs done there confirm the
+  claim; this entry adds the exact published string, not a new proof.
+  Notation: 6 chars per state = symbol-0 action then symbol-1 action; one
+  action = write,dir,next.  "_" separates states.  State labels are A..Z
+  plus the three characters [ \ ] (29 states).
+  0LP1LD_---0LC_1LR0LB_1RF1LE_0LD1LD_0R[1RG_1RN0RK_0RI1RJ_1LZ1RH_0RH1RH_0RL1RM_1L\1RK_0RK1RK_0RO1RO_0L\1RN_1R[1LA_0RV0RV_0LT1LS_0R[1LT_0RY1LU_0LR1L\_0RW1RX_0RN1RV_0LC1RV_0LA1LZ_0LY1LY_0RQ0RH_1L]1LR_1LH1LZ
+
+BB(31) -- f_{omega^^4}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB31/hydra31.md
+  Verbatim published fixed-width string.  State labels are A..Z plus
+  [ \ ] ^ _ (31 states).  "_" is ALSO a state label here, so the string
+  must be parsed at a 7-character stride, not with str.split("_").
+  0RK1RK_---0LC_1LQ0LB_1RF1LE_0LD1LD_0R\1RG_1RM0RK_0RI1RJ_1L[1RH_0RH1RH_0RL1RA_1L]1RK_0RN1RN_0L]1RM_1R\1L^_0RW0RW_0LU1LR_0R\1LS_0L]1LT_0LQ1LU_0RZ1LV_0LS1L]_0RX1RY_0RM1RW_0LC1RW_0L^1L[_0LZ1LZ_0RP0RH_1L_1LQ_0LO1LD_1LH1L[
+
+BB(33) -- f_{omega^^6}(3), mxdys 2026-10-26.
+  Source: https://raw.githubusercontent.com/jeff87654/busy-beaver/main/BB33/hydra33.md
+  Verbatim published fixed-width string.  State labels are A..Z plus
+  [ \ ] ^ _ ` a (33 states).  "_" is ALSO a state label here; parse at a
+  7-character stride, not with str.split("_").
+  1LH1L^_---0LC_1LR0LB_1RF1LE_0LD1LD_0R_1RG_1RN0RK_0RI1RJ_1L^1RH_0RH1RH_0RL1RM_1L`1RK_0RK1RK_0RO1RO_0L`1RN_1R_1La_0RZ0RZ_0LX1LS_0R_1LT_0L`1LU_0LR1LV_0LS1LW_0LT1LX_0R]1LY_0LV1L`_0R[1R\_0RN1RZ_0LC1RZ_0La1L^_0L]1L]_0RQ0RH_1LA1LR_0LP1LD
+
+BB(48) -- OURS: gem48, 48 states, 2 symbols; f_epsilon_1(3)-seed claim.
+  Exact 96-transition table: rocq/gemini_epsilon1_tm_48s_v2_fix.v.
+  This is a machine representation, not a new divergence proof.  STATUS
+  remains INFORMAL exactly as recorded in the gem48 section above: the
+  1641-step seed and campaign milestones check, but no campaign-chain
+  witness for the claimed final halt exists here.
+  Extended-state string: state map S01..S25 -> A..Y, S26..S48 -> a..w;
+  Z = halt.  Six chars per state = symbol-0 action then symbol-1 action;
+  action = write,dir,next; "_" separates states.  Z is deliberately not
+  used as a state, so it is unambiguously the halt target.
+  1Lu0RZ_0LB0Lh_0RD1RC_0RE1RC_0RF1RE_1RJ1RE_0RH1RG_0LJ1RG_0RJ1RI_1LK1RI_0LL1LK_1Rf1LK_0RS0RN_0Lp1RG_0RO1RP_0RQ0RQ_0RR1RQ_0RS1RQ_0RT0LK_0LB0LK_0LV1LU_0Lc1LU_0Rt1RW_0RY1RX_0RI1RX_1RO1Rv_1Rf1Lb_0La1Lb_0RX1RC_1Rw0RX_0RM0RW_0RZ0Lh_0Li1Lm_0Ls0Lj_0Lg1Rk_0Rl0Lv_1Rq1Rl_0Ln1Lm_0Rk1Lm_0Lc1Lp_0LU1Rq_0Rr1Rq_1LA1Rq_0Lo1Ls_0Re0RB_1Rj1Lu_0Rt1Lv_0Le1Rd
+  Checked by reparsing this string: 48 segments, 96/96 transitions equal
+  to the Rocq table, every target round-trips; no errors.
+
+BB(150) -- f_lim(BMS)(10^^15).
+  Exact 150-state simulator source (Morphett "machine.json" gist):
+  https://gist.github.com/awmorp/c95a199c8e8a3dd56452f8b7e28fabbf
+  Raw: https://gist.githubusercontent.com/awmorp/c95a199c8e8a3dd56452f8b7e28fabbf/raw/machine.json
+  The gist program contains comments and multi-state superposition labels
+  (e.g. A1, S13, d0); it is the machine artifact but not a standard 150x2
+  single-letter string.  No string is fabricated here.
+
+BB(1015) -- Loader's Number, CatsAreFluffy 2024.
+  Commit: https://github.com/CatsAreFluffy/metamath-turing-machines/commit/85948b04fc4aeb983ca6d63d6aee5ad6ef308bfe
+  Exact files: blc_loader.nql, loader.blc (2016-byte compiled artifact),
+  output_loader.txt.  The wiki prints no standard 1015-state string; the
+  commit is the machine source and is linked here, not retyped.
+
+BB(67) -- q^81(q(5) - 2), conjectured.
+  The full 67-entry tuple table is already present earlier in this file
+  under "BB(67):"; it is not duplicated here.  It uses state indices 0..66
+  and halt = -1, so it is a tuple table, not a standard single-letter
+  string.
+
+CORRECTION: BB(29), BB(31), BB(33), and BB(48) are no longer in the
+"no machine string" list at the end of WIKI SYNC; their data is above.
+BB(67) was already tabulated; BB(150) and BB(1015) remain link-only.

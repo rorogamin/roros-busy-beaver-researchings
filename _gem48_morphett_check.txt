@@ -1,0 +1,11 @@
+  static: all 96 morphett rows match the .v table exactly
+  diff-run 100k: rm==rv mismatches 0 -> identical at every step
+  OK  boot_18 (state, head, tape)
+  OK  boot_20 (state, head, tape)
+  OK  boot_352 (state, head, worm)
+  OK  boot_702 (state, head, worm)
+  OK  boot_1641 (state, head, worm)
+  OK  halts_on_base_worm 148 (head 4, tape [-1, 0, 1])
+  OK  2 000 000 steps: no halt, tape 1242 cells, head 418
+
+VERIFY: ALL CHECKED MILESTONES REPRODUCE

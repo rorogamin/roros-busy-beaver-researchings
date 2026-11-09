@@ -1,0 +1,46 @@
+# Separator artifact — the verified drain device of tools/eps1_s40.py, saved in the
+# machines style as evidence, NOT the chosen pass: the 150-state table's fs_limit
+# pass 2 does the same job in 14 states via right-to-left decrement order and
+# its single-run-at-a-time chain shape.  See EPS1_67_PLAN.md §9 and the turn
+# record in HANDOFF.md.
+#
+# Experiment (tools/eps1_s40.py, all green): (p, chain, n) -> (p + n, chain, n)
+# on the canonical layout of the 150-state table, 213/213 decode-exact starts
+# (13 fixed edges + 200 random), entry head on E (the chain's top run's last mark),
+# halting with the head on E.  20 active states + halt, 31 rows.
+#
+# State map: 0=W1 1=W2 2=W2b 3=W3(erase) 4=W4 5=W5 6=W6 7=W6b 8=W7(write) 9=W10
+# 10=W11 11=W12 12=W13 13=W14 14=W15 15=W16 16=W17(restore) 17=D0 18=D1 19=D2
+# 20=D3 (halt, no rows).
+# Format: <state> <read> <write> <dir> <next>; a missing pair means halt.
+0 1 1 R 1
+1 0 0 R 2
+2 0 0 R 3
+3 1 0 L 4
+3 0 0 L 17
+4 1 1 L 4
+4 0 0 L 5
+5 0 0 L 6
+6 1 1 L 6
+6 0 0 L 7
+7 1 1 L 6
+7 0 0 L 8
+8 1 1 L 8
+8 0 1 R 9
+9 1 1 R 9
+9 0 0 R 10
+10 0 0 R 11
+11 1 1 R 12
+12 1 1 R 12
+12 0 0 R 13
+13 1 1 R 12
+13 0 0 R 14
+14 1 1 R 14
+14 0 0 R 15
+15 1 1 L 16
+15 0 0 L 16
+16 0 1 R 3
+17 1 1 L 18
+18 1 1 L 18
+18 0 0 L 19
+19 0 0 L 20

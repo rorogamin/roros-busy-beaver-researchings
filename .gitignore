@@ -14,3 +14,10 @@ tmp*/
 *.csv
 specimens/
 __pycache__/
+*.vo
+*.vok
+*.vos
+*.glob
+.*.aux
+.lia.cache
+.nia.cache

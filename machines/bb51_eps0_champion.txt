@@ -1,0 +1,115 @@
+## The BB(51) eps_0 champion, recorded rows, in this repo's format.
+#
+## Provenance (original text, not a digest): Yeyito777/bbchallenge-corpus,
+## snapshot 2026-10-29, knowledge/wiki/pages/Talk/Talk%3AChampions.wiki
+## ("BB(51) epsilon_0 champion", Sept 2024).  Racheline's own claim, quoted:
+##   "Sum(51) > (f_e0)^8(f_w^w^3(a lot)) > f_{e0+1}(8)"
+## with start from state 30, blank tape, 2 symbols.  Notation there: each
+## state's pair is (read-0 -> (write, dir, next), read-1 -> (write, dir, next)),
+## dir -1 = L, +1 = R; 'halt' = no row.  This file is an EXACT TRANSCRIPTION:
+## no level claim is made here; the claim above stays the wiki's.
+#
+## State-map header: states 0..50; start state 30.
+## Format: <state> <read> <write> <dir> <next>; a missing pair means halt.
+0 0 1 L 0
+0 1 0 L 1
+1 0 1 L 0
+1 1 1 R 2
+2 0 1 L 2
+2 1 0 L 4
+3 0 0 L 10
+3 1 1 L 4
+4 0 0 L 3
+4 1 0 L 5
+5 0 1 L 4
+5 1 1 R 6
+6 0 1 L 7
+6 1 0 L 15
+7 0 0 L 8
+7 1 1 L 7
+8 0 0 L 9
+8 1 1 L 7
+9 0 1 R 11
+9 1 1 L 9
+10 0 0 L 20
+10 1 0 L 17
+11 0 0 R 12
+11 1 1 R 11
+12 0 0 R 13
+12 1 1 R 13
+13 0 1 L 14
+13 1 1 R 12
+14 0 0 L 6
+14 1 1 L 10
+15 0 0 L 16
+15 1 1 L 16
+16 0 1 L 20
+16 1 1 L 15
+17 0 0 L 18
+17 1 1 L 18
+18 0 1 R 19
+18 1 1 L 17
+19 0 1 L 19
+19 1 1 L 20
+20 0 0 L 50
+20 1 0 L 21
+21 0 0 R 43
+21 1 0 L 9
+22 0 0 R 22
+22 1 1 R 23
+23 0 1 R 26
+23 1 0 L 24
+24 0 1 L 25
+24 1 0 L 24
+25 0 1 R 25
+25 1 1 R 22
+26 0 0 R 50
+26 1 0 R 27
+27 0 1 R 26
+27 1 1 L 35
+28 0 0 R 29
+28 1 0 R 30
+29 0 0 L 4
+29 1 1 R 28
+30 0 1 L 31
+30 1 1 L 0
+31 0 0 L 32
+31 1 1 L 33
+32 0 0 L 33
+32 1 1 L 31
+33 0 0 L 34
+33 1 0 L 35
+34 0 0 L 37
+34 1 1 L 33
+35 0 1 R 36
+35 1 1 R 38
+36 0 0 R 37
+36 1 1 R 28
+37 0 0 L 29
+37 1 1 R 36
+38 0 1 R 38
+38 1 1 R 39
+39 0 0 R 38
+39 1 1 R 40
+40 0 0 R 41
+40 1 1 L 42
+41 0 1 L 49
+41 1 1 R 40
+42 0 1 R 36
+42 1 0 L 42
+43 0 0 R 44
+43 1 1 R 44
+44 0 1 L 45
+44 1 1 R 43
+45 0 0 L 46
+45 1 1 L 46
+46 0 0 R 22
+46 1 1 L 45
+47 0 1 L 41
+47 1 1 L 47
+48 0 0 L 47
+48 1 0 L 49
+49 0 1 L 22
+49 1 1 L 48
+50 0 0 L 48
+# state 50 read 1 -> halt (no row)

@@ -1,0 +1,48 @@
+# rung_omega: TWO symbols, never halts, output grows without bound
+# 26 states = proved 15-state doubling core + 5 boot writes + 6 walk-back
+# core edits: F1 on blank 0 -> 1 (extend U), T2 on blank 0 -> 1 (refill C)
+# format: <state> <read> <write> <dir> <next>;  a missing pair means halt
+0 0 0 R 15
+0 1 0 R 1
+1 0 0 R 2
+1 1 1 R 3
+2 0 0 R 2
+2 1 1 R 4
+3 0 1 R 4
+3 1 1 R 3
+4 0 1 R 5
+4 1 1 R 4
+5 0 1 L 6
+6 0 0 L 7
+6 1 1 L 6
+7 0 0 L 9
+7 1 1 L 8
+8 0 0 R 0
+8 1 1 L 8
+9 0 0 L 9
+9 1 1 L 10
+10 0 0 R 11
+10 1 1 L 10
+11 1 0 R 12
+12 0 1 R 13
+12 1 1 R 13
+13 0 0 R 14
+13 1 1 R 13
+14 0 0 R 14
+14 1 0 R 1
+15 0 1 R 16
+16 0 0 R 17
+17 0 1 R 18
+18 0 0 R 19
+19 0 1 R 20
+20 0 0 L 21
+21 0 0 L 22
+21 1 1 L 21
+22 0 0 L 22
+22 1 1 L 23
+23 0 0 L 24
+23 1 1 L 23
+24 0 0 L 24
+24 1 1 L 25
+25 0 0 R 13
+25 1 1 L 25

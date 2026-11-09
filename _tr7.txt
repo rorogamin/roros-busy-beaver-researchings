@@ -1,0 +1,17 @@
+=== eps_1[1] s1: build 1 t_n 1 sn 1 ===
+ landing0 t22: g=(0, [2], 10) sh=('a', (2,)) | mp=1 mc=[e0+1 + w^(0)] kind=fs want=0 [e0+1, 2] sh=('a', (2,)) OK
+ landing1 t50: g=(1, [], 10) sh=('a', ()) | mp=0 mc=[e0+1, 2] kind=pred want=1 [e0+1] sh=('a', ()) OK
+ landing2 t80: g=(2, [], 11) sh=('b', ()) | mp=1 mc=[e0+1] kind=fs want=2 [w^(0)] sh=('b', ()) OK
+ landing3 t104: g=(1, [2], 10) sh=('a', (2,)) | mp=2 mc=[w^(0)] kind=fs want=1 [w^(0)*2] sh=('b', ()) BAD
+ machine tape: '1010011000000000'
+=== eps_1[2] s1: build 1 t_n 2 sn 1 ===
+ landing0 t24: g=(1, [2], 10) sh=('a', (2,)) | mp=2 mc=[e0+1 + w^(0)] kind=fs want=1 [e0+1, 2] sh=('a', (2,)) OK
+ landing1 t56: g=(0, [], 10) sh=('a', ()) | mp=1 mc=[e0+1, 2] kind=fs want=0 [e0+1, 1, 2] sh=('a', (1, 2)) BAD
+ machine tape: '0001000000000000'
+=== eps_1[1] s2: build 2 t_n 1 sn 2 ===
+ landing0 t24: g=(0, [3], 10) sh=('a', (3,)) | mp=1 mc=[e0+1 + w^(0)] kind=fs want=0 [e0+1, 3] sh=('a', (3,)) OK
+ landing1 t52: g=(0, [2], 10) sh=('a', (2,)) | mp=0 mc=[e0+1, 3] kind=pred want=0 [e0+1, 2] sh=('a', (2,)) OK
+ landing2 t80: g=(1, [], 10) sh=('a', ()) | mp=0 mc=[e0+1, 2] kind=pred want=1 [e0+1] sh=('a', ()) OK
+ landing3 t112: g=(3, [], 11) sh=('b', ()) | mp=1 mc=[e0+1] kind=fs want=3 [w^(0)] sh=('b', ()) OK
+ landing4 t140: g=(2, [3], 10) sh=('a', (3,)) | mp=3 mc=[w^(0)] kind=fs want=2 [w^(0)*3] sh=('b', ()) BAD
+ machine tape: '1010011100000000'

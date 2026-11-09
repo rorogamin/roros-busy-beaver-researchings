@@ -1,0 +1,79 @@
+# found by tools/search.py (200 single-row mutants per seed, cap 150000)
+# seeded from machines/machine_4_ladder.txt (54 states).
+# This mutant halts at 27574 steps -- but the SEED halts at 6582195, so the search
+# found a SHORTER run, not a longer one: a cap can only see machines that halt
+# inside it.  Candidate only; not analysed; no level claim.
+# the single changed row is state 29, read 1: (1,L,29) -> (0,L,31)
+# format: <state> <read> <write> <dir> <next>
+0 0 0 R 15
+0 1 0 R 1
+1 0 0 R 2
+1 1 1 R 3
+2 0 0 R 2
+2 1 1 R 4
+3 0 0 R 4
+3 1 1 R 3
+4 0 1 R 5
+4 1 1 R 4
+5 0 1 L 6
+6 0 0 L 7
+6 1 1 L 6
+7 0 0 L 9
+7 1 1 L 8
+8 0 0 R 0
+8 1 1 L 8
+9 0 0 L 9
+9 1 1 L 10
+10 0 0 R 11
+10 1 1 L 10
+11 1 0 R 12
+12 0 0 R 40
+12 1 1 R 13
+13 0 0 R 14
+13 1 1 R 13
+14 0 0 R 14
+14 1 0 R 1
+15 0 1 R 16
+16 0 1 R 17
+17 0 0 R 18
+18 0 0 R 19
+19 0 1 R 20
+20 0 1 R 21
+21 0 0 R 22
+22 0 1 R 23
+23 0 1 R 24
+24 0 0 R 25
+25 0 1 R 26
+26 0 0 L 27
+27 0 0 L 28
+27 1 1 L 27
+28 0 0 L 28
+28 1 1 L 29
+29 0 0 L 30
+29 1 0 L 31
+30 0 0 L 30
+30 1 1 L 31
+31 0 0 R 13
+31 1 1 L 31
+40 0 0 R 40
+40 1 1 R 41
+41 0 0 R 50
+41 1 1 R 41
+42 0 0 L 43
+42 1 1 L 42
+43 0 0 L 44
+43 1 1 L 42
+44 0 0 L 44
+44 1 1 L 45
+45 0 0 R 46
+45 1 1 L 45
+46 1 0 R 47
+47 1 1 R 48
+48 0 0 R 49
+48 1 1 R 48
+49 0 0 R 49
+49 1 1 R 13
+50 0 1 R 51
+51 0 1 R 52
+52 0 0 R 53
+53 0 1 R 42

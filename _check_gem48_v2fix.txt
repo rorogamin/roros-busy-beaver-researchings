@@ -1,0 +1,24 @@
+table parsed from the .v: 48 states, 96 rows
+bootstrap milestones (state + head + decoded worm content):
+  OK  boot_18
+  OK  boot_20
+  OK  boot_352 (worm decoded: c0=-15 n=1 2 pairs, head=-2)
+  OK  boot_702 (worm decoded: c0=-16 n=2 4 pairs, head=10)
+  OK  boot_1641 (worm decoded: c0=-17 n=3 7 pairs, head=31)
+boot selector watch (S48 on 0, to 20k steps):
+  S48[0] fired 1 time(s): [(248, -10)]
+campaign faithfulness lemmas:
+  OK  campaign_halt
+  OK  campaign_pop_and_cantor
+  OK  campaign_rule2_cantor
+  OK  campaign_rule3_eps0
+  OK  campaign_rule3_eps1_seed
+halts_on_base_worm (the lemma computes with the UNMODIFIED table; the S48 comment is a gloss):
+  file-claim: exists 148, head 4, tape [-1, 0, 1]
+  halted at step 148, head 4, tape [-1, 0, 1]
+  OK
+  side note: the S48[0]->S35 variant halts at 148 instead
+blank-tape survival beyond the milestones (2,000,000 steps):
+  halted=None steps=2,000,000 tape=1242 cells over head=418
+
+VERIFY: ALL CHECKED MILESTONES REPRODUCE

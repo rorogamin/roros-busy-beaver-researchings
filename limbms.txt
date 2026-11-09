@@ -1,0 +1,606 @@
+; This is the current BB(150) championship
+; This machine outputs a value greater than f_lim(BMS) (10^^15)
+; That is a huge number
+; And in only 150 states too!
+; We can split things into modules. This is the setup phase
+; Define S(a,b,c,d,...) = 0^infinity 1^a 0 1^b 0 1^c ... 1^z 0^infinity
+; We can insert pointer within, so S(1,4<<,0,2) = ...01011(1)100110... where () is pointer
+; Alternatively, S(1,>4,0,2) = ...010(1)11100110...
+; And also, S(1,4;0,2) = ...0101111(0)0110... where we use ; to indicate pointer on the 0
+
+; To analyze, you may add breakpoints of ! right after
+; For example, 0 * * * A1 ! means you add a break point with that state
+
+; One more thing: Sometimes you might notice we combine some states
+; For example, consider we have these two states:
+; X 0 (some transition)
+; Y 1 (some other transition)
+
+; We can combine them into a single transition
+; XY 0 (some transition)
+; XY 1 (some other transition)
+
+; This is useful for saving state count and compress down to 150. We call it "superposition"
+
+; SETUP PHASE: 4 parts
+; The goal of the setup phase is to reach the state 1 0 1^n 0 (0 1^n)^m where m > n^2
+; This is input that is actually usable
+
+0 * * * A ; This state is not counted; we go directly to state A
+
+; FOR DEBUG PURPOSES:
+; You may set it to A1
+; And give it an input like 11_11__111_111_111_111_111_111_111
+
+; This is the current BB(6) champion
+; https://www.sligocki.com//2022/06/21/bb-6-2-t15.html
+; Output is in the form of S(>1,10^^15) as it exits state D and into d0
+; The * means keep the pointer still; in practice it is not needed but we use * for clarity
+
+A _ 1 r B
+A 1 _ l D
+B _ 1 r C
+B 1 _ r F
+C _ 1 l C
+C 1 1 l A
+D _ _ l E
+D 1 1 * d0
+E _ 1 l F
+E 1 _ r B
+F _ _ r C
+F 1 _ r E
+
+; d0 is the doubling state
+; It converts S_d0(>a,#) into S_e1(2a;#)
+
+d0 1 _ l d1
+d0 _ _ r e1
+d1 1 1 l d1
+d1 _ 1 r d2
+d2 1 1 r d2
+d2 _ 1 r d0
+
+; The idea is keep on reducing the righthand number and double the lefthand number
+; This leads to exponential growth, but more importantly we keep empty space on the righthand number
+; We exit via e2 _ when our tape is in the form of ...0 1^A 0^B (0) 0... where A > B^2 > 10^^15
+
+e1 _ _ r e1
+e1 1 _ r e2
+e2 1 1 l e3 ; Zero check state: nonzero
+e3 _ _ l e3
+e3 1 1 l e4
+e4 1 1 l e4
+e4 _ _ r d0
+
+; We then clean up the tape with 1's
+
+e2 _ 1 l e5 ; Zero check state: zero
+e5 _ 1 l e5
+e5 1 _ l e6
+e6 1 1 l e6
+e6 _ _ l S13
+
+; Tape is in the form of ...0 1^A 0 1^B 0... where A > B^2 > 10^^15
+; Now we go into the S module
+; The S module converts S(a,b) into S(b,b,b,b,...) iterated ~a times.
+; We do this by reaching endpoints, which are marked by double blanks: __
+; This allows us to find the rightmost "b" which we can clone. After cloning we can decrement a and check for zero-ness
+
+S1 1 1 r S2
+S2 1 1 r S2 ; This pattern of two states is going to be important for finding double zeroes
+S2 _ _ r S3 ; It will be repeated throughout the machine
+S3 1 1 r S2 ; Idea is that if we find a 1, we move forward in default state, but we transition if we find two zeroes in a row
+S3 _ 1 l S4 ; This also means we can use double zeroes as markers or endpoints within the tape
+S4 _ _ l S4
+S4 1 _ l S5
+S5 1 1 r S6
+S6 _ _ r S6
+S6 1 1 r S7
+S7 1 1 r S7
+S7 _ 1 l S8
+S8 1 1 l S8
+S8 _ _ l S4
+
+S5 _ _ r S9
+S9 _ 1 r S9
+S9 1 1 l S10
+S10 1 _ l S11
+S11 1 1 l S11 ; This is the same double zero search function, but going leftwards
+S11 _ _ l S12 ;
+S12 1 1 l S11 ;
+S12 _ _ r S13 ;
+S13 _ _ r S13
+S13 1 _ r S1
+
+S1 _ 1 r T1 ; This activates if we end up with the tape (0) 1^b 0 1^b ...
+T1 1 1 r T1 ; Goal of this module is to convert into the input we need
+T1 _ _ l T2
+T2 1 _ l T3
+T3 1 1 l T3
+T3 _ _ l T2
+T2 _ 1 * A1 !
+
+; Exclamation mark means a breakpoint, NOT HALTING, for illustrative purposes
+
+; There, we have the input in the form of 1 0 1^n 0 (0 1^n)^m
+; This is also S(1,n,0,n,n,n,...)
+; The next goal is to evaluate PMS, or Pointer Matrix System
+; Technically in reverse flattened PMS
+
+; HOW (reverse flattened) PMS SHOULD EXPAND
+; We have a value called "order" and a value called "rows" and we also have an array
+; R="rows" remain a constant the whole time. So R is number of rows
+; We do the following steps:
+; 1. Decrement "order" but if order=1, set order = rows
+; 2. Removing the first element of the array, storing it as a child
+; 3. Set threshold = order
+; 4. Repeat (child) times:
+; 4a. Find the (child)-th element of the array (1-indexed). If the (child+1)-th element doesn't exist, halt
+; 4b. Set that value equal to E. 
+; 4c. If E >= threshold, prepend E+child to the array, otherwise prepend E
+; 4d. Increment threshold
+; 5. Go back to step 1 and repeat
+
+; The way this algorithm works is that we are simulating BMS-like structure
+; This is known to terminate and is very powerful: https://arxiv.org/pdf/2307.04606
+; However, instead of using their complicated parent-finding algorithm, each entry instead stores the distance to its parent directly. This is where the "pointer" comes in
+; We also compress each column of R elements into a string of consecutive entries. This is where the "flattened" comes in
+; And we also reverse the array (though technically, Turing machine behaviors are invariant under flipping left/right together)
+
+; CLAIM: There exists a correspondence from BMS to RFPMS through this transformation
+; Step 1: Take a BMS matrix, such as (0,0,0,0)(1,1,1,1)(2,1,0,0)(1,1,1,0)
+; Step 2: Remove all trailing zeroes, to reach (0,0,0,0)(1,1,1,1)(2,1,0,0)(1,1,1)
+; Step 3: Prepend a row of -1's as the root, to reach (-1,-1,-1,-1)(0,0,0,0)(1,1,1,1)(2,1,0,0)(1,1,1)
+; Step 4: Replace all entries with the distance to their parent multiplier by R, the number of rows, where we also just replace all -1's with R
+; Example: (4,4,4,4)(4,4,4,4)(4,4,4,4)(4,8,12,12)(12,12,12)
+; Step 5: Flatten everything, to reach 4,4,4,4;4,4,4,4;4,4,4,4;4,8,12,12;12,12,12
+; Note: Semicolons are just commas but easier to see the grouping of elements
+; Step 6: Reverse everything, to reach 12,12,12;12,12,8,4;4,4,4,4;4,4,4,4;4,4,4,4
+; Step 7: Set Order = # of entries modulo R plus one, so Order=4 here
+; Step 8: Append between 1 and R entries to the end; they don't matter, so 
+; Example: 12,12,12;12,12,8,4;4,4,4,4;4,4,4,4;4,4,4,4;4,4
+
+; WHY this correspondence holds upon BMS expansion
+; First, RFPMS would identify a child, so 12,12,12;12,12,8,4;4,4,4,4;4,4,4,4;4,4,4,4;4,4
+; would have 12 as the child and the 12th element after removing to be active entry parent
+; So o=3,c=12: 12,12;12,12,8,4;4,4,4,4;4,(4),4,4;4,4,4,4;4,4
+; In BMS, we similarly identify a child with its parent
+; (0,0,[0 = parent],0)(1,1,1,1)(2,1,0,0)(1,1,{1 = child})
+; Next, consider expansion algorithm indicates ascending elements whose pointer is too far to the right
+; Note that the "ascension matrix" notion is naturally baked in: if parent ascends, so does the child
+; So in 12,12;[12],[12],8,4;4,4,4,4;[4],[4] the bracketed entries point too far to the right and "pointer ascend"
+; And so we ascend by +12 to reach this
+; 12,12;24,24,8,4;4,4,4,4;16,16,12,12;12,12,8,4;4,4,4,4;4,4,4,4;4,4,4,4;4,4
+; While in BMS, we do similar ascension algorithm
+; Notice how certain rows never ascend in BMS (those below the last nonzero entry)
+; Since ascension primarily occurs at the child element
+; (0,0,0,0)(1,1,1,1)(2,1,0,0)(1,1,0,0)(2,2,1,1)(3,2,0,0)(2,2,0,0)(more entries)
+; If we trim off certain entries we can reach (0,0,0,0)(1,1,1,1)(2,1,0,0)(1,1,0,0)(2,2,1,1)(3,2,0,0)(2,2)
+; This corresponds to 12,12;24,24,8,4;4,4,4,4;16,16,12,12;12,12,8,4;4,4,4,4;4,4,4,4;4,4,4,4;4,4
+
+; If you think more about it, the expansion algorithm are very similar
+; See similar analysis here for why this is BMS-level:
+; https://github.com/tromp/AIT/blob/master/fast_growing_and_conjectures/bms.lam
+; https://codegolf.stackexchange.com/a/273656
+
+; However, there may be a few things that might look RFPMS weaker than BMS
+; But they don't actually reduce growth that much (as in we can say RFPMS[n+2] > BMS[n])
+; One is that RFPMS expands using the slow-growing hierarchy and always expands using the [m=1] value
+; The SGH use is not actually a problem, since regular BMS uses Hardy Hierarchy and the SGH & HH catches up at psi(W_w)
+; Specifically, SGH-variant BMS catches up to Hardy-Hierarchy BMS at (0,0)(1,1)(2,2)(3,3)(4,4)(...) = (0)(1,1,1) in regular BMS
+; And there are a lot more catching points between SGH and HH that they becomes "dense." Specifically, (0,0,0,...,0)(1,1,1,...,1)(2,2,2,...,2)(3,3,3,...,3)... is a catching point
+; But one thing is that RFPMS expands using the [m=1] rule which means binary-like expansion
+; i.e., (0,0,0)(1,1,1)X(2) = (0,0,0)(1,1,1)X(1,1,1)X
+; This is not really a problem since expansion is not degenerate. We don't actually always expand with [m=1] but rather very slightly greater than [m=1], more like [m=2] minus one row each expansion
+; TLDR: RFPMS nerfs are not significant nerfs and in the long run RFPMS catches up to BMS
+
+; There is also concern about changing the halting condition; we halt if we couldn't find the (child+1)th element
+; This is significantly different from BMS which halts if our matrix is empty
+; However, this is not degenerative since our initial starting tape doesn't correspond to (0,0,0,0...,0,0)(1,1,1,1...,1,1) in BMS
+; Rather, it corresponds to (0,0,0,0...,0,0)(1,1,1,1...,1,1)(2,2,2,2...,2,2)(3,3,3,3...,3,3)...(p,p,p,p...)
+; There is also a problem of shifting "order"
+; Since # of entries in the array is not necessarily a multiple of rows, and we kind of offset that in "order"
+
+; These problems are fixed by having this property:
+; System A: RFPMS but we halt when we remove a zero, but we insert an extra "column" or root node, i.e. R R's at the end of the array
+; System B: RFPMS but we halt when our array is empty, and if we have a zero we just remove them
+; These systems are equivalent because the action of removing a zero in System B corresponds to expanding an element that is directly connected to the root node in System A
+; I.e. we have something in the form of A,#,0 where A is a pointer to that 0
+; That expands to something like #,0,#,0 since zeroes don't expand, and we notice we simplified x,#,0 to #,0
+; So those two systems are equivalent
+
+; We can introduce System C
+; System C: RFPMS but we halt when the active targeted element we want to append is a 0
+; It turns out that inserting an extra "column" in System C is equivalent to System A without the extra column
+; And ultimately, elements and columns come in multiples of R, so the shifted order also doesn't quite pose a big degenerative problem
+
+; TLDR: RFPMS nerf corresponds to "losing" columns, i.e. (0,0,0,0...,0,0)(1,1,1,1...,1,1)(2,2,2,2...,2,2)(3,3,3,3...,3,3)...(p,p,p,p...) gets knocked down to (0,0,0,0...,0,0)(1,1,1,1...,1,1)(2,2,2,2...,2,2)(3,3,3,3...,3,3)...(p-2,p-2,p-2,p-2...)
+; That is, we lose two columns from RFPMS to BMS, but these are not significant
+
+; Given all of that, the machine is formatted like this
+; S(ActiveElement,ElementsLeft,Threshold,Order,Coorder,0,{Array})
+; The property of Order+Coorder = Rows+1 is kept
+; At the start ActiveElement=ElementsLeft=Threshold=0 and we just have S(Order,Coorder,0,{Array})
+
+
+; And here are examples of intended expansions
+; Example expansion: RESERVE LATER
+; Start: 11_11__111_111_111_111_111_111_111_111
+; Represents the BMS of (0,0,0)(1,1,1)(2)
+; We ignore last entry (meant to be an endpoint)
+; 1 111  111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,1)
+; 111 1  111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,2)
+; 11 11  111111 111 111 111 111111111111111 111111111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111  = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,1,0)(3,2,1)(3)
+; 1 111  111 111 111 111111111111111111111 111111111111111111 111111111111 111 111 111 111111111111111 111111111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,1,0)(3,2,1)(2,1,0)(3,2,1)
+; 111 1  111 111 111111111111111111111111 111 111 111111111111111111111 111111111111111111 111111111111 111 111 111 111111111111111 111111111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,1,0)(3,2,1)(2,1,0)(3,2,0)(4,3)
+; 11 11  111 111111111111111111111111111 111111 111 111111111111111111111111 111 111 111111111111111111111 111111111111111111 111111111111 111 111 111 111111111111111 111111111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,1,0)(3,2,1)(2,1,0)(3,2,0)(4,2,0)(5)
+; 1 111  111111111111111111111111111111 111111111 111111 111111111111111111111111111 111111 111 111111111111111111111111 111 111 111111111111111111111 111111111111111111 111111111111 111 111 111 111111111111111 111111111111 111111 111 111 111 111111111 111111 111111 111 111 111 111 111 111 111 = (0,0,0)(1,1,1)(1,1,0)(2,2,1)(2,1,0)(3,2,1)(2,1,0)(3,2,0)(4,2,0)(4,2,0)
+; HALT
+; Note: It should halt even if it ends in an extra _111
+; Since we only copy well-defined portion: the moment we go OOB we halt instantly
+; This doesn't actually create any problems. In particular, during setup the number of elements  mod number of rows does not actually matter on whether we halt or not.
+
+
+; Now time to go back to actual TM states
+; For setup, what we have is S(1,N,0,N,N,N,N,...) {> N^2 N's}
+; This matches format S(Order,Coorder,0,{Array}) which are the only variables in play now
+; Note how we use Coorder instead of storing rows directly since it is very hard to insert data on a Turing machine tape
+; We have fixed memory address meaning inserting information means shifting all the information leftwards or rightwards
+
+; STATE A: Decrease Order by 1, or reset it to co-order
+A1 1 1 r A1
+A1 _ 1 l A2
+A2 1 _ l A3
+A3 _ _ r A2 ; we decreased order by 1, but we check if order is zero right after decrementing
+A2 _ 1 r A4 ; That is because if we decrement order to 0, we have to reset it to rows
+A4 1 1 r A4 ; This module does this
+A4 _ _ l A5
+A5 1 1 l A6
+A6 1 _ l A3
+
+; This does the following transformations
+; S(Order+1,Rows-Order,0,{Array}) --> S(Order,Rows-Order+1,0,{Array}), if Order > 0
+; S(1,Rows,0,{Array}) --> S(Rows,1,0,{Array}), if Order = 0
+
+; At this point, define the new array to look like this:
+; S(Order,Coorder,0,{Array})
+; Where Order ranges from 1 to Rows
+
+; The general method copying works is by keeping the length of the thing to be copied constant
+; But we eat away the 1's (always checking to make sure that the amount of 1's are nonzero)
+
+; Example: to copying the 1111 in 00001111000000000 it might look like this:
+; 00001111000000000 
+; 00001111010000000 
+; 00001110010000000 
+; 00001110011000000 
+; 00001100011000000 
+; 00001100011100000 
+; 00001000011100000 
+; 00001000011110000 
+; 00000000011110000 ; we immediately notice the thing we want to copy is gone
+; 00001000011110000 ; but we can fill it back
+; 00001100011110000
+; 00001110011110000
+; 00001111011110000
+
+; This method of copying is space-efficient but may have a consistent off-by-one error (i.e. we wish to copy unary N but we always end up getting unary N-1)
+; This off-by-one error is consistent so we can always re-account for it later
+; Or if we really want to we can fix that on the spot by incrementing the desired counter
+
+; A big implication of copying and marking is that our TM requires at least 3 BMS rows!
+; I haven't tested PSS or PrSS but I think they do not work, but we can implement 3+ row BMS
+; Which is okay since any PSS or PrSS expression can be represented by a 3-row BMS expression
+
+
+; State B: Copy Order to be Threshold, this copies the variable Order
+A3 1 _ l B1
+B1 1 1 l B1
+B1 _ _ l B2
+B2 1 1 l B2
+B2 _ 1 r B3
+B3 1 1 r B3
+B3 _ _ r B4
+B4 1 1 r B4
+B4 _ _ l A3 ; we're doing state superposition to cut down states
+; This loops stops at A6 _, which will be used to refill back order
+A6 _ _ r C1
+C1 1 1 r C2
+C2 _ 1 r C2
+C2 1 1 l C3
+C3 1 _ r C4
+
+; Currently state at C4: S(Threshold,Order,>Coorder,0,child,{rest of Array})
+; With the value Threshold = Order
+; Now time to set up the pointer
+C4 1 1 r C4
+C4 _ _ r C5
+C5 _ _ r C5 ; we find where the child element is
+C5 1 1 r C6
+C6 1 1 r C6
+C6 _ _ r D2; this creates a pointer, and D2 is if we just found a pointer
+
+; HOW POINTERS WORK
+; We store array pointers by using zero gaps at the start of the next element
+; For example, let's say we have the array 5 4 3 = 11111011110111
+; If we want to make a pointer at the number 5, we mark the start of the next entry with a 0
+; So (5) 4 3 = 11111001110111
+; So 5 (4) 3 = 11111011110011
+; So 5 4 (3) is impossible to represent. In this case, our child pointer goes "out of bounds" and we halt
+; Pointers are important, and by representing pointers as the "next element over" it is easier to find the pointer and shift it
+; Pointers are also just negative space which we can fill in later. Since insertion of data in TM tape is very hard, which is why instead we just mark one of the entries of 1 with a 0
+
+; This pointer in particular use double zeroes or __ to mark positions
+; There is a double-zero pair at the start of the array (where the first element, called the child is), and another at where the current pointer is 
+; What we are trying to do is use the child C (first element) to count out C elements in the array.
+
+D1 _ 1 r D2 ; we had just reached double zeroes, which is why we aim to move the pointer one step
+D2 1 1 r D2
+D2 _ _ r D3 ; checking if we reach end of the array
+D3 _ _ r halt ; we reached end of array
+D3 1 _ l D4 ; marking next element with a double-zero, and go to start of array where there is 00
+D4 1 1 l D4
+D4 _ _ l D5
+D5 1 1 l D4
+D5 _ _ r D6
+D6 _ _ r D6
+D6 1 _ r D7 ; we decrement our child element and repeat the searching process
+D7 1 1 r D8 ; search for the 00 again
+D8 1 1 r D8
+D8 _ _ r D1
+D1 1 1 r D8
+
+; Now at this point at D7, there is a gap, and the thing immediately to the left of the gap is the thing to copy
+; i.e. the target element
+; Specifically, our tape looks like S(Threshold,Order,Coorder,series of zeroes,Array,0 to represent pointer,Array)
+; we wish to fill back in the series of zeroes and moreover create a new element called ElementsLeft which is equal to the value of child
+; ElementsLeft serve two purpose: to increase Threshold and to count how many times we need to append a new entry
+; STATE E: Restore the Child and copy it to ElementsLeft
+
+D7 _ 1 l E1 ; temporary marker; this is just a copying procedure
+E1 _ _ l E1
+E1 1 1 l E2
+E2 1 1 l E2
+E2 _ _ l E3
+E3 1 1 l E3
+E3 _ _ l E4
+E4 1 1 l E4
+E4 _ _ l E5
+E5 1 1 l E5
+E5 _ 1 r E6
+E6 1 1 r E6
+E6 _ _ r E7
+E7 1 1 r E6
+E7 _ _ r E8
+E8 1 1 r E8
+E8 _ 1 r E9
+E9 _ _ l E10
+E10 1 1 l E10
+E10 _ _ l E1
+E9 1 _ l E11
+E11 1 1 l E11
+E11 _ 1 r F1
+
+; Our tape now looks like this:
+; S(Child=ElementsLeft,Threshold,Order,Coorder,Child+1,{Array},0,{Array})
+; Notice how we store Child+1 instead of Child. That is on purpose to block out a double-zero
+; This means we can use searching for double-zeroes solely for finding location of the pointer (search for double zeroes right)
+; Moreover, searching for double zeroes by moving left will allow us to reach the end of tape
+
+; State F is trying to copy the active element (what the pointer is pointing at) to the start of our tape
+; So we want to have this transition:
+; S(ElementsLeft,Threshold,Order,Coorder,Child+1,{Array},activeElement,0,{Array}) to
+; S(activeElement,ElementsLeft,Threshold,Order,Coorder,Child+1,{Array},0,activeElement-1,1+{Array})
+; Where -1 means subtracting a 1 and 1+ means prepending a 1
+; Basically, we shift the double-zero pointer one entry leftwards and while doing so we extract the active element
+
+; STATE F: Copying a pointer element
+F1 1 1 r F1
+F1 _ _ r F2
+F2 1 1 r F1
+F2 _ _ l F3
+F3 _ _ l F3
+F3 1 _ l F4 ; reached and decrement pointer
+F4 1 1 l F5 ; go back to start to add the element
+F5 1 1 l F5
+F5 _ _ l F6
+F6 1 1 l F5
+F6 _ _ l F7
+F7 1 1 l F7
+F7 _ 1 r F8
+F8 1 1 r F8
+F8 _ _ r F1
+
+; Finish copying the active element by filling in the empty gap left behind
+; STATE G: Finish copying an element
+F4 _ _ r G1
+G1 _ 1 r G1
+G1 1 1 l G2
+G2 1 1 l G3
+G3 1 _ l G4
+G4 1 1 l G4
+G4 _ _ r G5
+G5 1 _ l G6 ; pretty inefficient way but whatever
+G6 1 1 l G6
+G6 _ _ l G7
+G7 1 1 l G6
+G7 _ 1 r H1
+
+; i.e. this fills in the gap created while copying
+
+; At this point at H1, our tape looks like this
+; S(activeElement,ElementsLeft,Threshold,Order,Coorder,Child+1,{Array},0,{Array})
+; We want to see whether activeElement >= Threshold
+; The idea here is to decrement Threshold first, then we decrement activeElement
+; We want to see which one reaches zero first
+
+; we have Threshold on the right hand side and (element) on the left hand side
+; So if (left hand side nextElement) >= (right hand side threshold)
+; Then we ascend
+; So we decrease right side first which is the threshold
+; 3 3 --> 1 1 --> 1 0 --> RIGHT is smaller
+; 3 4 --> 1 2 --> 1 1 --> 0 1 --> LEFT is smaller
+
+; This procedure is thus a flip-flop procedure
+
+H1 _ _ r H1
+H1 1 1 r H2
+H2 1 1 r H2
+H2 _ _ r H3
+H3 _ _ r H3
+H3 1 _ r H4
+H4 1 1 l H5
+H5 _ _ l H5
+H5 1 1 l H6
+H6 1 1 l H6
+H6 _ _ l H7
+H7 _ _ l H7
+H7 1 _ l H8
+H8 1 1 r H1
+
+; Possible exits: H4 (activeElement >= threshold) or H8 (activeElement < threshold)
+; H4 means we ascend activeElement by the value of child
+; First we recover the terms into place
+H4 _ _ l I1
+I1 _ 1 l I1
+I1 1 1 r I2
+I2 1 _ l I3
+I3 1 1 l I3
+I3 _ _ l I4
+I4 _ 1 l I4
+I4 1 1 r I5 ; Term recovery completed! Start of regular searching for the Child
+I5 1 1 r I5
+I5 _ _ r I6
+I6 1 1 r I6
+I6 _ _ r I7
+I7 1 1 r I7
+I7 _ _ r I8
+I8 1 1 r I8
+I8 _ _ r I9
+I9 1 1 r I9
+I9 _ _ r I10
+I10 1 1 r I10
+I10 _ _ l I11 ; We reached the element Child+1. Time to decrement
+I11 1 _ l I12
+I12 1 1 l I13 ; check good (i.e. checking that Child+1 is nonzero after decrementing it)
+I13 1 1 l I13
+I13 _ _ l I14 ; Go back and increment ActiveElement
+I14 1 1 l I13
+I14 _ _ r I11
+I11 _ 1 r I5
+
+; State J: Clean up by adding in the rest. J is shared
+I12 _ _ r J1 ; We exhausted Child+1, and we have incremented ActiveElement by Child meaning ascension is complete!
+J1 _ 1 r J1 ; The purpose of J is to clean everything up
+J1 1 1 l J2
+J2 1 _ l J3 ; This should restore the current value of Child. We left double-zero there on purpose
+
+; State K: Also clean up from H8 branch and restore value of Child
+H8 _ _ r K1
+K1 _ 1 r K1
+K1 1 1 l K2
+K2 1 _ r K3
+K3 1 1 r K3
+K3 _ _ r K4
+K4 _ 1 r K4
+K4 1 1 r K5
+K5 1 1 r K5
+K5 _ _ r K6
+K6 1 1 r K6
+K6 _ _ r K7
+K7 1 1 r K7
+K7 _ _ r K8
+K8 1 1 r K8
+K8 _ _ l J3
+
+; State J too: Big Shifting: we wish to go from here:
+; S(activeElement,ElementsLeft,Threshold,Order,Coorder,Child,0,{Array},0,{Array})
+; To here: S(ElementsLeft,Threshold,Order,Coorder,Child,{bunch of zeroes},{Array},0,{Array})
+; This is done through finding 00s and then propagating the information to the left
+
+; TAPE SHIFTING
+; Sometimes, you wish to insert data into the TM tape
+; One thing is that you might have a string of 1's and 0's such as 011111101111011110
+; And we want to shift left to reach 0111111011110111100
+; This can be done by replacing all "10" with "01" and then fixing the endpoints
+
+
+J3 1 _ l J4
+J4 1 1 l J4
+J4 _ 1 l J5
+J5 1 _ l J6
+J6 1 1 l J6
+J6 _ 1 l J7
+J7 1 _ l J8
+J8 1 1 l J8
+J8 _ 1 l J9
+J9 1 _ l J10
+J10 1 1 l J10
+J10 _ 1 l J11
+J11 1 _ l J12
+J12 1 1 l J12
+J12 _ 1 l J13
+J13 1 _ r J14
+J14 1 1 r J14
+J14 _ _ r J15
+J15 1 1 r J14
+J15 _ _ l K8
+
+; We finished main state shifting
+; We go into state L
+; Since we finished inserting the new ascended active element
+
+; STATE L: Prepare for transitioning back to state F1
+J13 _ _ r L1
+L1 1 1 r L1
+L1 _ 1 l L2 ; Increment Threshold and Decrement ElementsLeft
+L2 1 _ l L3 ; Check if ElementsLeft = 0
+L3 1 1 r L4 ; ElementsLeft > 0, continue with regular plan of filling in, otherwise, end of main cycle
+L4 1 1 r L4
+L4 _ _ r L5
+L5 1 1 r L4
+L5 _ 1 r L6
+L6 _ 1 r L6 ; Filling in our child (which is how much to ascend)
+L6 1 1 l L7
+L7 1 _ r F1 ; Continue with the main cycle
+
+; State M: Finish the main cycle: shifting ; NOTE: m3 has been merged into m1 to save a state
+; There is no M3
+; I'm just afraid of breaking things by refactoring :)
+; But the main cycle means restoring everything back into the format suitable for A1
+
+L3 _ _ r M1 ; Delete Threshold 
+M1 _ _ r M2 ; And shift back the rest of data (Order and Coorder)
+M2 1 _ r M2 ; We use the same shifting method used in J
+M2 _ _ r M1
+M1 1 _ r M4
+M4 1 1 r M4
+M4 _ 1 r M5
+M5 1 _ r M6
+M6 1 1 r M6
+M6 _ 1 r M7
+M7 1 _ r M8
+M8 1 1 l M7
+M7 _ _ l M9
+M9 1 1 l M9
+M9 _ _ l M10
+M10 1 1 l M10
+M10 _ _ r M1
+
+; State N: Fill in remaining values to really get reader for A1
+M8 _ _ r N1
+N1 _ 1 r N1 ; Filling in the new value of child
+N1 1 1 l N2
+N2 1 _ r N3
+N3 1 1 r N3 ; Searching for the 00 gap and removing that pointer
+N3 _ _ r N4
+N4 1 1 r N3
+N4 _ 1 l N5
+N5 1 1 l N5 ; return to start of array
+N5 _ _ l N6
+N6 1 1 l N5
+N6 _ _ l N7
+N7 1 1 l N7
+N7 _ _ l N8
+N8 1 1 l N8
+N8 _ _ r A1 ! ; End of current cycle; we use break point here
