@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch-Em-Turing (CET & MCET) Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="logo-group">
+      <div class="logo-badge">CET</div>
+      <div>
+        <div class="app-title">Catch-Em-Turing Studio</div>
+        <div class="app-subtitle">Multi-Agent Turing Collision Simulator & Space-Time Visualizer</div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <!-- Mode Tabs -->
+      <div class="mode-tabs">
+        <button class="mode-tab-btn active" data-mode="cet">CET(n) [2 Agents]</button>
+        <button class="mode-tab-btn" data-mode="mcet">MCET(n) [Multi-Agent]</button>
+      </div>
+
+      <!-- Preset Selector -->
+      <div class="preset-picker-group">
+        <span class="preset-label">Preset:</span>
+        <select id="presetSelect" class="preset-select">
+          <option value="cet1_2_champion_402">CET_1(2) Glider Escape Champion (402 Steps - Speed-1 Glider ⚡)</option>
+          <option value="cet1_2_champion_356">CET_1(2) Glider Pair Record (356 Steps - Dual Drift +1 🚀)</option>
+          <option value="cet1_2_counter_8540">CET_1(2) Shift Counter (Col #18 @ 8540, Overflow Engine 🌌)</option>
+          <option value="cet1_2_quad_shuttle">CET_1(2) Quadratic Shuttle (Col #6 @ 808k, Double Exp Recurrence 🚀)</option>
+          <option value="cet1_2_nath_1399">CET_1(2) Nath76 1399 (Col #9 @ 1399, Col #10 @ 6×10^105 🌌⚡)</option>
+          <option value="cet1_2x3_champion_1586">CET_1(2,3) A100 Super Champion (1,586 Steps 🌈🔥)</option>
+          <option value="cet1_2_champion_188">CET_1(2) A100 World Record (188 Steps - 79 Collisions 👑⚡)</option>
+          <option value="cet1_2x3_champion_1324">CET_1(2,3) A100 Runner-Up (1,324 Steps - 1320 Collisions 🌈)</option>
+          <option value="cet1_2_champion_156">CET_1(2) A100 Discovery (156 Steps - 34 Collisions 👑)</option>
+          <option value="cet1_2_nath_110">CET_1(2) Nath76 World Record (110 Steps - Translated Cycler 👑⚡)</option>
+          <option value="cet1_2_stationary_26">CET_1(2) In-Place Cycle Champion (26 Steps - Quasi-Halts 🛡️)</option>
+          <option value="cet1_2x3_champion">CET_1(2,3) 3-Symbol Discovery (61 Steps - Quasi-Halts 🌈)</option>
+          <option value="cet4_champion_4_62b">CET(4) 4.62 BILLION World Record (4,622,083,548 Steps 👑🔥🌌)</option>
+          <option value="cet4_champion_65m">CET(4) 65.5M Former Record (65,579,412 Steps 🏆🔥)</option>
+          <option value="cet4_holdout_counter">CET(4) Genuine Holdout (Sublinear Counter L ~ sqrt(t) 🔥)</option>
+          <option value="cet4_champion_49m">CET(4) 49.1M Mega Champion (49,184,559 Steps 👑)</option>
+          <option value="cet4_champion">CET(4) 213k Discovery (213,393 Steps)</option>
+          <option value="cet3_holdout_queue">CET(3) Genuine Holdout (Active Hunt Queue Candidate 🔥)</option>
+          <option value="cet3_champion_3_09b">CET(3) 3.09 BILLION World Record (3,092,745,703 Steps 👑🔥🌌)</option>
+          <option value="cet3_champion_2_75b">CET(3) 2.75 BILLION World Record (2,755,868,107 Steps 👑🔥🌌)</option>
+          <option value="cet23_champion_1_52b">CET(2,3) 1.52 BILLION World Record (1,528,952,999 Steps - 3 Symbols 👑🌈🔥)</option>
+          <option value="cet3_champion_26_1m">CET(3) 26.1M Supreme World Record (26,121,565 Steps 👑🔥🌌)</option>
+          <option value="cet3_champion_24_9m">CET(3) 24.9M Ultra World Record (24,979,202 Steps 👑🔥)</option>
+          <option value="cet3_champion_24_1m">CET(3) 24.1M Omega World Record (24,120,601 Steps 👑🔥)</option>
+          <option value="cet3_champion_23_5m">CET(3) 23.5M Super Runner-Up (23,528,345 Steps 🏆🔥)</option>
+          <option value="cet3_champion_22_4m">CET(3) 22.4M Mega World Record (22,428,251 Steps 👑🔥)</option>
+          <option value="cet3_champion_16_7m">CET(3) 16.7M Super Champion (16,714,775 Steps 🏆🔥)</option>
+          <option value="cet3_champion_16_5m">CET(3) 16.5M Super Runner-Up (16,511,187 Steps 🌟)</option>
+          <option value="cet3_champion_14_8m">CET(3) 14.8M TNF Discovery (14,836,405 Steps ⚡)</option>
+          <option value="cet3_champion_12_0m">CET(3) 12.0M TNF Discovery (12,095,922 Steps ⚡)</option>
+          <option value="cet3_champion_9_4m">CET(3) Nath76 Former Record (9,448,838 Steps 👑)</option>
+          <option value="cet3_champion_4_6m">CET(3) Nath76 Runner-Up (4,657,368 Steps 🏆)</option>
+          <option value="cet3_champion_3_7m">CET(3) Mega Champion (3,746,207 Steps 👑🔥)</option>
+          <option value="cet3_champion_2m">CET(3) 2.03M Discovery (2,033,240 Steps 🌟)</option>
+          <option value="cet3_champion_717k">CET(3) 717k Runner-Up (717,751 Steps)</option>
+          <option value="cet3_champion_265k">CET(3) Nath76 Runner-Up (265,383 Steps)</option>
+          <option value="cet3_champion_9k">CET(3) Runner-Up (9,137 Steps ★)</option>
+          <option value="cet3_holdout_bouncer">CET(3) True Bouncer Holdout (Period 32,766 Non-Halter 🛡️)</option>
+          <option value="cet3_champion">CET(3) Runner-Up (6,065 Steps)</option>
+          <option value="cet2_4sym_behemoth">CET(2,4) Behemoth Bound (≥ 411 Sextillion Steps 🌌👑)</option>
+          <option value="cet2_4sym_champion">CET(2,4) Crazy Champion (14,068 Steps - 4 Symbols 🌌)</option>
+          <option value="cet2_3sym_champion_20k">CET(2,3) World Champion (20,350 Steps - 3 Symbols 🌈🏆)</option>
+          <option value="cet2_3sym_champion">CET(2,3) Runner-Up (8,786 Steps - 3 Symbols 🌈)</option>
+          <option value="cet2_champion">CET(2) Champion (97 Steps - BB(2) Exact!)</option>
+          <option value="cet1_bb">CET(1) Champion (1 Step)</option>
+          <option value="cet2_77">CET(2) Dual Weaver (77 Steps)</option>
+          <option value="cet2_49">CET(2) Oscillating (49 Steps)</option>
+          <option value="mcet33_champion_34k">MCET(3,3) 3-Agent 3-Symbol Champion (34,399 Steps 👑)</option>
+          <option value="mcet3_champion_211m">MCET(3) 211M World Record (211,190,346 Steps 👑🔥🌌)</option>
+          <option value="mcet3_champion_4_2m">MCET(3) 4.2M Super Champion (4,239,504 Steps 🏆👑)</option>
+          <option value="mcet3_champion_1_3m">MCET(3) 1.3M World Champion (1,300,013 Steps 👑)</option>
+          <option value="mcet3_champion_14k">MCET(3) Champion (14,417 Steps - All Agents 👑)</option>
+          <option value="mcet3_champion_12k">MCET(3) Nath76 Runner-Up (12,733 Steps)</option>
+          <option value="mcet3_champion">MCET(3) Champion (8,899 Steps - All Agents 🏆)</option>
+          <option value="mcet3_cascade">MCET(3) 3-Agent Cascade (36 Steps)</option>
+          <option value="mcet4_squeeze">MCET(4) 4-Agent Squeeze (52 Steps)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-cyan" id="btnRandomize" title="Randomize Transition Tables (R)">🎲 Randomize</button>
+      <button class="btn" id="btnMutate" title="Mutate 1 Transition Action">🧬 Mutate</button>
+      <button class="btn" id="btnAudioToggle" title="Audio Sonification (M)">🔇 Audio OFF</button>
+      <button class="btn" id="btnExportPng" title="Export High-Res Space-Time PNG">📸 Export PNG</button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="app-container">
+
+    <!-- Left Main Column -->
+    <section class="main-column">
+
+      <!-- Metrics Row -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Step Count</span>
+          <span class="metric-value metric-highlight" id="metricStepCount">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">1s On Tape</span>
+          <span class="metric-value" id="metricOnesCount">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Tape Span</span>
+          <span class="metric-value" id="metricTapeSpan">[0, 0]</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Agent Distance</span>
+          <span class="metric-value" id="metricAgentDist">0 cells</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Halting Rule</span>
+          <span class="metric-value" id="metricHaltRule" style="font-size: 14px; color: #38bdf8;">Pairwise Collision</span>
+        </div>
+        <div class="metric-card" id="metricQuasihaltCard" style="display: none;">
+          <span class="metric-label">Quasi-Halting</span>
+          <span class="metric-value" id="metricQuasihaltState" style="font-size: 13px; color: #a855f7;">Monitoring Cycles...</span>
+        </div>
+      </div>
+
+      <!-- Status Banner -->
+      <div id="statusBadge" class="status-badge status-halted">
+        Simulation Ready
+      </div>
+
+      <!-- Space-Time Diagram View -->
+      <div class="spacetime-card">
+        <div class="spacetime-toolbar">
+          <div class="toolbar-group">
+            <span class="card-title">🌌 Space-Time Diagram (X: Space, Y: Time)</span>
+            <span class="badge" style="font-size: 10px; color: #94a3b8; background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.08);">🖱 Left: Pan &bull; Right: Set Time</span>
+            <button class="btn btn-xs" id="btnZoomIn" title="Zoom In">+</button>
+            <button class="btn btn-xs" id="btnZoomOut" title="Zoom Out">-</button>
+            <button class="btn btn-xs" id="btnFitView" title="Auto-Fit Entire Run">🎯 Fit View</button>
+          </div>
+          <div class="toolbar-group">
+            <label class="tool-label">Theme:
+              <select id="selectTheme" class="preset-select" style="padding: 2px 6px; font-size: 11px;">
+                <option value="cyberpunk">Cyberpunk Neon</option>
+                <option value="matrix">Matrix Terminal</option>
+                <option value="blueprint">Blueprint Cobalt</option>
+              </select>
+            </label>
+            <label class="tool-label">Time:
+              <select id="selectOrientation" class="preset-select" style="padding: 2px 6px; font-size: 11px;">
+                <option value="down">Downward ↓</option>
+                <option value="up">Upward ↑</option>
+              </select>
+            </label>
+            <label class="tool-label" style="cursor: pointer;">
+              <input type="checkbox" id="checkWorldlines" checked> Trajectories
+            </label>
+            <label class="tool-label" style="cursor: pointer;">
+              <input type="checkbox" id="checkTapeCells" checked> 1-Cells
+            </label>
+            <label class="tool-label" style="cursor: pointer;" title="Automatically zoom out and center the camera as steps are executed">
+              <input type="checkbox" id="checkAutoFollow" checked> Auto-Fit Running
+            </label>
+            <label class="tool-label" style="display: flex; align-items: center; gap: 4px;" title="Stretch/widen diagram space dimension (X Width). Type any number or use the slider!">
+              <span>Width:</span>
+              <input type="range" id="sliderWidthScale" min="1" max="1000" value="1" step="1" style="width: 70px; accent-color: var(--accent-cyan); cursor: pointer;">
+              <input type="text" id="inputWidthScale" value="Auto" style="width: 58px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); color: var(--accent-cyan); font-family: var(--font-mono); font-size: 11px; padding: 2px 4px; border-radius: 4px; text-align: center;" title="Type any multiplier (e.g. 100, 500, 2500) or 'auto'">
+            </label>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="spacetimeCanvas"></canvas>
+          <div id="spaceTimeTooltip" class="spacetime-tooltip"></div>
+        </div>
+      </div>
+
+      <!-- Timeline & Playback Controls -->
+      <div class="timeline-card">
+        <div class="timeline-scrubber-row">
+          <span class="timeline-step-label" id="timelineStepDisplay">0 / 0</span>
+          <input type="range" id="timelineSlider" class="slider-scrubber" min="0" max="0" value="0">
+        </div>
+
+        <div class="playback-buttons-row">
+          <div class="btn-group">
+            <button class="btn" id="btnReset" title="Reset to Start (Home)">⏮ Reset</button>
+            <button class="btn" id="btnStepBack" title="Step Backward (Left Arrow)">◀ Step</button>
+            <button class="btn btn-primary" id="btnPlayPause" title="Play / Pause (Space)">▶ Play</button>
+            <button class="btn" id="btnStepFwd" title="Step Forward (Right Arrow)">Step ▶</button>
+            <button class="btn" id="btnJumpEnd" title="Run to Collision / End (End)">⏭ Run to End</button>
+            <button class="btn" id="btnContinuePostQuasihalt" style="display: none; background: #9333ea; color: white; border-color: #a855f7;" title="Override quasi-halt and simulate post-quasihalt infinite trajectory">🔮 Continue Beyond Quasi-Halt (+500 Steps)</button>
+          </div>
+
+          <div class="speed-control-group">
+            <span style="font-weight: 600;">⚡ Speed:</span>
+            <input type="text" id="speedInput" class="speed-input-box" value="20/s" title="Set exact speed up to 100M/s (e.g. 60, 1k, 50k, 100M)">
+            <input type="range" id="speedSlider" class="speed-slider" min="0" max="800" value="130" title="Slide logarithmic speed from 1/s up to 100,000,000 steps/sec (100M/s)">
+            <span id="speedDisplay" class="speed-badge">20/s</span>
+            <button class="speed-quick-btn" id="btnSpeedMax" title="Instant Max Speed (100,000,000 steps/sec)">100M/s</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1D Ribbon Tape Visualizer -->
+      <div class="tape1d-card">
+        <div class="tape1d-header">
+          <span class="card-title">📼 1D Infinite Tape Ribbon (Active Heads)</span>
+          <span style="font-size: 11px; color: var(--text-dim);">Agent heads read and write simultaneously</span>
+        </div>
+        <div id="tape1dContainer"></div>
+      </div>
+
+    </section>
+
+    <!-- Right Sidebar Controls -->
+    <aside class="sidebar-column">
+
+      <!-- Machine Configuration Card -->
+      <div class="sidebar-card">
+        <div class="card-title">⚙️ Machine Configuration</div>
+
+        <!-- N States Stepper -->
+        <div class="config-row">
+          <span class="config-label">States per Agent (n):</span>
+          <div class="stepper-group">
+            <button class="btn btn-xs" id="btnNMinus">-</button>
+            <span class="stepper-val" id="displayNValue">2</span>
+            <button class="btn btn-xs" id="btnNPlus">+</button>
+          </div>
+        </div>
+
+        <!-- Symbols Stepper -->
+        <div class="config-row">
+          <span class="config-label">Symbols (s):</span>
+          <div class="stepper-group">
+            <button class="btn btn-xs" id="btnSymMinus">-</button>
+            <span class="stepper-val" id="displaySymValue">2</span>
+            <button class="btn btn-xs" id="btnSymPlus">+</button>
+          </div>
+        </div>
+
+        <!-- Halting Condition / Quasi-Halting Mode Selector -->
+        <div class="config-row">
+          <span class="config-label">Halting Condition:</span>
+          <select id="selectHaltCondition" class="preset-select" style="padding: 2px 6px; font-size: 11px; max-width: 165px; accent-color: var(--accent-cyan);">
+            <option value="normal">Normal Collision (CET_0)</option>
+            <option value="quasihalt">Quasi-Halting (CET_1)</option>
+          </select>
+        </div>
+
+        <!-- Agent Count Stepper (MCET) -->
+        <div class="config-row" id="mcetControlsGroup" style="display: none;">
+          <span class="config-label">Agents Count (m):</span>
+          <div class="stepper-group">
+            <button class="btn btn-xs" id="btnAgentMinus">-</button>
+            <span class="stepper-val" id="displayAgentCount">2</span>
+            <button class="btn btn-xs" id="btnAgentPlus">+</button>
+          </div>
+        </div>
+
+        <!-- Preset Description Box -->
+        <div id="presetDescription" class="preset-desc-box"></div>
+      </div>
+
+      <!-- Transition Table Editor -->
+      <div class="sidebar-card">
+        <div class="card-title">📝 Transition Table Editor</div>
+
+        <!-- Agent Selector Tabs -->
+        <div class="agent-tabs-bar" id="agentTabsContainer"></div>
+
+        <!-- Quick Format Bar for Active Agent -->
+        <div class="agent-format-bar">
+          <div class="agent-format-label-row">
+            <span class="agent-format-label">Agent <span id="lblActiveAgentNum">1</span> Format:</span>
+            <span id="agentFormatFeedback" class="agent-format-feedback"></span>
+          </div>
+          <div class="agent-format-input-group">
+            <input type="text" id="agentFormatInput" class="agent-format-input" placeholder="(w, d, ns), (w, d, ns)..." spellcheck="false" title="Paste tuples for active agent e.g. (1, LEFT, 1), (0, LEFT, 1)... or (1, L, B)...">
+            <button class="btn btn-xs btn-primary" id="btnApplyAgentFormat" title="Apply tuples to active agent (Enter)">Set Agent</button>
+            <button class="btn btn-xs" id="btnCopyAgentFormat" title="Copy active agent tuples to clipboard">📋 Copy</button>
+          </div>
+        </div>
+
+        <!-- Full Machine Notation (All Agents) Accordion -->
+        <details class="full-notation-details">
+          <summary class="full-notation-summary">📋 Full Machine Notation (Tuples or bbchallenge A1|A2)</summary>
+          <div class="full-notation-body">
+            <textarea id="rawTextInput" class="raw-text-area" rows="3" spellcheck="false" placeholder="bbchallenge pipe format:&#10;1LB0LB_1RB0LA|1RB1LA_1LA1RB&#10;or standard tuple notation:&#10;Agent 1: (1, LEFT, 1), (0, LEFT, 1)...&#10;Agent 2: (1, RIGHT, 1), (1, LEFT, 0)..."></textarea>
+            <div class="full-notation-actions">
+              <button class="btn btn-xs btn-primary" id="btnApplyRawText">Apply Machine</button>
+              <button class="btn btn-xs" id="btnCopyRawText" title="Copy standard tuple notation">📋 Copy Tuples</button>
+              <button class="btn btn-xs" id="btnCopyBBChallenge" title="Copy in bbchallenge pipe format: a1|a2">📋 Copy bbchallenge</button>
+              <span id="fullNotationFeedback" class="agent-format-feedback"></span>
+            </div>
+          </div>
+        </details>
+
+        <div class="trans-table-wrapper">
+          <table class="trans-table">
+            <thead>
+              <tr>
+                <th>State</th>
+                <th>Read</th>
+                <th>Write</th>
+                <th>Move</th>
+                <th>Next State</th>
+              </tr>
+            </thead>
+            <tbody id="transitionTableTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- State Transition Graph -->
+      <div class="sidebar-card">
+        <div class="card-title">🕸 State Transition Graph</div>
+        <div id="stateGraphContainer" class="state-graph-wrapper"></div>
+      </div>
+
+      <!-- Busy Beaver Auto-Hunter Card -->
+      <div class="sidebar-card">
+        <div class="card-title">🏆 Busy Beaver Auto-Hunter</div>
+        <div style="font-size: 11px; color: var(--text-muted);">
+          Scans for high-step colliding machines in the background using Web Workers.
+        </div>
+
+        <div class="config-row" style="margin-top: 4px;">
+          <span class="config-label" style="font-size: 12px;">Strategy:</span>
+          <select id="hunterStrategy" class="preset-select" style="font-size: 11px; padding: 3px 8px;">
+            <option value="random">Random Sampling</option>
+            <option value="hill_climb">Genetic / Mutate Best</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-dim); margin: 4px 0;">
+          <span>Tested: <strong id="hunterScannedCount" style="color: #fff;">0</strong></span>
+          <span>Best: <strong id="hunterBestStep" style="color: var(--accent-cyan);">0</strong> steps</span>
+          <span>Status: <span id="hunterStatusText" style="color: var(--accent-amber);">Idle</span></span>
+        </div>
+
+        <button class="btn btn-cyan btn-xs" id="btnToggleHunter" style="width: 100%; padding: 6px;">
+          ▶ Start Auto-Hunter
+        </button>
+
+        <div style="max-height: 120px; overflow-y: auto; margin-top: 6px;">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Steps</th>
+                <th>Config</th>
+                <th>Pos</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Script Modules -->
+  <script src="simulator.js"></script>
+  <script src="spacetime.js"></script>
+  <script src="tape1d.js"></script>
+  <script src="audio.js"></script>
+  <script src="state_graph.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -177,7 +177,7 @@ to reach this wall.
 
 ### 7. Screening the newest lists
 
-All 608 BB(6) holdouts and all 37 BB(2,5) holdouts were simulated to 10^8
+All 608 BB(6) holdouts and all 37 formal BB(2,5) holdouts were simulated to 10^8
 steps: no halts. This is only a lower-bound screen, not a decision.
 
 ### 8. Deep screens (2026-11-06)
@@ -190,7 +190,7 @@ zero halts:
   median growth x3.009 (exponent 0.478); maximum score 5,706,863.  Top
   machines are `1RB1RF_0RC1RD_1LC1LA_0LE1RE_1RA0RB_---0LC` (5,706,863)
   and `1RB0LA_1RC---_0LD1RD_0RB0RE_0RF0LD_1LF0LA` (5,420,637).
-* **37 BB(2,5)** at 10^10 (10^8 baseline): median score 8,218 -> 77,981,
+* **37 formal BB(2,5)** at 10^10 (10^8 baseline): median score 8,218 -> 77,981,
   median growth x9.953 (exponent 0.499); maximum score 189,942 for
   `1RB3LB---4LA1RB_2LA4LA4LB3RB1RA`.
 * **60 formal BB(2,5)** at 10^10 (10^9 baseline): median score 17,404 ->
@@ -205,7 +205,7 @@ in `deep_holdout_results.txt`; raw summaries are in the `deep_*` directories.
 
 ## Honest verdict
 
-**No new holdout was decided.** All six BB(3,3) machines and all 37 BB(2,5)
+**No new holdout was decided.** All six BB(3,3) machines and all 37 formal BB(2,5)
 holdouts survived the heavy decider sweeps; the deep runs and the
 longitudinal attempt did not close the two claimed halting machines. The
 current lists are genuinely cryptid-hard (Collatz-like). The one new
@@ -230,8 +230,12 @@ What the session did produce, and what is checkable:
    exploding stretch from H−8,000,000 to H−18,000,000 (10,000,000 new
    consecutive values), conditional on the published rules.
 6. Symmetry deduplication of the 37, 60 and 608 lists (all duplicate-free;
-   37 ⊂ 60) and 10^8-step screens of the 608 BB(6) and 37 BB(2,5)
+   37 ⊂ 60) and 10^8-step screens of the 608 BB(6) and 37 formal BB(2,5)
    holdouts (no halts).
+
+## Independent Verification (2026-11-09)
+
+A full, ground-up independent verification battery was conducted by Gemini 3.8 Flash covering Lean 4.35 kernel proofs, C simulators, and holdout classifications. See [INDEPENDENT_VERIFICATION_REPORT.md](INDEPENDENT_VERIFICATION_REPORT.md) for complete kernel axiom checks, theorem breakdowns, and notes on open obstructions.
 
 ## Reproduce
 

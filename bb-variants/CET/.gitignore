@@ -1,0 +1,12 @@
+*.exe
+*.o
+*.obj
+*.vo
+*.vok
+*.vos
+*.glob
+.*.aux
+__pycache__/
+*.pyc
+*.log
+cet1_candidates.txt
