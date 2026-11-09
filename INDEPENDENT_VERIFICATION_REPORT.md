@@ -21,6 +21,10 @@
 | **Wallmemo 758** | Exploding wall $H$ | `wallmemo.exe` | **VERIFIED BOUND** | Selftest pass ($k=1$ 7,391 chains, $k=2$ 4,162 chains); verified 1,000 values in 1s. |
 | **LongAcc Engine** | Holdout 1 (`1RB3RB---3LA1RA_2LA3RA4LB0LB1LB`) | `node longacc_run.mjs` (Wasm) | **VERIFIED COMPRESSED MACRO** | Ran to row 6713 (step width 6737) in 5s; configuration output intact. |
 | **gem48 ($\varepsilon_1$ TM)** | 48-state 2-symbol machine | `rocq/gemini_epsilon1_tm_48s_v2_fix.v` & `tools/_check_gem48.py` | **PROVED LOWER BOUND** | Rocq 9.1: 13/13 theorems verified with 0 axioms (`Closed under global context`). Proves $f_{\varepsilon_1}(3) < T$. |
+| **FGH Machines 1–5** | Ranks $\omega, \omega^2, \omega^k$ | `rocq/Machine1.v` to `Machine5.v` | **PROVED CORRECT RUNS** | Rocq 9.1: All 5 machines compile with 0 axioms (`Closed under global context`). Concrete runs verified with `vm_compute`. |
+| **BB(3,3) Holdout 494**| `1RB2LA0LA_2LC---2RA_0RA2RC1LC` | `rocq/holdout494/Check494.v` | **PROVED NON-HALTING** | Rocq 9.1: `nonhalt : ~ halts tm c0` verified with 0 axioms (`Closed under global context`). |
+| **BB(2,5) Holdout 17** | `1RB---0RB0LA2RA_2LB2LA3RA4LB0LB` | `rocq/Machine25_17.v` | **VERIFIED ENTRY CONFIG** | Rocq 9.1: Step 117 cycle entry proven with 0 axioms. Explicitly preserves honest open status for all-s3 overflow. |
+| **Bigfoot Formal Bounds**| `1RB2RA1LC_2LC1RB2RB_---2LA1LA` | `bigfoot_formal/.../M_*.lean` | **PROVED SHARP BOUNDS** | Lean 4: Collatz reduction, parity lemmas, tight block bounds $[-2, 4]$, and 5-step triple decrement witness kernel-checked. |
 | **CET Formal Proof** | Non-quasi-halting witness | `bb-variants/CET/NonQuasiHalting_CET1.v` | **PROVED THEOREM** | Rocq 9.1: `formal_certificate_structure` verified with 0 axioms. |
 | **CET Simulator** | CET(1) & CET(2) champions | `python cet_cli.py run` | **VERIFIED EXACT MATCH** | CET(1) halts at step 1 (cell 1); CET(2) halts at step 97 (cell -1). Exact match to Nath76 champions. |
 
@@ -128,6 +132,28 @@
     * CET(1): Terminates by collision on step 1 at cell 1 (Exact match).
     * CET(2): Terminates by collision on step 97 at cell -1 (Exact match to Nath76 champion).
   * **Documented Champions:** CET(3) = 3,092,745,703 steps; CET(4) = 4,622,083,548 steps; CET(2, 3 sym) = 1,528,952,999 steps; MCET(3) = 211,190,346 steps.
+
+---
+
+### 2.8 Extended FGH (\varepsilon_2, \zeta_0, \eta_0) & Concrete TM Bounds
+* **Proof Files:** `rocq/FGH_Eps2_Zeta0_Eta0.v`, `rocq/gemini_epsilon2_zeta0_tm.v`
+* **Independent Runner:** `tools/_check_eps2_zeta0.py`
+* **Execution:**
+  1. Compiled `FGH_Eps2_Zeta0_Eta0.v` with Rocq 9.1 (`coqc`). Checked `Print Assumptions` across all 15 theorems.
+  2. Compiled `gemini_epsilon2_zeta0_tm.v` with Rocq 9.1 (`coqc -I .`). Checked `Print Assumptions` across all 12 theorems.
+  3. Ran independent simulation script `python tools/_check_eps2_zeta0.py`.
+* **Results:**
+  * **Axiom Audit:** 27/27 theorems in both files evaluated with **`Closed under the global context`** (zero unverified axioms, no `admit`, no `sorry`, no `Parameter`).
+  * **Certified Hierarchy:**
+    * $\varepsilon_k$ family formalized for all $k < \omega$, including $\varepsilon_0, \varepsilon_1, \varepsilon_2$ with certified strict growth $\forall n, S n \le f_{\varepsilon_k}(n)$.
+    * $\zeta_0 = \phi(2, 0) = \sup_n \varepsilon_n$ formalized with certified strict growth $\forall n, S n \le f_{\zeta_0}(n)$.
+    * $\eta_0 = \phi(3, 0) = \sup_n \zeta_n$ formalized with certified strict growth $\forall n, S n \le f_{\eta_0}(n)$.
+  * **Machine Milestones on 48-state TM (`gem48`):**
+    * Step 352 produces the $\zeta_0$ worm $[(0,0); (0,2)]$ at head -2 (`boot_352_zeta0`).
+    * Step 702 produces the $\varepsilon_2$ worm $[(0,0); (0,1); (1,1); (2,1)]$ at head 10, executing 350 TM steps to expand $(0,2) \to (2,1)$ (`campaign_expand_zeta0_to_eps2`).
+    * Step 1641 expands $(2,1) = \varepsilon_2$ into $\varepsilon_3$ pair $(3,1)$ in exactly 939 TM steps (`campaign_expand_eps2_to_eps3`).
+    * Proves certified conditional lower bounds: $f_{\varepsilon_2}(2) < T$ and $f_{\zeta_0}(1) < T$.
+    * Base worm halts at exact step 148.
 
 ---
 
