@@ -11,8 +11,8 @@ $$\text{CET}(n) = \max \{ \text{steps before collision} \}$$
 
 | Model | Value (Steps) | Status | Collision Cell | Discovered By / Verification | Champion Spec (Agent 1 \| Agent 2 \| ...) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CET(1)** | **1** | **Proven Exact** | Cell `1` | Nath76 | `1RA\|1LA` |
-| **CET(2)** | **97** | **Proven Exact** | Cell `-1` | Nath76 / Antigravity (Exhaustive search of 16.7M) | `1RA1RB_1LA0LB\|1LA0RB_0LA1RB` |
+| **CET(1)** | **1** | **Proven Exact** | Cell `1` | Nath76 | `0RA0RA\|0LA0LA` |
+| **CET(2)** | **97** | **Proven Exact** | Cell `-1` | Nath76 / Antigravity (Exhaustive search of 16.7M) | `1LB0LB_1RB0LA\|1RB1LA_1LA1RB` |
 | **CET(3)** | **3,092,745,703** | **Current Champion** | Cell `9,857` | Antigravity (Deep multi-seed search) | `0LB0LC_1RB1LA_1RC0LA\|1LB0RC_1RA1LB_0LB1RC` |
 | **CET(4)** | **4,622,083,548** | **Current Champion** | Cell `-19,208` | Antigravity (Billion-odometer / GA search) | `1LC0LC_1LA1RB_0RB1LC_0RA0RA\|1RC0RA_1RA1RB_1LC0RD_0RA0RC` |
 | **CET(2, 3 sym)** | **1,528,952,999** | **Current Champion** | Cell `1,723` | Antigravity (3-symbol search) | `1RB0RA2LB_2LA2RB1LB\|2RB0RA2RB_2LB1RA0RB` |
