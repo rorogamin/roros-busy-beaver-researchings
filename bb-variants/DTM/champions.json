@@ -1,0 +1,149 @@
+{
+  "variant": "Double Turing Machines (DTM)",
+  "conventions": {
+    "step_counting": "Rado S convention: halting transition counts as +1 final step (S >= 1).",
+    "score_metric": "Sigma: count of nonzero tape symbols upon halting.",
+    "indexing": "At step t = 0, 1, 2, ..., active rule is Rules[t % len(rules)], sharing a single state register starting at A (0) and head at 0 on an all-0 tape.",
+    "halting": "Halts if the active rule transition is Z/H or ---, OR if current state >= rule.states or current symbol >= rule.symbols."
+  },
+  "growth_theorem": {
+    "statement": "For all n >= 1, m >= 2, a >= 1: BB(n, m) <= DTM(n, m, a) <= BB(a*n, m). In particular for standard 2-rule DTMs: BB(n, m) <= DTM(n, m) <= BB(2n, m).",
+    "asymmetric_bound": "For DTM(n, m, a, b), every machine embeds into (n + a, max(m, b)) standard TMs, so DTM(n, m, a, b) <= BB(n + a, max(m, b)).",
+    "summary": "Uncomputable; grows at Busy Beaver rank shifted multiplicatively by rule count (a*n states)."
+  },
+  "champions": [
+    {
+      "id": "dtm12",
+      "class": "DTM(1,2)",
+      "status": "exact",
+      "steps": 6,
+      "score": 4,
+      "ones": 4,
+      "span": 4,
+      "spec": "1RA1LA|1LA1RZ",
+      "equivalent_tm": "1RB1LB_1LA1RZ",
+      "notes": "Proven exact via unpruned TNF exhaustive search (cap=50, 23 nodes). Equals BB(2) = 6 because the BB(2) champion is bipartite."
+    },
+    {
+      "id": "dtm22",
+      "class": "DTM(2,2)",
+      "status": "exact",
+      "steps": 40,
+      "score": 5,
+      "ones": 5,
+      "span": 11,
+      "spec": "1RA0LA_1LA0RB|1LA1LB_1RZ1RB",
+      "ties": ["1RB0LB_1LB0RA|1RZ1RB_1LA1LB"],
+      "equivalent_tm": "1RC0LC_1LC0RD_1LA1LB_1RZ1RB",
+      "notes": "Proven exact: embeds into BB(4)=107 and unpruned TNF checked all open trees up to cap=120 (94,101 nodes, 0.040s). Strictly below BB(4)=107 due to parity constraint."
+    },
+    {
+      "id": "dtm32",
+      "class": "DTM(3,2)",
+      "status": "lower_bound",
+      "steps": 16244,
+      "score": 73,
+      "ones": 73,
+      "span": 147,
+      "spec": "1RB1RA_1LC1RC_0RA0LB|1RZ1RB_1LB0RA_1LC0RB",
+      "equivalent_tm": "1RE1RD_1LF1RF_0RD0LE_1RZ1RB_1LB0RA_1LC0RB",
+      "notes": "Found in 4% filtered TNF sweep (114.7M nodes). Bounded above by BB(6)."
+    },
+    {
+      "id": "dtm32_sigma",
+      "class": "DTM(3,2)",
+      "status": "sigma_best",
+      "steps": 5610,
+      "score": 84,
+      "ones": 84,
+      "span": 84,
+      "spec": "1RA1LB_1LA1RB_1LC0LA|0RB1RC_1RB0LA_1RZ1LC",
+      "equivalent_tm": "1RD1LE_1LD1RE_1LF0LD_0RB1RC_1RB0LA_1RZ1LC",
+      "notes": "Highest nonzero tape score Sigma observed in DTM(3,2)."
+    },
+    {
+      "id": "dtm23",
+      "class": "DTM(2,3)",
+      "status": "lower_bound",
+      "steps": 65794,
+      "score": 355,
+      "ones": 178,
+      "span": 355,
+      "spec": "1RA0RA2LB_2RA0LB0LA|1LA2LB1RB_2RB1LA1RZ",
+      "equivalent_tm": "1RC0RC2LD_2RC0LD0LC_1LA2LB1RB_2RB1LA1RZ",
+      "notes": "Discovered via 1-mutation climb from 6,830-step machine found in 4% DTM(2,3) TNF sweep (109.4M nodes). Also highest Sigma observed (355). Bounded above by BB(4,3)."
+    },
+    {
+      "id": "dtm23_tnf_raw",
+      "class": "DTM(2,3)",
+      "status": "tnf_sample_best",
+      "steps": 13698,
+      "score": 81,
+      "ones": 2,
+      "span": 161,
+      "spec": "1RB1LA2RB_0RB2LA1RA|1RB0LB1LB_2LA1RZ0RA",
+      "equivalent_tm": "1RD1LC2RD_0RD2LC1RC_1RB0LB1LB_2LA1RZ0RA",
+      "notes": "Longest direct TNF sample result (pre-mutation) from 4% filtered DTM(2,3) sweep."
+    },
+    {
+      "id": "dtm13",
+      "class": "DTM(1,3)",
+      "status": "exact",
+      "steps": 12,
+      "score": 6,
+      "ones": 4,
+      "span": 6,
+      "spec": "1RA2LA1RA|1LA2RA1RZ",
+      "equivalent_tm": "1RB2LB1RB_1LA2RA1RZ",
+      "notes": "Proven exact: embeds into BB(2,3)=38 and unpruned TNF checked up to cap=500 (241 nodes, remaining timeouts are periodic bouncers)."
+    },
+    {
+      "id": "dtm123",
+      "class": "DTM(1,2,3)",
+      "status": "exact",
+      "steps": 18,
+      "score": 5,
+      "ones": 5,
+      "span": 5,
+      "spec": "1RA0LA|0RA1RA|1LA1RZ",
+      "equivalent_tm": "1RB0LB_0RC1RC_1LA1RZ",
+      "notes": "Proven exact: 3 rules on 1 state, 2 symbols. Embeds into BB(3)=21; unpruned TNF checked up to cap=100 (223 nodes, 0 holdouts at cap=5000)."
+    },
+    {
+      "id": "dtm223",
+      "class": "DTM(2,2,3)",
+      "status": "lower_bound",
+      "steps": 26336,
+      "score": 132,
+      "ones": 132,
+      "span": 177,
+      "spec": "0RB0RA_1LB1RB|0LB1RZ_1RB0LA|1RA1LB_1RB0RA",
+      "equivalent_tm": "0RD0RC_1LD1RD_0LF1RZ_1RF0LE_1RA1LB_1RB0RA",
+      "notes": "Found in 100% filtered TNF sweep of DTM(2,2,3) (180.7M nodes up to 40k steps, 445,840 compact/bouncer holdouts remaining)."
+    },
+    {
+      "id": "dtm2232_asym",
+      "class": "DTM(2,2,3,2)",
+      "status": "showcase",
+      "steps": 27,
+      "score": 6,
+      "ones": 6,
+      "span": 9,
+      "spec": "1RA0LA_1LA1RB|1LA1RB_0RC0RA_1RC1RZ",
+      "equivalent_tm": null,
+      "notes": "Asymmetric DTM(2,2,3,2) example halting via out-of-range state C when transitioning back to Rule 1 (2 states)."
+    }
+  ],
+  "presets": [
+    { "id": "dtm12", "label": "DTM(1,2) = 6 (Exact, Σ=4)", "spec": "1RA1LA|1LA1RZ" },
+    { "id": "dtm22", "label": "DTM(2,2) = 40 (Exact, Σ=5)", "spec": "1RA0LA_1LA0RB|1LA1LB_1RZ1RB" },
+    { "id": "dtm32", "label": "DTM(3,2) ≥ 16,244 (Best steps, Σ=73)", "spec": "1RB1RA_1LC1RC_0RA0LB|1RZ1RB_1LB0RA_1LC0RB" },
+    { "id": "dtm32_sigma", "label": "DTM(3,2) Σ ≥ 84 (5,610 steps)", "spec": "1RA1LB_1LA1RB_1LC0LA|0RB1RC_1RB0LA_1RZ1LC" },
+    { "id": "dtm23", "label": "DTM(2,3) ≥ 65,794 (Best steps & Σ=355)", "spec": "1RA0RA2LB_2RA0LB0LA|1LA2LB1RB_2RB1LA1RZ" },
+    { "id": "dtm13", "label": "DTM(1,3) = 12 (Exact, Σ=6)", "spec": "1RA2LA1RA|1LA2RA1RZ" },
+    { "id": "dtm123", "label": "DTM(1,2,3) = 18 (Exact, 3 rules, Σ=5)", "spec": "1RA0LA|0RA1RA|1LA1RZ" },
+    { "id": "dtm223", "label": "DTM(2,2,3) ≥ 26,336 (3 rules, Σ=132)", "spec": "0RB0RA_1LB1RB|0LB1RZ_1RB0LA|1RA1LB_1RB0RA" },
+    { "id": "dtm2232_asym", "label": "DTM(2,2,3,2) = 27 (Asymmetric OOB halt)", "spec": "1RA0LA_1LA1RB|1LA1RB_0RC0RA_1RC1RZ" },
+    { "id": "dtm32_counter", "label": "DTM(3,2) Binary Counter Holdout (50M+ steps)", "spec": "1RB0LA_1RA0LA_0RC1LA|1RA0LC_1LC1RA_1RB1RZ" }
+  ]
+}

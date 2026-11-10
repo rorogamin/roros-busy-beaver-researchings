@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Double Turing Machine (DTM) Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-group">
+      <div class="logo-badge">DTM</div>
+      <div>
+        <div class="app-title">Double Turing Machine Studio</div>
+        <div class="app-subtitle">Modulo Rule-Alternating Simulator &amp; Server Explorer — DTM(n,m), DTM(n,m,a), DTM(n,m,a,b)</div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="mode-tabs">
+        <button class="mode-tab-btn active" data-mode="dtm">DTM(n,m) [2 Rules]</button>
+        <button class="mode-tab-btn" data-mode="multi">DTM(n,m,a) [k Rules]</button>
+        <button class="mode-tab-btn" data-mode="asym">DTM(n,m,a,b) [Asymmetric]</button>
+      </div>
+
+      <div class="preset-picker-group">
+        <span class="preset-label">Preset</span>
+        <select id="presetSelect" class="preset-select"></select>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-cyan" id="btnRandomize" title="Randomize Transition Tables (R)">Randomize</button>
+      <button class="btn" id="btnMutate" title="Mutate 1 Transition Entry">Mutate 1</button>
+      <button class="btn" id="btnExportPng" title="Download Space-Time PNG">Export PNG</button>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <section class="main-column">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Step Count (t)</span>
+          <span class="metric-value metric-highlight" id="metricStepCount">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Next Active Rule</span>
+          <span class="metric-value" id="metricActiveRule" style="color: var(--accent-cyan);">Rule 1 (t%2=0)</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Shared State</span>
+          <span class="metric-value" id="metricState">A</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Score (Non-Zeros)</span>
+          <span class="metric-value" id="metricScore">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Head / Span</span>
+          <span class="metric-value" id="metricSpan">0 [0..0]</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Class</span>
+          <span class="metric-value" id="metricSignature" style="font-size: 13px; color: var(--accent-purple);">DTM(1,2)</span>
+        </div>
+      </div>
+
+      <div id="statusBadge" class="status-badge">Ready — press Run, Step, or Server Sim</div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Space-Time Diagram (Left gutter = Rule index t mod k, X = Space, Y = Time)</span>
+          <div class="controls-row">
+            <button class="btn btn-xs" id="btnZoomIn">+</button>
+            <button class="btn btn-xs" id="btnZoomOut">-</button>
+            <button class="btn btn-xs" id="btnFitCenter">Center</button>
+          </div>
+        </div>
+        <div class="spacetime-wrap">
+          <canvas id="spacetimeCanvas"></canvas>
+        </div>
+        <div class="rule-legend">
+          <span><span class="legend-dot" style="background:#00f0ff"></span>Sym 1 / Rule 1</span>
+          <span><span class="legend-dot" style="background:#ff5c5c"></span>Sym 2 / Halt</span>
+          <span><span class="legend-dot" style="background:#39ff14"></span>Sym 3 / Live Head</span>
+          <span><span class="legend-dot" style="background:#bf55ec"></span>Rule 2 (t%k=1)</span>
+          <span><span class="legend-dot" style="background:#ffb703"></span>Sym 4 / Rule 3</span>
+          <span style="margin-left:auto; color:var(--text-dim);">Left-drag: pan &bull; Scroll: zoom</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">1D Tape Ribbon (Head at center)</span>
+          <span id="tapeSpanLabel" style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">head = 0</span>
+        </div>
+        <div class="tape-ribbon" id="tapeRibbon"></div>
+      </div>
+
+      <div class="card" id="equivCard" style="display:none;">
+        <div class="card-header">
+          <span class="card-title">Exact Equivalent Standard TM Reduction (k&middot;n states, m symbols)</span>
+        </div>
+        <div class="server-box" id="equivBox"></div>
+      </div>
+    </section>
+
+    <aside class="side-column">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Playback &amp; Native Server Accelerator</span>
+          <span id="serverBadge" style="font-size:11px; color:var(--text-muted);">Checking server...</span>
+        </div>
+        <div class="controls-row" style="margin-bottom:10px;">
+          <button class="btn btn-green" id="btnRunPause">Run</button>
+          <button class="btn" id="btnStep">Step</button>
+          <button class="btn" id="btnStep100">+100</button>
+          <button class="btn" id="btnReset">Reset</button>
+          <div class="input-group" style="margin-left:auto;">
+            <label for="speedSelect">Speed</label>
+            <select id="speedSelect" class="preset-select" style="padding:4px 8px;">
+              <option value="5">5 st/s</option>
+              <option value="30">30 st/s</option>
+              <option value="200" selected>200 st/s</option>
+              <option value="2000">2,000 st/s</option>
+              <option value="20000">20,000 st/s</option>
+            </select>
+          </div>
+        </div>
+        <div class="controls-row" style="margin-bottom:10px;">
+          <button class="btn btn-cyan" id="btnServerSim">Server Fast Sim (10M cap)</button>
+          <button class="btn btn-purple" id="btnServerMutate">Server Mutate Hunt</button>
+          <button class="btn btn-amber" id="btnServerSearch">Server Random Hunt</button>
+        </div>
+        <div class="server-box" id="serverOutput">Server API ready. Click "Server Fast Sim" for C-speed cycle detection &amp; multi-million-step runs.</div>
+        <div class="controls-row" id="loadBestRow" style="margin-top:8px; display:none;">
+          <button class="btn btn-xs btn-cyan" id="btnLoadBest">Load Server Discovery</button>
+          <button class="btn btn-xs" id="btnLoadHoldout">Load Holdout</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Machine Spec &amp; Dimensions</span>
+        </div>
+        <div class="input-group" style="margin-bottom:10px;">
+          <label for="specInput">DTM Spec (rules separated by <code>|</code>, states by <code>_</code>)</label>
+          <div class="controls-row">
+            <input type="text" id="specInput" class="input-text" style="flex:1;" value="1RA1LA|1LA1RZ">
+            <button class="btn btn-cyan" id="btnApplySpec">Apply</button>
+          </div>
+        </div>
+        <div class="controls-row">
+          <div class="input-group">
+            <label for="dimN">States (n)</label>
+            <input type="number" id="dimN" class="input-num" min="1" max="8" value="1">
+          </div>
+          <div class="input-group">
+            <label for="dimM">Sym (m)</label>
+            <input type="number" id="dimM" class="input-num" min="2" max="6" value="2">
+          </div>
+          <div class="input-group" id="groupA" style="display:none;">
+            <label for="dimRules">Rules (a)</label>
+            <input type="number" id="dimRules" class="input-num" min="1" max="10" value="3">
+          </div>
+          <div class="input-group" id="groupAsymA" style="display:none;">
+            <label for="dimA2">R2 States (a)</label>
+            <input type="number" id="dimA2" class="input-num" min="1" max="8" value="2">
+          </div>
+          <div class="input-group" id="groupAsymB" style="display:none;">
+            <label for="dimB2">R2 Sym (b)</label>
+            <input type="number" id="dimB2" class="input-num" min="2" max="6" value="2">
+          </div>
+          <button class="btn" id="btnResize" style="align-self:flex-end;">Resize</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Rule Transition Tables (editable: e.g. <code>1RB</code>, <code>0LA</code>, <code>1RZ</code>, <code>---</code>)</span>
+        </div>
+        <div id="ruleTablesContainer"></div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="simulator.js"></script>
+  <script src="spacetime.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
