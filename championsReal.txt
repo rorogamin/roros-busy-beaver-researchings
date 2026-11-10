@@ -1422,3 +1422,55 @@ BB(67) -- q^81(q(5) - 2), conjectured.
 CORRECTION: BB(29), BB(31), BB(33), and BB(48) are no longer in the
 "no machine string" list at the end of WIKI SYNC; their data is above.
 BB(67) was already tabulated; BB(150) and BB(1015) remain link-only.
+
+-------------------------------------------------------------------------
+ADDITIONS -- loader3229, 2026-11-10 06:34 (two f_{w^2} rows)
+-------------------------------------------------------------------------
+Both rows are informal.  loader3229 reported them at 6:34 AM; the
+levels and step bounds are his estimates, not local proofs.  No
+simulation can reach the claimed step counts, and neither row is a
+Rocq-verified halting-time theorem.
+
+BB(9,4): > f_{w^2}(18) steps.  (informal; new BB(9,4) row.  This
+supersedes the existing BB(9,4) f_{w+3}(16) and lower f_{w+3} rows on
+claimed level: omega^2 is above omega+3.)
+1LD2RG2LA3LG_1LI2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RZ3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0RC3LI1RI0RI
+  Reported by loader3229 for more than f_{w^2}(18) steps.  This is the
+  exact machine string from the report.  Its nine state blocks each have
+  four 3-character transitions; structure checked locally, but the
+  f_{w^2} claim itself was not simulated or proved here.
+
+BB(8,5): > f_{w^2}(13) steps.  (informal; new BB(8,5) row.  This
+supersedes the existing BB(8,5) f_{w*2+1}(93) and f_{w*2} rows on
+claimed level: omega^2 is above omega*2+1.)
+1LD2RG2LA3LG---_4LC2LH2RB2RF0RB_4LE1RC2RB3LG4RB_0RC1RC1LD3RD3LA_3RD1LE1LE3LE4RE_1RZ3LD2LE3LE4RD_1RG1LH2RG3LG3LF_1RC2LH1LA1LE---
+  Reported by loader3229 for more than f_{w^2}(13) steps.  This is the
+  exact machine string from the report.  Its eight state blocks each
+  have five 3-character transitions; structure checked locally, but the
+  f_{w^2} claim itself was not simulated or proved here.
+
+STATUS: recorded, not verified.  The f_* levels are the claimant's own
+estimates.  No local parse/run check or Rocq proof is asserted for these
+two rows yet.
+
+------------------------------------------------------------------------
+2026-11-08  ADD: loader3229 BB(11,3), BB(12,3), BB(13,3) level claims.
+  The exact machine strings already appear above in the wiki-current rows
+  (BB(11,3), BB(12,3), BB(13,3)); this section adds only the newly reported
+  step bounds.  No machine string is duplicated and no earlier row is
+  replaced.  All three levels are loader3229's own informal estimates,
+  not independently verified here.
+
+BB(11,3): > f_{w*2}(46) steps.  (informal; reported 2026-11-08 09:55)
+  Machine string: the BB(11,3) wiki-current row above.
+
+BB(12,3): > f_{w*2}(f_{w+2}(f_{w+2}(4))) steps.  (informal; reported
+  2026-11-08 09:55)
+  Machine string: the BB(12,3) wiki-current row above.
+
+BB(13,3): > f_{w*2+1}(3) steps.  (informal; reported 2026-11-08 10:28)
+  Machine string: the BB(13,3) wiki-current row above.
+
+STATUS: recorded, not verified.  The three machines are already present;
+only these level claims are new.  No Rocq/Lean proof or local simulation
+of these step counts is asserted.
