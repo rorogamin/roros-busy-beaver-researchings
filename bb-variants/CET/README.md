@@ -18,6 +18,18 @@ $$\text{CET}(n) = \max \{ \text{steps before collision} \}$$
 | **CET(2, 3 sym)** | **1,528,952,999** | **Current Champion** | Cell `1,723` | Antigravity (3-symbol search) | `1RB0RA2LB_2LA2RB1LB\|2RB0RA2RB_2LB1RA0RB` |
 | **MCET(3)** (3 agents) | **211,190,346** | **Current Champion** | Cell `13,350` | Antigravity (3-agent search) | `1LC1LA_1RA1RB_0RB0RA\|1LC1LB_1RC1RB_0LC0RA\|0LA1RB_0RC1RB_0RA1RC` |
 
+### Top Verified Normal Halters in CET(3)
+
+All candidates below have been independently simulated and verified from blank tape down to the exact single collision step $T$ where $p_1(T) = p_2(T)$ without quasi-halting:
+
+| Rank | Steps | Collision Cell | Spec | Verification Engine |
+| :--- | :--- | :--- | :--- | :--- |
+| **#1** | **3,092,745,703** | `9,857` | `0LB0LC_1RB1LA_1RC0LA\|1LB0RC_1RA1LB_0LB1RC` | Verified (17.1s, 180.6 Msteps/s) |
+| **#2** | **2,755,868,107** | `-12,115` | `1RB0LC_1LA1RB_0RB1LC\|1RB0RB_1LB0LC_1RB0RA` | Verified (14.3s, 192.6 Msteps/s) |
+| **#3** | **78,697,021** | `-1,501` | `1RB0LC_1LA1RB_0RB1LC\|1RB0RC_1LB0LC_1LA0RA` | Verified (0.39s, 197.2 Msteps/s) |
+| **#4** | **26,121,565** | `-567` | `0RB0LC_1LC1RB_1RC1LA\|1RB1LB_0RC0RA_1LC0RB` | Verified (0.13s, 200.9 Msteps/s) |
+| **#5** | **986,031** | `381` | `0LB0LC_1RB0LA_0RB0LA\|1RB1LA_1LC0RC_0LA1RC` | Verified (0.005s) |
+
 > **Note on Parity Invariance:**
 > Agent 1 starts at position 0, and Agent 2 starts at position 2. Because both agents move $\pm 1$ at every discrete step, the spatial difference $\Delta x = x_2 - x_1$ always preserves parity ($\Delta x \pmod 2 = 0$). Thus, agents can never pass through each other in continuous space without landing on the exact same discrete cell at the same time!
 

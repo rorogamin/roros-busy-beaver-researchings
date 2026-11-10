@@ -253,20 +253,28 @@ int main(int argc, char** argv) {
     verify_2agent("CET(3) 26.12M Record",
                   "0RB0LC_1LC1RB_1RC1LA|1RB1LB_0RC0RA_1LC0RB", 3, 2, 50000000ULL);
 
-    // 5. MCET(3) 211.19M Champion
+    // 5. CET(3) 78.69M Record
+    verify_2agent("CET(3) 78.69M Record",
+                  "1RB0LC_1LA1RB_0RB1LC|1RB0RC_1LB0LC_1LA0RA", 3, 2, 100000000ULL);
+
+    // 6. CET(3) 2.755B Runner-Up
+    verify_2agent("CET(3) 2.755B Runner-Up",
+                  "1RB0LC_1LA1RB_0RB1LC|1RB0RB_1LB0LC_1RB0RA", 3, 2, 3500000000ULL);
+
+    // 7. MCET(3) 211.19M Champion
     verify_mcet3("MCET(3) Champion (3 agents, 211.19M steps)",
                  "1LC1LA_1RA1RB_0RB0RA|1LC1LB_1RC1RB_0LC0RA|0LA1RB_0RC1RB_0RA1RC",
                  300000000ULL);
 
-    // 6. CET(2, 3-symbol) 1.528B Champion
+    // 8. CET(2, 3-symbol) 1.528B Champion
     verify_2agent("CET(2, 3 sym) Champion (1.528B steps)",
                   "1RB0RA2LB_2LA2RB1LB|2RB0RA2RB_2LB1RA0RB", 2, 3, 2000000000ULL);
 
-    // 7. CET(3) 3.092B Champion
+    // 9. CET(3) 3.092B Champion
     verify_2agent("CET(3) Champion (3.092B steps)",
                   "0LB0LC_1RB1LA_1RC0LA|1LB0RC_1RA1LB_0LB1RC", 3, 2, 4000000000ULL);
 
-    // 8. CET(4) 4.622B Champion
+    // 10. CET(4) 4.622B Champion
     verify_2agent("CET(4) Champion (4.622B steps)",
                   "1LC0LC_1LA1RB_0RB1LC_0RA0RA|1RC0RA_1RA1RB_1LC0RD_0RA0RC", 4, 2, 5000000000ULL);
 
