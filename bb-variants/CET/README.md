@@ -1,150 +1,175 @@
-# Catch-Em-Turing (CET & MCET) Studio
+# Catch-Em-Turing (CET)
 
-An ultra-fast simulator, interactive space-time diagrammer, Busy Beaver search engine, and exploration studio for **Catch-Em-Turing (CET(n))** and **Multi Catch-Em-Turing (MCET(n))** computational systems.
+**Catch-Em-Turing** is a Busy Beaver variant proposed by [NathFR76](https://wiki.bbchallenge.org/wiki/User:NathFR76) in November 2026. Instead of one Turing-machine head, a CET machine runs **two independent agents simultaneously on one shared tape**. The agents do not halt individually; the machine halts only when the two agents occupy the same cell at the same time.
 
----
+This README follows the [Catch-Em-Turing page on the BusyBeaverWiki](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), last edited 10 November 2026. The champion tables below are copied from that page and preserve its exact-versus-lower-bound distinctions.
 
-## 🌟 Mathematical Discoveries & Exact Results
+## The model
 
-The Catch-Em-Turing Busy Beaver function measures the maximum steps two $n$-state agents on an infinite tape can execute before colliding on the same cell:
-$$\text{CET}(n) = \max \{ \text{steps before collision} \}$$
+For each integer `n >= 1`, a **CET(n)** machine has:
 
-| Model | Value (Steps) | Status | Collision Cell | Discovered By / Verification | Champion Spec (Agent 1 \| Agent 2 \| ...) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **CET(1)** | **1** | **Proven Exact** | Cell `1` | Nath76 | `0RA0RA\|0LA0LA` |
-| **CET(2)** | **97** | **Proven Exact** | Cell `-1` | Nath76 / Antigravity (Exhaustive search of 16.7M) | `1LB0LB_1RB0LA\|1RB1LA_1LA1RB` |
-| **CET(3)** | **3,092,745,703** | **Current Champion** | Cell `9,857` | Antigravity (Deep multi-seed search) | `0LB0LC_1RB1LA_1RC0LA\|1LB0RC_1RA1LB_0LB1RC` |
-| **CET(4)** | **4,622,083,548** | **Current Champion** | Cell `-19,208` | Antigravity (Billion-odometer / GA search) | `1LC0LC_1LA1RB_0RB1LC_0RA0RA\|1RC0RA_1RA1RB_1LC0RD_0RA0RC` |
-| **CET(2, 3 sym)** | **1,528,952,999** | **Current Champion** | Cell `1,723` | Antigravity (3-symbol search) | `1RB0RA2LB_2LA2RB1LB\|2RB0RA2RB_2LB1RA0RB` |
-| **MCET(3)** (3 agents) | **211,190,346** | **Current Champion** | Cell `13,350` | Antigravity (3-agent search) | `1LC1LA_1RA1RB_0RB0RA\|1LC1LB_1RC1RB_0LC0RA\|0LA1RB_0RC1RB_0RA1RC` |
+- exactly **2 agents**;
+- exactly **n states per agent**;
+- a separate transition table for each agent;
+- a bi-infinite tape, initially all `0`;
+- Agent 1 starting at position `0`, Agent 2 at position `2`;
+- both agents starting in their initial state (state `A`, called state `0` in the wiki's numbering).
 
-### Top Verified Normal Halters in CET(3)
+At each step, both agents:
 
-All candidates below have been independently simulated and verified from blank tape down to the exact single collision step $T$ where $p_1(T) = p_2(T)$ without quasi-halting:
+1. read the symbol in their current cell;
+2. write a symbol in that cell;
+3. move one cell left or right;
+4. change state according to their own transition table.
 
-| Rank | Steps | Collision Cell | Spec | Verification Engine |
-| :--- | :--- | :--- | :--- | :--- |
-| **#1** | **3,092,745,703** | `9,857` | `0LB0LC_1RB1LA_1RC0LA\|1LB0RC_1RA1LB_0LB1RC` | Verified (17.1s, 180.6 Msteps/s) |
-| **#2** | **2,755,868,107** | `-12,115` | `1RB0LC_1LA1RB_0RB1LC\|1RB0RB_1LB0LC_1RB0RA` | Verified (14.3s, 192.6 Msteps/s) |
-| **#3** | **78,697,021** | `-1,501` | `1RB0LC_1LA1RB_0RB1LC\|1RB0RC_1LB0LC_1LA0RA` | Verified (0.39s, 197.2 Msteps/s) |
-| **#4** | **26,121,565** | `-567` | `0RB0LC_1LC1RB_1RC1LA\|1RB1LB_0RC0RA_1LC0RB` | Verified (0.13s, 200.9 Msteps/s) |
-| **#5** | **986,031** | `381` | `0LB0LC_1RB0LA_0RB0LA\|1RB1LA_1LC0RC_0LA1RC` | Verified (0.005s) |
+The reads happen before either write, and the writes and moves happen simultaneously. If both agents try to write to the same cell in the same step, the lower-numbered agent has priority (this rule is stated explicitly for the multi-agent extension).
 
-> **Note on Parity Invariance:**
-> Agent 1 starts at position 0, and Agent 2 starts at position 2. Because both agents move $\pm 1$ at every discrete step, the spatial difference $\Delta x = x_2 - x_1$ always preserves parity ($\Delta x \pmod 2 = 0$). Thus, agents can never pass through each other in continuous space without landing on the exact same discrete cell at the same time!
+A **collision** is the halting event. There is no separate HALT state. A machine is halting only if the two agents eventually occupy the same cell after a step; otherwise it runs forever.
 
----
+> **CET(n)** is the maximum number of steps before collision among all halting CET(n) machines.
 
-## 📜 Formal Verification in Rocq 9.1
+A transition is written as `write + direction + next state`, for example `0LB` means “write 0, move Left, go to state B.” A `---` denotes a transition that is not defined. In the current CET(3) champion, that transition is never reached.
 
-The CET variant includes machine-checked certificates in Rocq 9.1:
+## Growth and search space
 
-* **`NonQuasiHalting_CET1.v`**: Formal certificate proving that target machine `1RB0RB_1RA0LB | 1RB0RB_1LA1RA` exhibits **Non-Quasi-Halting** via an infinite collision recurrence witness theorem (`witness_implies_non_quasihalting`). Compiles with zero unverified axioms (`[propext, Classical.choice, Quot.sound]`).
-* **`cert_proto.v`**: Executable step definitions and formal collision predicates over zipper/functional configurations.
+The wiki informally notes two lower-bound relationships:
 
----
+- `CET(n) >= BB(n)`;
+- `CET(n,k) >= BBB(n,k)` when the champion is a translated cycler, where BBB is the Beeping Busy Beaver.
 
-## 🚀 Quick Start
+For `n` states and `k` symbols, each transition has `2kn` choices: `k` write symbols, 2 directions, and `n` next states.
 
-### 1. Web Studio (Interactive GUI)
-Open `index.html` directly in any web browser, or launch the built-in local server:
-```bash
-python cet_cli.py serve
+- CET has 2 agents, so `2nk` transition entries and at most `(2kn)^(2nk)` transition tables.
+- MCET has `n` agents, so `n^2k` transition entries and at most `(2kn)^(n^2k)` transition tables.
+
+These counts assume labelled agents, deterministic tables, and no individual halting state. The search space is finite for every fixed `(n,k)`, but it grows extremely quickly.
+
+## Current CET champions
+
+These are all CET records currently listed on the wiki. `CET(n)` uses 2 symbols; `CET(n,k)` uses `k` symbols.
+
+| Domain | Best known runtime | Status | Discovered by |
+|---|---|---|---|
+| **CET(1)** | `1` | exact | NathFR76 — Brute Force Research |
+| **CET(2)** | `97` | exact | NathFR76 — Brute Force Research |
+| **CET(3)** | `(2^1379 + 16483) / 3` (≈ `4.39 × 10^414`) | exact formula | star (second account), Claude; independent verification by sheep and NathFR76 |
+| **CET(4)** | `>= 4,622,083,548` | verified lower bound | roromachine14 — TNF Research |
+| **CET(2,3)** | `>= 1,528,952,999` | verified lower bound | roromachine14 — TNF Research |
+
+The wiki displays CET(3) as `> 4.39 × 10^414`; that is a rounded display of the exact value, not a separate lower-bound claim. The exact value is the 415-digit integer `exact_halt_steps` in this repository's `CET3_4e414.v` proof, and it equals the formula above.
+
+### CET(1) — 1 step
+
+```text
+Agent 1: 1RA---
+Agent 2: 1LA---
 ```
-Then navigate to: **`http://localhost:8000`**
 
-### 2. Terminal CLI & ASCII Space-Time Visualizer
-Run the 97-step CET(2) champion or CET(1) directly in your terminal:
-```bash
-python cet_cli.py run --preset cet2
-python cet_cli.py run --preset cet1
+### CET(2) — 97 steps
+
+```text
+Agent 1: 1LB0LB_1RB0LA
+Agent 2: 1RB1LA_1LA1RB
 ```
 
----
+### CET(3) — exact `(2^1379 + 16483) / 3` steps
 
-## 🎮 Web Studio Features
-
-1. **Interactive 2D Space-Time Diagram Canvas**:
-   - **X Axis**: Tape space coordinates (relative to origin).
-   - **Y Axis**: Time steps (flowing downwards or upwards).
-   - Visualizes the tape cell states (0 = dark space, 1 = energized cells).
-   - Neon glowing worldlines for each agent trajectory.
-   - Pulsing collision starburst at $(x_{\text{halt}}, t_{\text{halt}})$.
-   - **Pan & Zoom**: Click-and-drag to pan, mouse wheel to zoom around cursor.
-   - **Timeline Scrubbing**: Click anywhere on the diagram or scrub the timeline slider to inspect any historical step.
-   - **Themes**: Cyberpunk Neon, Matrix Terminal, and Blueprint Cobalt.
-   - **PNG Export**: One-click high-resolution diagram export.
-
-2. **1D Ribbon Tape Visualizer**:
-   - Realistic tape view with active agent heads showing current state, movement directions, and simultaneous read/writes.
-   - Center-on-agents button and navigation arrows.
-
-3. **Multi Catch-Em-Turing (MCET) Support**:
-   - Toggle between **CET(n)** (2 agents) and **MCET(n, m)** ($m$ agents).
-   - Configurable initial positions and agent counts (2 to 8).
-   - Writing conflict resolution: lowest index agent has priority.
-
-4. **Interactive Transition Table Editor**:
-   - Tabs for each agent.
-   - Interactive toggle chips for write (`0` / `1`), direction (`◀ L` / `R ▶`), and next state.
-   - Edits take effect immediately with instant re-simulation.
-   - Direct text notation input (paste strings like `Agent 1: (1, LEFT, 1), (0, LEFT, 1)...`).
-
-5. **Randomizer & Mutator**:
-   - 🎲 **Randomize**: Generates completely new valid transition tables.
-   - 🧬 **Mutate**: Flips a single action to explore nearby topological behaviors.
-
-6. **State Transition Graph**:
-   - Real-time SVG state diagram for the active agent with glowing indicators during execution.
-
-7. **Background Busy Beaver Auto-Hunter**:
-   - Multi-threaded Web Worker that scans machines in the background without UI lag.
-   - Random and Genetic / Hill Climbing search strategies.
-   - Live leaderboard of high-score discoveries with one-click machine loading.
-
-8. **Audio Sonification Engine (Web Audio API)**:
-   - Ambient soundscape: stereo-panned tape clicks, pitch-modulated head ticks, and a major chord chime upon collision.
-
----
-
-## 🛠️ High-Performance Search Toolchain
-
-The directory contains an extensive suite of native C, C++, and CUDA engines for gigastep exploration:
-
-* **Champion Ledgers**:
-  * `cet3_all_champions.txt`: Milestones up to 3,092,745,703 steps.
-  * `cet4_all_champions.txt`: Milestones up to 4,622,083,548 steps.
-  * `cet23_all_champions.txt`: 2-state 3-symbol records up to 1,528,952,999 steps.
-  * `mcet3_all_champions.txt`: 3-agent records up to 211,190,346 steps.
-* **Native C / C++ Searchers**:
-  * `fast_bb_hunter.c`, `fast_search.c`: Core multi-threaded random and DFS searchers.
-  * `hunt_cet3_world_champ.c`: Deep optimization pipeline for CET(3).
-  * `hunt_cet4_billion_odometer.c`: Odometer exploration reaching multi-billion-step domains.
-  * `bench_mega_speed.cpp`: Performance benchmarking for simultaneous simulation.
-* **GPU / CUDA Kernels**:
-  * `cuda_cet_kernel.cu`: Massively parallel evaluation on NVIDIA GPUs.
-  * `a100_search.cu`, `a100_hyper_v2.cu`: Scaled cluster searchers for cloud A100 nodes.
-
----
-
-## 📁 Project Structure
-
+```text
+Agent 1: 0LB---_1LC1RB_0RB0LC
+Agent 2: 0RB0LC_1RC1LB_1LB1RA
 ```
-├── index.html                       # Main web application entry point
-├── style.css                        # Cyberpunk dark sci-fi responsive UI stylesheet
-├── simulator.js                     # Simultaneous multi-agent Turing simulation engine
-├── spacetime.js                     # Canvas 2D space-time diagram visualizer
-├── tape1d.js                        # 1D interactive tape ribbon visualizer
-├── state_graph.js                   # SVG state transition graph generator
-├── audio.js                         # Web Audio API sonification engine
-├── hunter_worker.js                 # Background Web Worker for Busy Beaver hunting
-├── app.js                           # Main application controller & preset manager
-├── cet_cli.py                       # Python CLI & ASCII space-time diagrammer
-├── fast_bb_hunter.c                 # Ultra-fast native C search engine
-├── NonQuasiHalting_CET1.v           # Rocq 9.1 proof of non-quasi-halting
-├── cet3_all_champions.txt           # CET(3) champions up to 3.09B steps
-├── cet4_all_champions.txt           # CET(4) champions up to 4.62B steps
-├── cet23_all_champions.txt          # CET(2, 3) champions up to 1.52B steps
-├── mcet3_all_champions.txt          # MCET(3) champions up to 211M steps
-└── README.md                        # Documentation and mathematical results
+
+Agent 1's undefined `---` transition is never reached. The local Rocq development proves this for **any** transition placed in that slot.
+
+### CET(4) — at least 4,622,083,548 steps
+
+```text
+Agent 1: 1LC0LC_1LA1RB_0RB1LC_0RA0RA
+Agent 2: 1RC0RA_1RA1RB_1LC0RD_0RA0RC
 ```
+
+### CET(2,3) — at least 1,528,952,999 steps
+
+```text
+Agent 1: 1RB0RA2LB_2LA2RB1LB
+Agent 2: 2RB0RA2RB_2LB1RA0RB
+```
+
+## Multi Catch-Em-Turing (MCET)
+
+**MCET(n)** is NathFR76's extension to `n` agents, each with `n` states and its own transition table. All agents share the binary tape and start at positions `0, 2, 4, ...`; Agent `i` starts at `2(i-1)`. All agents start in the initial state and act simultaneously.
+
+Writes are simultaneous. If multiple agents write to the same cell, the lowest-index agent has priority. An MCET machine halts only when **all** agents occupy the same cell at the same time. There is no individual HALT state.
+
+These are all MCET records currently listed on the wiki:
+
+| Domain | Best known runtime | Status | Discovered by |
+|---|---|---|---|
+| **MCET(1)** | `1` | exact | NathFR76 — analogous to BB(1) |
+| **MCET(2)** | `97` | exact | NathFR76 — analogous to CET(2) |
+| **MCET(3)** | `>= 1,292,061,272` | verified lower bound | NathFR76 — Simulated Annealing Research |
+| **MCET(3,3)** | `>= 34,399` | verified lower bound | NathFR76 — Exhaustive Research |
+
+### MCET(1) — 1 step
+
+```text
+Agent 1: 1RA---
+```
+
+### MCET(2) — 97 steps
+
+```text
+Agent 1: 1LB0LB_1RB0LA
+Agent 2: 1RB1LA_1LA1RB
+```
+
+### MCET(3) — at least 1,292,061,272 steps
+
+```text
+Agent 1: 1LC1LB_1RC1LC_1RA1RB
+Agent 2: 1LB0RA_1LC1RA_0RC1LA
+Agent 3: 1LB1RA_0RA1LC_1LA1LC
+```
+
+### MCET(3,3) — at least 34,399 steps
+
+```text
+Agent 1: 2RB2RC1LA_0LA2RA2RB_0LA2RA0LA
+Agent 2: 2LC1RC0RA_1LA0RA1LA_0LA2RB
+Agent 3: 2RB2LC2RC_0RC1RC2RB_1RC2RA2RC
+```
+
+## Verification
+
+The champion table distinguishes:
+
+- **exact** — the value is known, not merely a lower bound;
+- **`>=`** — the machine is verified to run at least that many steps; the true maximum may be larger.
+
+All listed champions have been verified to reach their listed step counts before satisfying the collision condition.
+
+For CET(3), this repository contains a separate machine-checked development:
+
+- `CET3_4e414.v` proves `star_cet3_halts : forall undef, halts_at_exact ... exact_halt_steps`.
+- `coqc -q CET3_4e414.v` succeeds.
+- `Print Assumptions star_cet3_halts` reports **“Closed under the global context”** (no extra axioms).
+- The proof covers an arbitrary transition in Agent 1's unreachable `---` slot.
+
+## Local working files
+
+The local `cet*_all_champions.txt` and `*_seeds.txt` files are search working records and may lag the wiki. They are not the canonical current champion list; use the wiki table above.
+
+In particular, older local entries such as the `3,092,745,703`-step CET(3) machine and the `211,190,346`-step MCET(3) machine have been superseded by the current wiki records.
+
+Other local assets:
+
+- `cet.cpp`, `cet_cli.py` — simulator and command-line interface;
+- `index.html` — interactive web studio;
+- `hunt_*.c`, `hunt_*.cpp` — CET/MCET search engines;
+- `CET3_4e414.v` — Rocq proof of the current CET(3) champion;
+- `cet3_all_champions.txt`, `cet4_all_champions.txt`, `cet23_all_champions.txt`, `mcet3_all_champions.txt` — historical/working ledgers.
+
+## Source
+
+- [BusyBeaverWiki — Catch-Em-Turing](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), last edited 10 November 2026.
+- Retrieved 10 November 2026.
