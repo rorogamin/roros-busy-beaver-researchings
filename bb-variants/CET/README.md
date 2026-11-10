@@ -2,7 +2,7 @@
 
 **Catch-Em-Turing** is a Busy Beaver variant proposed by [NathFR76](https://wiki.bbchallenge.org/wiki/User:NathFR76) in November 2026. Instead of one Turing-machine head, a CET machine runs **two independent agents simultaneously on one shared tape**. The agents do not halt individually; the machine halts only when the two agents occupy the same cell at the same time.
 
-This README follows the [Catch-Em-Turing page on the BusyBeaverWiki](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), last edited 10 November 2026. The champion tables below are copied from that page and preserve its exact-versus-lower-bound distinctions.
+This README follows the [Catch-Em-Turing page on the BusyBeaverWiki](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing) (retrieved 10 November 2026), with **CET(3)** updated to the newly verified `10^(5.28 × 10^47)`-step champion. The champion tables preserve exact-versus-lower-bound distinctions.
 
 ## The model
 
@@ -28,7 +28,7 @@ A **collision** is the halting event. There is no separate HALT state. A machine
 
 > **CET(n)** is the maximum number of steps before collision among all halting CET(n) machines.
 
-A transition is written as `write + direction + next state`, for example `0LB` means “write 0, move Left, go to state B.” A `---` denotes a transition that is not defined. In the current CET(3) champion, that transition is never reached.
+A transition is written as `write + direction + next state`, for example `0LB` means “write 0, move Left, go to state B.” A `---` denotes a transition that is not defined (e.g., if never reached by the machine).
 
 ## Growth and search space
 
@@ -46,17 +46,17 @@ These counts assume labelled agents, deterministic tables, and no individual hal
 
 ## Current CET champions
 
-These are all CET records currently listed on the wiki. `CET(n)` uses 2 symbols; `CET(n,k)` uses `k` symbols.
+These are the current CET records (`CET(n)` uses 2 symbols; `CET(n,k)` uses `k` symbols):
 
 | Domain | Best known runtime | Status | Discovered by |
 |---|---|---|---|
 | **CET(1)** | `1` | exact | NathFR76 — Brute Force Research |
 | **CET(2)** | `97` | exact | NathFR76 — Brute Force Research |
-| **CET(3)** | `(2^1379 + 16483) / 3` (≈ `4.39 × 10^414`) | exact formula | star (second account), Claude; independent verification by sheep and NathFR76 |
+| **CET(3)** | `(33 * 2^1753801964797083501844421799259539623587119051734 + 385836432255358370405772795837098717189166191380738) / 10` (≈ `10^(5.28 × 10^47)`) | exact formula | Reported CET(3) champion; formal proof in `CET3_5e47.v` |
 | **CET(4)** | `>= 4,622,083,548` | verified lower bound | roromachine14 — TNF Research |
 | **CET(2,3)** | `>= 1,528,952,999` | verified lower bound | roromachine14 — TNF Research |
 
-The wiki displays CET(3) as `> 4.39 × 10^414`; that is a rounded display of the exact value, not a separate lower-bound claim. The exact value is the 415-digit integer `exact_halt_steps` in this repository's `CET3_4e414.v` proof, and it equals the formula above.
+For CET(3), `10^(5.28 × 10^47)` is a rounded display (`log10(T) ≈ 5.279470 × 10^47`) of the exact integer `exact_T_halt` proven in `CET3_5e47.v`, superseding the previous `(2^1379 + 16483) / 3` (≈ `4.39 × 10^414`) record (`0LB---_1LC1RB_0RB0LC | 0RB0LC_1RC1LB_1LB1RA`, proved in `CET3_4e414.v`, discovered by star (second account) and Claude; verified by sheep and NathFR76).
 
 ### CET(1) — 1 step
 
@@ -72,14 +72,14 @@ Agent 1: 1LB0LB_1RB0LA
 Agent 2: 1RB1LA_1LA1RB
 ```
 
-### CET(3) — exact `(2^1379 + 16483) / 3` steps
+### CET(3) — exact `(33 * 2^(m2 + 2) + 385836432255358370405772795837098717189166191380738) / 10` steps
 
 ```text
-Agent 1: 0LB---_1LC1RB_0RB0LC
-Agent 2: 0RB0LC_1RC1LB_1LB1RA
+Agent 1: 1LB1RA_0RB1LC_1RA0LB
+Agent 2: 1RB0RC_1LB1LC_1RA0RB
 ```
 
-Agent 1's undefined `---` transition is never reached. The local Rocq development proves this for **any** transition placed in that slot.
+where `m2 = 1753801964797083501844421799259539623587119051732` (`m2 + 2 = 1753801964797083501844421799259539623587119051734`), giving `≈ 10^(5.28 × 10^47)` steps (`log10(T) ≈ 5.279470 × 10^47`). All 12 transitions are defined; the two agents run two binary-counter + period-11 glider rounds before colliding at step `exact_T_halt`.
 
 ### CET(4) — at least 4,622,083,548 steps
 
@@ -148,28 +148,27 @@ The champion table distinguishes:
 
 All listed champions have been verified to reach their listed step counts before satisfying the collision condition.
 
-For CET(3), this repository contains a separate machine-checked development:
+For CET(3), this repository contains machine-checked Rocq developments:
 
-- `CET3_4e414.v` proves `star_cet3_halts : forall undef, halts_at_exact ... exact_halt_steps`.
-- `coqc -q CET3_4e414.v` succeeds.
-- `Print Assumptions star_cet3_halts` reports **“Closed under the global context”** (no extra axioms).
-- The proof covers an arbitrary transition in Agent 1's unreachable `---` slot.
+- `CET3_5e47.v` (current `1LB1RA_0RB1LC_1RA0LB | 1RB0RC_1LB1LC_1RA0RB` champion) proves `new_cet3_halts : halts_at_exact ag1 ag2 c0 exact_T_halt` and `exact_T_halt_closed_form`, verified in Rocq 9.1.0 with `Print Assumptions` reporting **“Closed under the global context”** (zero extra axioms).
+- `CET3_4e414.v` (prior `(2^1379 + 16483) / 3` champion) proves `star_cet3_halts : forall undef, halts_at_exact ... exact_halt_steps`, with `Print Assumptions star_cet3_halts` reporting **“Closed under the global context”** across an arbitrary transition in Agent 1's unreachable `---` slot.
 
 ## Local working files
 
 The local `cet*_all_champions.txt` and `*_seeds.txt` files are search working records and may lag the wiki. They are not the canonical current champion list; use the wiki table above.
 
-In particular, older local entries such as the `3,092,745,703`-step CET(3) machine and the `211,190,346`-step MCET(3) machine have been superseded by the current wiki records.
+In particular, older local entries such as the `3,092,745,703`-step CET(3) machine and the `211,190,346`-step MCET(3) machine have been superseded.
 
 Other local assets:
 
 - `cet.cpp`, `cet_cli.py` — simulator and command-line interface;
 - `index.html` — interactive web studio;
 - `hunt_*.c`, `hunt_*.cpp` — CET/MCET search engines;
-- `CET3_4e414.v` — Rocq proof of the current CET(3) champion;
+- `CET3_5e47.v` — Rocq proof of the current CET(3) champion (`≈ 10^(5.28 × 10^47)` steps);
+- `CET3_4e414.v` — Rocq proof of the prior CET(3) champion (`≈ 4.39 × 10^414` steps);
 - `cet3_all_champions.txt`, `cet4_all_champions.txt`, `cet23_all_champions.txt`, `mcet3_all_champions.txt` — historical/working ledgers.
 
 ## Source
 
-- [BusyBeaverWiki — Catch-Em-Turing](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), last edited 10 November 2026.
-- Retrieved 10 November 2026.
+- [BusyBeaverWiki — Catch-Em-Turing](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), retrieved 10 November 2026 (prior baseline for CET(1), CET(2), CET(4), CET(2,3), and MCET records).
+- Local Rocq verification in `CET3_5e47.v` (current CET(3) record).
