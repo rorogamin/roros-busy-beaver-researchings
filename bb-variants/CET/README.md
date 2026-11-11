@@ -2,7 +2,7 @@
 
 **Catch-Em-Turing** is a Busy Beaver variant proposed by [NathFR76](https://wiki.bbchallenge.org/wiki/User:NathFR76) in November 2026. Instead of one Turing-machine head, a CET machine runs **two independent agents simultaneously on one shared tape**. The agents do not halt individually; the machine halts only when the two agents occupy the same cell at the same time.
 
-This README follows the [Catch-Em-Turing page on the BusyBeaverWiki](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing) (retrieved 10 November 2026), with **CET(3)** updated to the newly verified `10^(5.28 × 10^47)`-step champion. The champion tables preserve exact-versus-lower-bound distinctions.
+This README follows the [Catch-Em-Turing page on the BusyBeaverWiki](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing) (retrieved 10 November 2026), with **CET(3)** updated to the newly proven `10^(10^(2.824 × 10^13))`-step 3-round champion (`1LB---_1LC1RB_0RB0LC | 1RB0LB_0RC0LA_1LB1RC`). The champion tables preserve exact-versus-lower-bound distinctions and note which CET(3) results have machine-checked Rocq proofs versus mathematical + script proofs.
 
 ## The model
 
@@ -52,11 +52,11 @@ These are the current CET records (`CET(n)` uses 2 symbols; `CET(n,k)` uses `k` 
 |---|---|---|---|
 | **CET(1)** | `1` | exact | NathFR76 — Brute Force Research |
 | **CET(2)** | `97` | exact | NathFR76 — Brute Force Research |
-| **CET(3)** | `(33 * 2^1753801964797083501844421799259539623587119051734 + 385836432255358370405772795837098717189166191380738) / 10` (≈ `10^(5.28 × 10^47)`) | exact formula | Reported CET(3) champion; formal proof in `CET3_5e47.v` |
+| **CET(3)** | `(13 * 2^(L3 + 2) + 13 * 2^93824992236935 + 14636698788961028) / 12` where `L3 = (2^93824992236935 + 1125899906843188) / 12` (≈ `10^(10^(2.824 × 10^13))`) | exact formula (mathematical + script proof) | Local TNF exhaustive scan; analysis & verifier in `CET3_3round_10_10_10_13_analysis.md` |
 | **CET(4)** | `>= 4,622,083,548` | verified lower bound | roromachine14 — TNF Research |
 | **CET(2,3)** | `>= 1,528,952,999` | verified lower bound | roromachine14 — TNF Research |
 
-For CET(3), `10^(5.28 × 10^47)` is a rounded display (`log10(T) ≈ 5.279470 × 10^47`) of the exact integer `exact_T_halt` proven in `CET3_5e47.v`, superseding the previous `(2^1379 + 16483) / 3` (≈ `4.39 × 10^414`) record (`0LB---_1LC1RB_0RB0LC | 0RB0LC_1RC1LB_1LB1RA`, proved in `CET3_4e414.v`, discovered by star (second account) and Claude; verified by sheep and NathFR76).
+For CET(3), `10^(10^(2.824 × 10^13))` ($\approx 10^{10^{10^{13.4509}}}$) comes from a 3-round counter-glider interaction with $L_1 = 48$, $L_2 = 93{,}824{,}992{,}236{,}933$, and $L_3 \approx 10^{2.8244 \times 10^{13}}$ (exact derivation and standalone Python verifier in `CET3_3round_10_10_10_13_analysis.md`). It supersedes the previous machine-checked CET(3) champion `1LB1RA_0RB1LC_1RA0LB | 1RB0RC_1LB1LC_1RA0RB` (`≈ 10^(5.28 × 10^47)`, proved in Lean and Rocq in `CET3_5e47.v`) and the earlier `(2^1379 + 16483) / 3` (`≈ 4.39 × 10^414`) record (`0LB---_1LC1RB_0RB0LC | 0RB0LC_1RC1LB_1LB1RA`, proved in `CET3_4e414.v`, discovered by star (second account) and Claude; verified by sheep and NathFR76).
 
 ### CET(1) — 1 step
 
@@ -72,14 +72,16 @@ Agent 1: 1LB0LB_1RB0LA
 Agent 2: 1RB1LA_1LA1RB
 ```
 
-### CET(3) — exact `(33 * 2^(m2 + 2) + 385836432255358370405772795837098717189166191380738) / 10` steps
+### CET(3) — exact `(13 * 2^(L3 + 2) + 13 * 2^93824992236935 + 14636698788961028) / 12` steps
 
 ```text
-Agent 1: 1LB1RA_0RB1LC_1RA0LB
-Agent 2: 1RB0RC_1LB1LC_1RA0RB
+Agent 1: 1LB---_1LC1RB_0RB0LC
+Agent 2: 1RB0LB_0RC0LA_1LB1RC
 ```
 
-where `m2 = 1753801964797083501844421799259539623587119051732` (`m2 + 2 = 1753801964797083501844421799259539623587119051734`), giving `≈ 10^(5.28 × 10^47)` steps (`log10(T) ≈ 5.279470 × 10^47`). All 12 transitions are defined; the two agents run two binary-counter + period-11 glider rounds before colliding at step `exact_T_halt`.
+where `L3 = (2^93824992236935 + 1125899906843188) / 12` (`≈ 10^(2.8244 × 10^13)`), giving `≈ 10^(10^(2.824 × 10^13))` (`≈ 10^10^10^13.4509`) steps. Agent 1's `(StA, 1)` slot `---` is never reached for any `t >= 1` regardless of how it is filled. Starting from `t = 0`, the machine settles cleanly at `t = 629 -> 630` into a 48-bit `0^48` counter plus a period-13 rightward glider (`D = 1`), runs two exponential bounce rounds (`L1 = 48 -> L2 = 93,824,992,236,933 -> L3`), and collides head-on to halt in Round 3. See `CET3_3round_10_10_10_13_analysis.md` for the full proof and standalone verifier script.
+
+*(Highest Rocq/Lean-formalized CET(3) record: `1LB1RA_0RB1LC_1RA0LB | 1RB0RC_1LB1LC_1RA0RB` at `(33 * 2^1753801964797083501844421799259539623587119051734 + 385836432255358370405772795837098717189166191380738) / 10 ≈ 10^(5.28 × 10^47)` steps in `CET3_5e47.v`.)*
 
 ### CET(4) — at least 4,622,083,548 steps
 
@@ -148,10 +150,12 @@ The champion table distinguishes:
 
 All listed champions have been verified to reach their listed step counts before satisfying the collision condition.
 
-For CET(3), this repository contains machine-checked Rocq developments:
+For CET(3), this repository contains mathematical analyses and machine-checked Rocq developments:
 
-- `CET3_5e47.v` (current `1LB1RA_0RB1LC_1RA0LB | 1RB0RC_1LB1LC_1RA0RB` champion) proves `new_cet3_halts : halts_at_exact ag1 ag2 c0 exact_T_halt` and `exact_T_halt_closed_form`, verified in Rocq 9.1.0 with `Print Assumptions` reporting **“Closed under the global context”** (zero extra axioms).
+- `CET3_3round_10_10_10_13_analysis.md` (current `1LB---_1LC1RB_0RB0LC | 1RB0LB_0RC0LA_1LB1RC` champion, `≈ 10^(10^(2.824 × 10^13))` steps) provides the complete mathematical proof, induction lemmas, concrete collision tables, CRT reductions, exact closed-form step count formula, and a self-contained Python 3 verification script.
+- `CET3_5e47.v` (highest Rocq/Lean-formalized `1LB1RA_0RB1LC_1RA0LB | 1RB0RC_1LB1LC_1RA0RB` record, `≈ 10^(5.28 × 10^47)` steps) proves `new_cet3_halts : halts_at_exact ag1 ag2 c0 exact_T_halt` and `exact_T_halt_closed_form`, verified in Rocq 9.1.0 with `Print Assumptions` reporting **“Closed under the global context”** (zero extra axioms).
 - `CET3_4e414.v` (prior `(2^1379 + 16483) / 3` champion) proves `star_cet3_halts : forall undef, halts_at_exact ... exact_halt_steps`, with `Print Assumptions star_cet3_halts` reporting **“Closed under the global context”** across an arbitrary transition in Agent 1's unreachable `---` slot.
+- `NonHalting_CET3_0LB.v` proves `target_never_halts` for the period-14 mod-252 non-halting holdout `0LB---_1LC1RB_0RB0LC | 1RB0RB_1LB1RC_1RA1LC` in Rocq (`Closed under the global context`).
 
 ## Local working files
 
@@ -164,11 +168,13 @@ Other local assets:
 - `cet.cpp`, `cet_cli.py` — simulator and command-line interface;
 - `index.html` — interactive web studio;
 - `hunt_*.c`, `hunt_*.cpp` — CET/MCET search engines;
-- `CET3_5e47.v` — Rocq proof of the current CET(3) champion (`≈ 10^(5.28 × 10^47)` steps);
-- `CET3_4e414.v` — Rocq proof of the prior CET(3) champion (`≈ 4.39 × 10^414` steps);
+- `CET3_3round_10_10_10_13_analysis.md` — proof & Python verifier for the current CET(3) champion (`≈ 10^(10^(2.824 × 10^13))` steps);
+- `CET3_5e47.v` — Rocq proof of the `≈ 10^(5.28 × 10^47)` CET(3) machine;
+- `CET3_4e414.v` — Rocq proof of the prior `≈ 4.39 × 10^414` CET(3) champion;
+- `NonHalting_CET3_0LB.v` — Rocq non-halting proof for `0LB---_1LC1RB_0RB0LC | 1RB0RB_1LB1RC_1RA1LC`;
 - `cet3_all_champions.txt`, `cet4_all_champions.txt`, `cet23_all_champions.txt`, `mcet3_all_champions.txt` — historical/working ledgers.
 
 ## Source
 
 - [BusyBeaverWiki — Catch-Em-Turing](https://wiki.bbchallenge.org/wiki/Catch-Em-Turing), retrieved 10 November 2026 (prior baseline for CET(1), CET(2), CET(4), CET(2,3), and MCET records).
-- Local Rocq verification in `CET3_5e47.v` (current CET(3) record).
+- Local verification in `CET3_3round_10_10_10_13_analysis.md` (current CET(3) 3-round record) and `CET3_5e47.v` (highest Rocq-checked CET(3) machine).
