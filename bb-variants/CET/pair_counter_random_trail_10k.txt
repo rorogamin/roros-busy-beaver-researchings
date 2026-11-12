@@ -1,0 +1,13 @@
+
+=== CET(3) binary | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+SUMMARY CET(3) binary: collision=5621 survivors=4379 slow_same=0 period1_like=3704
+
+=== CET(2,3) ternary | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+SUMMARY CET(2,3) ternary: collision=5824 survivors=4176 slow_same=0 period1_like=1147
+
+=== CET(4) four-state | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+PAIR slow t=100000 p=(-106,76) span=[-108,498] d=(-14,-106) speed2=0.011 ones_growth=131 trail_ones=1 agent2=0RC0LB_1LA0RD_0RD0RA_1LD0RB
+SUMMARY CET(4) four-state: collision=6247 survivors=3753 slow_same=1 period1_like=1383

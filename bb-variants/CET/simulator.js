@@ -428,6 +428,7 @@ class CETSimulator {
   }
 
   checkCollision(step) {
+    if (this.haltCondition === 'none') return false;
     const activeAgents = this.agents.filter(a => a.active);
     const posMap = new Map();
 
@@ -537,7 +538,7 @@ class CETSimulator {
         this.lastCollisionStep = this.stepCount;
         this.lastCollisionPos = ag1.pos;
 
-        if (this.haltCondition !== 'quasihalt') {
+        if (this.haltCondition !== 'quasihalt' && this.haltCondition !== 'none') {
           this.halted = true;
           this.collisionEvent = { step: this.stepCount, pos: ag1.pos, agents: [1, 2] };
           this.haltReason = `Collision at cell ${ag1.pos} between Agent(s) 1, 2`;
@@ -591,7 +592,8 @@ class CETSimulator {
       }
 
       // 5. Dynamic History Decimation (prevents OOM browser crash at millions of steps)
-      if (hasCollided || (this.stepCount % this.sampleStride === 0)) {
+      const recordCollision = (hasCollided && this.haltCondition !== 'none');
+      if (recordCollision || (this.stepCount % this.sampleStride === 0)) {
         this.history.push({
           step: this.stepCount,
           agentStates: [
@@ -599,7 +601,7 @@ class CETSimulator {
             { id: 2, pos: ag2.pos, state: ag2.state, active: true }
           ],
           intervals: this.tape.extractIntervals(),
-          collision: hasCollided ? this.collisionEvent : null
+          collision: recordCollision ? this.collisionEvent : null
         });
 
         if (this.history.length > this.maxSnapshots) {
@@ -813,20 +815,23 @@ class CETSimulator {
         this.collisionCount++;
         this.lastCollisionStep = stepCount;
         this.lastCollisionPos = p1;
-        this.halted = true;
-        this.collisionEvent = { step: stepCount, pos: p1, agents: [1, 2] };
-        this.haltReason = `Collision at cell ${p1} between Agent(s) 1, 2`;
 
-        this.history.push({
-          step: stepCount,
-          agentStates: [
-            { id: 1, pos: p1, state: s1, active: true },
-            { id: 2, pos: p2, state: s2, active: true }
-          ],
-          intervals: tape.extractIntervals(),
-          collision: this.collisionEvent
-        });
-        return executed;
+        if (this.haltCondition !== 'none') {
+          this.halted = true;
+          this.collisionEvent = { step: stepCount, pos: p1, agents: [1, 2] };
+          this.haltReason = `Collision at cell ${p1} between Agent(s) 1, 2`;
+
+          this.history.push({
+            step: stepCount,
+            agentStates: [
+              { id: 1, pos: p1, state: s1, active: true },
+              { id: 2, pos: p2, state: s2, active: true }
+            ],
+            intervals: tape.extractIntervals(),
+            collision: this.collisionEvent
+          });
+          return executed;
+        }
       }
 
       if (stepCount === nextSampleStep) {
@@ -951,7 +956,9 @@ class CETSimulator {
     if (shouldReset) {
       this.reset();
     }
-    this.maxSteps = maxSteps;
+    // If no halting condition, limit run to a safe chunk (e.g. 100,000 steps) so browser doesn't freeze forever
+    const effectiveLimit = (this.haltCondition === 'none' && maxSteps === Infinity) ? 100000 : maxSteps;
+    this.maxSteps = effectiveLimit;
     while (!this.halted && this.stepCount < this.maxSteps) {
       this.stepBatch(this.maxSteps - this.stepCount);
     }

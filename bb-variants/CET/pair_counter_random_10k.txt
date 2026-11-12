@@ -1,0 +1,48 @@
+
+=== CET(3) binary | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+PAIR slow t=100000 p=(0,60002) span=[-2,60002] d=(2,6000) speed2=0.600 ones_growth=1999 agent2=0RB1LA_1LA1RC_0RA1LC
+PAIR slow t=100000 p=(2,40002) span=[-2,40002] d=(2,4000) speed2=0.400 ones_growth=3001 agent2=1LA1RC_1RA1RA_1RB0RA
+PAIR slow t=100000 p=(4,33336) span=[-2,33336] d=(4,3334) speed2=0.333 ones_growth=2222 agent2=0RB1LB_1RC0LA_1LA0RA
+PAIR slow t=100000 p=(0,50002) span=[-2,50002] d=(2,5000) speed2=0.500 ones_growth=2501 agent2=0RC0RA_1LC1RC_0RB0RC
+PAIR slow t=100000 p=(0,60002) span=[-2,60002] d=(2,6000) speed2=0.600 ones_growth=1999 agent2=0RC1RB_0RA1LC_1LB0RC
+PAIR slow t=100000 p=(0,60002) span=[-2,60002] d=(2,6000) speed2=0.600 ones_growth=1999 agent2=1LB0RC_0RA1RC_1RB0RC
+PAIR slow t=100000 p=(0,50002) span=[-2,50002] d=(2,5000) speed2=0.500 ones_growth=2503 agent2=1LC0RC_1LA1RC_1RA0RB
+PAIR slow t=100000 p=(0,50002) span=[-2,50002] d=(2,5000) speed2=0.500 ones_growth=2501 agent2=1RB0RB_1LA0RC_0RB0RA
+PAIR slow t=100000 p=(0,60002) span=[-2,60002] d=(2,6000) speed2=0.600 ones_growth=2005 agent2=0RC1LC_1LC1RA_0RB1LB
+PAIR slow t=100000 p=(4,20002) span=[-2,20003] d=(6,2000) speed2=0.200 ones_growth=1003 agent2=1LC0RB_0LA1RA_1RB0RC
+PAIR slow t=100000 p=(4,50002) span=[-2,50002] d=(6,5000) speed2=0.500 ones_growth=2503 agent2=1LC1RA_0RA0RB_1RB0RC
+PAIR slow t=100000 p=(2,42858) span=[-2,42859] d=(2,4286) speed2=0.429 ones_growth=1435 agent2=1LC0RC_1LA0RA_1RA0RB
+SUMMARY CET(3) binary: collision=5621 survivors=4379 slow_same=33 period1_like=3704
+
+=== CET(2,3) ternary | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+PAIR slow t=100000 p=(-278,33336) span=[-385,33336] d=(46,3334) speed2=0.333 ones_growth=1753 agent2=0RB1RA0RB_2LA2LB1RB
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=0RB1RA1LB_2LA2LA1RA
+PAIR slow t=100000 p=(106,50002) span=[-385,50002] d=(66,5000) speed2=0.500 ones_growth=2608 agent2=2RB0LB0RA_2LB2LB1RA
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=0RB2RB0RA_2LA0RA1RA
+PAIR slow t=100000 p=(-160,42858) span=[-391,42859] d=(54,4284) speed2=0.428 ones_growth=5806 agent2=0RB2RA1RB_1LA1RB1RB
+PAIR slow t=100000 p=(66,33336) span=[-365,33336] d=(388,3334) speed2=0.333 ones_growth=7081 agent2=0RB2LB2RB_2LA1RB2RB
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=1RB0LA1RA_2LB0RA0LA
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=0RB1LA1RA_1LA1RA0LB
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=0RB1LA0LB_1LA1RA0LA
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=1RB0RB1RA_2LB0RA1LB
+PAIR slow t=100000 p=(66,33336) span=[-365,33336] d=(388,3334) speed2=0.333 ones_growth=7080 agent2=2RB1RB0RB_1LA0RB0RB
+PAIR slow t=100000 p=(-278,50002) span=[-385,50002] d=(46,5000) speed2=0.500 ones_growth=2588 agent2=0RB1RA2LB_2LA2LA1RA
+SUMMARY CET(2,3) ternary: collision=5824 survivors=4176 slow_same=48 period1_like=1147
+
+=== CET(4) four-state | trials=10000 limit=100000 ===
+Classification: 'slow_same' means the OTHER agent moves in the same direction but at <0.9 cells/step; period-1 locks are rejected.
+PAIR slow t=100000 p=(-18,50002) span=[-32,50002] d=(12,5000) speed2=0.500 ones_growth=2502 agent2=1RD1LA_0RD0RC_0LC1RB_1RC0LC
+PAIR slow t=100000 p=(56,60002) span=[-27,60002] d=(76,6000) speed2=0.600 ones_growth=4002 agent2=1LB0RD_1RD1RA_1RD1LC_0RA0RB
+PAIR slow t=100000 p=(2,50002) span=[-33,50002] d=(12,5000) speed2=0.500 ones_growth=2502 agent2=0RC0RC_1LA0LB_1RB1RD_0RB1LC
+PAIR slow t=100000 p=(-18,50002) span=[-32,50002] d=(12,5000) speed2=0.500 ones_growth=2502 agent2=1RC0LB_1LA1LA_0RB0RC_1LA0RA
+PAIR slow t=100000 p=(2,50002) span=[-33,50002] d=(12,5000) speed2=0.500 ones_growth=2502 agent2=0RB1RC_0RD1RB_1RA1LD_1LA1RA
+PAIR slow t=100000 p=(34,60002) span=[-37,60002] d=(54,6000) speed2=0.600 ones_growth=2004 agent2=1RC1LC_0RD0LD_0LD0LC_1RA0RB
+PAIR slow t=100000 p=(34,33336) span=[-37,33336] d=(54,3334) speed2=0.333 ones_growth=1116 agent2=1RB1LD_1LB0RA_0LD0RD_1RA0RC
+PAIR slow t=100000 p=(6,66668) span=[-23,66669] d=(10,6666) speed2=0.667 ones_growth=5001 agent2=1RD1LD_0RC0RA_1LD0RD_1RB0LC
+PAIR slow t=100000 p=(2,33336) span=[-33,33336] d=(12,3334) speed2=0.333 ones_growth=1668 agent2=1RC1RA_0RC1RB_1LC0RB_0LD1RA
+PAIR slow t=100000 p=(-12,50002) span=[-32,50002] d=(12,5000) speed2=0.500 ones_growth=2502 agent2=1LD0RA_0RA0RC_1LC0RB_1RC0LD
+PAIR slow t=100000 p=(6,50002) span=[-23,50002] d=(10,5000) speed2=0.500 ones_growth=3750 agent2=1LB1RC_0RD0RA_1RB0RC_1LC1RC
+PAIR slow t=100000 p=(34,60002) span=[-37,60002] d=(54,6000) speed2=0.600 ones_growth=2004 agent2=0RB0RC_1LD1LB_1RA1LB_0RA0LD
+SUMMARY CET(4) four-state: collision=6247 survivors=3753 slow_same=59 period1_like=1383

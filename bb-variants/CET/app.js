@@ -1392,14 +1392,24 @@ class AppController {
       });
     }
 
-    // Halting Condition Dropdown (CET_0 Normal vs CET_1 Quasi-Halting)
+    // Halting Condition Dropdown (CET_0 Normal vs CET_1 Quasi-Halting vs No Condition)
     const selectHaltCondition = document.getElementById('selectHaltCondition');
     if (selectHaltCondition) {
       selectHaltCondition.addEventListener('change', (e) => {
         this.sim.haltCondition = e.target.value;
         const qCard = document.getElementById('metricQuasihaltCard');
         if (qCard) qCard.style.display = (e.target.value === 'quasihalt') ? 'flex' : 'none';
-        this.sim.reset();
+        // Clear any previous halt status when switching condition so user can immediately simulate
+        if (this.sim.halted) {
+          if (this.sim.haltCondition === 'none') {
+            this.sim.halted = false;
+            this.sim.collisionEvent = null;
+            this.sim.haltReason = null;
+          } else {
+            this.sim.reset();
+            this.diagram.scrubStep = 0;
+          }
+        }
         this.updateAllViews();
         this.diagram.fitToView();
       });
@@ -1838,13 +1848,15 @@ class AppController {
     this.sim.tables = JSON.parse(JSON.stringify(preset.tables));
     this.sim.haltRule = preset.haltRule || (preset.agentCount > 2 ? 'all' : 'first_pair');
 
-    // Auto-detect quasihalt presets
-    const isQuasihaltPreset = key.startsWith('cet1_');
-    this.sim.haltCondition = isQuasihaltPreset ? 'quasihalt' : 'normal';
+    // Auto-detect quasihalt presets, but preserve 'none' if user explicitly chose it
+    if (this.sim.haltCondition !== 'none') {
+      const isQuasihaltPreset = key.startsWith('cet1_');
+      this.sim.haltCondition = isQuasihaltPreset ? 'quasihalt' : 'normal';
+    }
     const selectHaltCondition = document.getElementById('selectHaltCondition');
     if (selectHaltCondition) selectHaltCondition.value = this.sim.haltCondition;
     const qCard = document.getElementById('metricQuasihaltCard');
-    if (qCard) qCard.style.display = isQuasihaltPreset ? 'flex' : 'none';
+    if (qCard) qCard.style.display = (this.sim.haltCondition === 'quasihalt') ? 'flex' : 'none';
 
     // Reset to Step 0: do not automatically run or draw diagram until user clicks Play / Step / Run
     this.sim.reset();
@@ -1993,9 +2005,10 @@ class AppController {
     btn.innerHTML = this.isPlaying ? '⏸ Pause' : '▶ Play';
 
     if (this.isPlaying) {
-      // If halted due to quasi-halt, allow user to press Play to keep simulating the cycle indefinitely!
-      if (this.sim.halted && this.sim.quasihaltEvent) {
-        this.sim.halted = false; // Un-halt to let user watch the post-quasihalt infinite trajectory
+      // If halted due to quasi-halt or no-condition, allow user to press Play to keep simulating
+      if (this.sim.halted && (this.sim.quasihaltEvent || this.sim.haltCondition === 'none')) {
+        this.sim.halted = false;
+        this.sim.collisionEvent = null;
       } else if (this.sim.halted && this.diagram.scrubStep === this.sim.stepCount) {
         // Normal collision halting: reset to step 0 to replay cleanly
         this.sim.reset();
@@ -2142,8 +2155,9 @@ class AppController {
     }
 
     // At frontier: simulate the next step on demand!
-    if (this.sim.halted && this.sim.quasihaltEvent) {
-      this.sim.halted = false; // Allow stepping past quasihalt
+    if (this.sim.halted && (this.sim.quasihaltEvent || this.sim.haltCondition === 'none')) {
+      this.sim.halted = false; // Allow stepping past quasihalt or in no-condition mode
+      this.sim.collisionEvent = null;
     }
 
     if (!this.sim.halted) {
@@ -2186,9 +2200,13 @@ class AppController {
     }
     // Run remaining steps to completion without resetting
     const tp = PRESETS[this.currentPresetKey];
-    if (tp && tp.trace && this.sim.stepCount === 0) {
+    if (this.sim.haltCondition !== 'none' && tp && tp.trace && this.sim.stepCount === 0) {
       this.loadNativeTrace(tp.trace).then(ok => { if (ok && this.sim.collisionEvent) this.audio.playCollision(); });
       return;
+    }
+    if (this.sim.haltCondition === 'none') {
+      this.sim.halted = false;
+      this.sim.collisionEvent = null;
     }
     this.sim.runToCompletion(undefined, false);
     this.diagram.scrubStep = this.sim.stepCount;
@@ -2280,7 +2298,10 @@ class AppController {
     document.getElementById('metricAgentDist').textContent = `${this.sim.getAgentDistance()} cells`;
     const haltRuleEl = document.getElementById('metricHaltRule');
     if (haltRuleEl) {
-      if (this.sim.haltCondition === 'quasihalt') {
+      if (this.sim.haltCondition === 'none') {
+        haltRuleEl.textContent = 'No Condition (Continuous)';
+        haltRuleEl.style.color = '#34d399';
+      } else if (this.sim.haltCondition === 'quasihalt') {
         haltRuleEl.textContent = 'Quasi-Halting (CET_1)';
         haltRuleEl.style.color = '#e879f9';
       } else if (this.sim.haltRule === 'all') {
