@@ -1032,6 +1032,29 @@ Definition check_ag2_15 : bool :=
 Lemma ag2_15_ok : check_ag2_15 = true.
 Proof. vm_compute. reflexivity. Qed.
 
+
+Lemma srun_shift_exp : forall ag d n sc,
+  (srun ag n sc).(spos) + d = (srun ag n (shift_sc d sc)).(spos) /\
+  (srun ag n sc).(sstate) = (srun ag n (shift_sc d sc)).(sstate) /\
+  (forall z, (srun ag n sc).(stape) (z - d) = (srun ag n (shift_sc d sc)).(stape) z).
+Proof.
+  intros ag d n sc. destruct (srun_shift ag d n sc) as [Sp Ss St].
+  exact (conj Sp (conj Ss St)).
+Qed.
+
+Lemma run_N_shift_exp : forall a1 a2 d n c,
+  (run_N a1 a2 n c).(pos1) + d = (run_N a1 a2 n (shift_cfg d c)).(pos1) /\
+  (run_N a1 a2 n c).(pos2) + d = (run_N a1 a2 n (shift_cfg d c)).(pos2) /\
+  (run_N a1 a2 n c).(state1) = (run_N a1 a2 n (shift_cfg d c)).(state1) /\
+  (run_N a1 a2 n c).(state2) = (run_N a1 a2 n (shift_cfg d c)).(state2) /\
+  (forall z, (run_N a1 a2 n c).(tape) (z - d) = (run_N a1 a2 n (shift_cfg d c)).(tape) z).
+Proof.
+  intros a1 a2 d n c. destruct (run_N_shift a1 a2 d n c) as [Sp1 Sp2 Ss1 Ss2 Stp].
+  exact (conj Sp1 (conj Sp2 (conj Ss1 (conj Ss2 Stp)))).
+Qed.
+
+Opaque srun run_N S_rec.
+
 Lemma ag2_cycle15 : forall X sc,
   sc.(spos) = X ->
   sc.(sstate) = StC ->
@@ -1079,15 +1102,19 @@ Proof.
   destruct (srun_agree_ge ag2 (-2) 15 sc_base (shift_sc (- X) sc)
               ltac:(simpl; lia) ltac:(simpl; congruence) Hbase_ge Hbase_bd)
     as [Ap [As [Aag _]]].
-  pose proof ag2_15_ok as Hok. unfold check_ag2_15 in Hok.
+  pose proof ag2_15_ok as Hok. unfold check_ag2_15 in Hok. cbv zeta in Hok.
   remember (N.iter 15 (fast_sstep ag2) fs_ag2_0) as fs15 eqn:Efs15.
   rewrite !andb_true_iff in Hok.
   destruct Hok as [[[[[[[Bp Bs] Bm2] Bm1] B0] B1] B2] Bbd].
   rewrite Z.eqb_eq in Bp. rewrite negb_true_iff in Bm1, B0, B1.
-  assert (Bs' : fs15.(fsstate) = StC) by (destruct (fs15.(fsstate)); try discriminate; reflexivity).
-  pose proof (fast_srun_sound ag2 15 fs_ag2_0) as [F15p F15s F15t].
-  rewrite <- Efs15 in F15p, F15s, F15t.
-  cbn [spos sstate stape fs_to_sc] in F15p, F15s, F15t.
+  assert (Bs' : fs15.(fsstate) = StC) by (clear -Bs; destruct (fs15.(fsstate)); discriminate || reflexivity).
+  assert (Hrun15 : scfg_eq (fs_to_sc fs15) (srun ag2 15 (fs_to_sc fs_ag2_0)))
+    by (rewrite Efs15; apply fast_srun_sound).
+  destruct Hrun15 as [F15p F15s F15t].
+  change (fs_to_sc fs_ag2_0) with sc_base in F15p, F15s.
+  change (spos (fs_to_sc fs15)) with fs15.(fspos) in F15p.
+  change (sstate (fs_to_sc fs15)) with fs15.(fsstate) in F15s.
+  change (stape (fs_to_sc fs15)) with (bt_interp fs15.(fstape)) in F15t.
   cbv zeta.
   assert (Hbd_orig : forall k, (k < 15)%N -> X - 2 <= (srun ag2 k sc).(spos)).
   { intros k Hk.
@@ -1095,17 +1122,17 @@ Proof.
       by (intros j Hj; apply Hbase_bd; lia).
     destruct (srun_agree_ge ag2 (-2) k sc_base (shift_sc (- X) sc)
                 ltac:(simpl; lia) ltac:(simpl; congruence) Hbase_ge Hbd_k) as [Kp _].
-    pose proof (srun_shift ag2 (- X) k sc) as [Sp _ _].
-    simpl in Sp. pose proof (Hbase_bd k Hk). lia. }
+    pose proof (srun_shift_exp ag2 (- X) k sc) as [Sp [_ _]].
+     pose proof (Hbase_bd k Hk). lia. }
   assert (Hread : forall z, -2 <= z -> (srun ag2 15 sc).(stape) (X + z) = bt_interp fs15.(fstape) z).
-  { intros z Hz. pose proof (srun_shift ag2 (- X) 15 sc) as [_ _ St].
-    specialize (St z). unfold shift_sc, shift_tape in St. simpl in St.
+  { intros z Hz. pose proof (srun_shift_exp ag2 (- X) 15 sc) as [_ [_ St]].
+    specialize (St z). 
     replace (z - - X) with (X + z) in St by lia.
-    rewrite <- St, <- (Aag z Hz). symmetry. exact (F15t z). }
+    rewrite St, <- (Aag z Hz). symmetry. exact (F15t z). }
   splits.
   - exact Hbd_orig.
-  - pose proof (srun_shift ag2 (- X) 15 sc) as [Sp _ _]. simpl in Sp. lia.
-  - pose proof (srun_shift ag2 (- X) 15 sc) as [_ Ss _]. simpl in Ss. congruence.
+  - pose proof (srun_shift_exp ag2 (- X) 15 sc) as [Sp [_ _]].  lia.
+  - pose proof (srun_shift_exp ag2 (- X) 15 sc) as [_ [Ss _]].  congruence.
   - intros z Hz.
     destruct (srun_agree_ge ag2 (X - 2) 15 sc sc eq_refl eq_refl ltac:(intros ? _; reflexivity) Hbd_orig)
       as [_ [_ [_ Hlt]]].
@@ -1142,7 +1169,7 @@ Lemma ag2_glider : forall K lo X sc,
   (forall z, X + Z.of_N K + 2 <= z -> sc'.(stape) z = false).
 Proof.
   intro K. induction K using N.peano_ind; intros lo X sc Hlo Hp Hs Hlt Hm2 Hm1 H0 H1 Hge.
-  - rewrite N.mul_0_r, srun_0. cbv zeta. splits; [intros; lia | lia | exact Hs | auto | | | | | |];
+  - rewrite N.mul_0_r, srun_0. change (Z.of_N 0) with 0. cbv zeta. splits; [intros; lia | lia | exact Hs | auto | | | | | |];
       try (intros z Hz; apply Hlt; lia);
       try (replace (X + 0 - 2) with (X - 2) by lia; exact Hm2);
       try (replace (X + 0 - 1) with (X - 1) by lia; exact Hm1);
@@ -1185,6 +1212,89 @@ Qed.
 
 (** * 9. Generic Round Counter + Chase + Bounce + Final Collision *)
 
+Lemma ag1_ag2_chase : forall (G_next : Z) (j : N) (P1 P2 : Z) cj,
+  G_next >= 8 ->
+  -1 <= P1 ->
+  cj.(pos1) = P1 -> cj.(state1) = StB ->
+  cj.(pos2) = P2 -> cj.(state2) = StC ->
+  P2 - P1 = G_next + 14 * Z.of_N j ->
+  cj.(tape) (-2) = false ->
+  (forall z, -1 <= z <= P2 - 3 -> cj.(tape) z = true) ->
+  cj.(tape) (P2 - 2) = false ->
+  cj.(tape) (P2 - 1) = false ->
+  cj.(tape) P2 = false ->
+  cj.(tape) (P2 + 1) = true ->
+  (forall z, P2 + 2 <= z -> cj.(tape) z = false) ->
+  (forall t, (t < 15 * j)%N -> (run_N ag1 ag2 t cj).(pos1) <> (run_N ag1 ag2 t cj).(pos2)) /\
+  let cj' := run_N ag1 ag2 (15 * j) cj in
+  cj'.(pos1) = P1 + 15 * Z.of_N j /\ cj'.(state1) = StB /\
+  cj'.(pos2) = P1 + 15 * Z.of_N j + G_next /\ cj'.(state2) = StC /\
+  cj'.(tape) (-2) = false /\
+  (forall z, -1 <= z <= P1 + 15 * Z.of_N j + G_next - 3 -> cj'.(tape) z = true) /\
+  cj'.(tape) (P1 + 15 * Z.of_N j + G_next - 2) = false /\
+  cj'.(tape) (P1 + 15 * Z.of_N j + G_next - 1) = false /\
+  cj'.(tape) (P1 + 15 * Z.of_N j + G_next) = false /\
+  cj'.(tape) (P1 + 15 * Z.of_N j + G_next + 1) = true /\
+  (forall z, P1 + 15 * Z.of_N j + G_next + 2 <= z -> cj'.(tape) z = false).
+Proof.
+  intros G_next j. induction j using N.peano_ind;
+    intros P1 P2 cj HG HP1 Jp1 Js1 Jp2 Js2 Jgap Jm2 Jtr Jm2' Jm1' J0' J1' Jge'.
+  - rewrite N.mul_0_r, run_N_0. change (Z.of_N 0) with 0. cbv zeta.
+    splits; [intros; lia | lia | exact Js1 | lia | exact Js2 | exact Jm2 | | | | | |];
+      try (intros z Hz; apply Jtr; lia);
+      try (replace (P1 + 15 * 0 + G_next - 2) with (P2 - 2) by lia; exact Jm2');
+      try (replace (P1 + 15 * 0 + G_next - 1) with (P2 - 1) by lia; exact Jm1');
+      try (replace (P1 + 15 * 0 + G_next) with P2 by lia; exact J0');
+      try (replace (P1 + 15 * 0 + G_next + 1) with (P2 + 1) by lia; exact J1');
+      try (intros z Hz; apply Jge'; lia).
+  - rewrite N2Z.inj_succ in *.
+    assert (Hsep : P1 + 17 <= P2) by (pose proof (N2Z.is_nonneg j); lia).
+    set (q1 := {| spos := P1; sstate := StB; stape := cj.(tape) |}).
+    set (q2 := {| spos := P2; sstate := StC; stape := cj.(tape) |}).
+    assert (Hw : forall z, P1 <= z < P1 + Z.of_nat 15 -> q1.(stape) z = true)
+      by (intros z Hz; apply Jtr; change (Z.of_nat 15) with 15 in Hz; lia).
+    destruct (ag1_walk_ones 15 P1 q1 eq_refl eq_refl Hw) as [Wbd [Wp [Ws Wt]]].
+    destruct (ag2_cycle15 P2 q2 eq_refl eq_refl Jm2' Jm1' J0' J1' Jge')
+      as [Cbd [Cp [Cs [Cold [Cm2 [Cm1 [C0 [C1 [C2 Cge]]]]]]]]].
+    assert (Hbd1 : forall k, (k < 15)%N -> (srun ag1 k q1).(spos) <= P1 + 14)
+      by (intros k Hk; change 15%N with (N.of_nat 15) in Hk; pose proof (Wbd k Hk); change (Z.of_nat 15) with 15 in *; lia).
+    destruct (run_decouple ag1 ag2 (P1 + 14) (P2 - 2) 15 cj q1 q2 ltac:(lia)
+                Jp1 Js1 Jp2 Js2 ltac:(intros; reflexivity) ltac:(intros; reflexivity) Hbd1 Cbd)
+      as [Ep1 [Es1 [Ep2 [Es2 [Et1 [Et2 [Emid Enc]]]]]]].
+    set (c15 := run_N ag1 ag2 15 cj) in *.
+    assert (C15_p1 : c15.(pos1) = P1 + 15)
+      by (rewrite Ep1; change 15%N with (N.of_nat 15); rewrite Wp; change (Z.of_nat 15) with 15; reflexivity).
+    assert (C15_s1 : c15.(state1) = StB)
+      by (rewrite Es1; change 15%N with (N.of_nat 15); exact Ws).
+    assert (C15_p2 : c15.(pos2) = P2 + 1) by (rewrite Ep2; exact Cp).
+    assert (C15_s2 : c15.(state2) = StC) by (rewrite Es2; exact Cs).
+    assert (C15_m2 : c15.(tape) (-2) = false)
+      by (rewrite Et1 by lia; change 15%N with (N.of_nat 15); rewrite Wt; exact Jm2).
+    assert (C15_tr : forall z, -1 <= z <= (P2 + 1) - 3 -> c15.(tape) z = true).
+    { intros z Hz. destruct (Z.le_gt_cases z (P1 + 14)).
+      - rewrite Et1 by lia; change 15%N with (N.of_nat 15); rewrite Wt; apply Jtr; lia.
+      - destruct (Z.lt_ge_cases z (P2 - 2)).
+        + rewrite Emid by lia; apply Jtr; lia.
+        + rewrite Et2 by lia; replace z with (P2 - 2) by lia; exact Cm2. }
+    destruct (IHj (P1 + 15) (P2 + 1) c15 HG ltac:(lia) C15_p1 C15_s1 C15_p2 C15_s2 ltac:(lia) C15_m2 C15_tr
+                ltac:(rewrite Et2 by lia; replace (P2 + 1 - 2) with (P2 - 1) by lia; exact Cm1)
+                ltac:(rewrite Et2 by lia; replace (P2 + 1 - 1) with P2 by lia; exact C0)
+                ltac:(rewrite Et2 by lia; exact C1)
+                ltac:(rewrite Et2 by lia; replace (P2 + 1 + 1) with (P2 + 2) by lia; exact C2)
+                ltac:(intros z Hz; rewrite Et2 by lia; apply Cge; lia))
+      as [Lnc [Lp1 [Ls1 [Lp2 [Ls2 [Lm2 [Ltr [Lm2' [Lm1' [L0' [L1' Lge']]]]]]]]]]].
+    replace (15 * N.succ j)%N with (15 * j + 15)%N by lia.
+    cbv zeta. rewrite run_N_add. change (run_N ag1 ag2 15 cj) with c15.
+    splits; [| rewrite Lp1; lia | exact Ls1 | rewrite Lp2; lia | exact Ls2 | exact Lm2 | | | | | |].
+    + intros k Hk. eapply no_coll_add; [exact Enc | exact Lnc | exact Hk].
+    + intros z Hz. apply Ltr. lia.
+    + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next - 2) with (P1 + 15 + 15 * Z.of_N j + G_next - 2) by lia. exact Lm2'.
+    + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next - 1) with (P1 + 15 + 15 * Z.of_N j + G_next - 1) by lia. exact Lm1'.
+    + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next) with (P1 + 15 + 15 * Z.of_N j + G_next) by lia. exact L0'.
+    + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next + 1) with (P1 + 15 + 15 * Z.of_N j + G_next + 1) by lia. exact L1'.
+    + intros z Hz. apply Lge'. lia.
+Qed.
+
 Lemma round_decouple_and_chase :
   forall c (X1 X2 : Z) (W : nat) (n_cyc K : N) (G_next : Z),
   148 <= X1 ->
@@ -1192,7 +1302,7 @@ Lemma round_decouple_and_chase :
   (W <= 10)%nat ->
   (12 <= n_cyc)%N ->
   G_next >= 8 ->
-  N.of_nat (Z.to_nat (X1 + 2)) + S_rec (Z.to_nat (X2 - 2)) + N.of_nat W = (15 * n_cyc)%N ->
+  (N.of_nat (Z.to_nat (X1 + 2)) + S_rec (Z.to_nat (X2 - 2)) + N.of_nat W = 15 * n_cyc)%N ->
   X2 + Z.of_N n_cyc - ((X2 - 3) + Z.of_nat W) = G_next + 14 * Z.of_N K ->
   c.(pos1) = X1 -> c.(state1) = StC ->
   c.(pos2) = X2 -> c.(state2) = StC ->
@@ -1244,29 +1354,29 @@ Proof.
                    (forall z, z < X1 - 149 \/ z > X1 -> sc1a.(stape) z = sc1.(stape) z)).
   { set (d := -(X1 + 2 - 150)).
     set (sc_sh := shift_sc d sc1).
-    assert (Hshp : sc_sh.(spos) = -2 + Z.of_nat 150) by (unfold sc_sh, d, sc1; simpl; lia).
+    assert (Hshp : sc_sh.(spos) = -2 + Z.of_nat 150) by (unfold sc_sh, shift_sc, d, sc1; cbn [spos sstate stape]; change (Z.of_nat 150) with 150; lia).
     assert (Hsht : forall z, -1 <= z <= -2 + Z.of_nat 150 -> sc_sh.(stape) z = true).
-    { intros z Hz. unfold sc_sh, shift_tape, sc1, d; simpl. apply Ht1. lia. }
+    { intros z Hz. unfold sc_sh, shift_sc, shift_tape, sc1, d; cbn [spos sstate stape]. change (Z.of_nat 150) with 150 in Hz. apply Ht1. lia. }
     destruct (ag1_wipe_left 150%nat sc_sh Hshp eq_refl Hsht) as [Wbd [Wp [Ws [Wf Wo]]]].
     change (N.of_nat 150) with 150%N in *.
     cbv zeta. splits.
-    - intros k Hk. pose proof (srun_shift ag1 d k sc1) as [Sp _ _].
-      simpl in Sp. pose proof (Wbd k Hk). unfold sc_sh, d in *. lia.
-    - pose proof (srun_shift ag1 d 150 sc1) as [Sp _ _].
-      simpl in Sp. unfold sc_sh, d in *. lia.
-    - pose proof (srun_shift ag1 d 150 sc1) as [_ Ss _].
-      simpl in Ss. unfold sc_sh in *. congruence.
-    - intros z Hz. pose proof (srun_shift ag1 d 150 sc1) as [_ _ St].
-      specialize (St (z + d)). unfold shift_sc, shift_tape in St. simpl in St.
-      replace (z + d - d) with z in St by lia. rewrite <- St. apply Wf. unfold d in *. lia.
-    - intros z Hz. pose proof (srun_shift ag1 d 150 sc1) as [_ _ St].
-      specialize (St (z + d)). unfold shift_sc, shift_tape in St. simpl in St.
-      replace (z + d - d) with z in St by lia. rewrite <- St.
-      rewrite Wo by (unfold d in *; lia). unfold sc_sh, shift_tape. simpl.
+    - intros k Hk. pose proof (srun_shift_exp ag1 d k sc1) as [Sp [_ _]].
+       pose proof (Wbd k Hk). change (shift_sc d sc1) with sc_sh in Sp. unfold d in *. lia.
+    - pose proof (srun_shift_exp ag1 d 150 sc1) as [Sp [_ _]].
+       change (shift_sc d sc1) with sc_sh in Sp. unfold d in *. lia.
+    - pose proof (srun_shift_exp ag1 d 150 sc1) as [_ [Ss _]].
+       change (shift_sc d sc1) with sc_sh in Ss. congruence.
+    - intros z Hz. pose proof (srun_shift_exp ag1 d 150 sc1) as [_ [_ St]].
+      specialize (St (z + d)). 
+      replace (z + d - d) with z in St by lia. rewrite St. change (shift_sc d sc1) with sc_sh. apply Wf. unfold d in *. lia.
+    - intros z Hz. pose proof (srun_shift_exp ag1 d 150 sc1) as [_ [_ St]].
+      specialize (St (z + d)). 
+      replace (z + d - d) with z in St by lia. rewrite St.
+      change (shift_sc d sc1) with sc_sh. rewrite Wo by (unfold d in *; lia). change ((sc_sh.(stape)) (z + d)) with (sc1.(stape) (z + d - d)).
       replace (z + d - d) with z by lia. reflexivity. }
   destruct Hwl150 as [A1bd [A1p [A1s [A1f A1o]]]].
   assert (Hgl10_lt : forall z, X2 - 2 <= z < X2 - 2 -> sc2.(stape) z = true) by (intros; lia).
-  destruct (ag2_glider 10 X2 X2 sc2 ltac:(lia) eq_refl eq_refl Hgl10_lt Hm2' Hm1' H0' H1' Hge')
+  destruct (ag2_glider 10 (X2 - 2) X2 sc2 ltac:(lia) eq_refl eq_refl Hgl10_lt Hm2' Hm1' H0' H1' Hge')
     as [A2bd [A2p [A2s [A2old [A2lt [A2m2 [A2m1 [A2_0 [A2_1 A2ge]]]]]]]]].
   change (15 * 10)%N with 150%N in *.
   assert (HA_bd1 : forall k, (k < 150)%N -> (srun ag1 k sc1).(spos) <= X1)
@@ -1280,24 +1390,23 @@ Proof.
   set (nB := (15 * n_cyc - 150)%N).
   assert (HnB_eq : (15 * n_cyc = nB + 150)%N) by (unfold nB; lia).
   assert (HnB_ag1 : nB = (N.of_nat (nw - 150) + S_rec m + N.of_nat W)%N).
-  { unfold nB. change 150%N with (N.of_nat 150%nat) in *.
-    rewrite <- Htot_eq. lia. }
+{ unfold nB. change (Z.to_nat (X1 + 2)) with nw in Htot_eq. change (Z.to_nat (X2 - 2)) with m in Htot_eq. rewrite <- Htot_eq. lia. }
   set (sc1B := {| spos := cA.(pos1); sstate := cA.(state1); stape := cA.(tape) |}).
   set (sc2B := {| spos := cA.(pos2); sstate := cA.(state2); stape := cA.(tape) |}).
   assert (HB_ag1_wipe_t : forall z, -1 <= z <= -2 + Z.of_nat (nw - 150) -> sc1B.(stape) z = true).
-  { intros z Hz. unfold sc1B. simpl. rewrite DAt1 by lia. rewrite A1o by lia. apply Ht1. lia. }
-  destruct (ag1_wipe_left (nw - 150) sc1B ltac:(unfold sc1B; simpl; rewrite DAp1, A1p; lia)
-              ltac:(unfold sc1B; simpl; rewrite DAs1, A1s; reflexivity) HB_ag1_wipe_t)
+  { intros z Hz. change (sc1B.(stape)) with (cA.(tape)). rewrite DAt1 by lia. rewrite A1o by lia. apply Ht1. lia. }
+  destruct (ag1_wipe_left (nw - 150) sc1B ltac:(unfold sc1B; cbn [spos sstate stape]; rewrite DAp1, A1p; lia)
+              ltac:(unfold sc1B; cbn [spos sstate stape]; rewrite DAs1, A1s; reflexivity) HB_ag1_wipe_t)
     as [B1w_bd [B1w_p [B1w_s [B1w_f B1w_o]]]].
   set (sc1B_mid1 := srun ag1 (N.of_nat (nw - 150)) sc1B) in *.
   assert (HB_ag1_cnt_t : forall z, -2 <= z <= -2 + Z.of_nat m -> sc1B_mid1.(stape) z = false).
   { intros z Hz.
     destruct (Z.lt_ge_cases z (-1)).
     - replace z with (-2) by lia. rewrite B1w_o by lia.
-      unfold sc1B; simpl. rewrite DAt1 by lia. rewrite A1o by lia. exact Hm2.
+      change (sc1B.(stape)) with (cA.(tape)). rewrite DAt1 by lia. rewrite A1o by lia. exact Hm2.
     - destruct (Z.le_gt_cases z (X1 - 150)).
       + apply B1w_f. lia.
-      + rewrite B1w_o by lia. unfold sc1B; simpl.
+      + rewrite B1w_o by lia. change (sc1B.(stape)) with (cA.(tape)).
         destruct (Z.le_gt_cases z X1).
         * rewrite DAt1 by lia. apply A1f. lia.
         * rewrite DAmid by lia. apply Hf_mid. lia. }
@@ -1305,8 +1414,8 @@ Proof.
     as [B1c_bd [B1c_p [B1c_s [B1c_m2 [B1c_t B1c_o]]]]].
   set (sc1B_mid2 := srun ag1 (S_rec m) sc1B_mid1) in *.
   assert (HB_ag1_wlk_t : forall z, (X2 - 3) <= z < (X2 - 3) + Z.of_nat W -> sc1B_mid2.(stape) z = true).
-  { intros z Hz. rewrite B1c_o by lia.
-    unfold sc1B; simpl.
+  { intros z Hz. rewrite B1c_o, B1w_o by lia.
+    change (sc1B.(stape)) with (cA.(tape)).
     destruct (Z.eq_dec z (X2 - 3)).
     - subst z. rewrite DAmid by lia. exact Hm3.
     - rewrite DAt2 by lia. apply A2lt. lia. }
@@ -1329,25 +1438,25 @@ Proof.
   (* Agent 2 in Sub-phase B: (n_cyc - 10) cycles starting at X2 + 10 *)
   assert (HnB_ag2 : nB = (15 * (n_cyc - 10))%N) by (unfold nB; lia).
   assert (HB_ag2_t0 : sc2B.(stape) ((X2 + 10) - 2) = false)
-    by (unfold sc2B; simpl; rewrite DAt2 by lia; replace (X2 + 10 - 2) with (X2 + 10 - 2) by lia;
+    by (unfold sc1B, sc2B; cbn [spos sstate stape]; rewrite DAt2 by lia; replace (X2 + 10 - 2) with (X2 + 10 - 2) by lia;
         replace (X2 + Z.of_N 10 - 2) with (X2 + 10 - 2) in A2m2 by lia; exact A2m2).
   assert (HB_ag2_t1 : sc2B.(stape) ((X2 + 10) - 1) = false)
-    by (unfold sc2B; simpl; rewrite DAt2 by lia; replace (X2 + 10 - 1) with (X2 + Z.of_N 10 - 1) by lia; exact A2m1).
+    by (unfold sc1B, sc2B; cbn [spos sstate stape]; rewrite DAt2 by lia; replace (X2 + 10 - 1) with (X2 + Z.of_N 10 - 1) by lia; exact A2m1).
   assert (HB_ag2_t2 : sc2B.(stape) (X2 + 10) = false)
-    by (unfold sc2B; simpl; rewrite DAt2 by lia; replace (X2 + 10) with (X2 + Z.of_N 10) by lia; exact A2_0).
+    by (unfold sc1B, sc2B; cbn [spos sstate stape]; rewrite DAt2 by lia; replace (X2 + 10) with (X2 + Z.of_N 10) by lia; exact A2_0).
   assert (HB_ag2_t3 : sc2B.(stape) ((X2 + 10) + 1) = true)
-    by (unfold sc2B; simpl; rewrite DAt2 by lia; replace (X2 + 10 + 1) with (X2 + Z.of_N 10 + 1) by lia; exact A2_1).
+    by (unfold sc1B, sc2B; cbn [spos sstate stape]; rewrite DAt2 by lia; replace (X2 + 10 + 1) with (X2 + Z.of_N 10 + 1) by lia; exact A2_1).
   assert (HB_ag2_ge : forall z, (X2 + 10) + 2 <= z -> sc2B.(stape) z = false)
-    by (intros z Hz; unfold sc2B; simpl; rewrite DAt2 by lia; apply A2ge; lia).
+    by (intros z Hz; unfold sc1B, sc2B; cbn [spos sstate stape]; rewrite DAt2 by lia; apply A2ge; lia).
   destruct (ag2_glider (n_cyc - 10) (X2 + 8) (X2 + 10) sc2B ltac:(lia)
-              ltac:(unfold sc2B; simpl; rewrite DAp2, A2p; lia)
-              ltac:(unfold sc2B; simpl; rewrite DAs2, A2s; reflexivity)
+              ltac:(unfold sc2B; cbn [spos sstate stape]; rewrite DAp2, A2p; lia)
+              ltac:(unfold sc2B; cbn [spos sstate stape]; rewrite DAs2, A2s; reflexivity)
               ltac:(intros; lia) HB_ag2_t0 HB_ag2_t1 HB_ag2_t2 HB_ag2_t3 HB_ag2_ge)
     as [B2bd [B2p [B2s [B2old [B2lt [B2m2 [B2m1 [B2_0 [B2_1 B2ge]]]]]]]]].
   rewrite <- HnB_ag2 in *.
   destruct (run_decouple ag1 ag2 (X2 + 6) (X2 + 8) nB cA sc1B sc2B ltac:(lia)
               eq_refl eq_refl eq_refl eq_refl ltac:(intros; reflexivity) ltac:(intros; reflexivity)
-              HB_ag1_all_bd B2bd)
+              HB_ag1_all_bd ltac:(intros k Hk; pose proof (B2bd k Hk); lia))
     as [DBp1 [DBs1 [DBp2 [DBs2 [DBt1 [DBt2 [DBmid DBnc]]]]]]].
   set (cB := run_N ag1 ag2 nB cA) in *.
   (* Summarize state at cB = run_N ag1 ag2 (15 * n_cyc) c *)
@@ -1391,10 +1500,11 @@ Proof.
       rewrite B1k_t.
       destruct (Z.le_gt_cases z (X2 - 4)).
       + apply B1c_t. lia.
-      + rewrite B1c_o by lia.
+      + rewrite B1c_o, B1w_o by lia.
+        change (sc1B.(stape)) with (cA.(tape)).
         destruct (Z.eq_dec z (X2 - 3)).
-        * subst z. unfold sc1B; simpl; rewrite DAmid by lia; exact Hm3.
-        * unfold sc1B; simpl; rewrite DAt2 by lia; apply A2lt; lia.
+        * subst z. rewrite DAmid by lia; exact Hm3.
+        * rewrite DAt2 by lia; apply A2lt; lia.
     - destruct (Z.lt_ge_cases z (X2 + 8)).
       + rewrite DBmid by lia. unfold cA. rewrite DAt2 by lia. apply A2lt. lia.
       + rewrite DBt2 by lia. apply B2lt. lia. }
@@ -1408,86 +1518,8 @@ Proof.
     by (rewrite DBt2 by lia; replace (X2 + Z.of_N n_cyc + 1) with (X2 + 10 + Z.of_N (n_cyc - 10) + 1) by lia; exact B2_1).
   assert (HcB_ge' : forall z, X2 + Z.of_N n_cyc + 2 <= z -> cB.(tape) z = false)
     by (intros z Hz; rewrite DBt2 by lia; apply B2ge; lia).
-  (* Now prove inner chase loop by induction on K starting from cB! *)
-  assert (Hchase : forall j (P1 P2 : Z) cj,
-    -1 <= P1 ->
-    cj.(pos1) = P1 -> cj.(state1) = StB ->
-    cj.(pos2) = P2 -> cj.(state2) = StC ->
-    P2 - P1 = G_next + 14 * Z.of_N j ->
-    cj.(tape) (-2) = false ->
-    (forall z, -1 <= z <= P2 - 3 -> cj.(tape) z = true) ->
-    cj.(tape) (P2 - 2) = false ->
-    cj.(tape) (P2 - 1) = false ->
-    cj.(tape) P2 = false ->
-    cj.(tape) (P2 + 1) = true ->
-    (forall z, P2 + 2 <= z -> cj.(tape) z = false) ->
-    (forall t, (t < 15 * j)%N -> (run_N ag1 ag2 t cj).(pos1) <> (run_N ag1 ag2 t cj).(pos2)) /\
-    let cj' := run_N ag1 ag2 (15 * j) cj in
-    cj'.(pos1) = P1 + 15 * Z.of_N j /\ cj'.(state1) = StB /\
-    cj'.(pos2) = P1 + 15 * Z.of_N j + G_next /\ cj'.(state2) = StC /\
-    cj'.(tape) (-2) = false /\
-    (forall z, -1 <= z <= P1 + 15 * Z.of_N j + G_next - 3 -> cj'.(tape) z = true) /\
-    cj'.(tape) (P1 + 15 * Z.of_N j + G_next - 2) = false /\
-    cj'.(tape) (P1 + 15 * Z.of_N j + G_next - 1) = false /\
-    cj'.(tape) (P1 + 15 * Z.of_N j + G_next) = false /\
-    cj'.(tape) (P1 + 15 * Z.of_N j + G_next + 1) = true /\
-    (forall z, P1 + 15 * Z.of_N j + G_next + 2 <= z -> cj'.(tape) z = false)).
-  { clear -HG. intro j. induction j using N.peano_ind;
-      intros P1 P2 cj HP1 Jp1 Js1 Jp2 Js2 Jgap Jm2 Jtr Jm2' Jm1' J0' J1' Jge'.
-    - rewrite N.mul_0_r, run_N_0. cbv zeta. splits; [intros; lia | lia | exact Js1 | lia | exact Js2 | exact Jm2 | | | | | |];
-        try (intros z Hz; apply Jtr; lia);
-        try (replace (P1 + 15 * Z.of_N 0 + G_next - 2) with (P2 - 2) by lia; exact Jm2');
-        try (replace (P1 + 15 * Z.of_N 0 + G_next - 1) with (P2 - 1) by lia; exact Jm1');
-        try (replace (P1 + 15 * Z.of_N 0 + G_next) with P2 by lia; exact J0');
-        try (replace (P1 + 15 * Z.of_N 0 + G_next + 1) with (P2 + 1) by lia; exact J1');
-        try (intros z Hz; apply Jge'; lia).
-    - rewrite N2Z.inj_succ in *.
-      assert (Hsep : P1 + 17 <= P2) by (pose proof (N2Z.is_nonneg j); lia).
-      set (q1 := {| spos := P1; sstate := StB; stape := cj.(tape) |}).
-      set (q2 := {| spos := P2; sstate := StC; stape := cj.(tape) |}).
-      assert (Hw : forall z, P1 <= z < P1 + Z.of_nat 15 -> q1.(stape) z = true)
-        by (intros z Hz; apply Jtr; change (Z.of_nat 15) with 15 in Hz; lia).
-      destruct (ag1_walk_ones 15 P1 q1 eq_refl eq_refl Hw) as [Wbd [Wp [Ws Wt]]].
-      destruct (ag2_cycle15 P2 q2 eq_refl eq_refl Jm2' Jm1' J0' J1' Jge')
-        as [Cbd [Cp [Cs [Cold [Cm2 [Cm1 [C0 [C1 [C2 Cge]]]]]]]]].
-      assert (Hbd1 : forall k, (k < 15)%N -> (srun ag1 k q1).(spos) <= P1 + 14)
-        by (intros k Hk; change 15%N with (N.of_nat 15) in Hk; pose proof (Wbd k Hk); change (Z.of_nat 15) with 15 in *; lia).
-      destruct (run_decouple ag1 ag2 (P1 + 14) (P2 - 2) 15 cj q1 q2 ltac:(lia)
-                  Jp1 Js1 Jp2 Js2 ltac:(intros; reflexivity) ltac:(intros; reflexivity) Hbd1 Cbd)
-        as [Ep1 [Es1 [Ep2 [Es2 [Et1 [Et2 [Emid Enc]]]]]]].
-      set (c15 := run_N ag1 ag2 15 cj) in *.
-      assert (C15_p1 : c15.(pos1) = P1 + 15)
-        by (rewrite Ep1; change 15%N with (N.of_nat 15); rewrite Wp; change (Z.of_nat 15) with 15; reflexivity).
-      assert (C15_s1 : c15.(state1) = StB)
-        by (rewrite Es1; change 15%N with (N.of_nat 15); exact Ws).
-      assert (C15_p2 : c15.(pos2) = P2 + 1) by (rewrite Ep2; exact Cp).
-      assert (C15_s2 : c15.(state2) = StC) by (rewrite Es2; exact Cs).
-      assert (C15_m2 : c15.(tape) (-2) = false)
-        by (rewrite Et1 by lia; change 15%N with (N.of_nat 15); rewrite Wt; exact Jm2).
-      assert (C15_tr : forall z, -1 <= z <= (P2 + 1) - 3 -> c15.(tape) z = true).
-      { intros z Hz. destruct (Z.le_gt_cases z (P1 + 14)).
-        - rewrite Et1 by lia; change 15%N with (N.of_nat 15); rewrite Wt; apply Jtr; lia.
-        - destruct (Z.lt_ge_cases z (P2 - 2)).
-          + rewrite Emid by lia; apply Jtr; lia.
-          + rewrite Et2 by lia; replace z with (P2 - 2) by lia; exact Cm2. }
-      destruct (IHj (P1 + 15) (P2 + 1) c15 ltac:(lia) C15_p1 C15_s1 C15_p2 C15_s2 ltac:(lia) C15_m2 C15_tr
-                  ltac:(rewrite Et2 by lia; replace (P2 + 1 - 2) with (P2 - 1) by lia; exact Cm1)
-                  ltac:(rewrite Et2 by lia; replace (P2 + 1 - 1) with P2 by lia; exact C0)
-                  ltac:(rewrite Et2 by lia; exact C1)
-                  ltac:(rewrite Et2 by lia; replace (P2 + 1 + 1) with (P2 + 2) by lia; exact C2)
-                  ltac:(intros z Hz; rewrite Et2 by lia; apply Cge; lia))
-        as [Lnc [Lp1 [Ls1 [Lp2 [Ls2 [Lm2 [Ltr [Lm2' [Lm1' [L0' [L1' Lge']]]]]]]]]]].
-      replace (15 * N.succ j)%N with (15 * j + 15)%N by lia.
-      cbv zeta. rewrite run_N_add. change (run_N ag1 ag2 15 cj) with c15.
-      splits; [| rewrite Lp1; lia | exact Ls1 | rewrite Lp2; lia | exact Ls2 | exact Lm2 | | | | | |].
-      + intros k Hk. eapply no_coll_add; [exact Enc | exact Lnc | exact Hk].
-      + intros z Hz. apply Ltr. lia.
-      + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next - 2) with (P1 + 15 + 15 * Z.of_N j + G_next - 2) by lia. exact Lm2'.
-      + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next - 1) with (P1 + 15 + 15 * Z.of_N j + G_next - 1) by lia. exact Lm1'.
-      + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next) with (P1 + 15 + 15 * Z.of_N j + G_next) by lia. exact L0'.
-      + replace (P1 + 15 * Z.succ (Z.of_N j) + G_next + 1) with (P1 + 15 + 15 * Z.of_N j + G_next + 1) by lia. exact L1'.
-      + intros z Hz. apply Lge'. lia. }
-  destruct (Hchase K ((X2 - 3) + Z.of_nat W) (X2 + Z.of_N n_cyc) cB ltac:(lia)
+  (* Now invoke ag1_ag2_chase for K cycles starting from cB *)
+  destruct (ag1_ag2_chase G_next K ((X2 - 3) + Z.of_nat W) (X2 + Z.of_N n_cyc) cB HG ltac:(lia)
               HcB_p1 HcB_s1 HcB_p2 HcB_s2 Hgap_eq HcB_m2 HcB_tr HcB_m2' HcB_m1' HcB_0' HcB_1' HcB_ge')
     as [CH_nc [CH_p1 [CH_s1 [CH_p2 [CH_s2 [CH_m2 [CH_tr [CH_m2' [CH_m1' [CH_0' [CH_1' CH_ge']]]]]]]]]]].
   cbv zeta.
@@ -1496,7 +1528,7 @@ Proof.
     eapply no_coll_add; [exact DAnc | | exact Ht].
     intro k. change (run_N ag1 ag2 150 c) with cA. exact (DBnc k). }
   splits.
-  - intros t Ht. unfold T_round in Ht. replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N in Ht by lia.
+  - intros t Ht. replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N in Ht by lia.
     eapply no_coll_add; [exact Hnc_round | | exact Ht].
     intro k. rewrite <- HcB_eq. exact (CH_nc k).
   - replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
@@ -1512,19 +1544,15 @@ Proof.
   - intros z Hz. replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
     rewrite run_N_add, <- HcB_eq. apply CH_tr. lia.
   - replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
-    rewrite run_N_add, <- HcB_eq.
-    replace (X_end + G_next - 2) with (X2 - 3 + Z.of_nat W + 15 * Z.of_N K + G_next - 2) by lia. exact CH_m2'.
+    rewrite run_N_add, <- HcB_eq. exact CH_m2'.
   - replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
-    rewrite run_N_add, <- HcB_eq.
-    replace (X_end + G_next - 1) with (X2 - 3 + Z.of_nat W + 15 * Z.of_N K + G_next - 1) by lia. exact CH_m1'.
+    rewrite run_N_add, <- HcB_eq. exact CH_m1'.
   - replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
-    rewrite run_N_add, <- HcB_eq.
-    replace (X_end + G_next) with (X2 - 3 + Z.of_nat W + 15 * Z.of_N K + G_next) by lia. exact CH_0'.
+    rewrite run_N_add, <- HcB_eq. exact CH_0'.
   - replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
-    rewrite run_N_add, <- HcB_eq.
-    replace (X_end + G_next + 1) with (X2 - 3 + Z.of_nat W + 15 * Z.of_N K + G_next + 1) by lia. exact CH_1'.
+    rewrite run_N_add, <- HcB_eq. exact CH_1'.
   - intros z Hz. replace (15 * n_cyc + 15 * K)%N with (15 * K + 15 * n_cyc)%N by lia.
-    rewrite run_N_add, <- HcB_eq. apply CH_ge'. unfold X_end in Hz. lia.
+    rewrite run_N_add, <- HcB_eq. apply CH_ge'. lia.
 Qed.
 
 (** * 10. 45-Step Local Bounce at G = 10 and 7-Step Collision Suffix at G = 8 *)
@@ -1591,9 +1619,9 @@ Lemma bounce_G10 : forall x0 c,
   (forall z, x0 + 15 <= z -> c'.(tape) z = false).
 Proof.
   intros x0 c Hx0 Hp1 Hs1 Hp2 Hs2 Hm2 Htr Hf8 Hf9 Hf10 Ht11 Hge12.
-  pose proof bounce10_ok as Hok. unfold check_bounce10 in Hok.
+  pose proof bounce10_ok as Hok. unfold check_bounce10 in Hok. cbv zeta in Hok.
   remember (N.iter 45 (fast_step_chk_ge (-27)) (fc_bounce10, true)) as st eqn:E.
-  destruct st as [fc45 ok45].
+  destruct st as [fc45 ok45]. cbn [fst snd] in Hok.
   rewrite !andb_true_iff in Hok.
   destruct Hok as [[[[[[[[[[[[[[[[[Hsnd Fp1] Fp2] Fs] Fm27] Ffl] Ft10] Ff11] Ff12] Ff13] Ft14] Fbd] Btr] Bbd] Bf8] Bf9] Bf10] Bt11].
   (* Wait: 18 andb's: count carefully! Let's rewrite negb and eqb *)
@@ -1602,7 +1630,7 @@ Proof.
   apply check_states_CC in Fs. destruct Fs as [Fs1 Fs2].
   assert (Hfc : fc45 = N.iter 45 fast_step fc_bounce10).
   { pose proof (fast_step_chk_ge_fst 45 (-27) fc_bounce10 true) as Hfst.
-    rewrite <- E in Hfst. exact Hfst. }
+    rewrite <- E in Hfst. cbn [fst] in Hfst. exact Hfst. }
   assert (Hsnd45 : snd (N.iter 45 (fast_step_chk_ge (-27)) (fc_bounce10, true)) = true)
     by (rewrite <- E; exact Hsnd).
   clear E Hsnd.
@@ -1640,27 +1668,32 @@ Proof.
               ltac:(simpl; lia) ltac:(simpl; lia) ltac:(simpl; congruence) ltac:(simpl; congruence)
               Hag Hbd_only)
     as [Ap1 [Ap2 [As1 [As2 [Aag [Alt Aprev]]]]]].
-  pose proof (run_N_shift ag1 ag2 (- x0) 45 c) as [Sp1 Sp2 Ss1 Ss2 Stp].
-  simpl in Sp1, Sp2, Ss1, Ss2.
-  pose proof (fast_run_sound 45 fc_bounce10) as [F45p1 F45p2 F45s1 F45s2 F45tp].
-  rewrite <- Hfc in F45p1, F45p2, F45s1, F45s2, F45tp.
-  cbn [pos1 pos2 state1 state2 tape fc_to_cfg] in F45p1, F45p2, F45s1, F45s2, F45tp.
+  pose proof (run_N_shift_exp ag1 ag2 (- x0) 45 c) as [Sp1 [Sp2 [Ss1 [Ss2 Stp]]]].
+  
+  assert (Hrun45 : cfg_eq (fc_to_cfg fc45) (run_N ag1 ag2 45 (fc_to_cfg fc_bounce10)))
+    by (rewrite Hfc; apply fast_run_sound).
+  destruct Hrun45 as [F45p1 F45p2 F45s1 F45s2 F45tp].
+  change (pos1 (fc_to_cfg fc45)) with fc45.(fpos1) in F45p1.
+  change (pos2 (fc_to_cfg fc45)) with fc45.(fpos2) in F45p2.
+  change (state1 (fc_to_cfg fc45)) with fc45.(fstate1) in F45s1.
+  change (state2 (fc_to_cfg fc45)) with fc45.(fstate2) in F45s2.
+  change (tape (fc_to_cfg fc45)) with (bt_interp fc45.(ftape)) in F45tp.
   (* Helper to read shifted tape cells at z >= -27 *)
-  assert (Hread : forall z, -27 <= z -> c'.(tape) (x0 + z) = bt_interp fc45.(ftape) z).
-  { intros z Hz. specialize (Stp z). unfold shift_cfg, shift_tape in Stp. simpl in Stp.
-    replace (z - - x0) with (x0 + z) in Stp by lia. rewrite <- Stp, <- Aag by auto. exact (F45tp z). }
+  assert (Hread : forall z, -27 <= z -> (run_N ag1 ag2 45 c).(tape) (x0 + z) = bt_interp fc45.(ftape) z).
+  { intros z Hz. specialize (Stp z).
+    replace (z - - x0) with (x0 + z) in Stp by lia. rewrite Stp, <- Aag by auto. symmetry. exact (F45tp z). }
   (* Helper to preserve cells z < x0 - 27 *)
   assert (Hbd_orig : forall k, (k < 45)%N -> x0 - 27 <= (run_N ag1 ag2 k c).(pos1) /\ x0 - 27 <= (run_N ag1 ag2 k c).(pos2)).
   { intros k Hk.
-    pose proof (run_N_shift ag1 ag2 (- x0) k c) as [Kp1 Kp2 _ _ _]. simpl in Kp1, Kp2.
+    pose proof (run_N_shift_exp ag1 ag2 (- x0) k c) as [Kp1 [Kp2 _]]. 
     destruct (Aprev k Hk) as [Bp1 Bp2].
     destruct (Hbd_only k Hk) as [Op1 Op2]. lia. }
   destruct (run_N_agree_ge ag1 ag2 (x0 - 27) 45 c c eq_refl eq_refl eq_refl eq_refl
               ltac:(intros ? _; reflexivity) Hbd_orig)
-    as [_ [_ [_ [_ [_ Hlt]]]]].
+    as [_ [_ [_ [_ [_ [Hlt _]]]]]].
   cbv zeta in *. splits.
   - intros t Ht.
-    pose proof (run_N_shift ag1 ag2 (- x0) t c) as [Tp1 Tp2 _ _ _]. simpl in Tp1, Tp2.
+    pose proof (run_N_shift_exp ag1 ag2 (- x0) t c) as [Tp1 [Tp2 _]]. 
     destruct (Aprev t Ht) as [Bp1 Bp2]. destruct (Hbd_cf t Ht) as [_ Hnc]. lia.
   - lia.
   - congruence.
@@ -1714,7 +1747,7 @@ Lemma suffix_7 : forall x0 c,
   forall t, (t < 7)%N -> (run_N ag1 ag2 t c).(pos1) <> (run_N ag1 ag2 t c).(pos2).
 Proof.
   intros x0 c Hp1 Hs1 Hp2 Hs2 Htr Hf6 Hf7 Hf8 Ht9 Hge10.
-  pose proof final7_ok as Hok. unfold check_final7 in Hok.
+  pose proof final7_ok as Hok. unfold check_final7 in Hok. cbv zeta in Hok.
   rewrite !andb_true_iff in Hok.
   destruct Hok as [[[[[[[Hsnd Hcol] Btr] Bbd] Bf6] Bf7] Bf8] Bt9].
   rewrite Z.eqb_eq in Hcol.
@@ -1758,16 +1791,19 @@ Proof.
               ltac:(simpl; lia) ltac:(simpl; lia) ltac:(simpl; congruence) ltac:(simpl; congruence)
               Hag Hbd_only)
     as [Ap1 [Ap2 [_ [_ [_ [_ Aprev]]]]]].
-  pose proof (run_N_shift ag1 ag2 (- x0) 7 c) as [Sp1 Sp2 _ _ _]. simpl in Sp1, Sp2.
-  pose proof (fast_run_sound 7 fc_final8) as [F7p1 F7p2 _ _ _].
-  rewrite <- Efc7 in F7p1, F7p2.
-  cbn [pos1 pos2 fc_to_cfg] in F7p1, F7p2.
+  pose proof (run_N_shift_exp ag1 ag2 (- x0) 7 c) as [Sp1 [Sp2 _]]. 
+  assert (Hrun7 : cfg_eq (fc_to_cfg fc7) (run_N ag1 ag2 7 (fc_to_cfg fc_final8)))
+    by (rewrite Efc7; apply fast_run_sound).
+  destruct Hrun7 as [F7p1 F7p2 _ _ _].
+  change (pos1 (fc_to_cfg fc7)) with fc7.(fpos1) in F7p1.
+  change (pos2 (fc_to_cfg fc7)) with fc7.(fpos2) in F7p2.
   split; [lia |].
   intros t Ht.
-  pose proof (run_N_shift ag1 ag2 (- x0) t c) as [Tp1 Tp2 _ _ _]. simpl in Tp1, Tp2.
+  pose proof (run_N_shift_exp ag1 ag2 (- x0) t c) as [Tp1 [Tp2 _]]. 
   destruct (Aprev t Ht) as [Bp1 Bp2]. destruct (Hbd_cf t Ht) as [_ Hnc]. lia.
 Qed.
 
+(** * 11. Exact Modular Arithmetic for Rounds 2 and 3 *)
 (** * 11. Exact Modular Arithmetic for Rounds 2 and 3 *)
 
 Lemma pow2_add12_mod840 : forall n,
@@ -1802,6 +1838,29 @@ Proof.
     rewrite pow2_add12_mod840 by lia. exact IHk.
 Qed.
 
+Lemma pow2_5_mod840 : 2 ^ 5 mod 840 = 32.
+Proof. reflexivity. Qed.
+
+Lemma pow2_10_le_r : forall n, 10 <= n -> 1024 <= 2 ^ n.
+Proof.
+  intros n Hn. change 1024 with (2 ^ 10). apply Z.pow_le_mono_r; lia.
+Qed.
+
+Lemma pow2_13_le_r : forall n, 13 <= n -> 8192 <= 2 ^ n.
+Proof.
+  intros n Hn. change 8192 with (2 ^ 13). apply Z.pow_le_mono_r; lia.
+Qed.
+
+Lemma npow2_7_le_r : forall n, (7 <= n -> 128 <= 2 ^ n)%N.
+Proof.
+  intros n Hn. change 128%N with (2 ^ 7)%N. apply N.pow_le_mono_r; lia.
+Qed.
+
+Lemma npow2_13_le_r : forall n, (13 <= n -> 8192 <= 2 ^ n)%N.
+Proof.
+  intros n Hn. change 8192%N with (2 ^ 13)%N. apply N.pow_le_mono_r; lia.
+Qed.
+
 Definition K2 : N := ((2 ^ 4697 - 242) / 210)%N.
 Definition n_cyc2 : N := (14 * (K2 + 1))%N.
 Definition x0_2_Z : Z := 4701 + 15 * Z.of_N K2.
@@ -1812,20 +1871,51 @@ Definition n_cyc3 : N := (14 * K3 + 6)%N.
 Definition exact_halt_steps : N :=
   (70429 + (15 * n_cyc2 + 15 * K2) + 45 + (15 * n_cyc3 + 15 * K3) + 7)%N.
 
-Lemma K2_rel : (4659 + (2 ^ 4697 - 240) + 7 = 15 * n_cyc2)%N.
-Proof. vm_compute. reflexivity. Qed.
+Opaque Z.pow N.pow Z.to_nat.
 
-Lemma K2_gap_rel : 4697 + Z.of_N n_cyc2 - (4694 + 7) = 10 + 14 * Z.of_N K2.
-Proof. vm_compute. reflexivity. Qed.
+Lemma pow2_add60_mod840 : forall n,
+  3 <= n -> 2 ^ (n + 60) mod 840 = 2 ^ n mod 840.
+Proof.
+  intros n Hn.
+  replace (n + 60) with (((((n + 12) + 12) + 12) + 12) + 12) by lia.
+  rewrite !pow2_add12_mod840 by lia. reflexivity.
+Qed.
 
-Lemma K2_mod3 : Z.of_N K2 mod 4 = 3.
-Proof. vm_compute. reflexivity. Qed.
+Lemma pow2_add300_mod840 : forall n,
+  3 <= n -> 2 ^ (n + 300) mod 840 = 2 ^ n mod 840.
+Proof.
+  intros n Hn.
+  replace (n + 300) with (((((n + 60) + 60) + 60) + 60) + 60) by lia.
+  rewrite !pow2_add60_mod840 by lia. reflexivity.
+Qed.
 
-Lemma K2_pow_rel : (2 ^ 4697 = 840 * ((Z.of_N K2 + 1) / 4) + 32)%Z.
-Proof. vm_compute. reflexivity. Qed.
+Lemma pow2_add1500_mod840 : forall n,
+  3 <= n -> 2 ^ (n + 1500) mod 840 = 2 ^ n mod 840.
+Proof.
+  intros n Hn.
+  replace (n + 1500) with (((((n + 300) + 300) + 300) + 300) + 300) by lia.
+  rewrite !pow2_add300_mod840 by lia. reflexivity.
+Qed.
 
-Lemma K2_ge3 : 1 <= (Z.of_N K2 + 1) / 4.
-Proof. vm_compute. discriminate. Qed.
+Lemma pow2_4697_mod840 : 2 ^ 4697 mod 840 = 32.
+Proof.
+  replace 4697 with (((((((5 + 1500) + 1500) + 1500) + 60) + 60) + 60) + 12) by lia.
+  rewrite pow2_add12_mod840, !pow2_add60_mod840, !pow2_add1500_mod840 by lia.
+  exact pow2_5_mod840.
+Qed.
+
+Lemma HK2_raw : Z.of_N K2 = (2 ^ 4697 - 242) / 210.
+Proof.
+  unfold K2.
+  assert (H : (242 <= 2 ^ 4697)%N).
+  { apply N.le_trans with 8192%N;
+      [vm_compute; discriminate | apply npow2_13_le_r; vm_compute; discriminate]. }
+  rewrite N2Z.inj_div, (N2Z.inj_sub _ _ H), N2Z.inj_pow.
+  change (Z.of_N 2) with 2. change (Z.of_N 4697) with 4697.
+  change (Z.of_N 242) with 242. change (Z.of_N 210) with 210. reflexivity.
+Qed.
+
+Opaque K2.
 
 Lemma K2_arithmetic :
   exists q2 : Z,
@@ -1835,27 +1925,41 @@ Lemma K2_arithmetic :
     (N.of_nat (Z.to_nat (4657 + 2)) + S_rec (Z.to_nat (4697 - 2)) + N.of_nat 7 = 15 * n_cyc2)%N /\
     4697 + Z.of_N n_cyc2 - ((4697 - 3) + Z.of_nat 7) = 10 + 14 * Z.of_N K2.
 Proof.
-  set (q2 := ((Z.of_N K2 + 1) / 4)%Z).
-  exists q2. splits.
-  - exact K2_ge3.
-  - pose proof (Z.div_mod (Z.of_N K2 + 1) 4 ltac:(lia)) as Hdm.
-    assert (Hm : (Z.of_N K2 + 1) mod 4 = 0).
-    { rewrite <- Zplus_mod_idemp_l, K2_mod3. reflexivity. }
-    rewrite Hm in Hdm. unfold q2. lia.
-  - exact K2_pow_rel.
-  - apply N2Z.inj. rewrite !N2Z.inj_add, S_rec_closed.
-    change (Z.of_nat (Z.to_nat (4657 + 2))) with 4659.
-    change (Z.of_nat (Z.to_nat (4697 - 2))) with 4695.
-    change (Z.of_nat 7) with 7.
-    change (4695 + 2) with 4697.
-    pose proof K2_rel as Hr.
-    apply N2Z.inj_iff in Hr.
-    rewrite !N2Z.inj_add, N2Z.inj_sub, N2Z.inj_pow in Hr.
-    + exact Hr.
-    + change 240%N with (2 ^ 8 - 16)%N.
-      assert (2 ^ 8 <= 2 ^ 4697)%N by (apply N.pow_le_mono_r; lia). lia.
-  - exact K2_gap_rel.
+  pose proof pow2_4697_mod840 as Hmod.
+  assert (H2_13 : 8192 <= 2 ^ 4697) by (apply pow2_13_le_r; lia).
+  pose proof (Z.div_mod (2 ^ 4697) 840 ltac:(lia)) as Hdm.
+  rewrite Hmod in Hdm.
+  pose proof HK2_raw as HK2r.
+  clear Hmod.
+  remember (2 ^ 4697) as P2 eqn:EP2.
+  set (q2 := (P2 / 840)%Z) in *.
+  assert (Hpow : P2 = 840 * q2 + 32) by (unfold q2; lia).
+  assert (Hq2_ge : 1 <= q2) by lia.
+  assert (HK2_eq : Z.of_N K2 = 4 * q2 - 1).
+  { rewrite HK2r. replace (P2 - 242) with ((4 * q2 - 1) * 210) by lia.
+    rewrite Z.div_mul by lia. reflexivity. }
+  exists q2. splits; [exact Hq2_ge | exact HK2_eq | exact Hpow | | ].
+  - apply N2Z.inj. rewrite !N2Z.inj_add, !N2Z.inj_mul, !nat_N_Z, S_rec_closed.
+    rewrite (Z2Nat.id (4657 + 2)) by lia.
+    rewrite (Z2Nat.id (4697 - 2)) by lia.
+    change (Z.of_nat 7) with 7. change (Z.of_N 15) with 15.
+    replace (4697 - 2 + 2) with 4697 by lia.
+    rewrite <- EP2.
+    unfold n_cyc2. rewrite N2Z.inj_mul, N2Z.inj_add, HK2_eq.
+    change (Z.of_N 14) with 14. change (Z.of_N 1) with 1. lia.
+  - unfold n_cyc2. rewrite N2Z.inj_mul, N2Z.inj_add.
+    change (Z.of_N 14) with 14. change (Z.of_N 1) with 1. change (Z.of_nat 7) with 7. lia.
 Qed.
+
+Lemma HK3_raw : Z.of_N K3 = (2 ^ (Z.of_N m3 + 2) - 128) / 210.
+Proof.
+  assert (Hm3_ge : (7 <= m3 + 2)%N) by (unfold m3, x0_2_Z; lia).
+  assert (Hpow_gt : (128 <= 2 ^ (m3 + 2))%N) by (apply npow2_7_le_r; exact Hm3_ge).
+  unfold K3. rewrite N2Z.inj_div, (N2Z.inj_sub _ _ Hpow_gt), N2Z.inj_pow, N2Z.inj_add.
+  change (Z.of_N 2) with 2. change (Z.of_N 128) with 128. change (Z.of_N 210) with 210. reflexivity.
+Qed.
+
+Opaque K3.
 
 Lemma K3_arithmetic :
   exists q3 : Z,
@@ -1870,31 +1974,27 @@ Proof.
   assert (Hm3_eq : Z.of_N m3 = x0_2_Z + 11) by (unfold m3; lia).
   assert (Hm3_mod : Z.of_N m3 + 2 = 12 * Z.of_nat (Z.to_nat (391 + 5 * q2)) + 7).
   { rewrite Hm3_eq. unfold x0_2_Z. rewrite HK2.
-    replace (Z.of_nat (Z.to_nat (391 + 5 * q2))) with (391 + 5 * q2) by lia. lia. }
+    rewrite (Z2Nat.id (391 + 5 * q2)) by lia. lia. }
   pose proof (pow2_12k_plus_7_mod840 (Z.to_nat (391 + 5 * q2))) as Hmod.
   rewrite <- Hm3_mod in Hmod.
-  assert (H2_10 : 1024 <= 2 ^ (Z.of_N m3 + 2)).
-  { change 1024 with (2 ^ 10). apply Z.pow_le_mono_r; lia. }
-  assert (Hpow_gt : (128 <= 2 ^ (m3 + 2))%N).
-  { change 128%N with (2 ^ 7)%N. apply N.pow_le_mono_r; lia. }
+  assert (H2_10 : 1024 <= 2 ^ (Z.of_N m3 + 2)) by (apply pow2_10_le_r; lia).
   pose proof (Z.div_mod (2 ^ (Z.of_N m3 + 2)) 840 ltac:(lia)) as Hdm.
   rewrite Hmod in Hdm.
-  remember (2 ^ (Z.of_N m3 + 2) / 840)%Z as q3 eqn:Eq3.
+  pose proof HK3_raw as HK3r.
+  clear Hmod.
   remember (2 ^ (Z.of_N m3 + 2)) as P3 eqn:EP3.
-  assert (Hpow : P3 = 840 * q3 + 128) by lia.
+  set (q3 := (P3 / 840)%Z) in *.
+  assert (Hpow : P3 = 840 * q3 + 128) by (unfold q3; lia).
   assert (Hq3_ge : 1 <= q3) by lia.
   assert (HK3_eq : Z.of_N K3 = 4 * q3).
-  { unfold K3.
-    rewrite N2Z.inj_div, N2Z.inj_sub, N2Z.inj_pow, N2Z.inj_add; auto.
-    change (Z.of_N 2) with 2. change (Z.of_N 128) with 128. change (Z.of_N 210) with 210.
-    rewrite <- EP3.
-    replace (P3 - 128) with (4 * q3 * 210) by lia.
+  { rewrite HK3r. replace (P3 - 128) with (4 * q3 * 210) by lia.
     rewrite Z.div_mul by lia. reflexivity. }
-  exists q3. splits; auto.
+  exists q3. splits; [exact Hq3_ge | exact HK3_eq | exact Hpow | | ].
   - apply N2Z.inj. rewrite !N2Z.inj_add, !N2Z.inj_mul, !nat_N_Z, S_rec_closed.
-    rewrite !Z2Nat.id by lia.
+    rewrite (Z2Nat.id (x0_2_Z - 27 + 2)) by lia.
+    rewrite (Z2Nat.id (x0_2_Z + 13 - 2)) by lia.
     change (Z.of_nat 1) with 1. change (Z.of_N 15) with 15.
-    replace (x0_2_Z + 13 - 2) with (Z.of_N m3) by lia.
+    replace (x0_2_Z + 13 - 2 + 2) with (Z.of_N m3 + 2) by lia.
     rewrite <- EP3.
     unfold n_cyc3. rewrite N2Z.inj_add, N2Z.inj_mul, HK3_eq.
     change (Z.of_N 14) with 14. change (Z.of_N 6) with 6. lia.
@@ -1913,7 +2013,8 @@ Proof.
   change (Z.of_N 70429) with 70429. change (Z.of_N 15) with 15.
   change (Z.of_N 14) with 14. change (Z.of_N 1) with 1.
   change (Z.of_N 45) with 45. change (Z.of_N 6) with 6. change (Z.of_N 7) with 7.
-  remember (2 ^ 4697) as P2. remember (2 ^ (Z.of_N m3 + 2)) as P3.
+  generalize (2 ^ 4697) Hpow2; clear Hpow2; intros P2 Hpow2.
+  generalize (2 ^ (Z.of_N m3 + 2)) Hpow3; clear Hpow3; intros P3 Hpow3.
   lia.
 Qed.
 
@@ -1926,8 +2027,8 @@ Proof.
   pose proof state_70429 as H70429. cbv zeta in H70429.
   remember (run_N ag1 ag2 70429 c0) as c1 eqn:Ec1.
   destruct H70429 as [P1p1 [P1p2 [P1s1 [P1s2 [P1m2 [P1tr [P1fl [P1_94 [P1_95 [P1_96 [P1_97 [P1_98 [P1ge Hnc1]]]]]]]]]]]]].
-  destruct K2_arithmetic as [q2 [Hq2 [HK2 [Hpow2 [Hn2eq Hgap2]]]]].
-  destruct K3_arithmetic as [q3 [Hq3 [HK3 [Hpow3 [Hn3eq Hgap3]]]]].
+  destruct K2_arithmetic as [q2 [Hq2 [HK2 [_ [Hn2eq Hgap2]]]]].
+  destruct K3_arithmetic as [q3 [Hq3 [HK3 [_ [Hn3eq Hgap3]]]]].
   (* Round 2: counter + chase *)
   assert (Hn2_ge12 : (12 <= n_cyc2)%N) by (unfold n_cyc2; lia).
   destruct (round_decouple_and_chase c1 4657 4697 7%nat n_cyc2 K2 10
@@ -1937,10 +2038,16 @@ Proof.
   change (4697 - 3 + Z.of_nat 7 + 15 * Z.of_N K2) with x0_2_Z in *.
   set (c2 := run_N ag1 ag2 (15 * n_cyc2 + 15 * K2) c1) in *.
   (* Round 2: 45-step bounce at G = 10 *)
-  assert (Hx0_2_ge : 26 <= x0_2_Z) by (unfold x0_2_Z; lia).
+  assert (Hx0_2_ge4701 : 4701 <= x0_2_Z) by (unfold x0_2_Z; lia).
+  assert (Hx0_2_ge : 26 <= x0_2_Z) by lia.
   assert (HR2tr' : forall z, -1 <= z <= x0_2_Z + 7 -> c2.(tape) z = true)
     by (intros z Hz; apply R2tr; lia).
-  destruct (bounce_G10 x0_2_Z c2 Hx0_2_ge R2p1 R2s1 R2p2 R2s2 R2m2 HR2tr' R2_8 R2_9 R2_10 R2_11 R2ge)
+  destruct (bounce_G10 x0_2_Z c2 Hx0_2_ge R2p1 R2s1 R2p2 R2s2 R2m2 HR2tr'
+              ltac:(replace (x0_2_Z + 8) with (x0_2_Z + 10 - 2) by lia; exact R2_8)
+              ltac:(replace (x0_2_Z + 9) with (x0_2_Z + 10 - 1) by lia; exact R2_9)
+              R2_10
+              ltac:(replace (x0_2_Z + 11) with (x0_2_Z + 10 + 1) by lia; exact R2_11)
+              ltac:(intros z Hz; apply R2ge; lia))
     as [B2nc [B2p1 [B2s1 [B2p2 [B2s2 [B2m2 [B2tr [B2fl [B2_10 [B2_11 [B2_12 [B2_13 [B2_14 B2ge]]]]]]]]]]]]].
   set (c2b := run_N ag1 ag2 45 c2) in *.
   (* Round 3: counter + chase *)
@@ -1962,48 +2069,67 @@ Proof.
   assert (Hx0_3_ge : 0 <= x0_3) by (unfold x0_3; lia).
   assert (HR3tr' : forall z, x0_3 <= z <= x0_3 + 5 -> c3.(tape) z = true)
     by (intros z Hz; apply R3tr; lia).
-  destruct (suffix_7 x0_3 c3 R3p1 R3s1 R3p2 R3s2 HR3tr' R3_6 R3_7 R3_8 R3_9 R3ge)
+  destruct (suffix_7 x0_3 c3 R3p1 R3s1 R3p2 R3s2 HR3tr'
+              ltac:(replace (x0_3 + 6) with (x0_3 + 8 - 2) by lia; exact R3_6)
+              ltac:(replace (x0_3 + 7) with (x0_3 + 8 - 1) by lia; exact R3_7)
+              R3_8
+              ltac:(replace (x0_3 + 9) with (x0_3 + 8 + 1) by lia; exact R3_9)
+              ltac:(intros z Hz; apply R3ge; lia))
     as [F7col F7nc].
   (* Assemble exact step count and non-collision *)
+  remember (15 * n_cyc2 + 15 * K2)%N as T2 eqn:ET2.
+  remember (15 * n_cyc3 + 15 * K3)%N as T3 eqn:ET3.
   assert (Hcol : collides_at ag1 ag2 c0 exact_halt_steps).
   { unfold collides_at, exact_halt_steps.
+    rewrite <- ET2, <- ET3.
+    replace (70429 + T2 + 45 + T3 + 7)%N
+      with (7 + (T3 + (45 + (T2 + 70429))))%N by lia.
     rewrite !run_N_add, <- Ec1.
-    change (run_N ag1 ag2 (15 * n_cyc2 + 15 * K2) c1) with c2.
+    change (run_N ag1 ag2 T2 c1) with c2.
     change (run_N ag1 ag2 45 c2) with c2b.
-    change (run_N ag1 ag2 (15 * n_cyc3 + 15 * K3) c2b) with c3.
+    change (run_N ag1 ag2 T3 c2b) with c3.
     exact F7col. }
   assert (Hnc : forall t, (t < exact_halt_steps)%N -> ~ collides_at ag1 ag2 c0 t).
   { intros t Ht. unfold collides_at, exact_halt_steps in *.
-    assert (Hnc_2 : forall k, (k < 70429 + (15 * n_cyc2 + 15 * K2))%N ->
+    rewrite <- ET2, <- ET3 in Ht.
+    assert (Hnc_2 : forall k, (k < 70429 + T2)%N ->
               (run_N ag1 ag2 k c0).(pos1) <> (run_N ag1 ag2 k c0).(pos2)).
     { intros k Hk.
-      replace (70429 + (15 * n_cyc2 + 15 * K2))%N with ((15 * n_cyc2 + 15 * K2) + 70429)%N in Hk by lia.
+      replace (70429 + T2)%N with (T2 + 70429)%N in Hk by lia.
       eapply no_coll_add; [exact Hnc1 | | exact Hk].
       intro j. rewrite <- Ec1. exact (R2nc j). }
-    assert (Hnc_2b : forall k, (k < 70429 + (15 * n_cyc2 + 15 * K2) + 45)%N ->
+    assert (Hnc_2b : forall k, (k < 70429 + T2 + 45)%N ->
               (run_N ag1 ag2 k c0).(pos1) <> (run_N ag1 ag2 k c0).(pos2)).
     { intros k Hk.
-      replace (70429 + (15 * n_cyc2 + 15 * K2) + 45)%N
-        with (45 + (70429 + (15 * n_cyc2 + 15 * K2)))%N in Hk by lia.
+      replace (70429 + T2 + 45)%N
+        with (45 + (70429 + T2))%N in Hk by lia.
       eapply no_coll_add; [exact Hnc_2 | | exact Hk].
-      intro j. rewrite run_N_add, <- Ec1. change (run_N ag1 ag2 (15 * n_cyc2 + 15 * K2) c1) with c2.
+      intro j.
+      replace (70429 + T2)%N with (T2 + 70429)%N by lia.
+      rewrite !run_N_add, <- Ec1. change (run_N ag1 ag2 T2 c1) with c2.
       exact (B2nc j). }
-    assert (Hnc_3 : forall k, (k < 70429 + (15 * n_cyc2 + 15 * K2) + 45 + (15 * n_cyc3 + 15 * K3))%N ->
+    assert (Hnc_3 : forall k, (k < 70429 + T2 + 45 + T3)%N ->
               (run_N ag1 ag2 k c0).(pos1) <> (run_N ag1 ag2 k c0).(pos2)).
     { intros k Hk.
-      replace (70429 + (15 * n_cyc2 + 15 * K2) + 45 + (15 * n_cyc3 + 15 * K3))%N
-        with ((15 * n_cyc3 + 15 * K3) + (70429 + (15 * n_cyc2 + 15 * K2) + 45))%N in Hk by lia.
+      replace (70429 + T2 + 45 + T3)%N
+        with (T3 + (70429 + T2 + 45))%N in Hk by lia.
       eapply no_coll_add; [exact Hnc_2b | | exact Hk].
-      intro j. rewrite !run_N_add, <- Ec1.
-      change (run_N ag1 ag2 (15 * n_cyc2 + 15 * K2) c1) with c2.
+      intro j.
+      replace (70429 + T2 + 45)%N
+        with (45 + (T2 + 70429))%N by lia.
+      rewrite !run_N_add, <- Ec1.
+      change (run_N ag1 ag2 T2 c1) with c2.
       change (run_N ag1 ag2 45 c2) with c2b. exact (R3nc j). }
-    replace (70429 + (15 * n_cyc2 + 15 * K2) + 45 + (15 * n_cyc3 + 15 * K3) + 7)%N
-      with (7 + (70429 + (15 * n_cyc2 + 15 * K2) + 45 + (15 * n_cyc3 + 15 * K3)))%N in Ht by lia.
+    replace (70429 + T2 + 45 + T3 + 7)%N
+      with (7 + (70429 + T2 + 45 + T3))%N in Ht by lia.
     eapply no_coll_add; [exact Hnc_3 | | exact Ht].
-    intro j. rewrite !run_N_add, <- Ec1.
-    change (run_N ag1 ag2 (15 * n_cyc2 + 15 * K2) c1) with c2.
+    intro j.
+    replace (70429 + T2 + 45 + T3)%N
+      with (T3 + (45 + (T2 + 70429)))%N by lia.
+    rewrite !run_N_add, <- Ec1.
+    change (run_N ag1 ag2 T2 c1) with c2.
     change (run_N ag1 ag2 45 c2) with c2b.
-    change (run_N ag1 ag2 (15 * n_cyc3 + 15 * K3) c2b) with c3. exact (F7nc j). }
+    change (run_N ag1 ag2 T3 c2b) with c3. exact (F7nc j). }
   split.
   - unfold collides_at. destruct (run_N_undef_irrelevant undef exact_halt_steps) as [Heq _].
     rewrite Heq. exact Hcol.
