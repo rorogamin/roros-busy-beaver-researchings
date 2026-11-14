@@ -51,3 +51,21 @@
      - `0LB---_1LC1RB_0RB0LC | 1RB0RA_1LC0RB_1LA0LA` bounces at $t \approx 1269$ (`pos1 = 247, pos2 = 251`) and settles into a 250-cell Round-2 counter (`t=50000: p1=0, p2=9802`).
      - `1LB---_1LC1RB_0RB0LC | 1RB1RC_0RC0LA_1LB1RC` bounces around $t \approx 606$ (`pos1 = 64, pos2 = 70`) and enters a 70-cell Round-2 counter (`t=50000: p1=0, p2=3872`).
      - `0LB---_1LC1RB_0RB0LC | 0RC1LC_0LA1RA_1RB0LA` (matching `P=6, D=2, M=4`, `B(9), B(10), B(11), H(8)`) exits Round 1 at $t \approx 196,620$ (`L2 = 65,554`, `G1 = 10`) and enters Round 2 (`t=200000: p2=65581`); modulo $P \cdot M = 24$, its $2^{L_r}$ recurrence preserves the fixed non-halting bounce residue $G_r = 10 \notin \{8\}$, yielding the infinite bounce sequence `[10, 10, 10, ...]`.
+
+---
+
+## 4. Exhaustive 5-Round CET(3) Champion (`CET3_5round_champ.v`) & Holdout Rule Breakdown
+
+- **5-Round Champion**: `1LB---_1LC1RB_0RB0LC | 1RB0LC_1LA0RC_1RA1RB` (isomorphic `1LB---_1LC1RB_0RB0LC | 1RC0LB_1RA1RC_1LA0RB`), found via exhaustive scan across `884` unique normalized `3x2` counter engines and `71,981` solo `M>=2` gliders (`1,819` steady glider classes, `4,851,578` Stage A hits -> `14,734` unique dynamical mechanisms -> `843` deduplicated mechanisms).
+- **Dynamics**:
+  - Round 1 reaches `pos1 = -1 (StB)`, `pos2 = 79 (StA)` at $t = 309$ with a `57`-bit binary counter `0101 + 0^50 + 110`, clears in `360,287,970,189,639,588` solo steps (`320 * 2^50 - 92`), and collides with the `P=16, D=4, M=12` glider at $t_1 = 480,383,960,252,853,107$ ($G_1 = 10$, $L_2 = 120,095,990,063,213,269$).
+  - Rounds 2–5 follow the bounce sequence `[10, 10, 18, 8]`, halting at step `8` ($\approx 10^{10^{10^{10^{16.558}}}}$ steps).
+- **Rocq 9.1 Verification**: [`CET3_5round_champ.v`](./CET3_5round_champ.v) compiles cleanly under `rocq compile CET3_5round_champ.v` in `1.26s` with `652.9 MB` peak job memory (`Closed under the global context`, zero axioms and zero admits), formally verifying:
+  1. `run_N_undef_irrelevant`: `(StA, true)` (`---`) is unreachable for any transition placed in the `---` slot.
+  2. `prefix_309_no_coll` / `prefix_309_state`: exact 309-step Round 1 prefix.
+  3. `bounce_G10_ok` (`25` steps), `bounce_G11_ok` (`41` steps), `bounce_G18_ok` (`95` steps), and `suffix_6_halts` (`6` steps).
+- **`residue_s20.txt` (`17,843` Holdouts) Automated Non-Halting Classification** (at $10^5$ steps):
+  - `BOUNDED_CYCLER (span <= 300)`: `1,077`
+  - `DECOUPLED_OPPOSITE_GLIDERS`: `2,272`
+  - `DECOUPLED_GLIDER_R_VS_BOUNDED`: `8`
+  - `OTHER_EXPANDING`: `14,486` (`HALT = 0`, `UNDEF = 0`)
