@@ -1,0 +1,10 @@
+{
+  "source_archive_name": "dacf5240-ef96-4cf1-8ba2-b36b79fe4a2c-aristotle (3).tar.gz",
+  "source_archive_sha256": "9218cba35e00fffc0295775c56b25d0bfcb5eca75460e3413f62cd9e6cdd1dea",
+  "reference_tools": {
+    "blocksim.py": "3dc772c47ddcd505ee8486233d10cb5d013f14cb836f3fba72469c3c22bd2399",
+    "fastsim.py": "3dbc78218ad6d9c200706392f5169f670353b6cafdcb0d0bf9529d42b7972ba4",
+    "sim.py": "a81b2a23abf2446fbe41a782d4b92a784b52cad284915a6c83d8d907744c458b"
+  },
+  "new_Lean_proof_kernel_checked": false
+}

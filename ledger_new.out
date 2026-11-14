@@ -1,0 +1,41 @@
+championsReal.txt: 27 classic BB(n) rows, 49 BB(n,m) rows
+
+NOTATION
+  L110  superscript iterate without parentheses (reads as an ordinal power)
+        not independently verified.  Claim f_{w*2}(f_{w+2}^2(f_10(2))): the w*2 level step
+        write (f_{...})^k
+  L123  superscript iterate without parentheses (reads as an ordinal power)
+        BB(21): > (f_omega^2)^2(4^^341)
+        write (f_{...})^k
+  L124  unbraced subscript arithmetic (reads as f_x + k)
+        This is the first instance where both exponents are used. It originally did (omega)^22, but after reading the 
+        write f_{...}
+  L127  superscript iterate without parentheses (reads as an ordinal power)
+        flatten "fw22(4^^341)" reads f_{w^2}^2(4^^341) -- subscript omega^2, iterate
+        write (f_{...})^k
+  L128  superscript iterate without parentheses (reads as an ordinal power)
+        2 -- the same reading as (f_omega^2)^2 above, and the machine matches this
+        write (f_{...})^k
+  L1134 superscript iterate without parentheses (reads as an ordinal power)
+        f_epseta1[1](f_om^2(f_epseta1[2](f_om^3(f_epseta1(3))))))) > f_epseta1(3).
+        write (f_{...})^k
+
+LADDER  (informational: BB is monotone, so a row below a smaller row is not the best known bound)
+  classic BB(20)       L107  rank 12  f_{w+2}                      < BB(18)     rank 13 f_{w+3}
+  classic BB(21)       L123  read as f_{omega^k} (ordinal index): the written reading would sit below BB(18)
+  classic BB(40)       L146  rank 20  f_{omega^omega}              < BB(33)     rank 31 f_{omega^^6}
+  classic BB(41)       L226  rank 20  f_{omega^omega}              < BB(33)     rank 31 f_{omega^^6}
+  classic BB(150)      L367  rank 90  f_lim(BMS)                   < BB(67)     rank 95 q^81(q(5)-2)
+  m=6    BB(8,6)      L1175 read as f_{w^k} (ordinal index): the written reading would sit below BB(7,6)
+  m=7    BB(56,7)     L564  rank 40  f_e0                         < BB(46,7)   rank 80 f_{psi_0(OMEGA_2)}
+  n=8    BB(8,6)      L1175 read as f_{w^k} (ordinal index): the written reading would sit below BB(8,4)
+  5 inversion(s) -- each is a row whose own machine sits below an inherited bound
+
+UNRANKED LEVELS (hard errors: the ladder table cannot place these, so the check skipped them)
+  > (f_{w+7})^2(5)
+  53)
+  > f_{w*2}(2{11}6) steps.  (informal)
+  01); the BB(4
+  41) -- also the current BBi(20) champion
+  f_{omega+3}
+  f_{omega*2}

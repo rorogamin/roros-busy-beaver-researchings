@@ -1,0 +1,158 @@
+I'm going to try to use this feature a bit more, now that I think it's much easier for people to follow up on other's work. Here's my current analysis of 1RB2LA0RB1LB---_1LA3RA1RA4LB2RB. It's not much, but I think it's a good step towards an effective analysis of this TM. Any rules that aren't shown on this image are conjectured to never happen.
+
+Edit: this post was originally for just 1RB2LA0RB1LB---_1LA3RA1RA4LB2RB, but I realized 90% of these rules on the image apply to all TMs of the form 1RB2LA0RB1LB---_1LA3RA1RA4LB--- (there are 13 of them)
+
+
+
+If you need any clarification on what anything on this image means let me know
+hipparcos — 05.02.2025, 19:58
+sorry if this is a silly question, but what do 1> and 2> mean?
+dyuan01 [HALT], 
+TC
+ — 05.02.2025, 19:59
+It's just the symbols 1 and 2, but it's regrouping with whatever is to the right.
+
+It's not a silly question at all. This is just my notation on things.
+So if a TM is at 01 <B1 21 $, then after a few steps it's <A 11 2 21 $. I write 2> instead of just 2 to indicate I want to regroup the 2 with the 21, so I write 2> 21, which then becomes 22 1>. The 1 then regroups with the $ to get 1$.
+
+
+So, redoing the main post: these are the rules that apply to all of 1RB2LA0RB1LB---_1LA3RA1RA4LB---, but within the 13 TMs of this form, the interaction of A> 241 is different:
+
+B4 -> 2LB
+A> 241 -> <A 12 1>
+
+B4 -> 2RB
+A> 241 -> 023 A>
+023 <A -> 11 A> 2>
+
+B4 -> 1LB
+A> 241 -> <A 11 1>
+
+B4 -> 1RB
+A> 241 -> 013 A>
+013 <A -> <A 11 2>
+
+B4 -> 0LB
+A> 241 -> <A 101
+A> 101 -> <A 201
+A> 201 -> <B1 22
+
+B4 -> 0RB
+A> 241 -> 003 A>
+003 <A -> <B1 22
+
+B4 -> 3RA
+A> 241 -> <A 11 2>
+
+B4 -> 2LA
+A> 241 -> <A 22 2>
+
+B4 -> 2RA
+A> 241 -> 001 A>
+001 <A -> 011 A>
+011 <A -> 11 A> 2>
+
+B4 -> 1LA
+A> 241 -> <B1 22
+
+B4 -> 1RA
+A> 241 -> 11 A> 2>
+
+B4 -> 0LA
+A> 241 -> <A 21 1>
+
+B4 -> 0RA
+A> 241 -> 011 A>
+011 <A -> 11 A> 2>
+
+B4 -> 2RB and B4 -> 0RA seem equivalent, but otherwise, the TMs look like they all exhibit different behavior.
+
+
+What happens what the head passes through n times?
+03 <
+↪️x1 > 11
+↪️x1 < 21
+↪️x2 03 >
+
+11 <
+↪️x1 > 22
+↪️x1 01 >
+
+01 <
+11 >
+
+----
+
+03 ↪️xn
+↪️x(2n) 03 >
+
+11 ↪️x2
+↪️x1 01 ↪️x1
+↪️x1 11 >
+
+11 ↪️x(2n)
+↪️xn 11 >
+
+11 ↪️x(2n+1)
+↪️x(n+1) 01 >
+
+01 ↪️x2
+11 ↪️x1
+↪️x1 01 >
+
+01 ↪️x(2n)
+↪️xn 01 >
+
+01 ↪️x(2n+1)
+↪️xn 11 >
+
+---
+To summarize main results:
+
+03 ↪️xn
+↪️x(2n) 03 >
+
+11 ↪️x(2n)
+↪️xn 11 >
+
+11 ↪️x(2n+1)
+↪️x(n+1) 01 >
+
+01 ↪️x(2n)
+↪️xn 01 >
+
+01 ↪️x(2n+1)
+↪️xn 11 >
+
+BTW, I've analyzed TMs with blocks that has similar behavior. And what I've noticed is that you can pair some blocks so that they're "linked" in some sense. For instance, when looking at 01 03 <A or 11 03 <A, the head bounces between the two blocks and comes out to the left as <A 22 21 and <A 22 11, respectively. And when you replace the <A at the final step with A>, you return to what it was originally.
+
+The thing is, you can link blocks "remotely" as well. For example, in 01 11 03 03 <A. You can pair the 11 03 in the middle so you have 01 (11 03) 03 <A, but since the pair in the middle always lets the head pass through both directions, we can imagine it's not even there, and we can then pair the outer 01 and 03, so we have (01 (11 03) 03) <A
+
+Extending to 01 01 03 01 03 03 <A, we can pair them like (01 (01 03) (01 03) 03). Just make sure the pairs are in the correct order. It won't work if you have 03 01 or 03 11. You need to pair them so that they bounce between each other.
+
+
+I wrote an accelerated simulator and ran 1RB2LA0RB1LB---_1LA3RA1RA4LB2RB for 100,000 simulator steps, which appears to correspond to ~9e1167 base TM steps.  Hasn't halted after all this.
+
+the symbols I am using are defined as follows:
+R = $
+R1 = 1$
+R2 = 2$
+L = ^11
+
+U = 12
+V = 21
+W = 03
+X = 11
+Y = 22
+Z = 01
+F = 141
+G = 241
+P1 = 1
+P2 = 2
+
+J = 023
+
+After looking at these TMs in more detail, I'm inclined to believe that for a majority of these TMs, particularly in the ones where A> 241 does not send an A> before a 1> or a 2>, they do not halt at all. I've analyzed another TM where the non-halting proof uses an observation that also appears in this family of TMs. In this TM, it's the fact that 22 always stays 22, and 12 turns into 22, which causes a majority of symbol pairs to be 22 and 12 rather than 11 or 21. This implies that [<A^-1 A>] appears enough times to prevent unexpected cases such as 1> 241 or 2> 241 from ever happening, both of which would surely cause the TM to halt shortly after. 
+For the ones that send an A> before a 1> or a 2>, it's different, because I have to make sure the head doesn't come back as <B1, and that's a different thing to prove.\
+
+I'm not sure whether I specified this anywhere, but the TM should start at ^11 A> 1$

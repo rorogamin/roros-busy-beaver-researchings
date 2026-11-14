@@ -1,0 +1,63 @@
+{
+  "sha": "f901819aa986cf84ad77f354c304df83510a858c",
+  "url": "https://api.github.com/repos/ccz181078/TM/git/trees/f901819aa986cf84ad77f354c304df83510a858c",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "737a66dffe43a8cb961d03c4df41679f65725987",
+      "size": 35,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/737a66dffe43a8cb961d03c4df41679f65725987"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dc3899878b87a29fa606fdbd48b877638e5ba2e",
+      "size": 1066,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/4dc3899878b87a29fa606fdbd48b877638e5ba2e"
+    },
+    {
+      "path": "main.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01db41004aa6dd3e3f0722c195fbe62fef61be0b",
+      "size": 79185,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/01db41004aa6dd3e3f0722c195fbe62fef61be0b"
+    },
+    {
+      "path": "makefile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5cc5e4bf3956d9f28478d5c3240a136c4a3ee51",
+      "size": 89,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/c5cc5e4bf3956d9f28478d5c3240a136c4a3ee51"
+    },
+    {
+      "path": "readme.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "00c1e9a3b4cc9422225a1f1d787f8ec6cf1a7365",
+      "size": 218,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/00c1e9a3b4cc9422225a1f1d787f8ec6cf1a7365"
+    },
+    {
+      "path": "ucb_gen.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f059de7128fd7166618a71ce1be1cb71e13cae45",
+      "size": 576,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/f059de7128fd7166618a71ce1be1cb71e13cae45"
+    },
+    {
+      "path": "ucb_in.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ca6f9c449224b4a25f80b9602b23da2a94df8cec",
+      "size": 111048,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/ca6f9c449224b4a25f80b9602b23da2a94df8cec"
+    }
+  ],
+  "truncated": false
+}

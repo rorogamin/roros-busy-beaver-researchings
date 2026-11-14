@@ -182,3 +182,123 @@ Proof.
       apply Ht2; exact Hz.
     + simpl; exact n0.
 Qed.
+
+(** * Cycle-bound lemmas for Agent 1 and Agent 2 *)
+
+Definition agree1_shifted (lo_opt : option Z) (hi : Z) (dx : Z)
+  (p1 : Z) (s1 : State) (tp1 : Tape) (p2 : Z) (s2 : State) (tp2 : Tape) : Prop :=
+  p1 = p2 + dx /\ s1 = s2 /\
+  forall z, (match lo_opt with Some lo => lo <= z | None => True end) -> z <= hi ->
+            tp1 (z + dx) = tp2 z.
+
+Lemma step1_tape_agree_shifted : forall ag1 lo_opt hi dx p1 s1 tp1 p2 s2 tp2 p2' s2' tp2',
+  agree1_shifted lo_opt hi dx p1 s1 tp1 p2 s2 tp2 ->
+  (match lo_opt with Some lo => lo <= p2 | None => True end) ->
+  p2 <= hi ->
+  step1_tape ag1 p2 s2 tp2 = Some (p2', s2', tp2') ->
+  exists p1' s1' tp1',
+    step1_tape ag1 p1 s1 tp1 = Some (p1', s1', tp1') /\
+    agree1_shifted lo_opt hi dx p1' s1' tp1' p2' s2' tp2'.
+Proof.
+  intros ag1 lo_opt hi dx p1 s1 tp1 p2 s2 tp2 p2' s2' tp2' [Hp [Hs Htp]] Hlo Hhi Hst.
+  unfold step1_tape in *.
+  rewrite Hp, Hs, (Htp p2 Hlo Hhi).
+  destruct (ag1 s2 (tp2 p2)) as [tr1|]; [|discriminate].
+  inversion Hst; subst.
+  assert (Hmv : move_pos (p2 + dx) (move_dir tr1) = move_pos p2 (move_dir tr1) + dx)
+    by (destruct (move_dir tr1); unfold move_pos; lia).
+  rewrite Hmv.
+  eexists _, _, _; split; [reflexivity|].
+  repeat split; try reflexivity.
+  intros z Hzl Hzh. unfold write_tape.
+  destruct (Z.eqb_spec (z + dx) (p2 + dx));
+  destruct (Z.eqb_spec z p2); try lia; try reflexivity.
+  apply Htp; assumption.
+Qed.
+
+Lemma run1_N_agree_shifted : forall ag1 lo_opt hi dx p p_s s_s tp_s p1 s1 tp1 r p_r s_r tp_r,
+  (r <= p)%N ->
+  agree1_shifted lo_opt hi dx p1 s1 tp1 p_s s_s tp_s ->
+  (forall j, (j < p)%N -> exists pj sj tpj,
+    run1_N ag1 j p_s s_s tp_s = Some (pj, sj, tpj) /\
+    (match lo_opt with Some lo => lo <= pj | None => True end) /\ pj <= hi) ->
+  run1_N ag1 r p_s s_s tp_s = Some (p_r, s_r, tp_r) ->
+  exists p1_r s1_r tp1_r,
+    run1_N ag1 r p1 s1 tp1 = Some (p1_r, s1_r, tp1_r) /\
+    agree1_shifted lo_opt hi dx p1_r s1_r tp1_r p_r s_r tp_r.
+Proof.
+  intros ag1 lo_opt hi dx p p_s s_s tp_s p1 s1 tp1 r.
+  induction r using N.peano_ind; intros p_r s_r tp_r Hle Hagr Hbd Hrun.
+  - simpl in Hrun; inversion Hrun; subst; exists p1, s1, tp1; split; [reflexivity|exact Hagr].
+  - unfold run1_N in Hrun; rewrite N.iter_succ in Hrun.
+    destruct (N.iter r _ (Some (p_s, s_s, tp_s))) as [[[pp sp] tpp]|] eqn:Ep; [|discriminate].
+    destruct (IHr pp sp tpp ltac:(lia) Hagr Hbd Ep) as [p1p [s1p [tp1p [E1p Hagr_p]]]].
+    destruct (Hbd r ltac:(lia)) as [pj [sj [tpj [Ej [Hlo Hhi]]]]].
+    change (N.iter r _ (Some (p_s, s_s, tp_s))) with (run1_N ag1 r p_s s_s tp_s) in Ep.
+    rewrite Ep in Ej; inversion Ej; subst pj sj tpj.
+    destruct (step1_tape_agree_shifted ag1 lo_opt hi dx p1p s1p tp1p pp sp tpp p_r s_r tp_r Hagr_p Hlo Hhi Hrun)
+      as [p1_r [s1_r [tp1_r [Es1 Hagr_r]]]].
+    exists p1_r, s1_r, tp1_r; split; [|exact Hagr_r].
+    unfold run1_N; rewrite N.iter_succ.
+    change (N.iter r _ (Some (p1, s1, tp1))) with (run1_N ag1 r p1 s1 tp1).
+    rewrite E1p; exact Es1.
+Qed.
+
+Definition agree2_shifted (lo : Z) (hi_opt : option Z) (dx : Z)
+  (p1 : Z) (s1 : State) (tp1 : Tape) (p2 : Z) (s2 : State) (tp2 : Tape) : Prop :=
+  p1 = p2 + dx /\ s1 = s2 /\
+  forall z, lo <= z -> (match hi_opt with Some hi => z <= hi | None => True end) ->
+            tp1 (z + dx) = tp2 z.
+
+Lemma step2_tape_agree_shifted : forall ag2 lo hi_opt dx p1 s1 tp1 p2 s2 tp2 p2' s2' tp2',
+  agree2_shifted lo hi_opt dx p1 s1 tp1 p2 s2 tp2 ->
+  lo <= p2 ->
+  (match hi_opt with Some hi => p2 <= hi | None => True end) ->
+  step2_tape ag2 p2 s2 tp2 = Some (p2', s2', tp2') ->
+  exists p1' s1' tp1',
+    step2_tape ag2 p1 s1 tp1 = Some (p1', s1', tp1') /\
+    agree2_shifted lo hi_opt dx p1' s1' tp1' p2' s2' tp2'.
+Proof.
+  intros ag2 lo hi_opt dx p1 s1 tp1 p2 s2 tp2 p2' s2' tp2' [Hp [Hs Htp]] Hlo Hhi Hst.
+  unfold step2_tape in *.
+  rewrite Hp, Hs, (Htp p2 Hlo Hhi).
+  destruct (ag2 s2 (tp2 p2)) as [tr2|]; [|discriminate].
+  inversion Hst; subst.
+  assert (Hmv : move_pos (p2 + dx) (move_dir tr2) = move_pos p2 (move_dir tr2) + dx)
+    by (destruct (move_dir tr2); unfold move_pos; lia).
+  rewrite Hmv.
+  eexists _, _, _; split; [reflexivity|].
+  repeat split; try reflexivity.
+  intros z Hzl Hzh. unfold write_tape.
+  destruct (Z.eqb_spec (z + dx) (p2 + dx));
+  destruct (Z.eqb_spec z p2); try lia; try reflexivity.
+  apply Htp; assumption.
+Qed.
+
+Lemma run2_N_agree_shifted : forall ag2 lo hi_opt dx p p_s s_s tp_s p1 s1 tp1 r p_r s_r tp_r,
+  (r <= p)%N ->
+  agree2_shifted lo hi_opt dx p1 s1 tp1 p_s s_s tp_s ->
+  (forall j, (j < p)%N -> exists pj sj tpj,
+    run2_N ag2 j p_s s_s tp_s = Some (pj, sj, tpj) /\
+    lo <= pj /\ (match hi_opt with Some hi => pj <= hi | None => True end)) ->
+  run2_N ag2 r p_s s_s tp_s = Some (p_r, s_r, tp_r) ->
+  exists p1_r s1_r tp1_r,
+    run2_N ag2 r p1 s1 tp1 = Some (p1_r, s1_r, tp1_r) /\
+    agree2_shifted lo hi_opt dx p1_r s1_r tp1_r p_r s_r tp_r.
+Proof.
+  intros ag2 lo hi_opt dx p p_s s_s tp_s p1 s1 tp1 r.
+  induction r using N.peano_ind; intros p_r s_r tp_r Hle Hagr Hbd Hrun.
+  - simpl in Hrun; inversion Hrun; subst; exists p1, s1, tp1; split; [reflexivity|exact Hagr].
+  - unfold run2_N in Hrun; rewrite N.iter_succ in Hrun.
+    destruct (N.iter r _ (Some (p_s, s_s, tp_s))) as [[[pp sp] tpp]|] eqn:Ep; [|discriminate].
+    destruct (IHr pp sp tpp ltac:(lia) Hagr Hbd Ep) as [p1p [s1p [tp1p [E1p Hagr_p]]]].
+    destruct (Hbd r ltac:(lia)) as [pj [sj [tpj [Ej [Hlo Hhi]]]]].
+    change (N.iter r _ (Some (p_s, s_s, tp_s))) with (run2_N ag2 r p_s s_s tp_s) in Ep.
+    rewrite Ep in Ej; inversion Ej; subst pj sj tpj.
+    destruct (step2_tape_agree_shifted ag2 lo hi_opt dx p1p s1p tp1p pp sp tpp p_r s_r tp_r Hagr_p Hlo Hhi Hrun)
+      as [p1_r [s1_r [tp1_r [Es1 Hagr_r]]]].
+    exists p1_r, s1_r, tp1_r; split; [|exact Hagr_r].
+    unfold run2_N; rewrite N.iter_succ.
+    change (N.iter r _ (Some (p1, s1, tp1))) with (run2_N ag2 r p1 s1 tp1).
+    rewrite E1p; exact Es1.
+Qed.

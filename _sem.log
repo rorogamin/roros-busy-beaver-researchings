@@ -1,0 +1,11 @@
+H..O transitions:
+  H (7) on 0 -> 1 R F
+  H (7) on 1 -> 0 R O
+Traceback (most recent call last):
+  File "C:\Users\Rowan\Documents\st\bbwork\tools\_decode15_semantics.py", line 86, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\Rowan\Documents\st\bbwork\tools\_decode15_semantics.py", line 45, in main
+    + ('HALT' if t is None else f'{t[0]} {t[1]} {NAMES[t[2]]}'))
+                                                 ~~~~~^^^^^^
+KeyError: None

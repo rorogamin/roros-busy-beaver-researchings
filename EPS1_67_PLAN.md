@@ -453,3 +453,80 @@ algorithms of address notation and PrSS are equivalent for PrSS-
 standard sequences'.  So the list→ordinal decoding is genuinely not in
 the public record; `tools/eps1_prss.py` stands as the harness for the
 next candidate correspondence.
+
+## 11. Binary Veblen engine prototype (11 November 2026)
+
+`tools/eps1_bve.py` implements a new, deliberately small notation rather than
+another list layout.  A term is a postfix binary tree over a two-bit alphabet:
+
+    00 = 0            01 = 1
+    10 = phi_0(a) + b = w^a + b
+    11 = phi_1(a) + b = e_a + b
+
+The right child is the additive tail, so the string is self-delimiting and no
+field positions are parsed.  The closure at `phi_1(1)` is `epsilon_1`, and the
+minimal boot term is exactly three tokens: `01 00 11`.
+
+### What is green
+
+* 10 hand terms round-trip through `encode`/`parse`; 200 random depth-3 terms
+  round-trip with only the four legal two-bit tokens;
+* `epsilon_1[n]` equals `eps1_descent.tower(n)` for n = 0..4, and
+  `epsilon_0[n]` equals `wraps(n)` for n = 0..3;
+* a 12-move descent from `epsilon_1[2]` is move-for-move equal to the ordinal
+  model (including the model's coefficient-predecessor policy), and every
+  sampled move strictly decreases the Veblen term;
+* 200 random terms pass the decrease check, and 69 of them also pass the
+  `eps1_descent` value check on the common tower-over-epsilon_0+1 fragment;
+* move counts from `epsilon_1[k]` agree with `D.hardy` for the small starts
+  where both run (member 0, n=1 is exactly 21 moves); larger cases are
+  cap-bound equally at 5,001.
+
+The prototype exposed one important distinction: the repo model deliberately
+treats a top coefficient > 1 as a predecessor step before the next FS step.
+The BVE therefore has both the standard Veblen `fs` and an explicit
+`model_is_limit`/`model_fs`/`model_step` policy; exact move-count comparisons
+use the latter.  This is a descent policy, not a second ordinal semantics.
+
+### What is not claimed
+
+No full 2-symbol rewrite table exists yet, so there is no blank-tape machine,
+no full state count from this notation, and no `f_epsilon_1` or Rocq claim.
+The earlier ~27-state budget remains a paper estimate.  A first table does now
+exist: `tools/bve_cursor.py` contains an 18-state active-site core and a
+five-state H-end left-walk prefix, composed into a 23-state cursor table.  All
+207 checked terms pass through both the core (entry at the last header) and
+the composed table (entry at the H/E separator); each halt matches the
+`bve_two_bank` codec's exponent start and dispatch states.  The predecessor
+arm is also built: `tools/bve_pred.py` is a 24-state suffix-truncation
+table with a gap normaliser, checked on 205 duplicate-tail terms against
+`BVE.pred`.
+
+`tools/bve_compose.py` now composes the two in a 46-state table.  Routing on
+the duplicate flag gives 205 flag-1 terms decoded to `BVE.pred(v)` and 204
+flag-0 terms halted with the tape unchanged.  The raw predecessor chain check
+feeds 24 raw outputs into a second predecessor without re-encoding, all green.
+The fixed simplest FS case
+`omega[1] = 2` now has a real 5-tuple table in `tools/bve_fs_simple.py`: 41
+states and 40 rows, validating the 28-cell input and writing the 40-cell
+result.  The general flag-0 arm remains tape-level and semantic in
+`tools/bve_fs.py`; `composed_step` checks 200 limit terms against
+`B.model_fs` and 200 composed steps against `B.model_step`, all green (347 FS
+and 53 predecessor routes).  A bounded `descent` check compares the composed
+driver with `B.hardy` on 43 cases (13 fixed terms plus 30 shallow random terms,
+cap 40; the deliberate cap case stops at 41 on both sides) and is green.  The
+general arm still does not copy/build exponents on the tape or carry an index
+field.  The predecessor's 24th state skips the H/E zero gap, so its raw output
+can feed a second predecessor directly; no compaction or term re-encoding is
+needed on that route.  The raw 46-state table still halts on flag 0, so this
+remains a layout/dispatch, fixed-case FS, and semantic-general prototype, not
+an FGH machine.
+
+The first layout result is in `BVE_TAPE_LAYOUT.md`: reversed postfix makes the
+right spine a contiguous prefix, and a two-bank header/exponent split makes the
+active header and exponent suffixes, so predecessor deletion is a suffix
+truncation instead of a middle shift.  The codec checks are
+`tools/bve_tape.py` (107 terms) and `tools/bve_two_bank.py` (129 terms).  The
+measured cursor is 23 states (18 core + 5 prefix), the predecessor arm is 23,
+and the composed table is 45; the 36-44 band for a *full rewrite* cursor
+remains a paper estimate, not a measured table count.

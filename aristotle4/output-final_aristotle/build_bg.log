@@ -1,0 +1,99 @@
+✔ [3672/8039] Built Mathlib.Algebra.GroupWithZero.Pi (21s)
+✔ [4394/8039] Built Mathlib.SetTheory.Cardinal.Defs (22s)
+✔ [5514/8039] Built Mathlib.CategoryTheory.Limits.Shapes.Connected (25s)
+✔ [5515/8039] Built Mathlib.GroupTheory.Perm.ClosureSwap (24s)
+✔ [5517/8039] Built Mathlib.Order.UpperLower.CompleteLattice (28s)
+✔ [6300/8039] Built Mathlib.CategoryTheory.ComposableArrows.Four (26s)
+✔ [6301/8039] Built Mathlib.AlgebraicTopology.SimplicialNerve (32s)
+⚠ [6302/8039] Built Mathlib.LinearAlgebra.SesquilinearForm (15s)
+warning: C:\Users\Rowan\Documents\st\bbwork\aristotle4\output-final_aristotle\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\LinearAlgebra\SesquilinearForm.trace: offset 0: unexpected end of input
+✔ [6303/8039] Built Mathlib.RingTheory.HopfAlgebra.TensorProduct (19s)
+✔ [6305/8039] Built Mathlib.RingTheory.WittVector.Verschiebung (18s)
+✔ [6313/8039] Built Mathlib.Topology.Instances.Int (15s)
+✔ [7941/8039] Built Mathlib.Topology.Gluing (18s)
+✔ [8023/8039] Built Mathlib.RingTheory.PolynomialLaw.Basic (24s)
+✔ [8024/8039] Built Mathlib.Geometry.Euclidean.Simplex (14s)
+✔ [8026/8039] Built RequestProject.Main (107s)
+✔ [8027/8039] Built RequestProject.Machine (108s)
+✔ [8028/8039] Built RequestProject.Counter (23s)
+✔ [8029/8039] Built RequestProject.Frontier (30s)
+✔ [8030/8039] Built RequestProject.Macro (31s)
+✔ [8031/8039] Built RequestProject.RoundTrip (28s)
+⚠ [8032/8039] Built tm_overflow_progress.RequestProject.Overflow (29s)
+warning: tm_overflow_progress/RequestProject/Overflow.lean:96:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:96:56: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:96:26: 'simp [blocks44, blocks42]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:96:56: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:109:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:109:56: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:109:26: 'simp [blocks44, blocks42]' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_overflow_progress/RequestProject/Overflow.lean:109:56: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [8034/8039] Built tm_mixed_radix_result.RequestProject.MixedRadix (31s)
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:108:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:111:29: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:114:29: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:117:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:108:28: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:111:29: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:114:29: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:126:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:135:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:143:25: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:143:25: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:151:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:190:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:196:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:206:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:212:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8036/8039] Built RequestProject.Binary (23s)
+✔ [8037/8039] Built RequestProject.Pass (26s)
+✔ [8038/8039] Built RequestProject.Shield (22s)
+Build completed successfully (8039 jobs).

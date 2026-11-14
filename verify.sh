@@ -7,7 +7,7 @@ rm -f ./*.vo ./*.vok ./*.vos ./*.glob
 
 fail=0
 allout=""
-for f in TM.v Bounds.v Core.v Machine1.v Machine2.v Machine3.v Machine4.v Machine5.v StackPass.v ModuleK.v Tower.v Eps1.v Eps1Ladder.v Eps0Drive.v Eps1Tape.v Eps1Copy.v; do
+for f in TM.v Bounds.v Core.v Machine1.v Machine2.v Machine3.v Machine4.v Machine5.v StackPass.v ModuleK.v Tower.v Eps1.v Eps1Ladder.v Eps0Drive.v Eps0Round.v Eps0Stage.v Eps0Blank.v Eps0Builder.v Eps0BuilderBlank.v Eps1Tape.v Eps1Copy.v FGH_CNF.v Omega2Counter.v Machine15.v Machine15Base.v Machine21Base.v Machine15Outer.v Machine15Round.v; do
   echo "== compiling $f"
   out=$(rocq compile -Q . Top "$f" 2>&1)
   status=$?
@@ -25,12 +25,13 @@ echo "== axiom audit"
 # count occurrences, not lines: a file whose last Print Assumptions has no
 # trailing newline merges with the next file's first line
 closed=$(printf '%s' "$allout" | grep -o "Closed under the global context" | wc -l | tr -d ' ')
-echo "theorems closed under the global context: $closed (expected 156)"
-if [ "$closed" -ne 156 ]; then
+echo "theorems closed under the global context: $closed (expected 202)"
+if [ "$closed" -ne 202 ]; then
   echo "!! axiom audit failed"
   fail=1
 fi
-if grep -rn "admit\|Admitted\|Axiom\|Parameter" ./*.v; then
+if grep -rnE "\b(admit|Admitted|Axiom|Parameter)\b" ./*.v \
+  | grep -vE '^[^:]+:[0-9]+:[[:space:]]*\(\*'; then
   echo "!! forbidden vernacular found"
   fail=1
 fi

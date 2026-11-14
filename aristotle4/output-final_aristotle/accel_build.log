@@ -1,0 +1,57 @@
+⚠ [8029/8034] Replayed tm_mixed_radix_result.RequestProject.MixedRadix
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:108:28: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:111:29: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:114:29: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:117:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:108:28: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:111:29: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:114:29: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:126:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:135:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:143:25: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:143:25: 'omega' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:151:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:190:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:196:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:206:27: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: tm_mixed_radix_result/RequestProject/MixedRadix.lean:212:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [8030/8034] Built Accel.Exhaust (24s)
+warning: Accel/Exhaust.lean:132:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8031/8034] Built Accel.Drain (25s)
+✔ [8032/8034] Built Accel.Sim (23s)
+✔ [8033/8034] Built Accel.Bound (127s)
+Build completed successfully (8034 jobs).

@@ -364,9 +364,9 @@ Print Assumptions k_block_drive_exit.
     Every phase of one round of the counter engine is a walk: a run of blanks
     crossed, a run of marks consumed, a handover.  Each is proved here by
     induction on the length of the run, with a concrete instance beside it so
-    that the evaluator arbitrates the shape.  [round_v0] assembles the whole
-    round for a value of length one; the phase lemmas above it are parametric
-    in [v], so the return side of the round is already proved for every value
+    that the evaluator arbitrates the shape.  [round_v0] assembles the length-one
+    case; [Eps0Round.round_v] (a separate file) generalizes it to every value
+    length, and [Eps0Stage.stage_run] iterates it over an arbitrary counter
     length.  *)
 
 (** ** Crossing a run of blanks, then stepping onto the first mark *)

@@ -1,0 +1,2 @@
+'BB25.not_halts' depends on axioms: [propext, Classical.choice, Quot.sound]
+CHECK28_EXIT=0

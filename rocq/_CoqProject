@@ -9,5 +9,17 @@ Machine4.v
 Machine5.v
 StackPass.v
 Eps1Ladder.v
+Eps0Round.v
+Eps0Stage.v
+Eps0Blank.v
+Eps0Builder.v
+Eps0BuilderBlank.v
 Eps1Tape.v
 Eps1Copy.v
+FGH_CNF.v
+Omega2Counter.v
+Machine15.v
+Machine15Base.v
+Machine21Base.v
+Machine15Outer.v
+Machine15Round.v

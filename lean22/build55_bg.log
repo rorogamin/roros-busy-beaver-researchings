@@ -1,0 +1,13 @@
+✔ [8026/8036] Built RequestProject.PostRun (131s)
+✔ [8027/8036] Built RequestProject.TuringMachine (132s)
+✔ [8028/8036] Built RequestProject.DigitModel (50s)
+✔ [8029/8036] Built RequestProject.Transits (84s)
+✔ [8030/8036] Built RequestProject.Terminal (54s)
+✔ [8031/8036] Built RequestProject.Steps (53s)
+✔ [8032/8036] Built RequestProject.Excursion (89s)
+✔ [8033/8036] Built RequestProject.ModelSpec (54s)
+✔ [8034/8036] Built RequestProject.Exit (105s)
+✔ [8035/8036] Built RequestProject.Lockstep (44s)
+✔ [8036/8036] Built RequestProject.NoHalt (63s)
+Build completed successfully (8036 jobs).
+BUILD55_EXIT=0

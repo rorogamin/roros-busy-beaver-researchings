@@ -1,0 +1,6 @@
+name = "RequestProject"
+defaultTargets = ["RequestProject"]
+
+[[lean_lib]]
+name = "RequestProject"
+globs = ["RequestProject.+"]

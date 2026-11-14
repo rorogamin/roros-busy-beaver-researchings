@@ -1,0 +1,1802 @@
+[
+  {
+    "tag": "cps_fixed2_b11_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b12_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b13_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b14_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b15_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b16_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b17_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b18_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b19_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b20_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b11_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b12_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b13_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b14_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b15_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b16_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b17_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b18_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b19_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b20_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "ctl1_b11_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b12_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b13_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b14_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b15_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b16_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b17_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b18_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b19_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b20_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b11_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b12_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b13_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b14_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b15_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b16_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b17_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b18_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b19_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b20_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b11_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b12_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b13_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b14_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b15_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b16_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b17_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b18_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b19_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b20_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b11_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b12_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b13_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b14_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b15_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b16_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b17_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b18_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b19_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b20_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "cps_fixed2_b11_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b12_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b13_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b14_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b15_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b16_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b17_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b18_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b19_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed2_b20_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "2",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b11_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b12_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b13_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b14_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b15_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b16_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b17_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b18_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b19_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_fixed3_b20_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--fixed-history",
+      "3",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "ctl1_b11_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b12_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b13_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b14_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b15_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b16_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b17_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b18_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b19_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b20_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b11_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b12_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b13_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b14_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b15_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b16_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b17_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b18_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b19_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b20_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b11_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b12_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b13_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b14_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b15_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b16_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b17_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b18_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b19_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b20_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b11_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "11",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b12_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "12",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b13_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "13",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b14_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "14",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b15_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "15",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b16_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "16",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b17_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "17",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b18_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "18",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b19_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "19",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b20_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "20",
+      "0"
+    ],
+    "timeout": 60
+  }
+]

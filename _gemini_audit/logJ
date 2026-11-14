@@ -1,0 +1,12 @@
+File ".\work.v", line 29, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work.v", line 389, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work.v", line 858, characters 16-35:
+Error: Illegal application (Non-functional construction): 
+The expression "IHw" of type "list (nat * nat)"
+cannot be applied to the term
+ "f_veblen b a n" : "nat"
+

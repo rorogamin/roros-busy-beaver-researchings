@@ -1,0 +1,1478 @@
+[
+  {
+    "tag": "cps_plain_b11_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b11_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b12_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b12_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b13_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b13_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b14_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b14_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b15_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b15_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b16_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b16_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b17_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b17_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b18_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b18_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b19_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b19_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b20_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b20_05",
+    "argv": [
+      "CPS.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "--lru-history",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "ctl1_b4_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b5_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b6_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b7_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b8_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b9_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b10_05",
+    "argv": [
+      "CTL1.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b4_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b5_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b6_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b7_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b8_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b9_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b10_05",
+    "argv": [
+      "CTL2.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b4_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b5_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b6_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b7_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b8_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b9_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b10_05",
+    "argv": [
+      "CTL3.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b4_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b5_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b6_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b7_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b8_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b9_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b10_05",
+    "argv": [
+      "CTL4.py",
+      "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "cps_plain_b11_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b11_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "11",
+      "--window-size",
+      "33",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b12_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b12_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "12",
+      "--window-size",
+      "36",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b13_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b13_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "13",
+      "--window-size",
+      "39",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b14_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b14_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "14",
+      "--window-size",
+      "42",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b15_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b15_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "15",
+      "--window-size",
+      "45",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b16_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b16_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "16",
+      "--window-size",
+      "48",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b17_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b17_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "17",
+      "--window-size",
+      "51",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b18_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b18_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "18",
+      "--window-size",
+      "54",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b19_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b19_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "19",
+      "--window-size",
+      "57",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_plain_b20_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "cps_lru_b20_14",
+    "argv": [
+      "CPS.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "--lru-history",
+      "--block-size",
+      "20",
+      "--window-size",
+      "60",
+      "--max-steps",
+      "5000000",
+      "--max-iters",
+      "1000",
+      "--max-configs",
+      "100000",
+      "--max-edges",
+      "100000",
+      "--savask-cert"
+    ],
+    "timeout": 180
+  },
+  {
+    "tag": "ctl1_b4_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b5_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b6_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b7_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b8_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b9_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl1_b10_14",
+    "argv": [
+      "CTL1.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b4_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b5_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b6_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b7_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b8_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b9_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl2_b10_14",
+    "argv": [
+      "CTL2.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b4_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b5_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b6_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b7_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b8_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b9_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl3_b10_14",
+    "argv": [
+      "CTL3.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b4_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "4",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b5_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "5",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b6_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "6",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b7_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "7",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b8_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "8",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b9_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "9",
+      "0"
+    ],
+    "timeout": 60
+  },
+  {
+    "tag": "ctl4_b10_14",
+    "argv": [
+      "CTL4.py",
+      "1RB2LA0RB4LB1RA_1LA3RA1RA---0LA",
+      "1000000",
+      "10",
+      "0"
+    ],
+    "timeout": 60
+  }
+]

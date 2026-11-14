@@ -1,0 +1,15 @@
+{
+  "FORMALIZATION.md": "91bc34bc686b5d3d833fd6f172991f02cc0423d7dd66920de34b68477967f878",
+  "PROOF.md": "cf2877fa8ec1239ea40e8a45dbdbe0532244ed313de26fb51a7ddfb50f85e99d",
+  "PROVENANCE.json": "57f5fe1c312769491effc05b2126e139e6c4b9f93f2a6eeae7b3d26f7c921871",
+  "PrefixSafetySeed.lean": "8d0c7b1236eac0710a61fd0ce74685633a287e3d9713965ff3944b45de69656a",
+  "README.md": "ebfcb3f9efa4ee0dad8de94c68920ec25eff72d79e838f2ac17a7c21c01195ca",
+  "check_components.py": "e7628413235cd046aeb99f0ee1e74586a59712cebf0c106047546c3ec29166a2",
+  "component_results.json": "0de37fd5001e72d9163733e425c9effdfa3b847f28c65368176dc9cd569cb8ff",
+  "reference_tools/blocksim.py": "3dc772c47ddcd505ee8486233d10cb5d013f14cb836f3fba72469c3c22bd2399",
+  "reference_tools/fastsim.py": "3dbc78218ad6d9c200706392f5169f670353b6cafdcb0d0bf9529d42b7972ba4",
+  "reference_tools/sim.py": "a81b2a23abf2446fbe41a782d4b92a784b52cad284915a6c83d8d907744c458b",
+  "verification_log.txt": "eb04295f4d7303c66954b37aa85217280a712462f3e20a8f8ca9fc47b373b139",
+  "verification_results.json": "0f1166e70e3639bb0302cb464c2d0f9663bc249acf60bb4c34d472db9285169c",
+  "verify_prefix_safety.py": "4a47869c53f8d320638315857a944766cf68e7d89423c556a6158f699bc8f779"
+}

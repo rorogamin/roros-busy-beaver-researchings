@@ -1,0 +1,12 @@
+File ".\work.v", line 29, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work.v", line 389, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work.v", line 775, characters 10-83:
+Error: Unable to apply lemma of type
+ "forall f : nat -> nat,
+  (forall x : nat, x <= f x) -> forall m n : nat, n <= iter_nat f m n"
+on hypothesis of type "S (S n') <= f_veblen 0 (S n') (S n')".
+

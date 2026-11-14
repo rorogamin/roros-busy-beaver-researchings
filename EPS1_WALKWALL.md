@@ -97,3 +97,17 @@ the cost of re-proving the whole decode and the f_ordinal Rocq
 obligation against the new encoding.  That is a false economy at sn
 <= 3 scale; park it until the Rocq layer is green again and the state
 target is missed badly enough to matter.
+
+## 6. Under-50 measurement (2026-11-11)
+
+`tools/eps1_odi_under50.py` measures the shipped table and exits 0 with
+all gates green: sn=1 71 states, sn=2 72, sn=3 76; exact bisimulation
+floors are the same three numbers.  The observed-context pass found no
+merges on sn=1/2.  The verdict is **UNDER_50: NO**.
+
+The attempted r5 route-A reorder (widen at dispatch, reuse the shared
+return) is not shipped: the shared pred/home terminal erases the top
+mark, and the corrected landing costs back the WR_A states.  The
+remaining gap is the walk-back fork, not defensive dead rows; a
+candidate must free a terminal case bit or use a different park
+placement.  No sub-50 state count is claimed.

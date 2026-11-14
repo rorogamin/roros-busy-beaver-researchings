@@ -1,0 +1,20 @@
+progress 10/120
+progress 20/120
+progress 30/120
+progress 40/120
+progress 50/120
+progress 60/120
+progress 70/120
+progress 80/120
+progress 90/120
+progress 100/120
+progress 110/120
+progress 120/120
+{
+  "runs": 120,
+  "cps_successes": 0,
+  "ctl_successes": 0,
+  "timeouts": 2,
+  "returncode_nonzero": 0,
+  "summary": "cps_large2\\summary.jsonl"
+}

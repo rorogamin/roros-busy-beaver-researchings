@@ -1,0 +1,12 @@
+File ".\work2.v", line 32, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work2.v", line 384, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1115, characters 0-92:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1119, characters 2-5:
+Error: Tactic failure:  Cannot find witness.
+

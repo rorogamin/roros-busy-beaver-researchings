@@ -46,7 +46,6 @@ Run: python tools/eps1_u3.py
 
 import sys
 import random
-import tools
 sys.path.insert(0, 'tools')
 
 import eps1_chain as C
@@ -91,6 +90,50 @@ def make_tape(p, chain):
             assert b >= 1
             runs.append(b + 2)
     return '1' * p + '00' + ''.join('1' * L + '0' for L in runs) + '00'
+
+
+def read_at(cells, head):
+    """Decode from the rest head (pair left), not from an absolute origin.
+
+    The machine spends a leftmost park mark, so the tape string's first cell
+    is not a stable origin.  The rest position is: head on the park pair's
+    left cell, p marks immediately left, chain immediately right.
+    """
+    p = 0
+    j = head - 1
+    while cells.get(j, 0) == 1:
+        p += 1
+        j -= 1
+    i = head + 2
+    runs = []
+    while True:
+        j = i
+        Lr = 0
+        while cells.get(j, 0) == 1:
+            Lr += 1
+            j += 1
+        if Lr == 0:
+            break
+        if cells.get(j, 0) != 0:
+            raise ValueError('run without close')
+        runs.append(Lr)
+        i = j + 1
+        if cells.get(i, 0) == 0 and cells.get(i + 1, 0) == 0:
+            break
+    chain = []
+    for k, r in enumerate(runs):
+        if k == 0:
+            if r == 1:
+                chain.append(ATOM)
+            elif r == 2:
+                chain.append(ATOM1)
+            else:
+                chain.append(NUM(r - 2))
+        else:
+            if r < 3:
+                raise ValueError('short interior run')
+            chain.append(r - 2)
+    return p, chain
 
 
 def read_tape(tape):
@@ -181,8 +224,9 @@ def build_table():
     r(N1, 0, 0, 'R', 'N2')
     N2 = st('N2', 'at a (0): step right onto a+1')
     r(N2, 0, 0, 'R', 'N3')
-    N3 = st('N3', 'at a+1 (0): step right onto a+2')
+    N3 = st('N3', 'at a+2: 0 = chain empty/pad, 1 = the first run mark')
     r(N3, 0, 0, 'R', 'M1')
+    r(N3, 1, 1, 'R', 'M1')   # nonempty chain: M1 crosses the run marks
 
     # ---- M1, M2: the bottom/tail test.  Cross run1's marks to its close,
     # then read the cell after the close: 1 = MULTI, 0 = SINGLETON.
@@ -221,8 +265,8 @@ def build_table():
     # the probes left the head around run1's start; walk right over the run
     r(BD0, 1, 1, 'R', 'BD0')
     r(BD0, 0, 0, 'R', 'BD1')
-    BD1 = st('BD1', 'on run1\'s close (0): walk left, count run1 as the top')
-    r(BD1, 0, 0, 'L', 'T2', 'the count machinery entry (the same T-states)')
+    BD1 = st('BD1', 'on run1\'s close (0): hand to the count entry')
+    r(BD1, 0, 0, 'L', 'T1', 'the count entry: one more zero, then T2')
 
     # ---- the MULTI body work (F1..F2 cross, T0..T6 count)
     F1 = st('F1', 'cross right over runs and single seps')
@@ -333,11 +377,22 @@ def build_table():
     H1 = st('H1', 'walk home: cross 1s; on 0 hop left and check')
     r(H1, 1, 1, 'L', 'H1')
     r(H1, 0, 0, 'L', 'H2')
-    H2 = st('H2', 'check-left: 1 = interior sep (continue), 0 = the pair')
+    H2 = st('H2', 'check-left: 1 = interior sep (continue), 0 = a 00 pair')
     r(H2, 1, 1, 'L', 'H1')
-    r(H2, 0, 0, 'R', 'H3', 'the pair found; back up onto its right cell')
+    r(H2, 0, 0, 'R', 'H4', 'the pair found; test the cell after it')
     H3 = st('H3', 'back up onto the pair\'s right 0')
     r(H3, 0, 0, 'L', 'U', 'step left onto a: the campaign ends on a in U')
+
+    # The H1/H2 walk sees the first 00 from the right, which is the
+    # CHAIN-END pair; the PARK pair is the next one.  Distinguish them by
+    # the cell after the pair: park pair -> chain mark 1, chain end -> 0.
+    H4 = st('H4', '00 pair\'s right cell: step right to the pair\'s follower')
+    r(H4, 0, 0, 'R', 'H5')
+    H5 = st('H5', 'follower cell: 1 = park pair, 0 = chain end')
+    r(H5, 1, 1, 'L', 'H3', 'park pair: back onto its right cell')
+    r(H5, 0, 0, 'L', 'H6', 'chain end: cross the pair and keep walking')
+    H6 = st('H6', 'chain-end pair crossed; resume the leftward walk')
+    r(H6, 0, 0, 'L', 'H1')
 
     # ---- the pure [ATOM] widen arm (any p): head on the close b0 = a+3,
     # the tape is [1^p] 00 1 0 00: write TWO marks over (a+3, a+4) growing
@@ -353,13 +408,14 @@ def build_table():
 
     # ---- the pure [ATOM1] singleton: flip (fs) or atom-rest (pred).
     # The head is on the close b0 = a+4-ish... (the cell after the run).
-    AT0 = st('AT0', 'the atom+1 singleton: step left onto run1\'s marks')
+    AT0 = st('AT0', 'the atom+1 singleton: cross to the close, then step left')
+    r(AT0, 1, 1, 'R', 'AT0')   # from the first mark, reach the close
     r(AT0, 0, 0, 'L', 'AT1')
     AT1 = st('AT1', 'read the run\'s last mark: erase it (the 2 -> 1 flip)')
     r(AT1, 0, 0, 'L', 'AT4', 'defence (the mark must be 1)')
     r(AT1, 1, 0, 'R', 'AT2', 'erase one mark; the atom+1 is now the atom')
-    AT2 = st('AT2', 'the flip: step right to the push site')
-    r(AT2, 0, 0, 'R', 'AT3', 'to the close cell b0')
+    AT2 = st('AT2', 'the flip: the old close is the new run\'s first mark')
+    r(AT2, 0, 1, 'R', 'AT3a', 'write mark 1 at the old close')
     AT3 = st('AT3', 'the push: write 4 marks (the head on b0)')
     r(AT3, 0, 1, 'R', 'AT3a')
     AT3a = st('AT3a', 'push mark 2')
@@ -431,13 +487,14 @@ class Sim:
         self.pos += 1 if d == 'R' else -1
         self.state = nx
 
-    def campaign(self):
+    def campaign(self, cap=5000):
         mv = 0
-        while True:
+        while mv < cap:
             self.step()
             mv += 1
             if self.state == 'U':
                 return mv
+        raise RuntimeError(f'campaign cap {cap} reached')
 
     def tape_str(self):
         lo = min(self.cell.keys(), default=0)
@@ -526,7 +583,7 @@ def check_faithful(trials=200, seed=9, moves=4):
                 print(f'  MACHINE STOP: {exc} on tape {tp!r}')
                 break
             try:
-                got = read_tape(m.tape_str())
+                got = read_at(m.cell, m.pos)
             except Exception as exc:
                 bad += 1
                 print(f'  READ FAIL after a step: {exc} on {m.tape_str()!r}')
@@ -568,7 +625,7 @@ def check_tape_vs_chain(cap=6000):
             while mv_t <= cap:
                 m.campaign()
                 mv_t += 1
-                pp, cc = read_tape(m.tape_str())
+                pp, cc = read_at(m.cell, m.pos)
                 if cc == []:
                     done = True
                     break

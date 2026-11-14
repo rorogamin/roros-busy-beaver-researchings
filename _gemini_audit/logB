@@ -1,0 +1,61 @@
+File ".\work.v", line 29, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work.v", line 389, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work.v", line 784, characters 10-14:
+Error:
+In environment
+n' : nat
+Hb0 : f_veblen 0 (S n') (S n') <= f_veblen 1 0 (S n')
+Ha1 :
+  fgh_tower (iter_nat (fun x : nat => fgh_tower x x) (S n') (S n'))
+    (iter_nat (fun x : nat => fgh_tower x x) (S n') (S n')) <=
+  veblen_next fgh_tower (S n') (S n')
+Hb1 : f_veblen 1 (S n') (S n') <= f_veblen 2 0 (S n')
+Ha2 :
+  veblen_next fgh_tower
+    (iter_nat (fun x : nat => veblen_next fgh_tower x x) (S n') (S n'))
+    (iter_nat (fun x : nat => veblen_next fgh_tower x x) (S n') (S n')) <=
+  veblen_next (veblen_next fgh_tower) (S n') (S n')
+Hb2 : f_veblen 2 (S n') (S n') <= f_veblen 3 0 (S n')
+Ha3 :
+  veblen_next (veblen_next fgh_tower)
+    (iter_nat (fun x : nat => veblen_next (veblen_next fgh_tower) x x) 
+       (S n') (S n'))
+    (iter_nat (fun x : nat => veblen_next (veblen_next fgh_tower) x x) 
+       (S n') (S n')) <=
+  veblen_next (veblen_next (veblen_next fgh_tower)) (S n') (S n')
+Hb3 : f_veblen 3 (S n') (S n') <= f_veblen 4 0 (S n')
+Ha4 :
+  veblen_next (veblen_next (veblen_next fgh_tower))
+    (iter_nat
+       (fun x : nat => veblen_next (veblen_next (veblen_next fgh_tower)) x x)
+       (S n') (S n'))
+    (iter_nat
+       (fun x : nat => veblen_next (veblen_next (veblen_next fgh_tower)) x x)
+       (S n') (S n')) <=
+  veblen_next (veblen_next (veblen_next (veblen_next fgh_tower))) 
+    (S n') (S n')
+Hb4 : f_veblen 4 (S n') (S n') <= f_veblen 5 0 (S n')
+Ha5 :
+  veblen_next (veblen_next (veblen_next (veblen_next fgh_tower)))
+    (iter_nat
+       (fun x : nat =>
+        veblen_next (veblen_next (veblen_next (veblen_next fgh_tower))) x x)
+       (S n') (S n'))
+    (iter_nat
+       (fun x : nat =>
+        veblen_next (veblen_next (veblen_next (veblen_next fgh_tower))) x x)
+       (S n') (S n')) <=
+  veblen_next
+    (veblen_next (veblen_next (veblen_next (veblen_next fgh_tower)))) 
+    (S n') (S n')
+H : S (S n') <= f_Ackermann_seq (S n') (S n')
+Hbase : S (S n') <= f_Gamma0 (S n')
+Hseq : forall m x : nat, f_Gamma0 x <= f_Ackermann_seq m x
+Unable to unify
+ "f_Ackermann_seq n' (iter_nat (f_Ackermann_seq n') n' (S n'))"
+with "S n'".
+

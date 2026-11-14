@@ -1,0 +1,10 @@
+list=bb2x5_holdouts37.txt
+cap=10,000,000,000
+interval=10,000,000
+machines=37
+jobs=8
+elapsed_seconds=275.228
+no_cycle=37
+cycles=0
+halts=0
+errors=0

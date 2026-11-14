@@ -1,0 +1,21 @@
+1RB2LA0RB1LA3LB_1LA3LB1RA4RA---
+Raw TM and all 504 block steps agree; reset 8 reached after 1094 raw steps.
+Exact checked return 8 -> 9: word length 14.
+Exact checked return 9 -> 10: word length 22.
+Exact checked return 10 -> 11: word length 32.
+Exact checked return 11 -> 12: word length 50.
+Seed 12: H=36, x=1106942, p=6, trailing ones=9, M=553471/34359738368.
+Capacity / decrement / saturation-image checks: 3280 mixed left words.
+Image-lemma checks: 29524 words; tail-cost bound checks: 65536 integers.
+Reset 12: len=50, V=26, 0=7, 1=17, H=36, x_bits=21, p=6, last_ones=9
+Reset 13: len=82, V=42, 0=12, 1=28, H=58, x_bits=33, p=10, last_ones=13
+Reset 14: len=136, V=69, 0=23, 1=44, H=90, x_bits=55, p=19, last_ones=23
+Reset 15: len=222, V=112, 0=38, 1=72, H=146, x_bits=93, p=33, last_ones=33
+Reset 16: len=364, V=183, 0=46, 1=135, H=272, x_bits=187, p=43, last_ones=51
+Reset 17: len=632, V=317, 0=72, 1=243, H=488, x_bits=349, p=69, last_ones=83
+Reset 18: len=1116, V=559, 0=138, 1=419, H=840, x_bits=615, p=122, last_ones=137
+Reset 19: len=1952, V=977, 0=238, 1=737, H=1476, x_bits=1109, p=213, last_ones=223
+Reset 20: len=3424, V=1713, 0=384, 1=1327, H=2656, x_bits=2021, p=364, last_ones=365
+Reset 21: len=6076, V=3039, 0=612, 1=2425, H=4852, x_bits=3979, p=571, last_ones=633
+Reset 22: len=10924, V=5463, 0=1027, 1=4434, H=8870, x_bits=7322, p=948, last_ones=871
+All requested finite checks passed. The infinite conclusion uses the written induction.

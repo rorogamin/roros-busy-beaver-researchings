@@ -1,0 +1,23 @@
+RESET 1 at block step 1  |R|=2 #V=1 #digits=1  bottom = NOT 23^n 21 $   [jumps=0 steps=2]
+RESET 2 at block step 7  |R|=3 #V=1 #digits=1  bottom = NOT 23^n 21 $   [jumps=0 steps=8]
+RESET 3 at block step 20  |R|=5 #V=2 #digits=1  bottom = 23^1 21 $   [jumps=0 steps=21]
+  BOTTOM 1 at 27  rs=PQ  left Good  V eaten: yes
+  BOTTOM 2 at 31  rs=[]  left Good  V eaten: NO
+RESET 4 at block step 44  |R|=5 #V=2 #digits=2  bottom = NOT 23^n 21 $   [jumps=0 steps=45]
+RESET 5 at block step 60  |R|=6 #V=2 #digits=2  bottom = NOT 23^n 21 $   [jumps=1 steps=57]
+RESET 6 at block step 93  |R|=6 #V=3 #digits=3  bottom = NOT 23^n 21 $   [jumps=2 steps=76]
+RESET 7 at block step 167  |R|=7 #V=4 #digits=2  bottom = NOT 23^n 21 $   [jumps=7 steps=110]
+RESET 8 at block step 504  |R|=12 #V=6 #digits=4  bottom = 23^2 21 $   [jumps=15 steps=181]
+  BOTTOM 3 at 559  rs=PQ  left Good  V eaten: yes
+  BOTTOM 4 at 563  rs=[]  left Good  V eaten: NO
+RESET 9 at block step 1593  |R|=16 #V=8 #digits=6  bottom = 23^4 21 $   [jumps=77 steps=908]
+  BOTTOM 5 at 1658  rs=PQ  left Good  V eaten: yes
+  BOTTOM 6 at 1662  rs=[]  left Good  V eaten: NO
+RESET 10 at block step 15080  |R|=24 #V=12 #digits=10  bottom = 23^3 21 $   [jumps=579 steps=4711]
+  BOTTOM 7 at 15487  rs=PQ  left Good  V eaten: yes
+  BOTTOM 8 at 15491  rs=[]  left Good  V eaten: NO
+RESET 11 at block step 137383  |R|=34 #V=17 #digits=15  bottom = 23^5 21 $   [jumps=6679 steps=78532]
+  BOTTOM 9 at 137827  rs=PQ  left Good  V eaten: yes
+  BOTTOM 10 at 137831  rs=[]  left Good  V eaten: NO
+RESET 12 at block step 18416173  |R|=52 #V=26 #digits=24  bottom = 23^9 21 $   [jumps=399818 steps=6500220]
+SEED_RIGHT VVVVVVVVVVVVVVVV1VVVV1V1V10VVVV0101001010111111111PQ

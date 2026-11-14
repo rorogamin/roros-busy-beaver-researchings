@@ -1,0 +1,6 @@
+N=20000 produced=20000 halt_at=-1 max=4
+value=0 first=1 count=8146
+value=1 first=3 count=7263
+value=2 first=7 count=4038
+value=3 first=10 count=547
+value=4 first=1355 count=6

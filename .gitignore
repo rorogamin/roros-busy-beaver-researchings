@@ -21,3 +21,6 @@ __pycache__/
 .*.aux
 .lia.cache
 .nia.cache
+
+# Local-only Discord draft for the GlyphCalc BB proposal
+bb-variants/GlyphCalc/DISCORD_POST.md

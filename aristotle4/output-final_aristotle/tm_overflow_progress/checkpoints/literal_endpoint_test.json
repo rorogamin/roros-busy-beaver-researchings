@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "literal_bound": 1000000,
+  "endpoints": 378,
+  "counts": {
+    "drains": 32,
+    "batches": 8,
+    "returns": 95,
+    "cascades": 47,
+    "sweeps": 65,
+    "literal": 131
+  }
+}

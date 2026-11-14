@@ -1,0 +1,18 @@
+progress 10/96
+progress 20/96
+progress 30/96
+progress 40/96
+progress 50/96
+progress 60/96
+progress 70/96
+progress 80/96
+progress 90/96
+progress 96/96
+{
+  "runs": 96,
+  "cps_successes": 0,
+  "ctl_successes": 0,
+  "timeouts": 0,
+  "returncode_nonzero": 0,
+  "summary": "cps_large\\summary.jsonl"
+}

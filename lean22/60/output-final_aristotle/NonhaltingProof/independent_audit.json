@@ -1,0 +1,23 @@
+{
+  "whole_block_cases": 64,
+  "whole_block_tm_steps": 136696,
+  "right_engine_cases": 303,
+  "prefix_sha256": {
+    "1": "fb8e20fc2e4c3f248c60c39bd652f3c1347298bb977b8b4d5903b85055620603",
+    "2": "23d5921848baf16cdae0fc371157d63c680847f1c60714df443758dc702d9328",
+    "3": "faf38f504a2cccd098b11ff1d5bebe3c2ce345d17cbae8e75f309eee946fedaa",
+    "4": "4f28a7ad8626f5e03f0d5d8cc4b31b0b45263ac5d26b83f59d06c9db84a98dd6",
+    "5": "6d5ceb41a31e7c4674229589b8729291269d8cb92770000fd4123878c5600ba3",
+    "6": "0b03f3ccf022369ed23ec123c99fc88af44028682e46d42966adff1799a145f7",
+    "7": "e6df61c90441287cde5f06e6ededce8db76c15c9084a22a5295f44b16ec47df3"
+  },
+  "matches_all_six_prior_prefixes": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true
+  },
+  "additional_wall_edge_cases": 135
+}

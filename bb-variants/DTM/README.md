@@ -8,6 +8,7 @@ A Double Turing Machine runs two (or `a`) independent transition tables over a *
 
 - At step `t = 0, 1, 2, ...`, the active table is **`Rule[(t mod a) + 1]`** (for standard 2-rule `DTM(n,m)`, steps alternate strictly: Rule 1 on even steps `t = 0, 2, 4, ...`, Rule 2 on odd steps `t = 1, 3, 5, ...`).
 - In **multi-rule `DTM(n, m, a)`**, rules rotate cyclically modulo `a`: `Rule 1 -> Rule 2 -> ... -> Rule a -> Rule 1 -> ...`.
+- In **scheduled `DTM(n, m, a, {rule order})`**, an explicit rule sequence such as `{r1r2r3r2r1r2r2}` (length `L`) cycles modulo `L`: at step `t`, the active table is **`order[t mod L]`** (`<rules>{<order>}` in spec notation). This generalizes `DTM(n, m, a)` and embeds into `(L * n, m)` standard TMs with reusable rules.
 - In **asymmetric `DTM(n, m, a, b)`**, Rule 1 has dimensions `(n, m)` and Rule 2 has dimensions `(a, b)`.
 - **Halting & step counting (Radó `S` convention):** only one rule needs a halt transition (`---` or `<w><d>Z`/`H`). In `DTM(n, m, a, b)`, entering a state `>= rule.states` or reading a symbol `>= rule.symbols` for the currently active rule also halts immediately. The halting transition itself counts as `+1` final step (`DTM(1,2) = 6`), and `Sigma` (`score`) counts total nonzero cells on the final tape.
 - **Format:** rules are separated by `|`, states within each rule by `_`, and transitions within each state are 3-character tokens `<write><L|R><next>`.
@@ -22,8 +23,17 @@ A Double Turing Machine runs two (or `a`) independent transition tables over a *
 | `DTM(3,2)` (`Σ`) | 5,610 | **≥ 84** | Best `Σ` seen | `1RA1LB_1LA1RB_1LC0LA\|0RB1RC_1RB0LA_1RZ1LC` |
 | `DTM(2,3)` | **≥ 65,794** | **≥ 355** | Lower bound | `1RA0RA2LB_2RA0LB0LA\|1LA2LB1RB_2RB1LA1RZ` |
 | `DTM(1,3)` | **12** | **6** | **Exact** | `1RA2LA1RA\|1LA2RA1RZ` |
+| `DTM(1,4)` | **20** | **8** | **Exact** | `1RA2LA1RA---\|1LA2RA3LA1RZ` |
+| `DTM(1,5)` | **30** | **10** | **Exact** | `1RA2LA1RA------\|1LA2RA3LA4RA1RZ` |
+| `DTM(1,6)` | **42** | **12** | **Exact** | `1RA2LA1RA---------\|1LA2RA3LA4RA5LA1RZ` |
 | `DTM(1,2,3)` | **18** | **5** | **Exact** | `1RA0LA\|0RA1RA\|1LA1RZ` |
 | `DTM(2,2,3)` | **≥ 26,336** | **≥ 132** | Lower bound | `0RB0RA_1LB1RB\|0LB1RZ_1RB0LA\|1RA1LB_1RB0RA` |
+| `DTM(2,2,3,{r1r2r3r2r1r2r2})` | **≥ 142,600** | **≥ 240** | Lower bound | `1RA1LA_0RB1LA\|1RB0LB_1LB0RA\|1RA1RZ_1RA1LB{r1r2r3r2r1r2r2}` |
+| `DTM(1,3,3,{r1r2r3r1r3r2r2})` | **≥ 2,913** | **≥ 44** | Lower bound | `0RA2LA1RZ\|1LA0RA0LA\|0LA1RA1LA{r1r2r3r1r3r2r2}` |
+| `DTM(1,3,3,{r1r2r3r2r1r2r2})` | **≥ 1,613** | **≥ 39** | Lower bound | `0RA0LA0RA\|1LA2LA0RA\|1RA2LA1RZ{r1r2r3r2r1r2r2}` |
+| `DTM(1,4,2,{r1r1r2})` | **≥ 690** | **≥ 20** | Lower bound | `1RA2LA1LA0RA\|2LA3LA0RA1RZ{r1r1r2}` |
+| `DTM(2,2,2,{r1r1r1r2})` | **≥ 420** | **≥ 23** | Lower bound | `0RA1RA_1LB0LA\|1LB0LA_1RB1RZ{r1r1r1r2}` |
+| `DTM(1,3,2,{r1r2r2r1r2r1r2})` | **≥ 83** | **≥ 7** | Lower bound | `1RA2LA1RZ\|0LA2LA0RA{r1r2r2r1r2r1r2}` |
 | `DTM(2,2,3,2)` | ≥ 27 | 6 | Asymmetric showcase | `1RA0LA_1LA1RB\|1LA1RB_0RC0RA_1RC1RZ` *(halts via state `C` out of range for Rule 1)* |
 
 Additional notable specimens:
@@ -52,6 +62,9 @@ How fast does `DTM(n, m)` / `DTM(n, m, a)` grow?
 - **`DTM(1,2) = 6`**: Unpruned TNF (`verify_small_dtm.c`, `cap=50`): `23` nodes, `10` halted, `13` timeouts, `0.000s`.
 - **`DTM(2,2) = 40`**: Every `DTM(2,2)` embeds in `BB(4) = 107`; unpruned TNF (`cap=120 > 107`) checked all `94,101` nodes (`32,043` halted, `62,058` timeouts) in `0.040s`.
 - **`DTM(1,3) = 12`**: Every `DTM(1,3)` embeds in `BB(2,3) = 38`; unpruned TNF (`cap=500 > 38`) checked all `241` nodes (`65` halted, `176` timeouts) in `0.000s`; open machines (e.g. `1RA0LA---|1LA0RA---`) exhibit periodic quadratic bouncer growth (`span = 632` at `100,000` steps).
+- **`DTM(1,4) = 20` (`Σ = 8`)**: Exhaustive TNF (`2,773` nodes): `541` halted (`best S = 20, Σ = 8`), `497` Brent cyclers, `1,607` exact translated cyclers, and `122/122` periodic bouncers proved non-halting via symbolic 1-block induction (`0` holdouts).
+- **`DTM(1,5) = 30` (`Σ = 10`)**: Exhaustive TNF (`36,061` nodes): `5,541` halted (`best S = 30, Σ = 10`), `5,000` Brent cyclers, `23,711` exact translated cyclers, and `1,803/1,803` periodic bouncers proved non-halting via symbolic 1-block induction (`0` holdouts).
+- **`DTM(1,6) = 42` (`Σ = 12`)**: Exhaustive TNF (`533,189` nodes): `67,575` halted (`best S = 42, Σ = 12`), `56,595` Brent cyclers, `381,001` exact translated cyclers, and `28,012/28,012` periodic bouncers proved non-halting via symbolic 1-block induction (`0` holdouts).
 - **`DTM(1,2,3) = 18`**: Every `DTM(1,2,3)` embeds in `BB(3) = 21`; unpruned TNF (`cap=100 > 21`) checked `223` nodes (`121` halted) in `0.000s`.
 - **`DTM(3,2) >= 16,244`**: 4% filtered TNF sweep (`bouncer_tnf_dtm.c --stride 25 --tier3 40000`, `114.7M` nodes in `83.49s`), plus zero additional halts up to `2M` steps across `8,192` saved compact holdouts.
 - **`DTM(2,3) >= 65,794`**: 4% filtered TNF sweep (`bouncer_tnf_dtm.c --stride 25 --tier3 40000`, `109.4M` nodes in `100.89s`) found `13,698`, `13,111`, and `6,830`; 1-mutant climb from `6,830` discovered `65,794` (`1RA0RA2LB_2RA0LB0LA|1LA2LB1RB_2RB1LA1RZ`). Zero halts up to `5M` steps across `8,192` compact holdouts.

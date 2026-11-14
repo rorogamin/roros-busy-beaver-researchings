@@ -1,0 +1,28 @@
+1RB4RB4RA1LA3LA_1LB2LA3RB2RB---
+Testing block size 1 (0.00s)
+Testing block size 2 (0.00s)
+Testing block size 3 (0.00s)
+Testing block size 4 (0.00s)
+Testing block size 5 (0.00s)
+Testing block size 6 (0.01s)
+Testing block size 7 (0.12s)
+Testing block size 8 (3.71s)
+Testing block size 9 (5.91s)
+Testing block size 10 (8.05s)
+
+1RB4RB4RA1LA3LA_1LB2LA3RB2RB--- Nothing
+
+{
+  "blockSize": "10",
+  "windowSize": "30",
+  "numSteps": "1000001",
+  "numConfigs": "51265",
+  "numEdges": "45314",
+  "numIters": "39",
+  "success": false,
+  "foundInfLoop": false,
+  "elapsedTimeUs": "0"
+}
+{}
+
+Inconclusive

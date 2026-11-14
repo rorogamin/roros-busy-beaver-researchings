@@ -17,6 +17,7 @@
  */
 
 #define MAX_RULES 16
+#define MAX_SCHED 64
 #define MAX_N 10
 #define MAX_M 10
 #define INIT_TAPE 65536
@@ -37,6 +38,9 @@ typedef struct {
 typedef struct {
     int num_rules;
     Rule rules[MAX_RULES];
+    int sched_len;
+    int sched[MAX_SCHED];
+    char order_str[128];
 } DTM;
 
 static int parse_rule(const char *s, int len, Rule *r) {
@@ -75,9 +79,68 @@ static int parse_rule(const char *s, int len, Rule *r) {
     return 0;
 }
 
+static int parse_order_str(const char *s, int *sched, int *out_len, int *out_max_r, char *norm_out, size_t norm_cap) {
+    int len = 0, max_r = 0;
+    const char *p = s;
+    if (*p == '{') p++;
+    size_t npos = 0;
+    while (*p && *p != '}') {
+        if (*p == 'r' || *p == 'R') {
+            p++;
+            if (*p < '1' || *p > '9') return -1;
+            int val = 0;
+            while (*p >= '0' && *p <= '9') { val = val * 10 + (*p - '0'); p++; }
+            if (val < 1 || val > MAX_RULES || len >= MAX_SCHED) return -1;
+            sched[len++] = val - 1;
+            if (val > max_r) max_r = val;
+            if (npos + 4 < norm_cap) {
+                npos += (size_t)snprintf(norm_out + npos, norm_cap - npos, "r%d", val);
+            }
+        } else if (*p == ',' || *p == ' ' || *p == '-') {
+            p++;
+        } else {
+            return -1;
+        }
+    }
+    if (len <= 0) return -1;
+    norm_out[npos] = '\0';
+    *out_len = len;
+    *out_max_r = max_r;
+    return 0;
+}
+
+static bool is_identity_sched(const int *sched, int len, int num_rules) {
+    if (len != num_rules) return false;
+    for (int i = 0; i < len; i++) if (sched[i] != i) return false;
+    return true;
+}
+
 static int parse_dtm(const char *spec, DTM *m) {
     m->num_rules = 0;
-    const char *p = spec;
+    m->sched_len = 0;
+    m->order_str[0] = '\0';
+
+    char buf[1024];
+    size_t slen = strlen(spec);
+    if (slen >= sizeof(buf)) return -1;
+    memcpy(buf, spec, slen + 1);
+
+    while (slen > 0 && (buf[slen - 1] == ' ' || buf[slen - 1] == '\t' || buf[slen - 1] == '\n' || buf[slen - 1] == '\r'))
+        buf[--slen] = '\0';
+
+    bool has_order = false;
+    int max_r_ord = 0;
+    if (slen > 0 && buf[slen - 1] == '}') {
+        char *open = strrchr(buf, '{');
+        if (!open) return -1;
+        if (parse_order_str(open, m->sched, &m->sched_len, &max_r_ord, m->order_str, sizeof(m->order_str)) != 0)
+            return -1;
+        has_order = true;
+        if (open > buf && *(open - 1) == '@') open--;
+        *open = '\0';
+    }
+
+    const char *p = buf;
     while (*p) {
         while (*p == ' ' || *p == '\t' || *p == '|') p++;
         if (!*p) break;
@@ -90,7 +153,17 @@ static int parse_dtm(const char *spec, DTM *m) {
         m->num_rules++;
         p = q;
     }
-    return (m->num_rules > 0) ? 0 : -1;
+    if (m->num_rules <= 0) return -1;
+    if (has_order) {
+        if (max_r_ord > m->num_rules) return -1;
+        if (is_identity_sched(m->sched, m->sched_len, m->num_rules)) {
+            m->order_str[0] = '\0';
+        }
+    } else {
+        m->sched_len = m->num_rules;
+        for (int i = 0; i < m->num_rules; i++) m->sched[i] = i;
+    }
+    return 0;
 }
 
 static void format_dtm(const DTM *m, char *out) {
@@ -111,6 +184,9 @@ static void format_dtm(const DTM *m, char *out) {
                 }
             }
         }
+    }
+    if (m->order_str[0] && !is_identity_sched(m->sched, m->sched_len, m->num_rules)) {
+        p += sprintf(p, "{%s}", m->order_str);
     }
     *p = '\0';
 }
@@ -140,7 +216,7 @@ static void simulate_dtm(const DTM *m, uint64_t cap, uint8_t **out_tape, size_t 
     int st = 0;
     int64_t score = 0, ones = 0;
     uint64_t steps = 0;
-    int k = m->num_rules;
+    int slen = (m->sched_len > 0) ? m->sched_len : m->num_rules;
 
     /* Brent exact cycler detection on small tapes */
     size_t bcap = 0;
@@ -187,7 +263,8 @@ static void simulate_dtm(const DTM *m, uint64_t cap, uint8_t **out_tape, size_t 
             hi_w += (int64_t)shift;
         }
 
-        int r = (int)(steps % (uint64_t)k);
+        int phase = (int)(steps % (uint64_t)slen);
+        int r = (m->sched_len > 0) ? m->sched[phase] : phase;
         const Rule *rl = &m->rules[r];
         uint8_t sym = tape[head];
 
@@ -213,7 +290,7 @@ static void simulate_dtm(const DTM *m, uint64_t cap, uint8_t **out_tape, size_t 
         }
 
         if (want_cycle_det && steps > 0 && st == st_t &&
-            (steps % (uint64_t)k) == (step_t % (uint64_t)k) &&
+            phase == (int)(step_t % (uint64_t)slen) &&
             (head - origin) == (ht - t_orig)) {
             int64_t lrel = (lo_w - origin < lor_t - t_orig) ? (lo_w - origin) : (lor_t - t_orig);
             int64_t rrel = (hi_w - origin > hir_t - t_orig) ? (hi_w - origin) : (hir_t - t_orig);
@@ -247,7 +324,7 @@ static void simulate_dtm(const DTM *m, uint64_t cap, uint8_t **out_tape, size_t 
                 int i = (r_head - 1 - c + FAST_TC_HIST) % FAST_TC_HIST;
                 int depth = (int)(rsnaps[i].pos - min_sr[i]);
                 if (depth >= 0 && depth < FAST_TC_WIN - 1 &&
-                    r == (int)(rsnaps[i].step % (uint64_t)k) && st == rsnaps[i].st) {
+                    phase == (int)(rsnaps[i].step % (uint64_t)slen) && st == rsnaps[i].st) {
                     bool ok = true;
                     for (int off = 0; off <= depth; off++) {
                         if (tape[head - off] != rsnaps[i].ctx[off]) { ok = false; break; }
@@ -276,7 +353,7 @@ static void simulate_dtm(const DTM *m, uint64_t cap, uint8_t **out_tape, size_t 
                 int i = (l_head - 1 - c + FAST_TC_HIST) % FAST_TC_HIST;
                 int depth = (int)(max_sl[i] - lsnaps[i].pos);
                 if (depth >= 0 && depth < FAST_TC_WIN - 1 &&
-                    r == (int)(lsnaps[i].step % (uint64_t)k) && st == lsnaps[i].st) {
+                    phase == (int)(lsnaps[i].step % (uint64_t)slen) && st == lsnaps[i].st) {
                     bool ok = true;
                     for (int off = 0; off <= depth; off++) {
                         if (tape[head + off] != lsnaps[i].ctx[off]) { ok = false; break; }
@@ -344,7 +421,8 @@ done_loop:
     out->ones = ones;
     out->head = head - origin;
     out->state = st;
-    out->rule_idx = (int)(steps % (uint64_t)k);
+    int end_phase = (int)(steps % (uint64_t)slen);
+    out->rule_idx = (m->sched_len > 0) ? m->sched[end_phase] : end_phase;
     out->min_pos = min_rel;
     out->max_pos = max_rel;
 
@@ -365,8 +443,19 @@ static uint64_t xorshift64(uint64_t *s) {
     return x;
 }
 
-static void random_dtm(DTM *m, int n, int sym, int rules, int a, int b, uint64_t *rng) {
+static void random_dtm(DTM *m, int n, int sym, int rules, int a, int b,
+                       const int *sched, int slen, const char *ord_str, uint64_t *rng) {
     m->num_rules = rules;
+    if (sched && slen > 0) {
+        m->sched_len = slen;
+        for (int i = 0; i < slen; i++) m->sched[i] = sched[i];
+        snprintf(m->order_str, sizeof(m->order_str), "%s", ord_str ? ord_str : "");
+        if (is_identity_sched(m->sched, m->sched_len, m->num_rules)) m->order_str[0] = '\0';
+    } else {
+        m->sched_len = rules;
+        for (int i = 0; i < rules; i++) m->sched[i] = i;
+        m->order_str[0] = '\0';
+    }
     for (int r = 0; r < rules; r++) {
         int rs = (r == 1 && a > 0) ? a : n;
         int rm = (r == 1 && b > 0) ? b : sym;
@@ -389,12 +478,14 @@ static void random_dtm(DTM *m, int n, int sym, int rules, int a, int b, uint64_t
     m->rules[hr].tab[hs][hy].w = 1;
     m->rules[hr].tab[hs][hy].d = 1;
     /* Canonical first step direction R */
-    m->rules[0].tab[0][0].d = 1;
+    int first_r = (m->sched_len > 0 && m->sched[0] < rules) ? m->sched[0] : 0;
+    m->rules[first_r].tab[0][0].d = 1;
 }
 
 int main(int argc, char **argv) {
     const char *sim_spec = NULL;
     const char *mutate_spec = NULL;
+    const char *order_arg = NULL;
     bool do_search = false;
     int n = 3, m_sym = 2, rules = 2, a_st = 0, b_sym = 0;
     uint64_t cap = 1000000;
@@ -405,6 +496,7 @@ int main(int argc, char **argv) {
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--sim") && i + 1 < argc) sim_spec = argv[++i];
         else if (!strcmp(argv[i], "--mutate") && i + 1 < argc) mutate_spec = argv[++i];
+        else if (!strcmp(argv[i], "--order") && i + 1 < argc) order_arg = argv[++i];
         else if (!strcmp(argv[i], "--search")) do_search = true;
         else if (!strcmp(argv[i], "--n") && i + 1 < argc) n = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--m") && i + 1 < argc) m_sym = atoi(argv[++i]);
@@ -431,7 +523,7 @@ int main(int argc, char **argv) {
         simulate_dtm(&dtm, cap, &tape, &tcap, &origin, &out, true);
         double ms = 1000.0 * (double)(clock() - t0) / CLOCKS_PER_SEC;
 
-        char norm_spec[512];
+        char norm_spec[1024];
         format_dtm(&dtm, norm_spec);
         int64_t hpos = origin + out.head;
         int64_t slo = hpos - slice_rad, shi = hpos + slice_rad;
@@ -458,6 +550,17 @@ int main(int argc, char **argv) {
     }
 
     if (do_search || mutate_spec) {
+        int sched[MAX_SCHED];
+        int slen = 0, max_r_ord = 0;
+        char ord_norm[128] = "";
+        if (order_arg && order_arg[0]) {
+            if (parse_order_str(order_arg, sched, &slen, &max_r_ord, ord_norm, sizeof(ord_norm)) != 0) {
+                printf("{\"error\":\"Invalid --order string\"}\n");
+                return 1;
+            }
+            if (max_r_ord > rules) rules = max_r_ord;
+        }
+
         DTM base;
         bool has_base = false;
         if (mutate_spec && parse_dtm(mutate_spec, &base) == 0) has_base = true;
@@ -466,9 +569,9 @@ int main(int argc, char **argv) {
         uint64_t tested = 0, halted = 0, holdouts = 0;
         uint64_t best_steps = 0;
         int64_t best_score = 0;
-        char best_spec[512] = "";
+        char best_spec[1024] = "";
         uint64_t hold_best_steps = 0;
-        char hold_spec[512] = "";
+        char hold_spec[1024] = "";
 
         if (has_base) {
             SimOutcome out;
@@ -503,7 +606,7 @@ int main(int argc, char **argv) {
                         }
                     }
                 } else {
-                    random_dtm(&cand, n, m_sym, rules, a_st, b_sym, &seed);
+                    random_dtm(&cand, n, m_sym, rules, a_st, b_sym, slen > 0 ? sched : NULL, slen, ord_norm, &seed);
                 }
                 SimOutcome out;
                 simulate_dtm(&cand, cap, NULL, NULL, NULL, &out, true);

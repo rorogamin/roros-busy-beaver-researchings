@@ -1,0 +1,71 @@
+{
+  "sha": "e3639c71ee6b6244ec84fc4656e0be05e5b52251",
+  "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/trees/e3639c71ee6b6244ec84fc4656e0be05e5b52251",
+  "tree": [
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4721508b8f314e4e0557d9854a9937bccab21a00",
+      "size": 1066,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/4721508b8f314e4e0557d9854a9937bccab21a00"
+    },
+    {
+      "path": "Makefile.win",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dae2098d063819ef09d08c5941a9cb2915faf5b4",
+      "size": 1480,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/dae2098d063819ef09d08c5941a9cb2915faf5b4"
+    },
+    {
+      "path": "input.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ce2b5ed6b5b7336ceb2727b8187c2832868af17",
+      "size": 1020978,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/6ce2b5ed6b5b7336ceb2727b8187c2832868af17"
+    },
+    {
+      "path": "main.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3340f68c1b5cf7a0832fb54fbd525a1e6992a534",
+      "size": 17458,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/3340f68c1b5cf7a0832fb54fbd525a1e6992a534"
+    },
+    {
+      "path": "readme.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3524b17a37bcd9be39b8358cec8269c2e8fbce94",
+      "size": 580,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/3524b17a37bcd9be39b8358cec8269c2e8fbce94"
+    },
+    {
+      "path": "visualize.dev",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ebc4ec9d1fe3da6432fcfc2c23953f4a2a6bca4",
+      "size": 933,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/0ebc4ec9d1fe3da6432fcfc2c23953f4a2a6bca4"
+    },
+    {
+      "path": "visualize.exe",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "29c7962a737f2223793818d89207d153d365b11d",
+      "size": 3350592,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/29c7962a737f2223793818d89207d153d365b11d"
+    },
+    {
+      "path": "visualize.layout",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b57bae14fa73924407edf64bf68c445336a2f1b",
+      "size": 97,
+      "url": "https://api.github.com/repos/ccz181078/TuringMachineVisualizer/git/blobs/0b57bae14fa73924407edf64bf68c445336a2f1b"
+    }
+  ],
+  "truncated": false
+}

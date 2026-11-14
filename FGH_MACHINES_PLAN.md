@@ -16,8 +16,8 @@ gets asserted without a measurement behind it.
 
 | level | states (2 sym) | tape level | value level (Rocq) |
 |---|---|---|---|
-| ε₀ | 31 minimal (32 reachable) | simulated, no proof | proved (earlier work) |
-| ε₁ | **57**, 100 rows | rung branch proved (`rocq/Eps1Tape.v`); copy sweep proved (`rocq/Eps1Copy.v`); block-spent decision proved and composed into the copy (`Eps1Tape.v`); eps₀ round interior still simulated | `rocq/Eps1Ladder.v` + `Eps1Tape.v` + `Eps1Copy.v`, 156 closed theorems total |
+| ε₀ (concrete instance) | 65-state **proof artifact**, not a state-count record (22 prologue + 10 builder + 33 drive slots; 31 drive states reachable) | Blank-tape n=2, v=2 integration proved in `rocq/Eps0BuilderBlank.v`: state 0 on all blanks, the prologue writes a source `1^2`, the parametric builder turns it into two stage marks in 25 steps, and the table halts after a 68,311-step run with 255 value marks. The builder itself is proved for every k ≥ 1 (`Eps0Builder.builder_run`, `10*k+5` steps). This is a fixed n=2 instance, not a symbolic `f_ε₀` theorem; full ε₀ remains open. It is also not a state-count record: the ledger's informal BB(51) row claims `f_{ε₀+1}(8)`, so 65 states is a provability artifact, not an FGH champion. That 51-state witness is an upper bound, not a lower bound on what smaller tables can do. | proved (earlier work) |
+| ε₁ | **57**, 100 rows | rung branch proved (`rocq/Eps1Tape.v`); copy sweep proved (`rocq/Eps1Copy.v`); block-spent decision proved and composed into the copy (`Eps1Tape.v`); eps₀ round and stage proved (`rocq/Eps0Round.v`, `rocq/Eps0Stage.v`) | `rocq/Eps1Ladder.v` + `Eps1Tape.v` + `Eps1Copy.v`, 202 closed theorems total |
 | ζ₀, ζ₁, η₀, η₁ | not started | — | — |
 
 ε₁ is `tools/eps1_machine.py`: eps₀'s rounds with the stage count read off the
@@ -131,7 +131,7 @@ Per level, per symbol count.  The rules already in force in this repo apply:
 * symbolic/parametric proofs only -- `vm_compute` runs and simulations are not
   proofs;
 * `./verify.sh` is the gate: it greps for `admit | Admitted | Axiom | Parameter`
-  and counts closed theorems (currently 156, all closed).  Never write those
+  and counts closed theorems (currently 202, all closed).  Never write those
   tokens in a `.v` file, not even in a comment;
 * what is verified at a level is the *value* semantics (`stage`, `run`, `lvl`
   and their monotonicity/separation lemmas, as in `rocq/Eps1Ladder.v`) plus, once
@@ -186,7 +186,10 @@ at BB(46,7)/BB(61,6).
 2. **The 2-symbol base for eps_1 under 67 is BB(51)**: f_(e0+1)(8) in 51 states
    leaves 16 for the glue, which is tighter than our own 26-state rung+copy --
    so at that base the glue must be a halt redirect, not a copy.  BB(40) (w^w)
-   leaves 27, which is exactly the size of our current glue.
+   leaves 27, which is exactly the size of our current glue.  This is a
+   construction choice, not a lower bound: the 51-state witness does not show
+   that fewer states cannot reach a higher level, and state count is not
+   monotone in ordinal level.
 3. **The eps_0-engine + F-times glue already exists, in 7 symbols.**  BB(56,7)
    is that construction at 56 states / 7 symbols.  Our 57-state / 2-symbol
    machine is the same construction with the alphabet paid for in states
@@ -289,7 +292,8 @@ halts in 50 000 steps from a blank tape.  Nothing about the levels.
        96 of them the composed sweep: up to four trips from frames j = 0, 1, 2,
        with the count taken from `sweep_steps` itself.  Raising that count by one
        makes all 96 fail, so the composed cases test the count and not just the
-       frame.  `./verify.sh` closes all 156 theorems with no axioms and no
+       frame.       `./verify.sh` closes all 202 theorems with no axioms and no
+
        parameters.
        open: this is the copy in the frame the rung hands over -- step 4's
        prologue builds that frame, and step 3's ladder side (`a` count of halves,
@@ -308,61 +312,39 @@ halts in 50 000 steps from a blank tape.  Nothing about the levels.
        are one-step facts (the decision is local); the composition is the
        theorem.  Checked: `block_spent` in `tools/check_eps1_tape.py`, 16 cases
        from both states over M, a, b, v, all matching the running machine.
-3d. [ ] ε₁ tape-level invariant, the eps₀ stage branch's *interior*: the rounds
-       themselves.  Nothing is proved past one round at a value of one mark
-       (`round_v0` in `rocq/Eps0Drive.v`, for every gap m).  The statement the
-       rounds owe, measured by cutting an eps₀ trace at `R1`-to-`R1` (the frame
-       conversion below is what `round_v0` proves at v = 1; the cost formula is
-       what `tools/round_cost.py` checks against 40 measured rounds, 0
-       mismatches):
+3d. [x] ε₁ tape-level invariant, the eps₀ stage branch's *interior*: the rounds
+       themselves.  `rocq/Eps0Round.v` proves the parametric round for every
+       value length [S v]: one counter mark spent, the value becomes [2 v + 3]
+       marks, the gap grows by [S v + 2], in [round_sum m v] steps.  `rocq/
+       Eps0Stage.v` iterates it over [c] counter marks, with the exact
+       [stage_cost] and the value/gap functions [stage_w]/[stage_gap].
+       Both are in the gate and `Print Assumptions` is closed.  This proves the
+       drive's interior; it does not prove the rung composition or any
+       FGH-level claim.
+3e. [x] ε₀ blank-tape concrete instance: `rocq/Eps0Blank.v` wraps the 33-state
+       drive in an 11-state prologue and proves, by a kernel-checked concrete
+       run, that the 44-state table starts at state 0 on an entirely blank tape,
+       writes the `1^n 0 1 0 1^v 0 1` frame, and reaches a halting configuration
+       after 68,276 transitions with 255 value marks for n=2, v=2.  This is a
+       fixed instance, not a symbolic proof of `f_ε₀(n)` and not a general
+       stage-count result; the n=2 stage block is still hard-wired.
 
-           run (2*m + 7*v + 14 + k_pre v 0 0)
-             (mkConf R1 (on :: L) on
-                     (on :: zeros m ++ ones v ++ bl :: on :: [])) =
-           Some (mkConf R1 L on
-                     (on :: zeros (m + v + 2) ++ ones (2 * v + 1) ++ bl :: on :: []))
+3f. [x] tape-driven stage-count builder and its blank-tape integration:
+       `rocq/Eps0Builder.v` adds a 10-state builder ahead of the 33-state
+       drive and proves `builder_run` for every k ≥ 1 and value length `1^v`:
+       the source `1^k` becomes exactly `1^k` stage marks at `F0` in `10*k+5`
+       steps.  `rocq/Eps0BuilderBlank.v` composes it end to end for the fixed
+       source `1^2`: a 22-state prologue writes the source frame on an all-blank
+       tape, the builder hands over in 25 steps, and the 65-state table halts
+       after a 68,311-step run with 255 value marks.  The integration is the
+       fixed n=2 instance, not a symbolic all-k drive theorem: a prototype at
+       k=3 was still running after 10^8 steps (11,503 marks against the 65,535
+       target), so no larger-k halting claim is made.  The 65-state count is a
+       proof artifact, not a state-count claim: the ledger's 51-state BB(51)
+       row claims `f_{ε₀+1}(8)`, 14 fewer states and one level higher, but that
+       row is an informal per-machine analysis and is not in Rocq.  This table
+       is not competing with it.
 
-       one counter mark spent (the left context loses one mark), the value
-       doubled plus one, the gap grown by v + 2, at module K's cost plus the
-       walks.  No theorem in the repo states or owes this yet, and nothing above
-       depends on it -- but the stage branch cannot be called proved until it is,
-       because it is the branch's whole interior.  This is what "the eps₀ branch
-       is still this simulation" means, precisely.
-
-       An attempt at it exists and is written down in this file only because it
-       failed in a way worth recording: the twelve-phase shadow of `round_v0`
-       (same frames, `v` in place of the numeral) replays H1..H9 unchanged --
-       the R1/R2 steps, `walk_R4_phase m A (S v)`, `walk_on_R5 v`,
-       `k_block_drive_exit (S v) 0 0 m`, `walk_A5_phase (S v)`,
-       `walk_A6_phase (S v)`, the two A7/A8 steps -- and then stops at the A8
-       step, on nothing mathematical: `ones (2 * S v + 2)` and
-       `ones (S (2 * S v + 1))` are the same list but not convertible, because
-       Coq only computes `ones`/`zeros` on a constructor-headed index, and a
-       run of marks split across a `tl` boundary changes its spine.  The same
-       wall blocks the A9 phase (`ones (2 * S v + 1) ++ on :: ...` has to become
-       `ones (2 * S v + 2) ++ ...`, which is `ones_succ`, which lands on `S (...)`,
-       not on `+ 2`) and the AA walk, where the left gap has to become
-       `zeros (S v + S m)` via `zeros a ++ zeros b = zeros (a + b)` -- that one
-       is fine, the mark runs are the problem.  Two fixes are worth trying, in
-       this order: (a) restate the frames with the doubled length as its own
-       variable (`set (d := 2 * S v)`) and prove the phases as small lemmas at
-       `d`, so no `2 * S v + k` index ever faces a `tl`; or (b) keep the frames
-       and write every run in the canonical spine `on :: ones k` / `bl :: zeros k`
-       from the start, with `S (2 * S v + k)`-shaped indices throughout.  Neither
-       is a proof; this note is here so the next attempt starts from H10 instead
-       of from H1.
-       Option (a) was then tried: a variable for the doubled length, and every
-       seam stepped through a lemma ([tl_ones_succ], [merge_marks], [zeros_add]
-       with [zeros_succ]) instead of through [cbn].  H1..H9 stand, the A9 phase
-       and the AA walk are now small lemmas that compile on their own, and the
-       attempt again stops at H10 -- with the mismatch now named exactly: the
-       step leaves [on :: ones (2 * S v)] where the frame says
-       [ones (2 * S v + 1)].  Same list and same count, different spine: since
-       [2 * S v] is [S (v + S v)], which of the two [cbn] unfolds depends on
-       which side of the equation the term sits on.  So the last barrier is not
-       mathematical either: write every run in the frames in the unfolded spine
-       ([on :: ones k], never [ones (S k)]), or normalise both sides with one
-       lemma [ones a ++ ones b ++ Z = ones (a + b) ++ Z] before comparing.
 4. [x] blank-tape prologue: the frame is written by the machine itself, and the
        machine now starts from nothing -- state 0, empty tape, head at 0
        (`tools/eps1_blank.py`).  The prologue writes the frame right to left from

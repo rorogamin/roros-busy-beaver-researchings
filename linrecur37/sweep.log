@@ -1,0 +1,16 @@
+progress 5/37
+progress 10/37
+progress 15/37
+progress 20/37
+progress 25/37
+progress 30/37
+progress 35/37
+progress 37/37
+{
+  "runs": 37,
+  "successes": 0,
+  "timeouts": 0,
+  "returncode_nonzero": 0,
+  "max_steps": 10000000,
+  "summary": "linrecur37\\summary.jsonl"
+}

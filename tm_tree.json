@@ -1,0 +1,47 @@
+{
+  "sha": "a41db6c50994beadb309e24d43425e115b657163",
+  "url": "https://api.github.com/repos/ccz181078/TM/git/trees/a41db6c50994beadb309e24d43425e115b657163",
+  "tree": [
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "737a66dffe43a8cb961d03c4df41679f65725987",
+      "size": 35,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/737a66dffe43a8cb961d03c4df41679f65725987"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dc3899878b87a29fa606fdbd48b877638e5ba2e",
+      "size": 1066,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/4dc3899878b87a29fa606fdbd48b877638e5ba2e"
+    },
+    {
+      "path": "main.cpp",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4cd8072334d34d395c2bfc572b655265e58c145e",
+      "size": 57404,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/4cd8072334d34d395c2bfc572b655265e58c145e"
+    },
+    {
+      "path": "makefile",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b29325326f84a7b20665ab9ea92ae9b068fb6d59",
+      "size": 80,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/b29325326f84a7b20665ab9ea92ae9b068fb6d59"
+    },
+    {
+      "path": "readme.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ace81aa0233791ec874e6b61dc99b7806a1f76ea",
+      "size": 277,
+      "url": "https://api.github.com/repos/ccz181078/TM/git/blobs/ace81aa0233791ec874e6b61dc99b7806a1f76ea"
+    }
+  ],
+  "truncated": false
+}

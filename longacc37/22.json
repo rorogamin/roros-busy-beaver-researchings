@@ -1,0 +1,18 @@
+{
+  "spec": "1RB2LA0RB0LB3LB_2LA4RB3RA0RA---",
+  "effort": 2,
+  "iterationsPerRow": 100000,
+  "rows": 13,
+  "status": 0,
+  "timeout": true,
+  "halted": false,
+  "done": false,
+  "state": 0,
+  "head": 1,
+  "direction": -1,
+  "width": 5761,
+  "height": 13,
+  "error": null,
+  "config": "0 <A 220^5 2^3 0 220^40 2202202220^2 220^40 2^3 0 220^68 2220^2 220^734 2^3 022^1020 ",
+  "elapsedMs": 12000
+}

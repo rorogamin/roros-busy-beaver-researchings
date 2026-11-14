@@ -98,6 +98,43 @@
       "notes": "Proven exact: embeds into BB(2,3)=38 and unpruned TNF checked up to cap=500 (241 nodes, remaining timeouts are periodic bouncers)."
     },
     {
+      "id": "dtm14",
+      "class": "DTM(1,4)",
+      "status": "exact",
+      "steps": 20,
+      "score": 8,
+      "ones": 4,
+      "span": 8,
+      "spec": "1RA2LA1RA---|1LA2RA3LA1RZ",
+      "ties": ["1RA2LA1RA---|2LA3LA1RA1RZ"],
+      "equivalent_tm": "1RB2LB1RB---_1LA2RA3LA1RZ",
+      "notes": "Proven exact via exhaustive TNF (2,773 nodes): 541 halted, 497 Brent cyclers, 1,607 translated cyclers, and 122/122 periodic bouncers proved non-halting by symbolic 1-block induction (0 holdouts)."
+    },
+    {
+      "id": "dtm15",
+      "class": "DTM(1,5)",
+      "status": "exact",
+      "steps": 30,
+      "score": 10,
+      "ones": 5,
+      "span": 10,
+      "spec": "1RA2LA1RA------|1LA2RA3LA4RA1RZ",
+      "equivalent_tm": "1RB2LB1RB------_1LA2RA3LA4RA1RZ",
+      "notes": "Proven exact via exhaustive TNF (36,061 nodes): 5,541 halted, 5,000 Brent cyclers, 23,711 translated cyclers, and 1,803/1,803 periodic bouncers proved non-halting by symbolic 1-block induction (0 holdouts)."
+    },
+    {
+      "id": "dtm16",
+      "class": "DTM(1,6)",
+      "status": "exact",
+      "steps": 42,
+      "score": 12,
+      "ones": 5,
+      "span": 12,
+      "spec": "1RA2LA1RA---------|1LA2RA3LA4RA5LA1RZ",
+      "equivalent_tm": "1RB2LB1RB---------_1LA2RA3LA4RA5LA1RZ",
+      "notes": "Proven exact via exhaustive TNF (533,189 nodes): 67,575 halted, 56,595 Brent cyclers, 381,001 translated cyclers, and 28,012/28,012 periodic bouncers proved non-halting by symbolic 1-block induction (0 holdouts)."
+    },
+    {
       "id": "dtm123",
       "class": "DTM(1,2,3)",
       "status": "exact",
@@ -132,6 +169,78 @@
       "spec": "1RA0LA_1LA1RB|1LA1RB_0RC0RA_1RC1RZ",
       "equivalent_tm": null,
       "notes": "Asymmetric DTM(2,2,3,2) example halting via out-of-range state C when transitioning back to Rule 1 (2 states)."
+    },
+    {
+      "id": "dtm223_sched",
+      "class": "DTM(2,2,3,{r1r2r3r2r1r2r2})",
+      "status": "lower_bound",
+      "steps": 142600,
+      "score": 240,
+      "ones": 240,
+      "span": 352,
+      "spec": "1RA1LA_0RB1LA|1RB0LB_1LB0RA|1RA1RZ_1RA1LB{r1r2r3r2r1r2r2}",
+      "equivalent_tm": "1RC1LC_0RD1LC_1RF0LF_1LF0RE_1RG1RZ_1RG1LH_1RJ0LJ_1LJ0RI_1RK1LK_0RL1LK_1RN0LN_1LN0RM_1RB0LB_1LB0RA",
+      "notes": "Found in 25% TNF sample of DTM(2,2,3,{r1r2r3r2r1r2r2}) (95.9M nodes, cap=150k). Embeds into (14,2) standard TMs using only 3 reusable 2-state rules."
+    },
+    {
+      "id": "dtm133_r1r2r3r1r3r2r2",
+      "class": "DTM(1,3,3,{r1r2r3r1r3r2r2})",
+      "status": "lower_bound",
+      "steps": 2913,
+      "score": 44,
+      "ones": 34,
+      "span": 72,
+      "spec": "0RA2LA1RZ|1LA0RA0LA|0LA1RA1LA{r1r2r3r1r3r2r2}",
+      "equivalent_tm": "0RB2LB1RZ_1LC0RC0LC_0LD1RD1LD_0RE2LE1RZ_0LF1RF1LF_1LG0RG0LG_1LA0RA0LA",
+      "notes": "1-state 3-symbol 3-rule machine with length-7 schedule (74k-113k TNF sweep up to 200k steps)."
+    },
+    {
+      "id": "dtm133_r1r2r3r2r1r2r2",
+      "class": "DTM(1,3,3,{r1r2r3r2r1r2r2})",
+      "status": "lower_bound",
+      "steps": 1613,
+      "score": 39,
+      "ones": 16,
+      "span": 68,
+      "spec": "0RA0LA0RA|1LA2LA0RA|1RA2LA1RZ{r1r2r3r2r1r2r2}",
+      "equivalent_tm": "0RB0LB0RB_1LC2LC0RC_1RD2LD1RZ_1LE2LE0RE_0RF0LF0RF_1LG2LG0RG_1LA2LA0RA",
+      "notes": "Found in TNF sweep of DTM(1,3,3,{r1r2r3r2r1r2r2}) (74,115 nodes up to 2M steps; 15 holdouts)."
+    },
+    {
+      "id": "dtm142_r1r1r2",
+      "class": "DTM(1,4,2,{r1r1r2})",
+      "status": "lower_bound",
+      "steps": 690,
+      "score": 20,
+      "ones": 15,
+      "span": 29,
+      "spec": "1RA2LA1LA0RA|2LA3LA0RA1RZ{r1r1r2}",
+      "equivalent_tm": "1RB2LB1LB0RB_1RC2LC1LC0RC_2LA3LA0RA1RZ",
+      "notes": "Odd-length schedule breaks DTM(1,4) parity isolation, jumping from 20 to >= 690 steps with the same 1x4 rule dimensions."
+    },
+    {
+      "id": "dtm222_r1r1r1r2",
+      "class": "DTM(2,2,2,{r1r1r1r2})",
+      "status": "lower_bound",
+      "steps": 420,
+      "score": 23,
+      "ones": 23,
+      "span": 29,
+      "spec": "0RA1RA_1LB0LA|1LB0LA_1RB1RZ{r1r1r1r2}",
+      "equivalent_tm": "0RC1RC_1LD0LC_0RE1RE_1LF0LE_0RG1RG_1LH0LG_1LB0LA_1RB1RZ",
+      "notes": "4-step asymmetric 2-rule schedule; jumps 10.5x over DTM(2,2)=40."
+    },
+    {
+      "id": "dtm132_r1r2r2r1r2r1r2",
+      "class": "DTM(1,3,2,{r1r2r2r1r2r1r2})",
+      "status": "lower_bound",
+      "steps": 83,
+      "score": 7,
+      "ones": 6,
+      "span": 13,
+      "spec": "1RA2LA1RZ|0LA2LA0RA{r1r2r2r1r2r1r2}",
+      "equivalent_tm": "1RB2LB1RZ_0LC2LC0RC_0LD2LD0RD_1RE2LE1RZ_0LF2LF0RF_1RG2LG1RZ_0LA2LA0RA",
+      "notes": "2-rule 1-state 3-symbol machine under length-7 schedule (649 TNF nodes; 0 holdouts at 200k)."
     }
   ],
   "presets": [
@@ -141,8 +250,16 @@
     { "id": "dtm32_sigma", "label": "DTM(3,2) Σ ≥ 84 (5,610 steps)", "spec": "1RA1LB_1LA1RB_1LC0LA|0RB1RC_1RB0LA_1RZ1LC" },
     { "id": "dtm23", "label": "DTM(2,3) ≥ 65,794 (Best steps & Σ=355)", "spec": "1RA0RA2LB_2RA0LB0LA|1LA2LB1RB_2RB1LA1RZ" },
     { "id": "dtm13", "label": "DTM(1,3) = 12 (Exact, Σ=6)", "spec": "1RA2LA1RA|1LA2RA1RZ" },
+    { "id": "dtm14", "label": "DTM(1,4) = 20 (Exact, Σ=8)", "spec": "1RA2LA1RA---|1LA2RA3LA1RZ" },
+    { "id": "dtm15", "label": "DTM(1,5) = 30 (Exact, Σ=10)", "spec": "1RA2LA1RA------|1LA2RA3LA4RA1RZ" },
+    { "id": "dtm16", "label": "DTM(1,6) = 42 (Exact, Σ=12)", "spec": "1RA2LA1RA---------|1LA2RA3LA4RA5LA1RZ" },
     { "id": "dtm123", "label": "DTM(1,2,3) = 18 (Exact, 3 rules, Σ=5)", "spec": "1RA0LA|0RA1RA|1LA1RZ" },
     { "id": "dtm223", "label": "DTM(2,2,3) ≥ 26,336 (3 rules, Σ=132)", "spec": "0RB0RA_1LB1RB|0LB1RZ_1RB0LA|1RA1LB_1RB0RA" },
+    { "id": "dtm223_sched", "label": "DTM(2,2,3,{r1r2r3r2r1r2r2}) ≥ 142,600 (Σ=240)", "spec": "1RA1LA_0RB1LA|1RB0LB_1LB0RA|1RA1RZ_1RA1LB{r1r2r3r2r1r2r2}" },
+    { "id": "dtm133_r1r2r3r1r3r2r2", "label": "DTM(1,3,3,{r1r2r3r1r3r2r2}) ≥ 2,913 (Σ=44)", "spec": "0RA2LA1RZ|1LA0RA0LA|0LA1RA1LA{r1r2r3r1r3r2r2}" },
+    { "id": "dtm133_r1r2r3r2r1r2r2", "label": "DTM(1,3,3,{r1r2r3r2r1r2r2}) ≥ 1,613 (Σ=39)", "spec": "0RA0LA0RA|1LA2LA0RA|1RA2LA1RZ{r1r2r3r2r1r2r2}" },
+    { "id": "dtm142_r1r1r2", "label": "DTM(1,4,2,{r1r1r2}) ≥ 690 (Σ=20)", "spec": "1RA2LA1LA0RA|2LA3LA0RA1RZ{r1r1r2}" },
+    { "id": "dtm222_r1r1r1r2", "label": "DTM(2,2,2,{r1r1r1r2}) ≥ 420 (Σ=23)", "spec": "0RA1RA_1LB0LA|1LB0LA_1RB1RZ{r1r1r1r2}" },
     { "id": "dtm2232_asym", "label": "DTM(2,2,3,2) = 27 (Asymmetric OOB halt)", "spec": "1RA0LA_1LA1RB|1LA1RB_0RC0RA_1RC1RZ" },
     { "id": "dtm32_counter", "label": "DTM(3,2) Binary Counter Holdout (50M+ steps)", "spec": "1RB0LA_1RA0LA_0RC1LA|1RA0LC_1LC1RA_1RB1RZ" }
   ]

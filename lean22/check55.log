@@ -1,0 +1,6 @@
+'ShiftOverflow.Counter.never_halts' depends on axioms: [propext,
+ Classical.choice,
+ Lean.ofReduceBool,
+ Lean.trustCompiler,
+ Quot.sound]
+CHECK55_EXIT=0

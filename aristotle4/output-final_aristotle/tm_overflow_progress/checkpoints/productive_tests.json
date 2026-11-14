@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "productive_returns": 1000,
+  "literal_transitions": 30094,
+  "counterexamples": [
+    {
+      "initial_counter": 1,
+      "initial_suffix": [
+        4,
+        2
+      ],
+      "reaches_A1_after_defined_transitions": 26
+    },
+    {
+      "initial_counter": 1,
+      "initial_suffix": [
+        2,
+        4
+      ],
+      "reaches_A1_after_defined_transitions": 60
+    },
+    {
+      "initial_counter": 1,
+      "initial_suffix": [
+        4,
+        2,
+        2
+      ],
+      "reaches_A1_after_defined_transitions": 20
+    }
+  ]
+}

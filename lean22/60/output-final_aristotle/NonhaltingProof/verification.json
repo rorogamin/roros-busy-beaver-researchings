@@ -1,0 +1,155 @@
+{
+  "machine": "1RB2LA3LB4LB---_0LA4LB3RA4LA0RB",
+  "ranks": [
+    {
+      "rank": 1,
+      "prefix_length": 2,
+      "prefix": "ab",
+      "echo": {
+        "width": 3,
+        "right_letters": 5,
+        "left_letters": 2,
+        "cell_visits": 13,
+        "local_tm_steps": 23,
+        "sha256": "014f0f09ff4ccc483200b8e8ca1f64bd7c6ef73d8aa81cfe1bb94724988b49fb"
+      },
+      "triangle": {
+        "width": 1,
+        "right_letters": 4,
+        "left_letters": 2,
+        "cell_visits": 4,
+        "local_tm_steps": 6,
+        "sha256": "d62ee9f4cca3c519340b69551fee1f494aa906c05abd33370ba79c312106d197"
+      }
+    },
+    {
+      "rank": 2,
+      "prefix_length": 7,
+      "prefix": "bcbabab",
+      "echo": {
+        "width": 9,
+        "right_letters": 16,
+        "left_letters": 7,
+        "cell_visits": 118,
+        "local_tm_steps": 227,
+        "sha256": "9f773515af3a42020fa155a9e9a3987dc8d3205dda7360b8a06b4d016a16bd02"
+      },
+      "triangle": {
+        "width": 5,
+        "right_letters": 11,
+        "left_letters": 7,
+        "cell_visits": 59,
+        "local_tm_steps": 114,
+        "sha256": "220bb419379153100871c2ace81b74d78c4ec065dc1ccd5dc65adaf12779d676"
+      }
+    },
+    {
+      "rank": 3,
+      "prefix_length": 22,
+      "prefix": "abaaacabcbacbabbcbabab",
+      "echo": {
+        "width": 27,
+        "right_letters": 49,
+        "left_letters": 22,
+        "cell_visits": 994,
+        "local_tm_steps": 1961,
+        "sha256": "46183deb7ea0477c2fd8433cf9ef144d3b2806c86075f07c2cc178fba34065cd"
+      },
+      "triangle": {
+        "width": 19,
+        "right_letters": 31,
+        "left_letters": 22,
+        "cell_visits": 640,
+        "local_tm_steps": 1271,
+        "sha256": "e79c0c8d8f7aa8f9a1a93021b1d54414e79e7c96c899fe2ed8a28cc40dc582d7"
+      }
+    },
+    {
+      "rank": 4,
+      "prefix_length": 61,
+      "prefix": "bcbaabcaaaacbacbacbacabcabcbacbacbacbababaaacabcbacbabbcbabab",
+      "echo": {
+        "width": 81,
+        "right_letters": 142,
+        "left_letters": 61,
+        "cell_visits": 8296,
+        "local_tm_steps": 16511,
+        "sha256": "0b148900c975669fe663db20e994f4cd73c1b1e6cea5dab05a62772d1bfe5857"
+      },
+      "triangle": {
+        "width": 65,
+        "right_letters": 89,
+        "left_letters": 61,
+        "cell_visits": 6242,
+        "local_tm_steps": 12456,
+        "sha256": "fddb0fe1eb03c3fd7195731715967cfb00579d06ec46bd2d52b4658b54ed74ea"
+      }
+    },
+    {
+      "rank": 5,
+      "prefix_length": 154,
+      "prefix": "abaaabacaabbcabcbacbacbacbacbacbacbacbacbacbacbacbabacaacbacabcabcabcbacbacbacbacbacbacbacbabbcbaabcaaaacbacbacbacabcabcbacbacbacbababaaacabcbacbabbcbabab",
+      "echo": {
+        "width": 243,
+        "right_letters": 397,
+        "left_letters": 154,
+        "cell_visits": 69958,
+        "local_tm_steps": 139673,
+        "sha256": "10c901a571acf6daa88c44c467a678a9456111a7b1233a9bb299cb4053205938"
+      },
+      "triangle": {
+        "width": 211,
+        "right_letters": 259,
+        "left_letters": 154,
+        "cell_visits": 58135,
+        "local_tm_steps": 116165,
+        "sha256": "9a148816bbc53fb84793ea3ed9f6422b545de9923af06f2b29a874ce3d1b9281"
+      }
+    },
+    {
+      "rank": 6,
+      "prefix_length": 383,
+      "prefix": "bcabcbacbacbabacaacbacabcabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbabacaabbcbacbacbacbaabcabcaaaaaaaaaaaaaacbacbacbacbacbacbacbacabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbababaaabacaabbcabcbacbacbacbacbacbacbacbacbacbacbacbabacaacbacabcabcabcbacbacbacbacbacbacbacbabbcbaabcaaaacbacbacbacabcabcbacbacbacbababaaacabcbacbabbcbabab",
+      "echo": {
+        "width": 729,
+        "right_letters": 1112,
+        "left_letters": 383,
+        "cell_visits": 598648,
+        "local_tm_steps": 1196567,
+        "sha256": "ce06d49afd8e8022e2d4859e1be1edc72952c398ab5b4a89df6a8c6f4e74a5d4"
+      },
+      "triangle": {
+        "width": 665,
+        "right_letters": 761,
+        "left_letters": 383,
+        "cell_visits": 529726,
+        "local_tm_steps": 1059074,
+        "sha256": "3dd443bb407c90cdfd9e70786f741b579a2adab46f62ecf9eeed4096dac1ba78"
+      }
+    },
+    {
+      "rank": 7,
+      "prefix_length": 1020,
+      "prefix": "abbcaaaaaaaacbacabcabcbacbacbacbacbacbaaaaaaaaaaaaaaaabcabcabcabcaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacabcabcabcabcabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbabacaacbacabcbaaaaaaaabcabcaaaaaaaabbcbaabcaaaabacaabbcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbababaaacabcabcabcabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbabbcabcbacbacbabacaacbacabcabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbabacaabbcbacbacbacbaabcabcaaaaaaaaaaaaaacbacbacbacbacbacbacbacabcabcabcabcbacbacbacbacbacbacbacbacbacbacbacbacbacbacbacbababaaabacaabbcabcbacbacbacbacbacbacbacbacbacbacbacbabacaacbacabcabcabcbacbacbacbacbacbacbacbabbcbaabcaaaacbacbacbacabcabcbacbacbacbababaaacabcbacbabbcbabab",
+      "echo": {
+        "width": 2187,
+        "right_letters": 3207,
+        "left_letters": 1020,
+        "cell_visits": 5192494,
+        "local_tm_steps": 10382801,
+        "sha256": "74d11004e682e9053f2ea2817155940b3fd7c283129131731312368ffb51ec99"
+      },
+      "triangle": {
+        "width": 2059,
+        "right_letters": 2251,
+        "left_letters": 1020,
+        "cell_visits": 4790593,
+        "local_tm_steps": 9579955,
+        "sha256": "1150393dca1b46c3a9b8ebccf8bdd4de6552b32bfd9b6d76fd2344c42b53f4ca"
+      }
+    }
+  ],
+  "parameter_checks": 270,
+  "mutation_tests_rejected": 3,
+  "elapsed_seconds": 5.323
+}

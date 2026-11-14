@@ -1,0 +1,10 @@
+BB(2,5) formal 37: 37 machines, 37 symmetry classes, 0 duplicate classes
+BB(2,5) formal 60: 60 machines, 60 symmetry classes, 0 duplicate classes
+BB(6) 608: 608 machines, 608 symmetry classes, 0 duplicate classes
+BB(3,3) 6: 6 machines, 6 symmetry classes, 0 duplicate classes
+
+37-classes inside 60-classes: 37/37
+37 classes NOT in 60: 0
+
+champion in 37 classes: False
+champion in 60 classes: False

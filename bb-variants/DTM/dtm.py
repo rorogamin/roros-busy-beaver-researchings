@@ -1,25 +1,28 @@
 """Double Turing Machine (DTM) reference parser, simulator, and standard-TM reduction.
 
 Supports uniformly:
-  - DTM(n, m)       : 2 rules, each n states x m symbols
-  - DTM(n, m, a)    : a rules, each n states x m symbols (active rule = t % a)
-  - DTM(n, m, a, b) : 2 rules, Rule 1 has (n, m) and Rule 2 has (a, b)
+  - DTM(n, m)           : 2 rules, each n states x m symbols
+  - DTM(n, m, a)        : a rules, each n states x m symbols (active rule = t % a)
+  - DTM(n, m, a, b)     : 2 rules, Rule 1 has (n, m) and Rule 2 has (a, b)
+  - DTM(n, m, a, {ord}) : scheduled rule order, e.g. {r1r2r3r2r1r2r2} (active = ord[t % len(ord)])
 
 Spec string syntax:
   Rules separated by '|', state blocks separated by '_', 3-char tokens <w><L|R><S>:
     - w in '0'..'9' (write symbol)
     - dir in 'L', 'R'
     - next state in 'A'.. ('Z'/'H' = halt), or '---' for undefined (halt)
+  Optional schedule suffix: {<rule order>} at the end, e.g. 0RA0LA0RA|1LA2LA0RA|1RA2LA1RZ{r1r2r3r2r1r2r2}
 
 Step semantics (standard Rado / BusyBeaverWiki convention):
   - Shared single state starting at A (0), head at 0, blank tape (all 0s).
-  - Step t executes Rule (t % num_rules).
+  - Step t executes Rule (ord[t % len(ord)] if scheduled else t % num_rules).
   - Halting transitions (<w><d>Z, <w><d>H, '---', or state/sym outside active rule)
     take +1 final step before halting.
 """
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Optional
 
@@ -97,25 +100,75 @@ class DTMResult:
     history: list[dict] | None = None
 
 
+def parse_rule_order(order_str: str, num_rules: Optional[int] = None) -> list[int]:
+    s = order_str.strip()
+    if s.startswith("{") and s.endswith("}"):
+        s = s[1:-1].strip()
+    if not s:
+        raise ValueError("Empty rule order")
+    tokens = re.findall(r"[rR](\d+)", s)
+    cleaned = re.sub(r"[,\s\-]+", "", s)
+    if "".join(f"r{t}" for t in tokens).lower() != cleaned.lower():
+        raise ValueError(f"Malformed rule order {order_str!r}; expected e.g. r1r2r3r2r1r2r2")
+    order = [int(t) - 1 for t in tokens]
+    for r in order:
+        if r < 0 or (num_rules is not None and r >= num_rules):
+            raise ValueError(f"Rule index r{r + 1} out of range for {num_rules} rules")
+    return order
+
+
+def format_rule_order(order: list[int]) -> str:
+    return "".join(f"r{r + 1}" for r in order)
+
+
 class DTM:
-    def __init__(self, rules: list[DTMRule]):
+    def __init__(self, rules: list[DTMRule], order: Optional[list[int]] = None):
         if not rules:
             raise ValueError("DTM requires at least 1 rule")
         self.rules = rules
+        if order is not None:
+            for r in order:
+                if r < 0 or r >= len(rules):
+                    raise ValueError(f"Schedule index r{r + 1} out of range for {len(rules)} rules")
+            if order == list(range(len(rules))):
+                order = None
+        self.order: Optional[list[int]] = list(order) if order is not None else None
 
     @staticmethod
     def parse(spec: str) -> "DTM":
-        parts = [p.strip() for p in spec.strip().split("|") if p.strip()]
+        raw = spec.strip()
+        order: Optional[list[int]] = None
+        m = re.search(r"@?\{([^}]*)\}\s*$", raw)
+        if m:
+            order = parse_rule_order(m.group(1))
+            raw = raw[: m.start()].strip()
+        parts = [p.strip() for p in raw.split("|") if p.strip()]
         if not parts:
             raise ValueError(f"Empty DTM spec: {spec!r}")
-        return DTM([DTMRule.parse(p) for p in parts])
+        rules = [DTMRule.parse(p) for p in parts]
+        return DTM(rules, order=order)
 
     def spec(self) -> str:
-        return "|".join(r.spec() for r in self.rules)
+        base = "|".join(r.spec() for r in self.rules)
+        if self.order is not None:
+            return f"{base}{{{format_rule_order(self.order)}}}"
+        return base
+
+    def schedule(self) -> list[int]:
+        return self.order if self.order is not None else list(range(len(self.rules)))
+
+    def order_str(self) -> str:
+        return format_rule_order(self.schedule())
 
     def signature(self) -> str:
         k = len(self.rules)
         r0 = self.rules[0]
+        if self.order is not None:
+            ord_s = format_rule_order(self.order)
+            if all(r.states == r0.states and r.symbols == r0.symbols for r in self.rules):
+                return f"DTM({r0.states},{r0.symbols},{k},{{{ord_s}}})"
+            dims = ",".join(f"{r.states}x{r.symbols}" for r in self.rules)
+            return f"DTM[{dims};{{{ord_s}}}]"
         if k == 2:
             r1 = self.rules[1]
             if r0.states == r1.states and r0.symbols == r1.symbols:
@@ -127,17 +180,19 @@ class DTM:
         return f"DTM[{dims}]"
 
     def to_equivalent_standard_tm(self) -> Optional[str]:
-        """Convert equal-dimension DTM(n, m, k) into an equivalent (k*n, m) standard TM spec."""
+        """Convert equal-dimension DTM(n, m, a, {order}) into an equivalent (L*n, m) standard TM spec."""
         r0 = self.rules[0]
         if not all(r.states == r0.states and r.symbols == r0.symbols for r in self.rules):
             return None
-        k = len(self.rules)
+        sched = self.schedule()
+        L = len(sched)
         n = r0.states
-        if k * n > 25:  # Z/H reserved for halt
+        if L * n > 25:  # Z/H reserved for halt
             return None
         blocks: list[str] = []
-        for r_idx, rule in enumerate(self.rules):
-            nxt_rule = (r_idx + 1) % k
+        for p_idx, r_idx in enumerate(sched):
+            rule = self.rules[r_idx]
+            nxt_phase = (p_idx + 1) % L
             for s in range(n):
                 toks: list[str] = []
                 for sym in range(r0.symbols):
@@ -149,7 +204,7 @@ class DTM:
                         toks.append(f"{tr.write}{dch}Z")
                     else:
                         dch = "R" if tr.direction > 0 else "L"
-                        mapped_state = nxt_rule * n + tr.next_state
+                        mapped_state = nxt_phase * n + tr.next_state
                         toks.append(f"{tr.write}{dch}{chr(ord('A') + mapped_state)}")
                 blocks.append("".join(toks))
         return "_".join(blocks)
@@ -165,11 +220,13 @@ class DTM:
         steps = 0
         min_pos = 0
         max_pos = 0
-        k = len(self.rules)
+        sched = self.schedule()
+        L = len(sched)
         history: list[dict] | None = [] if record_history_limit > 0 else None
 
         while steps < max_steps:
-            r_idx = steps % k
+            phase = steps % L
+            r_idx = sched[phase]
             rule = self.rules[r_idx]
             sym = tape.get(head, 0)
 
@@ -231,7 +288,7 @@ class DTM:
 
         return self._make_result(
             steps, False, f"Step limit reached ({max_steps:,})",
-            head, state, steps % k, min_pos, max_pos, tape, history,
+            head, state, sched[steps % L], min_pos, max_pos, tape, history,
         )
 
     @staticmethod

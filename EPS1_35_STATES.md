@@ -9,7 +9,7 @@ verify.
 | piece | states | status |
 |---|---|---|
 | module K (append-2 copy, source consumed) | 7 | simulated x = 1..6; three walks proved in `rocq/ModuleK.v` |
-| drive (count rounds off the tape) | 26 | 33-state table, simulated; round proved for value length 1 (`round_v0`) and every phase proved parametrically |
+| drive (count rounds off the tape) | 26 | 33-state table, simulated; round and stage proved for every value/counter length (`Eps0Round.v`, `Eps0Stage.v`) |
 | second feedback: value -> stage count | 28 | **built and simulated**: 20 for the copy (`tools/eps1_copy.py`), 8 for the rung branch; `tools/eps1_machine.py` runs `lvl` for a = 0, 1 |
 | ε₁ descent on the ordinal notation | ? | not designed |
 
@@ -148,10 +148,9 @@ that handover through the rung branch to the copy's entry: from `S2` on a blank,
 2M + 10 steps to `WALK` in the frame `rung_reaches_copy` produces, the gap one
 cell wider because the blank the decision stopped on joins the gap.  Sixteen
 cases (`block_spent` in `tools/check_eps1_tape.py`, both states, several M, a, b,
-v) match the running machine.  What that does **not** prove is the branch's
-interior -- the rounds themselves -- which is still only simulated past one round
-at a value of one mark (`round_v0`, `rocq/Eps0Drive.v`); the statement those
-rounds owe is written out in `FGH_MACHINES_PLAN.md` step 3d.  The copy is started too: `rocq/Eps1Copy.v` has the copy's rows, one step lemma
+v) match the running machine.  The branch's interior is now proved:
+`round_v` covers every value length and `stage_run` composes it over every
+counter length (`rocq/Eps0Round.v`, `rocq/Eps0Stage.v`).  The copy is started too: `rocq/Eps1Copy.v` has the copy's rows, one step lemma
 per row, and the walks its phases are made of (`walk_WALK`, `steps_C1`,
 `walk_CL_marks`, `walk_CL_blank`, `walk_CG`, `step_B1`, `walk_B2`, `walk_P1`),
 each for an arbitrary run length with an exact step count, its table generated

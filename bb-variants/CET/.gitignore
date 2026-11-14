@@ -10,3 +10,5 @@ __pycache__/
 *.pyc
 *.log
 cet1_candidates.txt
+CET_ARTIFACT_BUNDLE/
+CET_ARTIFACT_BUNDLE.zip

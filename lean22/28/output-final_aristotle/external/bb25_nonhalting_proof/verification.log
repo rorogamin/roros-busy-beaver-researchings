@@ -1,0 +1,14 @@
+overflow  5: length=  21, height=   9, paying/terminal depth>=  4, trailing S=  3, conversions=  2
+overflow  6: length=  29, height=  15, paying/terminal depth>=  6, trailing S=  2, conversions=  2
+overflow  7: length=  43, height=  25, paying/terminal depth>=  6, trailing S=  4, conversions=  3
+overflow  8: length=  67, height=  35, paying/terminal depth>=  8, trailing S=  4, conversions=  8
+overflow  9: length= 101, height=  69, paying/terminal depth>=  8, trailing S=  6, conversions=  7
+overflow 10: length= 169, height= 113, paying/terminal depth>= 10, trailing S=  6, conversions= 11
+overflow 11: length= 281, height= 199, paying/terminal depth>= 48, trailing S=  8, conversions= 23
+overflow 12: length= 479, height= 375, paying/terminal depth>= 50, trailing S= 46, conversions= 27
+overflow 13: length= 853, height= 621, paying/terminal depth>=171, trailing S= 48, conversions= 72
+overflow 14: length=1473, height=1169, paying/terminal depth>=283, trailing S=169, conversions= 97
+PASS: raw entry, token/chunk cross-checks, and the two base certificates.
+PASS: inherited-price inequalities and exact rebuild emission for 6547 successful words of length at most 9 (diagnostic, not an infinite proof).
+PASS: hidden-bit decoration on 29524 token words and 83653 successful carries (finite diagnostic).
+Wrote certificate.json

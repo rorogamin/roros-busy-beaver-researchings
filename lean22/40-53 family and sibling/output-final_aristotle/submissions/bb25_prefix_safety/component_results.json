@@ -1,0 +1,6 @@
+{
+  "status": "all finite component checks passed",
+  "clean_reset_words_through_length_8": 2303,
+  "matched_group_tests_through_6_pairs": 322112,
+  "not_a_Lean_certificate": true
+}

@@ -1474,3 +1474,14 @@ BB(13,3): > f_{w*2+1}(3) steps.  (informal; reported 2026-11-08 10:28)
 STATUS: recorded, not verified.  The three machines are already present;
 only these level claims are new.  No Rocq/Lean proof or local simulation
 of these step counts is asserted.
+
+-------------------------------------------------------------------------
+ADDITIONS -- 2026-11-11  BB(5,4), threefold f_w row
+-------------------------------------------------------------------------
+BB(5,4): (f_w)^3(2{15}5), 1RB3LB1RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_1LE2LE3LE1RZ_3RC2LE1LE3LE
+  (reported 2026-11-11.  5 states / 4 symbols, 20 defined rows, one
+   `1RZ` halt row.  The report writes the iterate as `f^3_w`; this file's
+   convention is `(f_w)^3`.  This supersedes the earlier BB(5,4)
+   f_w(f_w(10{4}10^^65533)) row on claimed level: one more f_w iterate
+   and a much larger argument.  The step count is the reporter's estimate,
+   not an independently verified or Rocq-proved result here.)

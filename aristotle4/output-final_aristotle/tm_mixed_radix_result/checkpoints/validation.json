@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "python_unit_tests": {
+    "random_single_return_checks": 775,
+    "random_batch_checks": 46,
+    "literal_differential_steps": 1000000,
+    "literal_differential_endpoints": 2258,
+    "status": "PASS"
+  },
+  "cross_implementation_target": "10^100",
+  "literal_comparison_target": "10^8",
+  "matched_fields": [
+    "t",
+    "p",
+    "q",
+    "lo",
+    "hi",
+    "tape"
+  ],
+  "checkpoint_tape_sha256": "949f1aa2fbb077c0ade1203decf036bc3c287fa840306e2e6053f801342e6ba4",
+  "formal_verification": "New Lean extension NOT COMPILED; numeric checkpoint NOT Lean-certified.",
+  "uniform_prefix_cost_formula_checks": 1000
+}

@@ -139,7 +139,11 @@ tape rather than fixed.
 
 A caution this repo already records: BB(51) = f_{ε₀+1}(8) is a 2024 per-machine
 analysis, it sits 18 states above the f_{ω↑↑6} machine, and monotonicity plus
-ω↑↑k < ε₀ means it tells us nothing about the ε₀ rung's true state cost.
+ω↑↑k < ε₀ means it tells us nothing about the ε₀ rung's true state cost.  Nor
+does it give a lower bound at smaller state counts: a witness at 51 states is an
+upper bound on the cost of its level, not a frontier theorem.  A smaller machine
+could in principle reach a much higher ordinal (an η-level, say); the BB(51)
+witness does not rule that out.
 
 ---
 
@@ -575,9 +579,25 @@ R1, R2, R4, R5, R6, the K block, A5, A6, A7, A8, A9, AA, back to R1 -- in
 `round_sum m 0` steps for a value of length one, with the counter short by one,
 the gap m+3 and the value 3, exactly as the measurement says for v = 0.
 
-Still owed is the general v.  The return side is already parametric, so what
-remains is the R5/R6 splice for v >= 1: the v passed marks each take one step,
-the K entry absorbs them as `ones (S v)`, and the assembled statement must carry
-`ones (S v)` where `round_v0` carries `ones 1`.  Until that is written, a round
-of arbitrary value length is a checked measurement (40 of them, 0 mismatches)
-plus proved phase lemmas, not a theorem.
+The general v is now proved: `Eps0Round.round_v` assembles a whole round for
+every value length [S v], and `Eps0Stage.stage_run` iterates it over an
+arbitrary number of counter marks.  The cost is the per-round `round_sum`, not a
+closed form for a whole stage; the value-level closed form remains in `Tower.v`.
+
+The blank-tape start is now a theorem for concrete instances:
+`Eps0Blank.v` adds an 11-state prologue to the 33-state drive and proves that
+the 44-state table reaches a halting configuration after 68,276 transitions,
+with 255 value marks at n=2, v=2.  `Eps0Builder.v` adds 10 states and proves
+`builder_run`, for every k ≥ 1 and value length v, that a source `1^k` reaches
+`F0` with exactly `1^k` stage marks and the value tail intact in `10*k+5`
+steps.  `Eps0BuilderBlank.v` composes the two for the fixed source `1^2`: a
+22-state prologue writes the source frame from an all-blank tape, the builder
+hands over in 25 steps, and the 65-state table halts after a 68,311-step run
+with 255 value marks.  These are kernel-checked concrete runs and a parametric
+frame transformer, not a symbolic `f_ε₀` theorem; the integrated instance's
+stage count is fixed at 2.  A prototype at k=3 was still running after 10^8
+steps (11,503 marks against the 65,535 target), so no larger-k claim is made.
+The 65-state count is not state-optimal: the ledger's 51-state BB(51) row claims
+`f_{ε₀+1}(8)`, 14 fewer states and one level higher.  Ours is a provable
+integration artifact, not a competing champion.  A general blank-tape ε₀ theorem
+remains open.

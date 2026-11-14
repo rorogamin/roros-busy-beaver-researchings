@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turing Machine Visualization</title>
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="panel">
+      <h1>Turing Machine Visualization</h1>
+      <label class="field">
+        <span>TM description</span>
+        <textarea id="tm-input" spellcheck="false">1RB3LB0RB---2LB_2LA3RA4RB2RB0LA
+1RB0LB_0RC0LF_1LD1RE_0LA0RB_0RD0RF_0LA---
+1LB1RA_1RA1LB
+1LB0RE_1RC0LE_0LA0RD_1RA1RF_0RC0LA_0RE---
+1RB1LD_0RC---_1RD0RB_1RE0LF_1LF1LD_0LD0LA
+1RB0RC---_2RC0LB1LB_2LC2RA2RB</textarea>
+      </label>
+      <div class="controls">
+        <button id="start-btn">Start</button>
+        <button id="pause-btn" disabled>Pause</button>
+      </div>
+      <div class="controls">
+        <button id="prev-btn">Prev</button>
+        <button id="next-btn">Next</button>
+        <button id="flip-btn">Flip</button>
+      </div>
+      <div class="controls">
+        <button id="zoom-in-btn">Zoom In</button>
+        <button id="zoom-out-btn">Zoom Out</button>
+      </div>
+      <label class="check-field">
+        <input id="auto-fit-input" type="checkbox" checked>
+        <span>Auto fit</span>
+      </label>
+      <label class="field">
+        <span>Effort for acceleration</span>
+        <select id="effort-input">
+          <option value="0">Low</option>
+          <option value="20">Mid</option>
+          <option value="60" selected>High</option>
+        </select>
+      </label>
+      <dl class="stats">
+        <div><dt>Status</dt><dd id="status-text">Loading WASM…</dd></div>
+        <div><dt>Rows</dt><dd id="rows-text">0</dd></div>
+        <div><dt>Width</dt><dd id="width-text">0</dd></div>
+        <div><dt>State</dt><dd id="state-text">—</dd></div>
+        <div><dt>Time</dt><dd id="time-text">0.00 s</dd></div>
+        <div><dt>Avg / cell</dt><dd id="avg-text">—</dd></div>
+      </dl>
+      <label class="field">
+        <span>Last configuration</span>
+        <pre id="config-text">—</pre>
+      </label>
+      <p class="hint">Drag to pan. Use the wheel or zoom buttons to scale.</p>
+    </aside>
+    <main class="viewer-shell">
+      <canvas id="viewport" aria-label="Turing machine image"></canvas>
+    </main>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

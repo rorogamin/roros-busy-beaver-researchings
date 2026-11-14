@@ -1,0 +1,4 @@
+{"random_single_return_checks": 775, "random_batch_checks": 46, "literal_differential_steps": 1000000, "literal_differential_endpoints": 2258, "status": "PASS"}
+PASS: full configuration comparison, C++ accelerated vs literal, 10^8
+PASS: full configuration comparison, C++ vs Python vs saved checkpoint, 10^100
+New Lean source has NOT been compiled; these are executable tests, not a Lean certificate.

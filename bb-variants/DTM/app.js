@@ -3,6 +3,9 @@
   'use strict';
 
   const {
+    parseRuleString,
+    parseRuleOrder,
+    formatRuleOrder,
     parseDTMSpec,
     formatDTMSpec,
     dtmSignature,
@@ -49,7 +52,8 @@
     document.querySelectorAll('.mode-tab-btn').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.mode === mode);
     });
-    el('groupA').style.display = mode === 'multi' ? 'flex' : 'none';
+    el('groupA').style.display = (mode === 'multi' || mode === 'order') ? 'flex' : 'none';
+    el('groupOrder').style.display = mode === 'order' ? 'flex' : 'none';
     el('groupAsymA').style.display = mode === 'asym' ? 'flex' : 'none';
     el('groupAsymB').style.display = mode === 'asym' ? 'flex' : 'none';
   }
@@ -60,6 +64,9 @@
     el('dimN').value = r0.states;
     el('dimM').value = r0.symbols;
     el('dimRules').value = sim.rules.length;
+    if (sim.rules.order && sim.rules.order.length) {
+      el('dimOrder').value = formatRuleOrder(sim.rules.order);
+    }
     if (sim.rules.length === 2) {
       el('dimA2').value = sim.rules[1].states;
       el('dimB2').value = sim.rules[1].symbols;
@@ -79,7 +86,10 @@
 
       const title = document.createElement('div');
       title.className = 'rule-table-title';
-      title.innerHTML = `<span>Rule ${rIdx + 1} (t mod ${sim.rules.length} == ${rIdx})</span>` +
+      const tag = (sim.rules.order && sim.rules.order.length)
+        ? `scheduled in {${formatRuleOrder(sim.rules.order)}}`
+        : `t mod ${sim.rules.length} == ${rIdx}`;
+      title.innerHTML = `<span>Rule ${rIdx + 1} (${tag})</span>` +
         `<span style="color:var(--text-dim)">${rule.states} states &times; ${rule.symbols} sym</span>`;
       card.appendChild(title);
 
@@ -157,10 +167,13 @@
 
   function refreshAll() {
     const k = sim.rules.length;
+    const ar = sim.activeRuleIndex();
     el('metricStepCount').textContent = sim.steps.toLocaleString();
     el('metricActiveRule').textContent = sim.halted
       ? 'HALTED'
-      : `Rule ${sim.activeRuleIndex() + 1} (t%${k}=${sim.activeRuleIndex()})`;
+      : (sim.rules.order && sim.rules.order.length
+        ? `Rule ${ar + 1} (ord[${sim.activeScheduleIndex()}]=r${ar + 1})`
+        : `Rule ${ar + 1} (t%${k}=${ar})`);
     el('metricState').textContent = sim.halted ? 'Z' : String.fromCharCode(65 + sim.state);
     el('metricScore').textContent = sim.nonZeros.toLocaleString();
     el('metricSpan').textContent = `${sim.head} [${sim.minPos}..${sim.maxPos}]`;
@@ -233,7 +246,8 @@
       sim.loadSpec(spec);
       stCanvas.reset();
       const k = sim.rules.length;
-      if (k !== 2) mode = 'multi';
+      if (sim.rules.order && sim.rules.order.length) mode = 'order';
+      else if (k !== 2) mode = 'multi';
       else if (sim.rules[0].states !== sim.rules[1].states || sim.rules[0].symbols !== sim.rules[1].symbols) mode = 'asym';
       else mode = 'dtm';
       updateModeControls();
@@ -248,7 +262,18 @@
   function makeRandomSpec() {
     const n = Math.max(1, Math.min(8, parseInt(el('dimN').value, 10) || 2));
     const m = Math.max(2, Math.min(6, parseInt(el('dimM').value, 10) || 2));
-    const rules = mode === 'multi' ? Math.max(1, Math.min(10, parseInt(el('dimRules').value, 10) || 3)) : 2;
+    let rules = (mode === 'multi' || mode === 'order') ? Math.max(1, Math.min(10, parseInt(el('dimRules').value, 10) || 3)) : 2;
+    let ord = null;
+    if (mode === 'order') {
+      try {
+        ord = parseRuleOrder(el('dimOrder').value || 'r1r2r3r2r1r2r2');
+        const maxR = Math.max(...ord) + 1;
+        if (maxR > rules) rules = maxR;
+      } catch (_e) {
+        ord = [0, 1, 2, 1, 0, 1, 1];
+        if (rules < 3) rules = 3;
+      }
+    }
     const a2 = mode === 'asym' ? Math.max(1, Math.min(8, parseInt(el('dimA2').value, 10) || n)) : n;
     const b2 = mode === 'asym' ? Math.max(2, Math.min(6, parseInt(el('dimB2').value, 10) || m)) : m;
 
@@ -278,7 +303,8 @@
     const b = blks[hs];
     blks[hs] = b.slice(0, 3 * hy) + '1RZ' + b.slice(3 * hy + 3);
     parts[hr] = blks.join('_');
-    return parts.join('|');
+    const base = parts.join('|');
+    return ord ? `${base}{${formatRuleOrder(ord)}}` : base;
   }
 
   async function checkServerHealth() {
@@ -307,13 +333,32 @@
     }
   }
 
+  function parseStepCap(raw, fallback = 10000000) {
+    const s = String(raw || '').trim().replace(/[,\s_]+/g, '').toLowerCase();
+    if (!s) return fallback;
+    const m = s.match(/^(\d+(?:\.\d+)?(?:e[+-]?\d+)?)(k|m|b)?$/);
+    if (!m) return null;
+    let val = Number(m[1]);
+    if (!Number.isFinite(val)) return null;
+    if (m[2] === 'k') val *= 1e3;
+    else if (m[2] === 'm') val *= 1e6;
+    else if (m[2] === 'b') val *= 1e9;
+    const n = Math.floor(val);
+    return (n >= 1 && n <= 10000000000) ? n : null;
+  }
+
   async function runServerSim() {
-    el('serverOutput').textContent = 'Running native C server simulation (10,000,000 step cap)...';
+    const cap = parseStepCap(el('fastSimCap') ? el('fastSimCap').value : '10M');
+    if (!cap) {
+      el('serverOutput').textContent = 'Invalid Fast Sim Cap (enter e.g. 50000, 10M, 100M, 1B, up to 10B).';
+      return;
+    }
+    el('serverOutput').textContent = `Running native C server simulation (${cap.toLocaleString()} step cap)...`;
     try {
       const resp = await fetch('/api/simulate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ spec: sim.getSpec(), cap: 10000000, slice_rad: 30 }),
+        body: JSON.stringify({ spec: sim.getSpec(), cap, slice_rad: 30 }),
       });
       const data = await resp.json();
       if (data.error) throw new Error(data.error);
@@ -330,7 +375,10 @@
   async function runServerHunt(useMutate) {
     const n = parseInt(el('dimN').value, 10) || 2;
     const m = parseInt(el('dimM').value, 10) || 2;
-    const rules = mode === 'multi' ? (parseInt(el('dimRules').value, 10) || 3) : 2;
+    const rules = (mode === 'multi' || mode === 'order') ? (parseInt(el('dimRules').value, 10) || 3) : 2;
+    const order = mode === 'order'
+      ? (el('dimOrder').value || '').trim()
+      : (sim.rules.order ? formatRuleOrder(sim.rules.order) : '');
     const a = mode === 'asym' ? (parseInt(el('dimA2').value, 10) || 0) : 0;
     const b = mode === 'asym' ? (parseInt(el('dimB2').value, 10) || 0) : 0;
 
@@ -342,7 +390,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          n, m, rules, a, b,
+          n, m, rules, order, a, b,
           cap: 500000,
           budget_ms: 1500,
           mutate_spec: useMutate ? sim.getSpec() : '',
@@ -392,6 +440,7 @@
   el('btnResize').addEventListener('click', () => loadMachineSpec(makeRandomSpec()));
   el('btnZoomIn').addEventListener('click', () => stCanvas.zoomIn());
   el('btnZoomOut').addEventListener('click', () => stCanvas.zoomOut());
+  el('btnFitAll').addEventListener('click', () => stCanvas.fitAll());
   el('btnFitCenter').addEventListener('click', () => stCanvas.fitCenter(sim.head, sim.history.length));
   el('btnExportPng').addEventListener('click', () => {
     const a = document.createElement('a');

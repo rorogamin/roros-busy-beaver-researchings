@@ -1,0 +1,31 @@
+{
+  "status": "all finite checks passed",
+  "not_a_Lean_certificate": true,
+  "max_exhaustive_stack_length": 10,
+  "random_seed": 20260916,
+  "counts": {
+    "admissible_decrement_checks": 41492,
+    "safe_initial_stacks": 31259,
+    "reference_return_checks": 62518,
+    "random_reference_return_checks": 400
+  },
+  "branches": {
+    "3RA:Z-left-XY": 10,
+    "2LA:Z-left-XY": 10,
+    "3RA:Z-early-exceptional": 165,
+    "2LA:Z-early-exceptional": 165,
+    "3RA:Z-early-clean": 4167,
+    "2LA:Z-early-clean": 4167,
+    "3RA:Z-direct": 13559,
+    "2LA:Z-direct": 13559,
+    "3RA:W-3RA-early-clean": 2292,
+    "2LA:W-2LA-direct": 12211,
+    "2LA:W-2LA-early-clean": 1147,
+    "3RA:W-3RA-direct": 11066
+  },
+  "blank_tape_seed_base_steps": 156,
+  "seed_stack_bottom_first": "ZZZXXX",
+  "seed_counter": 56,
+  "seed_decoded_counter": 63,
+  "left_XY_spinout_period": 9
+}

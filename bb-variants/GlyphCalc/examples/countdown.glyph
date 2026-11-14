@@ -1,0 +1,6 @@
+// Count down to zero and return the final decimal glyph.
+let i = 9;
+while (i > 0) {
+    i = i - 1;
+}
+return str(i);

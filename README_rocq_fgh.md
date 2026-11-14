@@ -31,7 +31,9 @@ in `championsReal.txt` carries
 * `BB(150)`: `f_{lim(BMS)}(10↑↑15)`, 150 states / 2 symbols,
 
 so `f_{ε₀+1}` is already inside 51 states and a BMS-strength machine is
-recorded at 150. The objections are narrower:
+recorded at 150. These are upper-bound witnesses, not lower bounds: the 51-state
+machine does not show that fewer states cannot reach a higher level, and state
+count is not monotone in ordinal level. The objections are narrower:
 
 1. **A blank-tape machine produces one fixed number.** The score is a constant,
    so "score ≥ `f_α(n)` for some `n > 2`" needs that constant to exceed
@@ -63,6 +65,26 @@ What *is* fully done, and is genuinely machine-checked:
 State counts are strictly increasing and all are below 67. `tower` is the
 tower-of-twos function (`tower 3 = 16`, `tower 4 = 65536`), included as a
 concrete stand-in for the `ω`-level of the hierarchy.
+
+A separate blank-tape ε₀ drive instance is now kernel-checked in
+`rocq/Eps0Blank.v`: an 11-state prologue wraps the 33-state drive, starts in
+state 0 on an all-blank tape, and reaches a halting configuration after 68,276
+transitions with 255 value marks for the fixed parameters n=2, v=2.  This is a
+concrete run of an ε₀-descent instance, not a proof of a general `f_ε₀` bound;
+the 44-state instance's stage block is still fixed at 2.  The separate
+`Eps0Builder.v` makes the stage count tape-driven and proves a parametric
+handoff to `F0` (for every k ≥ 1, a source `1^k` becomes exactly k stage marks
+in `10*k+5` steps).  `Eps0BuilderBlank.v` composes that handoff into a
+blank-tape run for the fixed source `1^2`: a 22-state prologue writes the
+source frame, the builder hands over in 25 steps, and the 65-state table halts
+after a 68,311-step run with 255 value marks.  These are a parametric frame
+theorem and a concrete end-to-end instance, not a symbolic all-k drive theorem;
+a prototype at k=3 was still running after 10^8 steps (11,503 marks against the
+65,535 target), so no larger-k claim is made.  The 65-state count is therefore
+not a state-count result: the ledger's 51-state BB(51) row already claims
+`f_{ε₀+1}(8)`, 14 fewer states, and that row is itself an informal per-machine
+analysis.  This table is a fully explicit, Rocq-checked integration artifact,
+not an FGH champion.
 
 `machines/rung_omega.txt` is simulated, not proved. It is the same 15-state
 doubling core with exactly two transitions edited: `F1` on a blank writes a mark
@@ -419,10 +441,9 @@ So are the round's walks: `walk_bl_R4`, `walk_hit_R4`, `walk_on_R5`,
 of blanks or of marks by induction on its length, and `walk_R4_phase`,
 `walk_A5_phase`, `walk_A6_phase`, `walk_A9_phase` give the phases of the
 return side for every value length v (m+1, v+3, 2v+3, 2v+4 steps).
-`round_v0` assembles one complete round -- R1, R2, R4, R5, R6, the K block,
-A5, A6, A7, A8, A9, AA and back to R1 -- in `round_sum m 0` steps.  The
-general v still needs the R5/R6 splice, where the marks R5 has just walked
-over become the `ones (S v)` the K block expects.
+`round_v0` assembles the v = 1 case.  `Eps0Round.round_v` proves the same
+round for every value length, and `Eps0Stage.stage_run` iterates it over an
+arbitrary number of counter marks; both are in the gate with no axioms.
 
 `tools/round_cost.py` measures the loop instead: it cuts the trace into rounds,
 reads the hole count `m` and the value length `v` off the tape at each entry, and

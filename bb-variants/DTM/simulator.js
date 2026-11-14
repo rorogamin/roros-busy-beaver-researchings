@@ -67,23 +67,85 @@
       .join('_');
   }
 
+  function parseRuleOrder(orderStr, numRules) {
+    let s = orderStr.trim();
+    if (s.startsWith('{') && s.endsWith('}')) s = s.slice(1, -1).trim();
+    if (!s) throw new Error('Empty rule order');
+    const tokens = [];
+    const re = /[rR](\d+)/g;
+    let rebuilt = '';
+    let m;
+    while ((m = re.exec(s)) !== null) {
+      const idx = parseInt(m[1], 10) - 1;
+      if (idx < 0 || (numRules !== undefined && idx >= numRules)) {
+        throw new Error(`Rule r${idx + 1} out of range for ${numRules} rules`);
+      }
+      tokens.push(idx);
+      rebuilt += `r${m[1]}`;
+    }
+    const cleaned = s.replace(/[,\s\-]+/g, '').toLowerCase();
+    if (!tokens.length || rebuilt.toLowerCase() !== cleaned) {
+      throw new Error(`Invalid rule order "${orderStr}" (expected e.g. r1r2r3r2r1r2r2)`);
+    }
+    return tokens;
+  }
+
+  function formatRuleOrder(order) {
+    return order.map((r) => `r${r + 1}`).join('');
+  }
+
+  function isIdentityOrder(order, numRules) {
+    if (!order || order.length !== numRules) return false;
+    for (let i = 0; i < numRules; i++) {
+      if (order[i] !== i) return false;
+    }
+    return true;
+  }
+
   function parseDTMSpec(spec) {
-    const parts = spec
-      .trim()
+    let raw = spec.trim();
+    let order = null;
+    const match = raw.match(/@?\{([^}]*)\}\s*$/);
+    if (match) {
+      order = parseRuleOrder(match[1]);
+      raw = raw.slice(0, match.index).trim();
+    }
+    const parts = raw
       .split('|')
       .map((p) => p.trim())
       .filter(Boolean);
     if (!parts.length) throw new Error('Empty DTM specification');
-    return parts.map(parseRuleString);
+    const rules = parts.map(parseRuleString);
+    if (order) {
+      for (const r of order) {
+        if (r < 0 || r >= rules.length) {
+          throw new Error(`Rule r${r + 1} out of range for ${rules.length} rules`);
+        }
+      }
+      if (isIdentityOrder(order, rules.length)) order = null;
+    }
+    rules.order = order;
+    return rules;
   }
 
   function formatDTMSpec(rules) {
-    return rules.map(formatRule).join('|');
+    const base = rules.map(formatRule).join('|');
+    if (rules.order && !isIdentityOrder(rules.order, rules.length)) {
+      return `${base}{${formatRuleOrder(rules.order)}}`;
+    }
+    return base;
   }
 
   function dtmSignature(rules) {
     const k = rules.length;
     const r0 = rules[0];
+    if (rules.order && !isIdentityOrder(rules.order, k)) {
+      const ordStr = formatRuleOrder(rules.order);
+      if (rules.every((r) => r.states === r0.states && r.symbols === r0.symbols)) {
+        return `DTM(${r0.states},${r0.symbols},${k},{${ordStr}})`;
+      }
+      return `DTM[${rules.map((r) => `${r.states}x${r.symbols}`).join(',')};{${ordStr}}]`;
+    }
     if (k === 2) {
       const r1 = rules[1];
       if (r0.states === r1.states && r0.symbols === r1.symbols) {
@@ -103,18 +165,21 @@
     if (!rules.every((r) => r.states === r0.states && r.symbols === r0.symbols)) {
       return null;
     }
+    const sched = (rules.order && rules.order.length) ? rules.order : Array.from({ length: k }, (_, i) => i);
+    const L = sched.length;
     const n = r0.states;
-    if (k * n > 25) return null;
+    if (L * n > 25) return null;
     const blocks = [];
-    for (let r = 0; r < k; r++) {
-      const nr = (r + 1) % k;
+    for (let p = 0; p < L; p++) {
+      const rule = rules[sched[p]];
+      const np = (p + 1) % L;
       for (let s = 0; s < n; s++) {
         let blk = '';
         for (let y = 0; y < r0.symbols; y++) {
-          const tr = rules[r].table[s][y];
+          const tr = rule.table[s][y];
           if (!tr) blk += '---';
           else if (tr.nextState < 0) blk += `${tr.write}${tr.dir > 0 ? 'R' : 'L'}Z`;
-          else blk += `${tr.write}${tr.dir > 0 ? 'R' : 'L'}${String.fromCharCode(65 + nr * n + tr.nextState)}`;
+          else blk += `${tr.write}${tr.dir > 0 ? 'R' : 'L'}${String.fromCharCode(65 + np * n + tr.nextState)}`;
         }
         blocks.push(blk);
       }
@@ -164,13 +229,21 @@
       return this.tape.get(pos) || 0;
     }
 
+    activeScheduleIndex() {
+      const len = (this.rules.order && this.rules.order.length) ? this.rules.order.length : this.rules.length;
+      return this.steps % len;
+    }
+
     activeRuleIndex() {
+      if (this.rules.order && this.rules.order.length) {
+        return this.rules.order[this.steps % this.rules.order.length];
+      }
       return this.steps % this.rules.length;
     }
 
     step(recordHistory = true) {
       if (this.halted) return false;
-      const rIdx = this.steps % this.rules.length;
+      const rIdx = this.activeRuleIndex();
       const rule = this.rules[rIdx];
       const pos = this.head;
       const sym = this.readCell(pos);
@@ -249,6 +322,8 @@
 
   global.DTMCore = {
     parseRuleString,
+    parseRuleOrder,
+    formatRuleOrder,
     formatRule,
     parseDTMSpec,
     formatDTMSpec,

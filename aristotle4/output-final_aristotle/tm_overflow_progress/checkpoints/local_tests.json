@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "exhaustive_drains": 15624,
+  "random_drains": 1000,
+  "return_batches": 14947,
+  "terminal_context_checks": 930,
+  "literal_transitions_in_drains": 1447208
+}

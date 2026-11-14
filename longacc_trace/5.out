@@ -1,0 +1,19 @@
+{
+  "spec": "1RB---3RA2LA2RB_2LB3LA4LB4RA0RA",
+  "effort": 2,
+  "iterationsPerRow": 10000,
+  "rows": 30,
+  "status": 0,
+  "timeout": true,
+  "halted": false,
+  "done": false,
+  "state": 0,
+  "head": 1,
+  "direction": -1,
+  "width": 94,
+  "height": 30,
+  "error": null,
+  "config": "0 <A 3 2^14 4 2 4^4 24^2 224^2 2 4^4 2 42^2 4^16 2 4^11 2 42^5 4^3 24^3 2^2 4 2 ",
+  "elapsedMs": 240001,
+  "tracePath": "longacc_trace/5.jsonl"
+}

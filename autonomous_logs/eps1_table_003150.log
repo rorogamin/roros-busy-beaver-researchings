@@ -1,0 +1,28 @@
+blank tape -> eps_1[3]
+  steps=16 home=H1 got=(3, [e0+1 + w^(0)], 3) PASS
+the index copy, in isolation
+  n=1   steps=23      PASS
+  n=2   steps=40      PASS
+  n=3   steps=61      PASS
+  n=4   steps=86      PASS
+  n=5   steps=115     PASS
+  n=8   steps=226     PASS
+  n=13  steps=491     PASS
+  n=21  steps=1123    PASS
+ALL OK
+the copy on random chain shapes
+  60 random shapes: OK
+  414 starts x 4 moves: ALL OK
+halting counts against the model
+  p=0 chain=['w^(0)'] n=3: homes=0 advancing=0 extra=0 halted=True count=1 model=1 PASS
+  p=0 chain=['w^(0)*2'] n=3: homes=1 advancing=1 extra=0 halted=True count=2 model=2 PASS
+  p=0 chain=['w^(0)*4'] n=3: homes=3 advancing=3 extra=0 halted=True count=4 model=4 PASS
+  p=0 chain=['w^(0)', '2'] n=3: homes=6 advancing=6 extra=0 halted=True count=7 model=7 PASS
+  p=0 chain=['w^(0)*2', '2'] n=3: homes=15 advancing=15 extra=0 halted=True count=16 model=16 PASS
+  p=0 chain=['w^(0)', '1', '2'] n=3: homes=132 advancing=131 extra=1 halted=True count=132 model=132 PASS
+  p=1 chain=['w^(0)'] n=3: homes=4 advancing=4 extra=0 halted=True count=5 model=5 PASS
+  p=1 chain=['w^(0)*2'] n=3: homes=11 advancing=11 extra=0 halted=True count=12 model=12 PASS
+  p=2 chain=['w^(0)'] n=3: homes=50 advancing=50 extra=0 halted=True count=51 model=51 PASS
+  p=0 chain=['w^(0)*2'] n=1: homes=1 advancing=1 extra=0 halted=True count=2 model=2 PASS
+  ALL OK
+states used: 150  rows: 207

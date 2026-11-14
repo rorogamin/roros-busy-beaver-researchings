@@ -1,0 +1,4126 @@
+{
+  "sha": "1f9ffee29e707e4d21d19168748c7660a87c608b",
+  "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/1f9ffee29e707e4d21d19168748c7660a87c608b",
+  "tree": [
+    {
+      "path": ".github",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1cc1a6ac13d4ad8628a70bf64aea890f129aa7ae",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/1cc1a6ac13d4ad8628a70bf64aea890f129aa7ae"
+    },
+    {
+      "path": ".github/workflows",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e140a034574a0ef03fc1ee06c61f3cd12825a2f8",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/e140a034574a0ef03fc1ee06c61f3cd12825a2f8"
+    },
+    {
+      "path": ".github/workflows/busy_beaver_ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8ecfa22d201cbe815b1a6b3e8a2ae7c39217528",
+      "size": 1505,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c8ecfa22d201cbe815b1a6b3e8a2ae7c39217528"
+    },
+    {
+      "path": ".github/workflows/create-release.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6dacf77ca24a1a2a99dc974d16c53408e8b32058",
+      "size": 427,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6dacf77ca24a1a2a99dc974d16c53408e8b32058"
+    },
+    {
+      "path": ".github/workflows/docs.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ae6412f3374aa4e0dca77df092a29b8fc38c2f6",
+      "size": 2941,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7ae6412f3374aa4e0dca77df092a29b8fc38c2f6"
+    },
+    {
+      "path": ".github/workflows/lean_action_ci.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6035a7595fdb8e35ecbcbc8b161c3c9c7d5f2e1",
+      "size": 1822,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b6035a7595fdb8e35ecbcbc8b161c3c9c7d5f2e1"
+    },
+    {
+      "path": ".github/workflows/update.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96b7622a72a1c6d92e3927a2f494656c0797fc00",
+      "size": 1950,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/96b7622a72a1c6d92e3927a2f494656c0797fc00"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3f4343fade3132208ca984a8ab4a0418b84e14e",
+      "size": 302,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b3f4343fade3132208ca984a8ab4a0418b84e14e"
+    },
+    {
+      "path": "BusyBeaver.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "476f8e6af5917948eb0c08bcb8f72d9a67e7b3df",
+      "size": 22948,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/476f8e6af5917948eb0c08bcb8f72d9a67e7b3df"
+    },
+    {
+      "path": "BusyBeaver",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "14ff91c3ca57709c3980485fe2fb081b49105397",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/14ff91c3ca57709c3980485fe2fb081b49105397"
+    },
+    {
+      "path": "BusyBeaver/AffRLE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "691a83c46cea61b058f624e73dd8c24ae94f9026",
+      "size": 91337,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/691a83c46cea61b058f624e73dd8c24ae94f9026"
+    },
+    {
+      "path": "BusyBeaver/BB33",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f848beeaa61393d7e7413e8f25e1086de38b55bd",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/f848beeaa61393d7e7413e8f25e1086de38b55bd"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB0LB0RC_2LC2LA1RA_1RA1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba3cd93a0ece4440e6ce224fd05f84e63c558356",
+      "size": 36548,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ba3cd93a0ece4440e6ce224fd05f84e63c558356"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB1LB2LC_1LA2RB1RB_HHH0LA2LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "935b5e9254e69d9f940f7eef692367a98b815d58",
+      "size": 21226,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/935b5e9254e69d9f940f7eef692367a98b815d58"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB2LA1LA_2LA0RA2RC_HHH0LC2RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd6951873c9e92f4f7d0b5d5b3b1c8d6debdb02f",
+      "size": 3478,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cd6951873c9e92f4f7d0b5d5b3b1c8d6debdb02f"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB2LA1LA_2LA0RA2RC_HHH1RB2RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3b92fd273c623d1ce82e5127e337987622c34bd",
+      "size": 3718,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d3b92fd273c623d1ce82e5127e337987622c34bd"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB2LC1RC_2LCHHH2RB_2LA0LB0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f75efa1d82af4db300d6dc4ea47fa28559a38629",
+      "size": 39162,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f75efa1d82af4db300d6dc4ea47fa28559a38629"
+    },
+    {
+      "path": "BusyBeaver/BB33/M_1RB2RA1LC_2LC1RB2RB_HHH2LA1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86250ad20f3064365d094fd3354eb0c736ae2c98",
+      "size": 39744,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/86250ad20f3064365d094fd3354eb0c736ae2c98"
+    },
+    {
+      "path": "BusyBeaver/BB33/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2c36ae9ee2b4801129684d6eb6aad518829edcd3",
+      "size": 7069,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2c36ae9ee2b4801129684d6eb6aad518829edcd3"
+    },
+    {
+      "path": "BusyBeaver/BB33/WilyCoyote.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74e3c6e69a24d079de9c839d9da7ab099da2b2b9",
+      "size": 16378,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/74e3c6e69a24d079de9c839d9da7ab099da2b2b9"
+    },
+    {
+      "path": "BusyBeaver/BB6",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "d4f674f2a980fc25bc660a00cb9b8cc3a8a52638",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/d4f674f2a980fc25bc660a00cb9b8cc3a8a52638"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "ea39af8051ac11a55c92311aef6b8507742446e5",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/ea39af8051ac11a55c92311aef6b8507742446e5"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Cert.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c449059a3e65fdf3c210327e71b01b0c68c93d77",
+      "size": 1878,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c449059a3e65fdf3c210327e71b01b0c68c93d77"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Defs.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb568dfba497314910a9b515a12ed0444cb0a51c",
+      "size": 36043,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bb568dfba497314910a9b515a12ed0444cb0a51c"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry0.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0ea40875fa1bb024c2b1ab9a441bf74ecf672bed",
+      "size": 965,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0ea40875fa1bb024c2b1ab9a441bf74ecf672bed"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry1.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "83845c9276fa0dce762908ad0bc435e30de33126",
+      "size": 1000,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/83845c9276fa0dce762908ad0bc435e30de33126"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry2.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad55c29923b19de514dab2640f467b652df929f3",
+      "size": 1000,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ad55c29923b19de514dab2640f467b652df929f3"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry3.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af47672f05cc92762087bb21e3363aa269bf1de9",
+      "size": 1000,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/af47672f05cc92762087bb21e3363aa269bf1de9"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry4.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7029058f2e8625f74f71312541ca029daec8c1e7",
+      "size": 1000,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7029058f2e8625f74f71312541ca029daec8c1e7"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/Entry5.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22ccdf118c2b70527dfa574fe155e749db3d430f",
+      "size": 1000,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/22ccdf118c2b70527dfa574fe155e749db3d430f"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/ReturnExits.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d6a45311b24ac02f3aedf76339826ffb0a944d7",
+      "size": 1229,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0d6a45311b24ac02f3aedf76339826ffb0a944d7"
+    },
+    {
+      "path": "BusyBeaver/BB6/A6/ReturnReplay.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff725afd08abe0f9ea06b3fc733618c5b9b36ffc",
+      "size": 1124,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ff725afd08abe0f9ea06b3fc733618c5b9b36ffc"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "97bbee6b12a40509f811297e2967919ab71b6efa",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/97bbee6b12a40509f811297e2967919ab71b6efa"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LB_0RC0LD_1LD1RE_0LA0RF_0RD1RF_0RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a908329ade059efa9645bbc1e1f96512f4b56078",
+      "size": 21541,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a908329ade059efa9645bbc1e1f96512f4b56078"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LC_1LC0RE_1LD1LC_1LA1RD_HHH0RF_0LB0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "001817eb5fcedef0168651e1b5d54368c89892cb",
+      "size": 19609,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/001817eb5fcedef0168651e1b5d54368c89892cb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LC_1RC1RE_1LA0LD_0RB0RA_1RB1RF_1RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b76db8093f88dffceeba1fa8cd6d6163899675ae",
+      "size": 5345,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b76db8093f88dffceeba1fa8cd6d6163899675ae"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LD_0RCHHH_0LD0RF_1LE1LD_0LA0RD_0RB1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79f76ad8459f7455c5c0352f206bcb5a0e19a2b3",
+      "size": 23652,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/79f76ad8459f7455c5c0352f206bcb5a0e19a2b3"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LD_0RCHHH_1LD0RF_0LE0RA_0RA1LF_0LA1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a28bfd741a0e8689c17d4e7ed83be6197994e21f",
+      "size": 24004,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a28bfd741a0e8689c17d4e7ed83be6197994e21f"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LD_1LC1RD_0LE1LA_0RB1RD_HHH0LF_1RA1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "619246dc6d9e9c2ec4d0b63c1fdc5aeeb976b8b6",
+      "size": 16798,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/619246dc6d9e9c2ec4d0b63c1fdc5aeeb976b8b6"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LE_0RC0RA_1RD1RB_0LA0RB_1LFHHH_1LD1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c9d4411492ca7ac380076487e39c153453a2efa",
+      "size": 11481,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0c9d4411492ca7ac380076487e39c153453a2efa"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0LE_1LB1RC_0RF0RD_1RE0LA_1LA1RE_HHH0RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b3578fc672a44ad33e4043fdfd1129c34c307ea4",
+      "size": 29213,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b3578fc672a44ad33e4043fdfd1129c34c307ea4"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0RB_1RC0LE_1LD1LA_HHH0LC_1RF1LE_1RA0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15237fbea194d4a117b9319f95df487ab3d47ff7",
+      "size": 31232,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/15237fbea194d4a117b9319f95df487ab3d47ff7"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0RE_0RC1RE_1RD1LE_0LEHHH_1RA1LF_1RF0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7291b2f8dda31deb6c0b57fefd58fd92313950cb",
+      "size": 35140,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7291b2f8dda31deb6c0b57fefd58fd92313950cb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0RE_0RCHHH_1LD1LE_1LE1LD_1RF0LC_1RA1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b218cb311a67977bf846aa6067d4ef7e2a30066",
+      "size": 78279,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9b218cb311a67977bf846aa6067d4ef7e2a30066"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0RE_1LC0RA_1LA1LD_1LC1LF_0LC0LB_1LEHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f0bc716f48f69ffff474c8094c3254eaf7681acb",
+      "size": 5584,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f0bc716f48f69ffff474c8094c3254eaf7681acb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB0RE_1RC1RE_1LD1LC_0RB0LC_1RF0RB_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d1a88b0ef3ea29294a4ebe2918d924f0c0977a7",
+      "size": 23429,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3d1a88b0ef3ea29294a4ebe2918d924f0c0977a7"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LA_1LA0RC_1RD1RC_1LE0RC_HHH0LF_1LE0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a388fc06cb17d6e639474989545f093bebe50dfb",
+      "size": 24466,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a388fc06cb17d6e639474989545f093bebe50dfb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LA_1LC0RE_HHH0LD_1RE0LF_1RA1RE_1LA0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a613e186d0f5610fd9365cbcdc10ea2a41ac6885",
+      "size": 31061,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a613e186d0f5610fd9365cbcdc10ea2a41ac6885"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LA_1RC0RF_1RDHHH_0LE1RB_HHH0LA_1LD1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ce7281837f2c1d703e314b68d71fa1c7898e512a",
+      "size": 18862,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ce7281837f2c1d703e314b68d71fa1c7898e512a"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LB_1LC1LA_1RD0LB_1RA1RE_1RF0RD_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "444850dabf0f49cd5ff9bc0883ef2a0113cd5b0d",
+      "size": 49055,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/444850dabf0f49cd5ff9bc0883ef2a0113cd5b0d"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LB_1RC0RD_0LA1RE_0RF1LC_1LA0RB_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8766d33d03f917f418409027ac7035fb990770ea",
+      "size": 25085,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8766d33d03f917f418409027ac7035fb990770ea"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LD_0RC0LF_1LD1RE_0LA0RB_0RD1RB_0LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cacc5d472be00c817c36e4b17a05d44ff0880a3d",
+      "size": 36716,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cacc5d472be00c817c36e4b17a05d44ff0880a3d"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LD_1RC0LE_1LA1RE_0LF1LA_1RB0RB_HHH0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e8d03c919397a9071cc36b2b1022a784a6b1b4af",
+      "size": 21539,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e8d03c919397a9071cc36b2b1022a784a6b1b4af"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1LF_0RC0RB_0LD1RB_1LE0LB_0LA1LC_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4f494ac0f5d5b0a040743c25e2947b7dbb1e7a81",
+      "size": 10960,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4f494ac0f5d5b0a040743c25e2947b7dbb1e7a81"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RA_1LC0RC_1RE0LD_0RE0LF_1RAHHH_1RB1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e0bac83db74a057ef1f6a99e66a5adf3cdb4a78",
+      "size": 19328,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6e0bac83db74a057ef1f6a99e66a5adf3cdb4a78"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RA_1LC0RC_HHH0LD_0LE0RF_1RE0RA_0LF1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fb18e327adf3e41f40dd57c5e81f8fe1de245e3",
+      "size": 60687,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3fb18e327adf3e41f40dd57c5e81f8fe1de245e3"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RA_1RC1LB_1LD0RA_HHH0LE_1LC0LF_1RE0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7609658e4f2a00bd0c54fce9cfd5600c19bbfd46",
+      "size": 23644,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7609658e4f2a00bd0c54fce9cfd5600c19bbfd46"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RC_1LC0LE_1RD1RC_1LB0RA_HHH0LF_1RD1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57fc201a6b2f5a4bb68f7cfa9a47ed1e3c6fd76d",
+      "size": 40111,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/57fc201a6b2f5a4bb68f7cfa9a47ed1e3c6fd76d"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RD_1LC0LE_1RA0LB_1RA1RF_0RA0RC_1REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "adf3add05956e673fa066384b67c1bd2b29ff95b",
+      "size": 5420,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/adf3add05956e673fa066384b67c1bd2b29ff95b"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RE_1LC0RA_HHH1LD_1LA0LF_0LB0LC_1RB0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "735fca3154b0440998afc53f05d11ae674e8fc88",
+      "size": 36127,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/735fca3154b0440998afc53f05d11ae674e8fc88"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RE_1LC0RC_1RA1LD_1RB0LA_0LC1RF_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9540570d20973d92132d1f4ecfe283aa19429d3f",
+      "size": 28713,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9540570d20973d92132d1f4ecfe283aa19429d3f"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RE_1LC1LB_1LE0LD_1LE1LC_0RF1RA_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e0a5350a45c2b390b477e2968e17408fa7199c4",
+      "size": 20742,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3e0a5350a45c2b390b477e2968e17408fa7199c4"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RF_1LC0RE_1RD0LC_0LB0RA_1LD1RD_1RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c35e40479aebdabd2c22742e39a32a6b48192ee1",
+      "size": 23608,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c35e40479aebdabd2c22742e39a32a6b48192ee1"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RB1RF_1LC1LF_HHH1LD_1LE0RA_1RE1LB_1RD0LD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "57c1aad42d29fb474a2c93754e0cf4d1e47b9df9",
+      "size": 30115,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/57c1aad42d29fb474a2c93754e0cf4d1e47b9df9"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RBHHH_0RC0LD_1LB1RC_0LE0LF_1RD1LE_1RF1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1af3eeb417c85afc1adfae3edb05eaa959fb2cf7",
+      "size": 19490,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1af3eeb417c85afc1adfae3edb05eaa959fb2cf7"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RBHHH_0RC0RE_1RD1RF_1LE0LB_1RC0LD_1RC1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7e1ac8acb4454a43d0354ea9a41be0cbda40a88c",
+      "size": 58416,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7e1ac8acb4454a43d0354ea9a41be0cbda40a88c"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RBHHH_0RC1RD_1LA0LA_1LE0RB_1LF1LE_1LC0LD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "050ded8e419dcb2f8e8551caf75d9a8711e4c152",
+      "size": 85264,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/050ded8e419dcb2f8e8551caf75d9a8711e4c152"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/M_1RBHHH_1LC0RF_0RA0LD_1LE1LA_1RF0LF_0LC0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a433781b45d927fb7f93aa6029d1cfe3b8316128",
+      "size": 55872,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a433781b45d927fb7f93aa6029d1cfe3b8316128"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "42268d7f921949cd03284f3197ac5f82717032fa",
+      "size": 69307,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/42268d7f921949cd03284f3197ac5f82717032fa"
+    },
+    {
+      "path": "BusyBeaver/BB6/Accelerations/Stack.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df837fea4f5654c652f00b84edbb44c4015b2b4b",
+      "size": 26873,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/df837fea4f5654c652f00b84edbb44c4015b2b4b"
+    },
+    {
+      "path": "BusyBeaver/BB6/Equivalences.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f35e2546106f9d647db2c518ff0d98a3da0d1712",
+      "size": 6414,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f35e2546106f9d647db2c518ff0d98a3da0d1712"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fcdc464b2d50047285d500ab0541c7aa8a0695a1",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/fcdc464b2d50047285d500ab0541c7aa8a0695a1"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LB_0LC0RE_1LA1LD_0LB1LD_1RA0RF_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0fe5ac245f1d19e4c5ad3d6746618583963ad78b",
+      "size": 20929,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0fe5ac245f1d19e4c5ad3d6746618583963ad78b"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LB_0LC0RE_1LA1LD_0LB1LF_1RA1RD_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a323875fdc83fd7623e9f6098ea035e5eee62df",
+      "size": 113465,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0a323875fdc83fd7623e9f6098ea035e5eee62df"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LB_0LC0RE_1LA1LD_0LB1RF_1RA1RD_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe1eca8c463e6bc16ef26744fb2b6cb3a6d14265",
+      "size": 4616,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fe1eca8c463e6bc16ef26744fb2b6cb3a6d14265"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LC_1LC0RE_1RF1LD_1LA0LB_1RD1RA_1LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a67e77373db8a0288a8879d4ebc4a35343d93e9a",
+      "size": 35788,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a67e77373db8a0288a8879d4ebc4a35343d93e9a"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LD_1LC0RD_1RE0RA_1LE0RF_1LA1RC_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07584786e5e8a421a09e26b9085675cc90b40fe8",
+      "size": 395812,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/07584786e5e8a421a09e26b9085675cc90b40fe8"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LD_1RC0RF_1LC1LA_0LEHHH_1LF0RB_0RC0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2937a1766a9a13b3e5ce8364e5db88a044722aa2",
+      "size": 31319,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2937a1766a9a13b3e5ce8364e5db88a044722aa2"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LE_0RC0RB_1LD0LD_1RA1LC_HHH1LF_1LA0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d32856888e8604c0e644cc13c70534c0057c5bc1",
+      "size": 1265227,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d32856888e8604c0e644cc13c70534c0057c5bc1"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0LF_1RCHHH_1LD0RF_1RA0LE_0LD1LD_0RD0RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6fd55a08e07d31d821cc105035da5a320c5b1ee8",
+      "size": 23468,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6fd55a08e07d31d821cc105035da5a320c5b1ee8"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RA_1LC0RE_1LD0LC_1RA1LE_1LC0LF_0RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1e417361692f3475555c3d21db2e6bef686f8bad",
+      "size": 196595,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1e417361692f3475555c3d21db2e6bef686f8bad"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RB_1RC0RD_1LD1RC_1RF0LE_1LC1LE_HHH0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c67a7f4698b91689f2c96142484068ffa8fc1153",
+      "size": 104875,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c67a7f4698b91689f2c96142484068ffa8fc1153"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RC_1LC1RF_1RA1LD_1RD0LE_1LD1LC_0REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37ffcfade16ade2bfb0de0f90ea6601024f0058c",
+      "size": 102919,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/37ffcfade16ade2bfb0de0f90ea6601024f0058c"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RC_1RC0LD_1LD1RA_1LF0LE_HHH0RD_1LB0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a0e5639a1d8326fba4d76b10f9fd02a9680ecaaa",
+      "size": 104797,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a0e5639a1d8326fba4d76b10f9fd02a9680ecaaa"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RD_1LC0RA_HHH1RD_1RA1LE_1RC0LF_1LE0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ba055fa2905d1b8d64385edb7badd3995a04ce02",
+      "size": 975402,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ba055fa2905d1b8d64385edb7badd3995a04ce02"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RD_1LC1RE_1LA0LD_0RE0RF_1LC1RA_0LEHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7cce46e82dcc9bd5cacdd4e0fe4bfe947e36086d",
+      "size": 2776,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7cce46e82dcc9bd5cacdd4e0fe4bfe947e36086d"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RD_1RC0LC_1RE1RA_0LD1LA_0LF0LD_0REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8fdb1869b1966e09ffdc52801b8cafac1f364dd8",
+      "size": 1144,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8fdb1869b1966e09ffdc52801b8cafac1f364dd8"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RE_1RC0RA_0LD0LB_0LA1LE_1LC1LF_0LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b53770c1f1de5aa112fe386d398068b457c085e5",
+      "size": 14222,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b53770c1f1de5aa112fe386d398068b457c085e5"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RF_0RC1RD_0LDHHH_1LE1RA_1LA0LF_0RD0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a652ae439281523464f58485fcff1976d64b3596",
+      "size": 2878,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a652ae439281523464f58485fcff1976d64b3596"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RF_1LC1RE_1LD0LC_0LE0RE_1RA1LD_1RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1cab016cf6061d2b0394a09b4ad762cdfd971ec9",
+      "size": 98856,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1cab016cf6061d2b0394a09b4ad762cdfd971ec9"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB0RF_1RC0RB_1LD1RA_1LE0LD_1RB0LA_0LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3007bfb60a03c452177ae7f4b286c1a1e266e183",
+      "size": 269466,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3007bfb60a03c452177ae7f4b286c1a1e266e183"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1LA_0LB1LC_1RD0LD_0LA0RE_1RC1RF_0LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d8b027331fcd3c091019686314714a83dd03db5",
+      "size": 18414,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6d8b027331fcd3c091019686314714a83dd03db5"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1LC_1RC1RE_0LF1RD_0RA0LD_HHH1RC_1LA0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6f2621c8599859eac8afe63f1a01597dcea794db",
+      "size": 1143,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6f2621c8599859eac8afe63f1a01597dcea794db"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RA_1LC0RD_1LD1LB_1RA0LE_0LB1LF_1RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f6727cf467adcbea87c6d30333923e14b2bf8eb",
+      "size": 3236,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5f6727cf467adcbea87c6d30333923e14b2bf8eb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RA_1LC0RE_1LD1LB_1RA0LE_1RA0LF_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fcd8a5554a4fcd15ff1dbe180f330996f54c7551",
+      "size": 3355,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fcd8a5554a4fcd15ff1dbe180f330996f54c7551"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RC_1LC0LF_1RF0LD_0RE1LB_1RCHHH_1LD0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "233cb54a6640a972b111c3bdebb9febe3c2154f6",
+      "size": 20135,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/233cb54a6640a972b111c3bdebb9febe3c2154f6"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RC_1LC1RD_1LD0LE_1LA0LD_0LB1RF_HHH0LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74e680d02a4503c1c85c653d36e4030410da9d01",
+      "size": 1142,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/74e680d02a4503c1c85c653d36e4030410da9d01"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RE_1LC0LB_1LD1LC_0RA1RF_1RD1RE_HHH1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5938698a0bd38474ff7e9a72d8f1b05db7235ee2",
+      "size": 198716,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5938698a0bd38474ff7e9a72d8f1b05db7235ee2"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RE_1LC0RC_0RA0LD_1LB1LE_0RC1LF_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f013521861edd12f3a2498267e231deb15edd9c9",
+      "size": 3205,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f013521861edd12f3a2498267e231deb15edd9c9"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RE_1RC1LE_1LD0RA_1LF0LA_1LB0LC_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "296d1500b7f60c6472d3d9bca7f6b9baa7ee0b51",
+      "size": 149463,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/296d1500b7f60c6472d3d9bca7f6b9baa7ee0b51"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RF_0RC0RE_0RD1RA_1LE0LA_1LB0LD_0RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5faadb7cd7193ddc0520d6c84f23bdbcae372feb",
+      "size": 22905,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5faadb7cd7193ddc0520d6c84f23bdbcae372feb"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RB1RF_1LC0RA_HHH0LD_1RE1LD_0LF0LB_1RA1LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cb0a853afc058fec55089c6a65750903937ef35a",
+      "size": 88051,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cb0a853afc058fec55089c6a65750903937ef35a"
+    },
+    {
+      "path": "BusyBeaver/BB6/Halt/M_1RBHHH_1LC1RE_1LA0LD_0RE1LC_1LC1RF_1RB0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b74c0f15b10f2ac5372c80168fc304fa2900698",
+      "size": 2760,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8b74c0f15b10f2ac5372c80168fc304fa2900698"
+    },
+    {
+      "path": "BusyBeaver/BB6/Hardness.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8b8f09847448ae1e83df75fb6998ee4e3f948531",
+      "size": 32911,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8b8f09847448ae1e83df75fb6998ee4e3f948531"
+    },
+    {
+      "path": "BusyBeaver/BB6/HardnessEvidence.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e633466c534947bd96db5af1b46b79d43d10cc1",
+      "size": 29209,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8e633466c534947bd96db5af1b46b79d43d10cc1"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LB_1LC0RE_1LA1LD_0LCHHH_0RB0RF_1RE1RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6af6eda8baa7e85a9de0fa3c81c3b130eea848ce",
+      "size": 153765,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6af6eda8baa7e85a9de0fa3c81c3b130eea848ce"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LC_0LC0RF_1RD1LC_0RA1LE_HHH0LD_1LF1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b89fcc113cca607660dcefcd4943eac8b468ba69",
+      "size": 36725,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b89fcc113cca607660dcefcd4943eac8b468ba69"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LC_0LC1RF_1LE1RD_0RC1RC_0LA1LA_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f68d44069388d0137b86853cea0cfc0f3a32dcbc",
+      "size": 68703,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f68d44069388d0137b86853cea0cfc0f3a32dcbc"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LC_1LC0RD_1LF1LA_1LB1RE_1RB1LE_HHH0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "89fb6354f03ef196aa5bdf932bd951d4d89e6542",
+      "size": 58276,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/89fb6354f03ef196aa5bdf932bd951d4d89e6542"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LD_0RC1RB_0RD0RA_1LE0RD_1LFHHH_0LA1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a90f30a7d0dd3f1bbbf62797a134f1656a73d43",
+      "size": 51772,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6a90f30a7d0dd3f1bbbf62797a134f1656a73d43"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LD_1LC0RA_1RA1LB_1LA1LE_1RF0LC_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c56373ec8b39c24789775cddcf1641e3e68aa5e",
+      "size": 135490,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4c56373ec8b39c24789775cddcf1641e3e68aa5e"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LD_1LC1RA_1RA1LC_1LE1LA_0RF1LD_HHH1RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2538574b70029a9f1fbec36e002ac697d912389",
+      "size": 158626,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a2538574b70029a9f1fbec36e002ac697d912389"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LD_1RC1RA_1LD0RB_1LE1LA_1RF0RC_HHH1RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aac6bcac46344fb64cbec9cd99cdf5322642fbcb",
+      "size": 14271,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/aac6bcac46344fb64cbec9cd99cdf5322642fbcb"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LD_1RC1RF_1LA0RA_0LA0LE_1LD1LA_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f2cbc194c22f68f52839649fb8beda65f6a74ad1",
+      "size": 189843,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f2cbc194c22f68f52839649fb8beda65f6a74ad1"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LE_0RC1RC_0RD1LA_1LD0LA_1LF1LC_HHH0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22cde684209c3b4de265f46e1716e5b661733605",
+      "size": 81505,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/22cde684209c3b4de265f46e1716e5b661733605"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LE_0RC1RC_0RD1LA_1LD0LA_1LF1LC_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e42da8b61a55008b9561f36db4f577401fd87b07",
+      "size": 73179,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e42da8b61a55008b9561f36db4f577401fd87b07"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LE_1LC1RA_1RA1LD_0LC0LA_0RE1RF_0RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c95614df7e6b962e2de0b9472c6b0a0fb4e80aa",
+      "size": 33300,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8c95614df7e6b962e2de0b9472c6b0a0fb4e80aa"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LF_1LC0LD_1RD1LB_HHH1RE_0RA1RE_1LA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c68bbb8207b1d4eb6fd126f6c4079358297b9dc",
+      "size": 75831,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8c68bbb8207b1d4eb6fd126f6c4079358297b9dc"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LF_1LC1RA_0RE0RD_HHH1LE_1LF1RC_1LC1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6955c0d454833fb188620475f6f72aa7244f09da",
+      "size": 31003,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6955c0d454833fb188620475f6f72aa7244f09da"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LF_1RC0RA_1LD0RB_0LE0LC_0LA0LC_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac2171f750b777ec5f0c98009e9d769f1a58141f",
+      "size": 17800,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ac2171f750b777ec5f0c98009e9d769f1a58141f"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0LF_1RC1RA_0RD0RB_1LEHHH_0LA1LE_1RD1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ce1cc5d15c943cc9766e0780a859de64d2e9873",
+      "size": 74089,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1ce1cc5d15c943cc9766e0780a859de64d2e9873"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RB_1LB0LC_1RD1LC_1RE0RA_0RF1RA_HHH1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8a23ba2e92884d3695a34553c06bce44ed62436",
+      "size": 29971,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f8a23ba2e92884d3695a34553c06bce44ed62436"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RB_1LC1RE_1LF0LD_1RA1LD_1RC1RB_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "536fccd80893a65db13f9b8694debe80a10f06b0",
+      "size": 27589,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/536fccd80893a65db13f9b8694debe80a10f06b0"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RC_1LC1RE_1RA1LD_0LC0LA_1RF1RD_HHH0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8af95a08495b23c0f335a9efc441b2137c35138f",
+      "size": 74212,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8af95a08495b23c0f335a9efc441b2137c35138f"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RD_0RC1RE_1RD0LA_1LE1LC_1RF0LD_HHH0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0a59f135cf7a9033afb898d3c7fd30389f9452b5",
+      "size": 41113,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0a59f135cf7a9033afb898d3c7fd30389f9452b5"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RE_1LC0RA_1RF0RD_HHH1LE_0LB1LE_1LE1RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a4db544b19a915286ee545d69a2f0f353f3db1a8",
+      "size": 81577,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a4db544b19a915286ee545d69a2f0f353f3db1a8"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RE_1LC1LD_0RA0LD_1LB0LA_1RF1RA_HHH1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d46cd9c0a5dfac30fe093297a228f6f30093a84",
+      "size": 25590,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8d46cd9c0a5dfac30fe093297a228f6f30093a84"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB0RF_1RC1RF_1LD0LE_HHH1LC_1RA1LE_1LC1RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ae8560996ef508dd910c6edee8bfe500b7aca6ab",
+      "size": 30663,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ae8560996ef508dd910c6edee8bfe500b7aca6ab"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LA_0LC0RC_1LE1RD_1RE1RC_1LF0LA_HHH1LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8874e4bcce42e04e3d0559ff29fb97426193580",
+      "size": 25442,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f8874e4bcce42e04e3d0559ff29fb97426193580"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_0RB0LA_1RC1RE_HHH0LD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c9c7f08fc15fb7fcf94613ff6cb8a3991c76a20",
+      "size": 25613,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5c9c7f08fc15fb7fcf94613ff6cb8a3991c76a20"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LA_1LC0RE_1LF1LD_1RE0LC_1LB1RA_HHH0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "913c1ba99c5e7401abee9c8c5cb571b94a399340",
+      "size": 69637,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/913c1ba99c5e7401abee9c8c5cb571b94a399340"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LA_1RC1RE_1LD0RB_1LA0LC_0RF0RD_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35faf577be5ac7bb79f89924bc05668522a897e0",
+      "size": 290835,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/35faf577be5ac7bb79f89924bc05668522a897e0"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LC_1LC1RD_1LA0LB_0RB1RE_1RF0RA_HHH0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8cac88c1bd7cdb3745f3b3e12475cfde7c0ef5b5",
+      "size": 31182,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8cac88c1bd7cdb3745f3b3e12475cfde7c0ef5b5"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LC_1RC0LD_1LA0RB_1LB1LE_1RF0LA_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f99faa84c3198e69233ec1c1ca3f466d2bfde559",
+      "size": 135503,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f99faa84c3198e69233ec1c1ca3f466d2bfde559"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LC_1RC0RF_1RD0LB_1RE0LD_1LFHHH_0RA1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3b6f275ad87322321d3792084ca240d2d33b641",
+      "size": 153336,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e3b6f275ad87322321d3792084ca240d2d33b641"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LD_1RC0RA_1LA1RE_0LA0LB_0RB1RF_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46c00e527fc3db1380d774020f6d3e10cca15c5c",
+      "size": 69554,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/46c00e527fc3db1380d774020f6d3e10cca15c5c"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LD_1RC1RE_0LA1LB_0LD1LC_1RF0RA_HHH0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "28fe31d3790fa0f88ab04d18d68c9382ce027252",
+      "size": 35617,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/28fe31d3790fa0f88ab04d18d68c9382ce027252"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LE_1LB1LC_1RD0LE_HHH0RB_1RF1LA_0RA0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6d84533937357e4185eab7d7fc7aa617a3272f11",
+      "size": 57716,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6d84533937357e4185eab7d7fc7aa617a3272f11"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LE_1LC0RA_0RF0LD_1LE1LA_1RC0LB_HHH1RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63a816f4a0c0142373a41ddd4f3edaa0dfb9169a",
+      "size": 57929,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/63a816f4a0c0142373a41ddd4f3edaa0dfb9169a"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LE_1RC1RA_0LD1RB_1LE1LD_1RF0LA_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2ecddd35a9625a429738ba16af15c7e8d7001fe6",
+      "size": 97993,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2ecddd35a9625a429738ba16af15c7e8d7001fe6"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LF_0RC1RD_1LA1LD_1LE0RA_HHH1LC_0LA1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5645700d5b778305e630af2c861b33620fa60842",
+      "size": 64383,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5645700d5b778305e630af2c861b33620fa60842"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1LF_1RC1RF_0LD1RE_HHH1LC_0RB1RE_1LA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5db96051488d3bba15df46baa58c8e5b2b427f9",
+      "size": 73693,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d5db96051488d3bba15df46baa58c8e5b2b427f9"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RA_0LC0RE_1LF1LD_1LA0LA_1LC1RB_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c300a2647a16eea9bddc3e5a4c9ff56154b274e1",
+      "size": 35112,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c300a2647a16eea9bddc3e5a4c9ff56154b274e1"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RA_0LC1LE_1LD1LC_1LA0LB_1LF1RE_HHH0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f785e6b543f4cc6c7c18ec850f3ea7e1fced6210",
+      "size": 27709,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f785e6b543f4cc6c7c18ec850f3ea7e1fced6210"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RA_0RC1RC_1LD0LF_0LE1LE_1RA0LB_HHH0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c274472eb64cc6da7282da02a1f1556269b9fd78",
+      "size": 59978,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c274472eb64cc6da7282da02a1f1556269b9fd78"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RB_1LC0RE_HHH1LD_0RA1LB_1RA1LF_0LE1LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a97e482c08289161c030f03ec05379778f375bc2",
+      "size": 42370,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a97e482c08289161c030f03ec05379778f375bc2"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RC_1LC1LC_1RE0LD_1LB1RF_HHH1RA_0RD1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a007f4cdd4a26bb241789930bf830197d0a34ee",
+      "size": 50428,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8a007f4cdd4a26bb241789930bf830197d0a34ee"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RC_1LC1LE_1RA1RD_0RF0RE_1LA0LB_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff54c40af715fda1218fba7eec86822894127f12",
+      "size": 30367,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ff54c40af715fda1218fba7eec86822894127f12"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RD_0LC1RA_0RA1LC_1RA1LE_1RF0LD_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "746fe1280cab2ec2aa69e7f9ba9c9a626beaffbd",
+      "size": 53866,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/746fe1280cab2ec2aa69e7f9ba9c9a626beaffbd"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RD_0LC1RA_1LA1LC_1RA1LE_1RF0LD_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "27d63097aca2262d3fef45202e21c181f32aca7d",
+      "size": 36022,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/27d63097aca2262d3fef45202e21c181f32aca7d"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RD_0LC1RA_1RA1LC_0RB1LE_1RF0LD_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c93d25f4ad3ff1d95fe13078bbfeb7c67568db04",
+      "size": 58011,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c93d25f4ad3ff1d95fe13078bbfeb7c67568db04"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RD_1LC0RD_1RF1RB_1LE0RA_0LB0LE_HHH0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ccbd172253e2f918908f08e0ff0e16a9270c3ece",
+      "size": 47570,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ccbd172253e2f918908f08e0ff0e16a9270c3ece"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RE_1LC0RA_0RD1LB_HHH1RC_1LF1RE_0LB0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a6fb7e0fd4e356b58a79bbf203866233f02e540e",
+      "size": 30502,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a6fb7e0fd4e356b58a79bbf203866233f02e540e"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RE_1LC0RA_1RD0LB_1LB1RC_1LF0RD_HHH0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03828ae956bdb640b73787f42c8511f06274229a",
+      "size": 50666,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/03828ae956bdb640b73787f42c8511f06274229a"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RE_1LC1LD_HHH1LA_1LB1LE_0RF0RA_1LD1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b935d6905f063531d99a036028eab8adfe7edfd9",
+      "size": 38233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b935d6905f063531d99a036028eab8adfe7edfd9"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RF_0LC0RF_1RD1LC_HHH0LE_0RC1LF_1RA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d50102803e49656a50ac3e111d5d288552d75eb7",
+      "size": 39184,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d50102803e49656a50ac3e111d5d288552d75eb7"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RF_1LC1LF_0RE1LD_0LB1LD_HHH1RC_1RA0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c182d59e7473a663fa6c0de16be5a9115547bf53",
+      "size": 97925,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c182d59e7473a663fa6c0de16be5a9115547bf53"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RB1RF_1LCHHH_1LE1RD_1RA0RC_0LF0LA_0LD0RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fff1f051579b0329135e042460ca8ae4bd793c8b",
+      "size": 54777,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fff1f051579b0329135e042460ca8ae4bd793c8b"
+    },
+    {
+      "path": "BusyBeaver/BB6/M_1RBHHH_1RC1LE_0RD0RF_0RE0LA_1LF0LB_1LA1LD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "49cca7160a8a08d4b59d30b39aa08aeaec659cf5",
+      "size": 120264,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/49cca7160a8a08d4b59d30b39aa08aeaec659cf5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b7d5524716d9b95c880cc9bcf54e6879d803e339",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/b7d5524716d9b95c880cc9bcf54e6879d803e339"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LA_0LC0RB_1RA0RD_1LE0LD_1LFHHH_1LA1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86cf83152a8a303271556c11e9251c87877dfec0",
+      "size": 25132,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/86cf83152a8a303271556c11e9251c87877dfec0"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LA_0RC1LE_0RD1RE_1LA1RF_1RB0LD_1RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c4648df53c7c1461d6a20b3acfccf16850182edb",
+      "size": 218691,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c4648df53c7c1461d6a20b3acfccf16850182edb"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LA_0RC1RD_0LD1RE_1LA0RB_0RD1RF_1RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "389aa3a884aceb5ffdbd927965657ca4e4fcfa56",
+      "size": 20546,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/389aa3a884aceb5ffdbd927965657ca4e4fcfa56"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LB_1LC1LB_1RD1LA_0RE0RE_0RA1RF_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c90b920ab01a198a4964a355c5d7d595426a9f74",
+      "size": 109370,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c90b920ab01a198a4964a355c5d7d595426a9f74"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_0LC1RE_1LD1LC_1LA1RD_HHH1RF_0RA0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "571cd2be2ea8b49dca859b849e510a5805c63059",
+      "size": 73591,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/571cd2be2ea8b49dca859b849e510a5805c63059"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_1LA0RE_0RD0LA_1RE1RA_0LD1RF_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "80cee973ebbd05569b7635c47f09d26e2ea473bd",
+      "size": 2061,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/80cee973ebbd05569b7635c47f09d26e2ea473bd"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_1LA0RE_0RD1LF_1LC1LB_0LD0RB_0LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bb3189b5b9ac4015556207e8d327edf9c3c935ba",
+      "size": 4340,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bb3189b5b9ac4015556207e8d327edf9c3c935ba"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_1LC0RB_0LE0LD_1LCHHH_0RA1LF_1LA1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e6610d2294cfba04a643d89e233179cb3414994",
+      "size": 186429,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6e6610d2294cfba04a643d89e233179cb3414994"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_1LC0RE_1LA1LD_1LA1LB_0RF1RA_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1642a7aaa6f963bee1b31ae0dfbe5718648e45b",
+      "size": 34127,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a1642a7aaa6f963bee1b31ae0dfbe5718648e45b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LC_1LC0RE_1LA1LD_1LA1LF_0RB1RA_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a238695cbe6bb8ca47f9a4bde8e580db3df88534",
+      "size": 1397,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a238695cbe6bb8ca47f9a4bde8e580db3df88534"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LD_1LC1RB_0LA0LD_1LE0RB_1RF0RE_HHH0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b617dd5b6d47deaffdeca75b3b46358b72f137c5",
+      "size": 54814,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b617dd5b6d47deaffdeca75b3b46358b72f137c5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LD_1RC0RA_1RD1RF_1LA0LE_1RE1LD_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5961e04bb7149bf3aba6d7dac40c3b556cdbb429",
+      "size": 123204,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5961e04bb7149bf3aba6d7dac40c3b556cdbb429"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LD_1RC0RE_1LD0RE_1LA0LA_1RB1RF_1RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "091a5f77f86a7d82a7978ff165f8f241512ab6b8",
+      "size": 58268,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/091a5f77f86a7d82a7978ff165f8f241512ab6b8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LD_1RC1RF_0RD1RA_1LE1RC_0LA0LD_0RCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0b54a9ffe5123792041cbd5cdc24ae6a46e26d49",
+      "size": 58188,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0b54a9ffe5123792041cbd5cdc24ae6a46e26d49"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LE_1LC1RA_HHH1LD_0RB1LF_1RD1LA_0LA0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "60f9da81b3f942efb285a888f629f1899cdbdc20",
+      "size": 27331,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/60f9da81b3f942efb285a888f629f1899cdbdc20"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LE_1LC1RD_1LA0LC_1RA1RE_0RF0RB_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cc4af3dfedd4e8fba7d8a0d7b3ef22ad2db45b6",
+      "size": 128313,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2cc4af3dfedd4e8fba7d8a0d7b3ef22ad2db45b6"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LE_1RC0LF_0LD0RC_1RA1LD_1LB0LE_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4217238dcd27dac9f278d13562910720afa94eb1",
+      "size": 39315,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4217238dcd27dac9f278d13562910720afa94eb1"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LE_1RC0RC_1LD0RB_1LA0LE_1LD1LF_1LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "03744dfea297615a9a64e45de55d6798ae2a987d",
+      "size": 1335,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/03744dfea297615a9a64e45de55d6798ae2a987d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LE_1RC1LA_1LD1RE_1LB0LD_1RF0RC_1RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "17aabbb9beea67c4fb95e57ec2bd55debb87d975",
+      "size": 54840,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/17aabbb9beea67c4fb95e57ec2bd55debb87d975"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0LF_0RCHHH_1RD0RA_1LE0RC_0LA0LE_1LE1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8ff37f9cab368b91baefa8c17fcd4fde11af0dd",
+      "size": 130444,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a8ff37f9cab368b91baefa8c17fcd4fde11af0dd"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_0LC0LA_1RF1LD_1LE0LD_1LC1LF_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea5262163c70fb38b3d2569e87cd8c78e642eab8",
+      "size": 110727,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ea5262163c70fb38b3d2569e87cd8c78e642eab8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_0RC0LD_1LA1RF_1LE1LD_1LB1RE_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9ce0abde3f8f9e35ed9890ca5d047700ef843d1",
+      "size": 1294,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f9ce0abde3f8f9e35ed9890ca5d047700ef843d1"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_0RC0LE_1LD1RF_1LB1RD_1LD1LE_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ad2971a7e0daed9d672cfdc51beb624ba570d315",
+      "size": 368534,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ad2971a7e0daed9d672cfdc51beb624ba570d315"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_0RC0RE_0LDHHH_1LE1LD_1LF0LD_1RA0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19495f903f4f9eacfa1acc904b1bc91c7b2ff7bb",
+      "size": 77865,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/19495f903f4f9eacfa1acc904b1bc91c7b2ff7bb"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0LD_1LE1LD_0LB0RE_1RF0LA_HHH0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "37a3c4564afc2cede16238fca2c54af104a39454",
+      "size": 88801,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/37a3c4564afc2cede16238fca2c54af104a39454"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0LD_1LE1LD_0LB0RE_1RF1LB_HHH0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9788a0b50582abecb83eefb94b2d690be2a3ca9e",
+      "size": 24332,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9788a0b50582abecb83eefb94b2d690be2a3ca9e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0LD_1LE1LD_0LB0RF_1RA1LB_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cef08d5d29043e45e5adf28047da09f2c2e4a7bf",
+      "size": 24271,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cef08d5d29043e45e5adf28047da09f2c2e4a7bf"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0LF_1LE0LD_1LBHHH_1RA1LB_0LB0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64cad3b571297585c2f3936fe2394a97de0acd13",
+      "size": 26664,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/64cad3b571297585c2f3936fe2394a97de0acd13"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0LF_1LE0LD_1LBHHH_1RA1LB_0LD0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a11ce25a99767f74906a497092088ff6bca760de",
+      "size": 23984,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a11ce25a99767f74906a497092088ff6bca760de"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0RC_1LE0LD_1LC1LF_1RA1LC_0LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fa1137550f288ec981363e73882b8609195c05e2",
+      "size": 12527,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fa1137550f288ec981363e73882b8609195c05e2"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0RC_1LE0LD_1LC1LF_1RA1LC_1LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d14c77c68264d5e1890a4a43921acdea3bfc972",
+      "size": 77553,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2d14c77c68264d5e1890a4a43921acdea3bfc972"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0RC_1LE0LD_1LC1LF_1RA1LC_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a135953e828694cc8f158f8e60c4d807af7ca83c",
+      "size": 54244,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a135953e828694cc8f158f8e60c4d807af7ca83c"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0RC_1LE0LD_1LC1LF_1RA1LC_1LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4173d0a5998d0ad7ca3f5df7ea815ef8c8b4a3c4",
+      "size": 2503,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4173d0a5998d0ad7ca3f5df7ea815ef8c8b4a3c4"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1LC0RE_0LC0LD_1RD1LB_0RF1RA_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2769737cd8f68468a1534718226f92f2a6a6fa5e",
+      "size": 51453,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2769737cd8f68468a1534718226f92f2a6a6fa5e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1RC0LC_0LD1RF_1RA1LE_1LD0LB_0REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40c0987589544c100513c7aff45d4b1e6280e1ae",
+      "size": 115989,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/40c0987589544c100513c7aff45d4b1e6280e1ae"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1RC0LE_1LD0RA_HHH1LE_0RE0LF_1LB1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ca44bfa6d48bd2a6712953639788c83992d8314",
+      "size": 647033,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7ca44bfa6d48bd2a6712953639788c83992d8314"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1RC0RC_1LD0LE_1RA1LC_1LC1LF_0LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14764f66ada887ae382a985ff3293b7d00726c73",
+      "size": 104657,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/14764f66ada887ae382a985ff3293b7d00726c73"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1RC0RD_1LD1LE_1LF0LC_0LDHHH_1RA1LD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ed0ce99e54854d23f066614f87bba7a114bd896d",
+      "size": 12639,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ed0ce99e54854d23f066614f87bba7a114bd896d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RA_1RC0RE_1RDHHH_1LE1LD_1LF0LD_1RA1LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "19eaf3575018036c0b3099b3c7ab0ee8ea4e4493",
+      "size": 53489,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/19eaf3575018036c0b3099b3c7ab0ee8ea4e4493"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RB_1LC0LE_1RD1LB_1RA0RD_1LB1LF_0LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d3980acc9c498eaa68cdfdc46fd4e59a970d48e7",
+      "size": 69702,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d3980acc9c498eaa68cdfdc46fd4e59a970d48e7"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RB_1LC0LE_1RD1LB_1RA0RD_1LB1LF_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea00a47863ab1a78e01760303e7b3f449116082f",
+      "size": 12121,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ea00a47863ab1a78e01760303e7b3f449116082f"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RB_1LC0LE_1RD1LB_1RA0RD_1LB1LF_1LEHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a40194a4b439df71ff001537716bb0b544855aa",
+      "size": 69386,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2a40194a4b439df71ff001537716bb0b544855aa"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RB_1LC0RA_1LE0LD_1LC1LF_1RA0LD_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "645f243eaa72d3f8a8a1f891437950d8a1d61d7d",
+      "size": 1335,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/645f243eaa72d3f8a8a1f891437950d8a1d61d7d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RB_1RC1LC_0LD1RA_1LF1LE_0LA1LC_1LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a446899705da029e9de7436eee8d7926372edf5",
+      "size": 32198,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7a446899705da029e9de7436eee8d7926372edf5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RC_1LC0LD_1RA1RC_1RA1LE_0LB1RE_HHH1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c298a5c4aea5030b9197a0420e9c07432fb834e8",
+      "size": 1216,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c298a5c4aea5030b9197a0420e9c07432fb834e8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RC_1LC1LF_1LD0LB_1RE1LC_1RA0RE_0LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ac7578bdb6e72a578d60e5efe3b64243f7cf0d2e",
+      "size": 12247,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ac7578bdb6e72a578d60e5efe3b64243f7cf0d2e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RC_1LC1RA_0RF0LD_1LE0RB_1LB0LD_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a8fd6d1162c19144da4e8f8b97b9d6ef840ed08c",
+      "size": 1283,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a8fd6d1162c19144da4e8f8b97b9d6ef840ed08c"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RC_1LC1RD_1RA1LE_1LA0RD_0LE1RF_1LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "18befec598227e3a99e9afdf5d2cd7be6f0df759",
+      "size": 1178,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/18befec598227e3a99e9afdf5d2cd7be6f0df759"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_0LC0RA_1LA1LC_1RE0LF_0RA1RF_1LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "860726a2b9fe480693e9fff60b9b0659e716a93f",
+      "size": 18033,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/860726a2b9fe480693e9fff60b9b0659e716a93f"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_0LC1RA_0RA1LB_1RE1LB_1LF1LB_HHH1LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f22d686229b38ea1a5ad93672c84a82a85ff3ca7",
+      "size": 23519,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f22d686229b38ea1a5ad93672c84a82a85ff3ca7"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_0RC0LB_0RD1RD_1LE1RA_1RC1LF_HHH1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "309c7f11408d297315a32068fd680826f6b231b8",
+      "size": 63107,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/309c7f11408d297315a32068fd680826f6b231b8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_1RC1RF_1LD0LE_1RA0LC_1RE1LC_0RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dea8883d1fdb9d0234b1dabe95292a585f74444",
+      "size": 172105,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4dea8883d1fdb9d0234b1dabe95292a585f74444"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_1RCHHH_1LD1LC_1LE0LC_1RF0RC_1RA0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd117a18dd8a254d45629ce0e8815b960cd9f395",
+      "size": 45827,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cd117a18dd8a254d45629ce0e8815b960cd9f395"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RD_1RCHHH_1LD1LE_1LE0LC_1RF1LD_1RA0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8aa2e571d572a626f0918f5d3745313bb0b31c5",
+      "size": 67312,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c8aa2e571d572a626f0918f5d3745313bb0b31c5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC0LE_1LD0LC_1RA0LA_1RA1RF_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f364346835f5bd2626c50fd566ec0d338e03b79b",
+      "size": 65211,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f364346835f5bd2626c50fd566ec0d338e03b79b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC0RA_0RA0LD_1LEHHH_1RF0LF_0LC0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "22cad8961da49f7c829e2fded42f14ee4a2e910e",
+      "size": 40587,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/22cad8961da49f7c829e2fded42f14ee4a2e910e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC0RA_1LD0LB_1LA1LF_1LE1RA_0LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "830cf001d9a5c4dce0c0bdd66b24fd6fa4da4ced",
+      "size": 1283,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/830cf001d9a5c4dce0c0bdd66b24fd6fa4da4ced"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC0RE_1LD0LD_1RA0LC_1RA1RF_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "516a2e86aa82c5c72baf56f9697764ad7b7d36c1",
+      "size": 1336,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/516a2e86aa82c5c72baf56f9697764ad7b7d36c1"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1LA0LA_1RA1RF_0RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c5b118f03d5318c0026e4fe6b7257394b5b0417",
+      "size": 12513,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0c5b118f03d5318c0026e4fe6b7257394b5b0417"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1LA0LA_1RA1RF_0RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b02d4f3d1867e2441e53d945654168885c3f0624",
+      "size": 70976,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b02d4f3d1867e2441e53d945654168885c3f0624"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1RA0LA_1RA1RF_0LBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "102687eeed3c5568bb32357a41d98a6bac75ed54",
+      "size": 93355,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/102687eeed3c5568bb32357a41d98a6bac75ed54"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1RA0LA_1RA1RF_0RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7574933c6afae2e404631b50f6112d126a154f76",
+      "size": 12260,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7574933c6afae2e404631b50f6112d126a154f76"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1RA0LA_1RA1RF_1RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6692e85e3f30e27373a28d0708e50811efe5af06",
+      "size": 2501,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6692e85e3f30e27373a28d0708e50811efe5af06"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RA_1LD0LC_1RA0LA_1RA1RF_1REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "256c6fbe1c45309b741de15b1ef6da883dae7d64",
+      "size": 2555,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/256c6fbe1c45309b741de15b1ef6da883dae7d64"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RD_1LD0LC_1RA0RF_1RDHHH_0RD0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2bfdac7a2baf41cdaecd68a59041c44019cdc70",
+      "size": 24257,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e2bfdac7a2baf41cdaecd68a59041c44019cdc70"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1LC1RF_HHH0LD_0LE1LB_1LF1LD_1RD0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0dcd8d1ff84949053c3b7460e11d2ee40e3dc8dd",
+      "size": 2685,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0dcd8d1ff84949053c3b7460e11d2ee40e3dc8dd"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1RC0RB_0RD0RF_0LEHHH_1LF1LE_1LA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "26ae1c9c4807710a39c2de56976e49b49c4c1994",
+      "size": 57143,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/26ae1c9c4807710a39c2de56976e49b49c4c1994"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1RC1LF_0LD0RE_HHH1LE_1RA0LB_1LB0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c8357218842362fd28fb8ed49e0d63086b306bb7",
+      "size": 66548,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c8357218842362fd28fb8ed49e0d63086b306bb7"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1RC1RE_1LD1RA_1LA0LD_0RA0LF_1LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9a21dbd3c18b24de47aefc70a354ae50000ff03e",
+      "size": 24390,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9a21dbd3c18b24de47aefc70a354ae50000ff03e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RE_1RCHHH_0LD1LE_0RE1LD_1RF0LC_0RA1RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4609668cfed828c1d266c69700c7d990cc9103db",
+      "size": 132078,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4609668cfed828c1d266c69700c7d990cc9103db"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC0LF_1LD0LC_0LE0LA_1LFHHH_1RA1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3bb8b74114324eb252e5a5f75f6a551ec5b8e96e",
+      "size": 47853,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3bb8b74114324eb252e5a5f75f6a551ec5b8e96e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC0RE_0LC0LD_1RD1LB_0RF1RA_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9163434422e415bce33e04521b6d6878e930ccb3",
+      "size": 31730,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9163434422e415bce33e04521b6d6878e930ccb3"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC1RA_1LD0LC_0LE0LA_0RFHHH_1RA1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f715a57f2675d8f427cc2804d34189628689545",
+      "size": 47889,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5f715a57f2675d8f427cc2804d34189628689545"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC1RA_1LD0LC_0LE0LA_1RFHHH_1RA1RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f8de54428dff28c20fff79663fe9f643c4989361",
+      "size": 70987,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f8de54428dff28c20fff79663fe9f643c4989361"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC1RA_1LD0LC_1LE0LA_1LFHHH_1RA1RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ecf7e9e650f7638b4b688d58e074279dbffbe3d",
+      "size": 31900,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3ecf7e9e650f7638b4b688d58e074279dbffbe3d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1LC1RA_1LD0LC_1LE0LA_1LFHHH_1RA1RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbf645b5189968561052690cdf3af44e72a1885d",
+      "size": 44857,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/dbf645b5189968561052690cdf3af44e72a1885d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1RC0RE_1LD1RA_1LA0LD_1RAHHH_0RA0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "005eb2b8c0172bbf1e87a50851b85019fc76ea94",
+      "size": 24048,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/005eb2b8c0172bbf1e87a50851b85019fc76ea94"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1RC0RE_1LD1RA_1LA0LD_1RAHHH_0RE0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7a57547c6bdf1d068248ca7244f122fee44ab6e",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c7a57547c6bdf1d068248ca7244f122fee44ab6e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1RC1RF_1LD0RE_HHH0LE_1LA0LE_0RA0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "647f287e3cfa833ae1298231829446ee850a1d46",
+      "size": 1335,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/647f287e3cfa833ae1298231829446ee850a1d46"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB0RF_1RC1RF_1LD1RA_HHH0LE_1LA0LE_0RA0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9cb38bdbd09b0ed99d087d20f1550b5fd3f1e34c",
+      "size": 23500,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9cb38bdbd09b0ed99d087d20f1550b5fd3f1e34c"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LA_0RC0RD_1LC1LA_1RE1RD_1LF0LA_HHH0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "410d91e7c1764fb927f40bd04a10f99585e8b5c8",
+      "size": 322299,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/410d91e7c1764fb927f40bd04a10f99585e8b5c8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LA_1LA1RC_1RD0RB_1LE0LF_HHH1LD_0LE1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4d8b763407d9432ba7d2755a0e6a9d98537bb176",
+      "size": 1283,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4d8b763407d9432ba7d2755a0e6a9d98537bb176"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LA_1LC0RA_0LD1RC_HHH0LE_0LF1LE_1RF1LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1275029431a3e2eaa4fc3accb49914a37567485",
+      "size": 82312,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d1275029431a3e2eaa4fc3accb49914a37567485"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LA_1RC0LE_1RD0LF_0LA0RD_1LC0LE_HHH0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6481b36171ed31919fcd6bd9e4ec985f5980eabe",
+      "size": 1469,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6481b36171ed31919fcd6bd9e4ec985f5980eabe"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LB_1LC0LF_1LD0RC_1RE0LA_1RE1RC_HHH0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2a7af70b77d7dcacbd603ad92f602522ea7ef3ae",
+      "size": 30921,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2a7af70b77d7dcacbd603ad92f602522ea7ef3ae"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LB_1LC1RB_1RF1LD_0LE0LC_0RCHHH_1LA0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6929ef4758bec5a69123a37ce6cc7f40e9fc6acc",
+      "size": 69003,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6929ef4758bec5a69123a37ce6cc7f40e9fc6acc"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LB_1RC0LA_1LD1RF_1RB0LE_HHH1LA_1RD0RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "950eb947bb8ad05fb7e563fb7434d52433d31bc0",
+      "size": 99012,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/950eb947bb8ad05fb7e563fb7434d52433d31bc0"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LC_1LA1RB_1LD0LA_1RE0RF_HHH1RD_0RE1RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d4879acea0d5a191387302e74a0f910df8c5e16",
+      "size": 91137,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5d4879acea0d5a191387302e74a0f910df8c5e16"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LC_1RC1LB_1LD0RB_0LE1RD_HHH0LF_0LA1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a121bc3fec7fdd28c7082b26c461189e63b5e10a",
+      "size": 1414,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a121bc3fec7fdd28c7082b26c461189e63b5e10a"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_0RC0RB_0LD1RE_0LA1LC_0RB0RF_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b99dff12077f2484144f03a35d8370c4716da80d",
+      "size": 91022,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b99dff12077f2484144f03a35d8370c4716da80d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_0RC1RC_1LA1RE_HHH1LE_1RF0RC_0RB0LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "796acc1fa7d1215c4c451f331414d953dc6bccd1",
+      "size": 9027,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/796acc1fa7d1215c4c451f331414d953dc6bccd1"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1LC1RA_0LD0LC_0RE1RB_1RD0RF_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8db2051282207b3d52eb9fce2f307a7eebfb697b",
+      "size": 84078,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8db2051282207b3d52eb9fce2f307a7eebfb697b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1RC0RB_1LA0RE_1LC1LE_1LF0LA_0REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "191783d79af842b1f74d3f79c702a05191897b7d",
+      "size": 128353,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/191783d79af842b1f74d3f79c702a05191897b7d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1RC0RB_1LA1RE_1LF0LA_1LA0RD_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "db0461b2fc890051dbb96f359e67c21b60a50262",
+      "size": 91845,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/db0461b2fc890051dbb96f359e67c21b60a50262"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1RC0RB_1LD0RD_1LA0LE_1LD0LF_1RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "02975f77c212a6ae3119e4f696a671149f7471b5",
+      "size": 47491,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/02975f77c212a6ae3119e4f696a671149f7471b5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1RC0RB_1LD0RD_1LA0LE_1LD1LF_0LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5c313d95f1caa7e96f1c1d2e85c8e45922af7532",
+      "size": 59425,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5c313d95f1caa7e96f1c1d2e85c8e45922af7532"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LD_1RC0RB_1LD0RD_1LA0LE_1LD1LF_1LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "38a0eb8022d6a099efe978bd235bf2fdff0651bc",
+      "size": 9922,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/38a0eb8022d6a099efe978bd235bf2fdff0651bc"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LE_1LC0RF_1LA0RD_1LC1RC_1LB0LB_HHH1RD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47b864c35d60b91d53d8e61a91e5b1452c9ec9fb",
+      "size": 83098,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/47b864c35d60b91d53d8e61a91e5b1452c9ec9fb"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LE_1LC1RD_0LA1LA_HHH1RE_1LF0LA_0LC0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7a1d71872f10245443867d05ad4d2b3f03b44a9",
+      "size": 11721,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c7a1d71872f10245443867d05ad4d2b3f03b44a9"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LF_0RC0RB_0LD1LA_1LC0LE_0LAHHH_1LA1LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b7799a930b073e93fe4dea89f9d884b2aaed7a5a",
+      "size": 3922,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b7799a930b073e93fe4dea89f9d884b2aaed7a5a"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LF_1LC1RB_1RE1LD_1LB0LC_1LA0RE_1LDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c30cedee9e4ddd453f9353728185a6627237d223",
+      "size": 222142,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c30cedee9e4ddd453f9353728185a6627237d223"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LF_1RC0RB_1RD0RF_1REHHH_1LF1LA_1LA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bd7eec38ddd700e07985f33c0371ea7574872e0f",
+      "size": 28184,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bd7eec38ddd700e07985f33c0371ea7574872e0f"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1LF_1RC0RB_1RD0RF_1REHHH_1LF1LE_1LA0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f41ca02521f5c0f0b788e9c619b3f467811f03c",
+      "size": 50661,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9f41ca02521f5c0f0b788e9c619b3f467811f03c"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1LC1LE_0LD0LB_0RA0RF_0LC0RA_1RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "110020dfcfc969bcccda2f1ffa4a449f2129b552",
+      "size": 14384,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/110020dfcfc969bcccda2f1ffa4a449f2129b552"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1LC1LE_1RF1LD_1RE0LD_0LB0RA_HHH0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1af17e9b5d009180c9bc9154bba4526eebf9f7e0",
+      "size": 43630,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1af17e9b5d009180c9bc9154bba4526eebf9f7e0"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1LC1RE_0LD0LD_0LE1LF_1LA0RA_HHH1LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a1d8352a337a4889070ce34754eec425727ea8c4",
+      "size": 1335,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a1d8352a337a4889070ce34754eec425727ea8c4"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1RC0RA_1LD0LA_1LE0LD_1LF0LB_1REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14095de2446bd7d6295ac1725d72759aceec8940",
+      "size": 146641,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/14095de2446bd7d6295ac1725d72759aceec8940"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1RC0RA_1LD1RB_1LE0LD_1LF0LB_1LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55415c3ae72669262f8e2df5cf26b5cec2d78692",
+      "size": 47860,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/55415c3ae72669262f8e2df5cf26b5cec2d78692"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1RC1LB_0LD0RA_1RF1LE_HHH1LF_1LC0LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7d6bb3f1c250f1cf7778782f11259d2df97e3f1d",
+      "size": 10479,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7d6bb3f1c250f1cf7778782f11259d2df97e3f1d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RA_1RC1LB_1LD0RA_1LA0LE_HHH0LF_0RC0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "da8d5c502700dde64807ce0d0a9279e6066429c6",
+      "size": 40800,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/da8d5c502700dde64807ce0d0a9279e6066429c6"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_0LA1RF_1RD0LE_1LC0RB_0RA0LC_0RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cf930d46278d21f1a1da30f9319d60d0b92ce06c",
+      "size": 3085,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cf930d46278d21f1a1da30f9319d60d0b92ce06c"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_1LC0LE_0RA1RD_1RF1LB_1LD0LA_HHH0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb046553c2c5972882d79ae431b0e2c1535c20a9",
+      "size": 2796,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/eb046553c2c5972882d79ae431b0e2c1535c20a9"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_1LC0RA_1RA0LD_0RE0LF_0LBHHH_0RF0RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8471a72d15a4ad72f010973a8e63a8fbf0d000ee",
+      "size": 383169,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8471a72d15a4ad72f010973a8e63a8fbf0d000ee"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_1LC0RF_1RE0LD_1LB0LD_HHH1RF_0LF0RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b6b3808a89733a45064e650f1098a76c3a33a6a5",
+      "size": 1399243,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b6b3808a89733a45064e650f1098a76c3a33a6a5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_1LC1RE_HHH1LD_0LE0LD_1RA0RF_1LD1RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e446cb5d73d3327a12859f6ff428c2d708836af1",
+      "size": 102282,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e446cb5d73d3327a12859f6ff428c2d708836af1"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RC_1RC0RA_1LD1RB_1LE0LD_1LF0LB_1LAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e6cbecd3426bb590925c47aad81464edb2518a4b",
+      "size": 23420,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e6cbecd3426bb590925c47aad81464edb2518a4b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RD_1LC0RB_0RD0LC_1LB0LE_1RF0RE_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d8dd2552a131e3128a7ab57069a0973f56265ab",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5d8dd2552a131e3128a7ab57069a0973f56265ab"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RE_0RC0RA_0LD0LF_1LA1LD_0RB0LD_1LCHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "41100bb7024b842f86bbfea1e20b2c68aca14dee",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/41100bb7024b842f86bbfea1e20b2c68aca14dee"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RE_1LC1RB_1RA0LD_1RC0LB_0RFHHH_0LD1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "40cbd15136718a57903a1acf856ad40b30ff6116",
+      "size": 1368856,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/40cbd15136718a57903a1acf856ad40b30ff6116"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RE_1LC1RD_1LD0LC_1RA0RF_0RDHHH_0RD0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1c72cce67d856ab3f02eae269322e7a99fcb026f",
+      "size": 24760,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1c72cce67d856ab3f02eae269322e7a99fcb026f"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_0RC1RE_1LD1RB_0LE0LC_1RA0LC_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "393bd4ca26ae68091dee87ef20d5489808e84c3b",
+      "size": 1336,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/393bd4ca26ae68091dee87ef20d5489808e84c3b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1LC0LE_1RD0LB_1RA0RC_1RE1LB_0RDHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "761352836d769ea2cc632f3375a592e352e74a39",
+      "size": 144702,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/761352836d769ea2cc632f3375a592e352e74a39"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1LC0LF_HHH0LD_0LE1LD_0RF0LB_1RA1RE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c11805e94d89988b78afc43fa93052d4710f7afa",
+      "size": 226409,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c11805e94d89988b78afc43fa93052d4710f7afa"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1LC0RD_HHH0LD_1LE0LD_1RA0RF_0RE0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33463324c0547d984338846ab31f831ef859ec14",
+      "size": 1335,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/33463324c0547d984338846ab31f831ef859ec14"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1LC1RE_HHH0LD_1LE0LD_1RA0RF_0RE0LB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c45d95020f5cb33f88a7996f88dfc8d200260a52",
+      "size": 23709,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c45d95020f5cb33f88a7996f88dfc8d200260a52"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC0RA_1LD1RB_1LE0LD_1LA0LB_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f87bc93fbd83095c4084696f7b5268259f35342",
+      "size": 45046,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2f87bc93fbd83095c4084696f7b5268259f35342"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC0RA_1LD1RB_1LE0LD_1LB0LB_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b8686244085adc88b61170bc8f5a735f31ead86",
+      "size": 58088,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2b8686244085adc88b61170bc8f5a735f31ead86"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC0RA_1LD1RB_1LE0LD_1RB0LB_0RBHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2783aaa5d61ad4d17eef1aaf72dff98127d33a7d",
+      "size": 46678,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2783aaa5d61ad4d17eef1aaf72dff98127d33a7d"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC0RA_1LD1RB_1LE0LD_1RB0LB_1RAHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bd55750d101bcd84aa31d2a370a4c65aa9b1b60",
+      "size": 2501,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6bd55750d101bcd84aa31d2a370a4c65aa9b1b60"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC0RA_1LD1RB_1LE0LD_1RB0LB_1REHHH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9b18308dcdecda76dd69b15d851780b080880f3b",
+      "size": 2555,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9b18308dcdecda76dd69b15d851780b080880f3b"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RB1RF_1RC1RA_1LD0LA_HHH0LE_0LF1LE_0RA0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d79f3ed12f1e282187b6af0c6b7318300bb6cae",
+      "size": 226035,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0d79f3ed12f1e282187b6af0c6b7318300bb6cae"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_0LC1RF_1LE0RD_0RB1RC_1RD0LE_0RC1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e936c6e0da8c9b021ea951a10ae7d00e77d8eaf8",
+      "size": 1336,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e936c6e0da8c9b021ea951a10ae7d00e77d8eaf8"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_0RC0LD_1RD1RC_1LB0LE_1LF0RA_0LD1LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2dff6fd666e9a3db914d8f72b62288a0041bf5fb",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2dff6fd666e9a3db914d8f72b62288a0041bf5fb"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_0RC0RA_1RD1RC_1LE1LF_0LB0LD_0LE0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1588e58c5957f8d51d947251c7a7693c3ae418ec",
+      "size": 1234,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1588e58c5957f8d51d947251c7a7693c3ae418ec"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_0RC1LF_0RD1RB_1LE1RC_0LB0LE_0LE0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "65c1bee79fb7ef0232249b34828bb81c3acf40c6",
+      "size": 1283,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/65c1bee79fb7ef0232249b34828bb81c3acf40c6"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_0RC1LF_1LC1LD_1RE0RA_0RD1RF_0LD0LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2fd1c83066694a23e16d11b23200748cdb520b05",
+      "size": 68935,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2fd1c83066694a23e16d11b23200748cdb520b05"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC0LF_1RD1LB_1RE0RD_1LB0RB_1LB0LA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0045462f69772037fc555c16ed3618549ede2056",
+      "size": 61172,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0045462f69772037fc555c16ed3618549ede2056"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC0RC_0LD0LC_1RE1RA_0RD1LF_0LE0LF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "346101d2899a43bd420906a08b7f05d93a8107a0",
+      "size": 31563,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/346101d2899a43bd420906a08b7f05d93a8107a0"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC1LB_1LD0LB_1RE1LC_1RF0RE_0RA0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f39f5907b9728f97c7ead158808b1db0c62497be",
+      "size": 49737,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f39f5907b9728f97c7ead158808b1db0c62497be"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC1LB_1LD0LB_1RE1LC_1RF0RE_1RA0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b881366c40fdc0db2a805132434c733fa26da92e",
+      "size": 55266,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b881366c40fdc0db2a805132434c733fa26da92e"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC1LD_1LD0LB_1RE1LC_1RF0RE_1RA0RC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9bda539c739395a5063caac36194381be7a60993",
+      "size": 26018,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9bda539c739395a5063caac36194381be7a60993"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1LC1RE_1LD0LC_1LE1LC_1RF0RE_1RA0RB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "47edfe287a094c1f896e912bfd05be1b243835c6",
+      "size": 107868,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/47edfe287a094c1f896e912bfd05be1b243835c6"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC0LC_1RD0RF_1LE1RC_1LB0LE_1RC1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b2ec78a52bd5f2e41f1d15509189781394f37bf0",
+      "size": 2501,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b2ec78a52bd5f2e41f1d15509189781394f37bf0"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC0RF_1LD1RB_1LE0LD_1RB0LB_1RB1RA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "daf67a794341d598f89f976374574da599da4cb5",
+      "size": 142911,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/daf67a794341d598f89f976374574da599da4cb5"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC0RF_1RD0RA_1LE1RB_1LB0LE_0RA0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9ae40c1240cf17a4588e44453c211451fea198e9",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9ae40c1240cf17a4588e44453c211451fea198e9"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC0RF_1RD0RA_1LE1RB_1LB0LE_0RB0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0f7d81d8139daada1dab1b161e728cb777d29356",
+      "size": 24586,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0f7d81d8139daada1dab1b161e728cb777d29356"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC1LF_1LD1RE_1LB0LD_1RA0RC_1RC0LE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "09f2f52faf6b26699301f98ebbb285576f1b7aa4",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/09f2f52faf6b26699301f98ebbb285576f1b7aa4"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC1RA_1RD0RB_1LE1RC_1LF0LE_1RC0LC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "54a1a29d44a55d4a9b34ee05659dd1b7caddfc18",
+      "size": 2501,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/54a1a29d44a55d4a9b34ee05659dd1b7caddfc18"
+    },
+    {
+      "path": "BusyBeaver/BB6/NonHalt/M_1RBHHH_1RC1RE_1LD0RC_0RE0LD_1LC0LF_1RA0RF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7fc806ba49a51be78d86d0657c41b87898da4f77",
+      "size": 1233,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7fc806ba49a51be78d86d0657c41b87898da4f77"
+    },
+    {
+      "path": "BusyBeaver/BB6/Pomme",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c01634ad410ecbac25080f70adac0d27c6e331f4",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/c01634ad410ecbac25080f70adac0d27c6e331f4"
+    },
+    {
+      "path": "BusyBeaver/BB6/Pomme/NonHalt.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b17d729559d1463b794952bbfa6d6091f026da4e",
+      "size": 157243,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b17d729559d1463b794952bbfa6d6091f026da4e"
+    },
+    {
+      "path": "BusyBeaver/BB6/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "15830e7ff0a96f29410ab6e71905e8f3d738ec00",
+      "size": 118483,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/15830e7ff0a96f29410ab6e71905e8f3d738ec00"
+    },
+    {
+      "path": "BusyBeaver/Basic.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2266e2bb6036d86f677dff58d6cdbb54e9c3c01",
+      "size": 49605,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e2266e2bb6036d86f677dff58d6cdbb54e9c3c01"
+    },
+    {
+      "path": "BusyBeaver/Bridge.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "44ef97dd7852b3c35ea0ba04ea8ea67515671b2c",
+      "size": 11295,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/44ef97dd7852b3c35ea0ba04ea8ea67515671b2c"
+    },
+    {
+      "path": "BusyBeaver/Calculi",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "e2d660ec91fe3a039cedb8ed2dc2c38cd3d13d4b",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/e2d660ec91fe3a039cedb8ed2dc2c38cd3d13d4b"
+    },
+    {
+      "path": "BusyBeaver/Calculi/CertTree.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f10e4aba367c7c62a646bba4e32981b7c5f3f250",
+      "size": 159921,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f10e4aba367c7c62a646bba4e32981b7c5f3f250"
+    },
+    {
+      "path": "BusyBeaver/Calculi/CertTreeDataA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99542182a33ac228b4c41ce5423b4bd1b14fe763",
+      "size": 616100,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/99542182a33ac228b4c41ce5423b4bd1b14fe763"
+    },
+    {
+      "path": "BusyBeaver/Calculi/CertTreeDataB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "888fc577c45d9897287c5fd7bb720ccf5797aeaf",
+      "size": 484547,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/888fc577c45d9897287c5fd7bb720ccf5797aeaf"
+    },
+    {
+      "path": "BusyBeaver/Calculi/Counter.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "344c300442f738f8745886241b2be025a66eb7fa",
+      "size": 76799,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/344c300442f738f8745886241b2be025a66eb7fa"
+    },
+    {
+      "path": "BusyBeaver/Calculi/CtlCertificate.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9854e575f1ea6da4818eacc3da5570a274c4b792",
+      "size": 10043,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9854e575f1ea6da4818eacc3da5570a274c4b792"
+    },
+    {
+      "path": "BusyBeaver/Calculi/Excursion.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c1780fa4235c82bfafbb3b08cc27e654448e9d1e",
+      "size": 28725,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c1780fa4235c82bfafbb3b08cc27e654448e9d1e"
+    },
+    {
+      "path": "BusyBeaver/Calculi/HaltShared.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6815914d9d0bd8e37533fe4cfd1f20daab680b51",
+      "size": 220839,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6815914d9d0bd8e37533fe4cfd1f20daab680b51"
+    },
+    {
+      "path": "BusyBeaver/Calculi/Longitudinal.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "607f3199679c6b11fce25594ebec712398083298",
+      "size": 100408,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/607f3199679c6b11fce25594ebec712398083298"
+    },
+    {
+      "path": "BusyBeaver/Calculi/LongitudinalCascade.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b222f358affd8a8ddc39570a40068582ddb04035",
+      "size": 254971,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b222f358affd8a8ddc39570a40068582ddb04035"
+    },
+    {
+      "path": "BusyBeaver/Calculi/RleCarryData.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e579aea0a6d5d01a38f90d779d0053d24ac56e76",
+      "size": 17846,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e579aea0a6d5d01a38f90d779d0053d24ac56e76"
+    },
+    {
+      "path": "BusyBeaver/Calculi/RleCarryEngine.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "880fe9e259073bdca28dc01801c2e2ad36e8ac37",
+      "size": 152916,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/880fe9e259073bdca28dc01801c2e2ad36e8ac37"
+    },
+    {
+      "path": "BusyBeaver/Calculi/SegmentChain.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d52be3020acf0b124a5ae2a16b4f04d591c296da",
+      "size": 296674,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d52be3020acf0b124a5ae2a16b4f04d591c296da"
+    },
+    {
+      "path": "BusyBeaver/Calculi/SharedDonorsA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "21ce980ab7f1fbb3cfe5d6f9932ecd9fda371967",
+      "size": 352829,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/21ce980ab7f1fbb3cfe5d6f9932ecd9fda371967"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d48faf318fca4a85b455fc64aaedb9b3fd1c6e2",
+      "size": 47225,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0d48faf318fca4a85b455fc64aaedb9b3fd1c6e2"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusB.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c2218aadfda4397b2714bdd37f2a6985d19094f8",
+      "size": 60167,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c2218aadfda4397b2714bdd37f2a6985d19094f8"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusC.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de84baf4ab1d5084edce7273e46ac8262fb56e31",
+      "size": 53913,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/de84baf4ab1d5084edce7273e46ac8262fb56e31"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusD.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abdfabf0d258cae16f82b3cb4f2f9f130074d200",
+      "size": 61932,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/abdfabf0d258cae16f82b3cb4f2f9f130074d200"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61d5aa35cc78e98c373e5785b833f33b5253aba1",
+      "size": 50916,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/61d5aa35cc78e98c373e5785b833f33b5253aba1"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusF.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfec44011722087caccfa9d8d582008413a6b5ed",
+      "size": 72098,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bfec44011722087caccfa9d8d582008413a6b5ed"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusG.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5d60c27f820df600e7881fc671c2f3adb16a7fd0",
+      "size": 121644,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5d60c27f820df600e7881fc671c2f3adb16a7fd0"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusH.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7375e794d3f65d91d170a74a083a7407ff3e32b0",
+      "size": 95168,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7375e794d3f65d91d170a74a083a7407ff3e32b0"
+    },
+    {
+      "path": "BusyBeaver/Calculi/WordCalculusI.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "599ad718f70f1a96583e1b50e4da8f20bd2764ef",
+      "size": 85955,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/599ad718f70f1a96583e1b50e4da8f20bd2764ef"
+    },
+    {
+      "path": "BusyBeaver/Cert.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "74f774bb3d124e47e0f86e9d87ce4bc6ed0ef746",
+      "size": 66127,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/74f774bb3d124e47e0f86e9d87ce4bc6ed0ef746"
+    },
+    {
+      "path": "BusyBeaver/Defs.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5715fed21890744cc2fb74f71f701973fffc0e2d",
+      "size": 37337,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5715fed21890744cc2fb74f71f701973fffc0e2d"
+    },
+    {
+      "path": "BusyBeaver/ElabRLE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3f274f92d826d04f6411b2275f07638297393e6e",
+      "size": 21548,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3f274f92d826d04f6411b2275f07638297393e6e"
+    },
+    {
+      "path": "BusyBeaver/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "13e7fa3bd805c4ceff3b070215db6f2c37c2abfc",
+      "size": 13120,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/13e7fa3bd805c4ceff3b070215db6f2c37c2abfc"
+    },
+    {
+      "path": "BusyBeaver/WordRLE.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bac80fbb7efad065bcece72faa8b61c123f3c14c",
+      "size": 38016,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bac80fbb7efad065bcece72faa8b61c123f3c14c"
+    },
+    {
+      "path": "BusyBeaverChallenge.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5291515939b52bb65669ba9871f23e1966fe551c",
+      "size": 418725,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5291515939b52bb65669ba9871f23e1966fe551c"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a67dcda0bcf750b5edc250560ad9805f618b4bb2",
+      "size": 1283,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a67dcda0bcf750b5edc250560ad9805f618b4bb2"
+    },
+    {
+      "path": "Challenge.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69e0957db6aaf4a5f2c6a13f6def7c532e8e6e6b",
+      "size": 44385,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/69e0957db6aaf4a5f2c6a13f6def7c532e8e6e6b"
+    },
+    {
+      "path": "Cryptids.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8d75fcb9982535172749866b5727f7a098b4ad38",
+      "size": 4832,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8d75fcb9982535172749866b5727f7a098b4ad38"
+    },
+    {
+      "path": "Cryptids",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "f7eea22327e63306e54d8133a7c85283498a6a3d",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/f7eea22327e63306e54d8133a7c85283498a6a3d"
+    },
+    {
+      "path": "Cryptids/ErdosTernary14.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6a87720698f4a6042e925d2b8822abc6f31e489c",
+      "size": 32712,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6a87720698f4a6042e925d2b8822abc6f31e489c"
+    },
+    {
+      "path": "Cryptids/ErdosTernary15.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bdcb2216f355d2991708b1cfcd6a3287fec022b4",
+      "size": 24943,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bdcb2216f355d2991708b1cfcd6a3287fec022b4"
+    },
+    {
+      "path": "Cryptids/Goldbach21.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77fba1e593e15947786410184b73402e3808074f",
+      "size": 91375,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/77fba1e593e15947786410184b73402e3808074f"
+    },
+    {
+      "path": "Cryptids/Machines.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "67e4453ae28f43fe4593c3334ee219bca4f58f7d",
+      "size": 28462,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/67e4453ae28f43fe4593c3334ee219bca4f58f7d"
+    },
+    {
+      "path": "Cryptids/Propositions.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5f5691293cbc7f12cfd70313707451cdcaf290b6",
+      "size": 32851,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5f5691293cbc7f12cfd70313707451cdcaf290b6"
+    },
+    {
+      "path": "Cryptids/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "095f1c173b54bb120604eea245956ce2b502168e",
+      "size": 12501,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/095f1c173b54bb120604eea245956ce2b502168e"
+    },
+    {
+      "path": "Cryptids/ReductionSupport",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "921e2929d8e04c18a04b0fbec250c074ffbaac48",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/921e2929d8e04c18a04b0fbec250c074ffbaac48"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "7b36ac7e86021c6f1d86ea9f952e77ad0c817b08",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/7b36ac7e86021c6f1d86ea9f952e77ad0c817b08"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann/FiniteStage.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "841a6d081953445ef24f4a75a094eee95bbce0af",
+      "size": 1058,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/841a6d081953445ef24f4a75a094eee95bbce0af"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann/WordGuard.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fee3da18f1fa31bb2f5f35f7eb5a9eb5536af30e",
+      "size": 640,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fee3da18f1fa31bb2f5f35f7eb5a9eb5536af30e"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1e8e27f07368bd83ccfe6c55cd34f1b0a401ba2f",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/1e8e27f07368bd83ccfe6c55cd34f1b0a401ba2f"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Algorithm95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d1f1e290d24cf9103efc6d525d02cba26a9b8235",
+      "size": 1026,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d1f1e290d24cf9103efc6d525d02cba26a9b8235"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ArithmeticDispatch95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7a88be04a79f45f2fec0b366652deeb7399f404c",
+      "size": 4027,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7a88be04a79f45f2fec0b366652deeb7399f404c"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "92ef6be2361e671dbd495d27566a9fb46c2d3726",
+      "size": 1740,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/92ef6be2361e671dbd495d27566a9fb46c2d3726"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95Contracts.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "411c0b6fed3479d144158dd7140ec2fd64b3e265",
+      "size": 1402,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/411c0b6fed3479d144158dd7140ec2fd64b3e265"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95Layout.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cce15ae524cede00d516a3d9c13468144b5d5213",
+      "size": 730,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cce15ae524cede00d516a3d9c13468144b5d5213"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95Physical.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab506cc201d2e878f30140d586dac07cfd10f7ec",
+      "size": 3603,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ab506cc201d2e878f30140d586dac07cfd10f7ec"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95Raw.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a93e515ef559f76a90dd92216e97ae24501e3035",
+      "size": 2477,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a93e515ef559f76a90dd92216e97ae24501e3035"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95RawPhysical.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9f467eb485ababa755609d9b1f69699a7402292",
+      "size": 29524,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f9f467eb485ababa755609d9b1f69699a7402292"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95RawReturn.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1bc10620d7ec5b4cfceeff84684d7aa5628c61d1",
+      "size": 9936,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1bc10620d7ec5b4cfceeff84684d7aa5628c61d1"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Auxiliary95Return.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d85ee387ce7e3faa3ce0f3a53e27b1b1f2f169ac",
+      "size": 2893,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d85ee387ce7e3faa3ce0f3a53e27b1b1f2f169ac"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Bootstrap95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3c6eae70196edf6d1beb66c06d7b481e2acdf387",
+      "size": 2917,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3c6eae70196edf6d1beb66c06d7b481e2acdf387"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Bounded95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "48e9c12d3693aff95188a773f48f3004ffd8e79b",
+      "size": 8246,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/48e9c12d3693aff95188a773f48f3004ffd8e79b"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/BoundedUnwind95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ab81f825a66759c7964e84d8067367fe269da27",
+      "size": 5114,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8ab81f825a66759c7964e84d8067367fe269da27"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ClockBound95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1bd959c4cfc7fefe728a90c84bcc32f03005c9e",
+      "size": 1180,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/b1bd959c4cfc7fefe728a90c84bcc32f03005c9e"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ControlStep95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "157ad6c8e216ab8f3434d84e98f28bf52854e83b",
+      "size": 12896,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/157ad6c8e216ab8f3434d84e98f28bf52854e83b"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ControllerSchema95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53e8005a4f17f15833167ef9aacd147c39d166a0",
+      "size": 7427,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/53e8005a4f17f15833167ef9aacd147c39d166a0"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/FinitePrefix95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "462982bf38c83f1c5dc4d5b96ba5d68de2a899d8",
+      "size": 2685,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/462982bf38c83f1c5dc4d5b96ba5d68de2a899d8"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Initializer95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "862097a2bda891b69bc0b73802a50f1e2980db68",
+      "size": 6659,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/862097a2bda891b69bc0b73802a50f1e2980db68"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/NativeGuard95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "112bc250a86b00782386ba92740eb1c57fc303a2",
+      "size": 2884,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/112bc250a86b00782386ba92740eb1c57fc303a2"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/NoThree95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87f0d9a870a1dc62116945266e80639b5efa71aa",
+      "size": 3600,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/87f0d9a870a1dc62116945266e80639b5efa71aa"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Padding95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6e2b796f2227ca04c2c22f1c0b0d75e3193207d8",
+      "size": 7557,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6e2b796f2227ca04c2c22f1c0b0d75e3193207d8"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/PaddingRaw95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87ff157adb46b092d4eee7e041b42681b40fd538",
+      "size": 11327,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/87ff157adb46b092d4eee7e041b42681b40fd538"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Parser95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "30491f69e8eef03a817850e39009f00fa7019a57",
+      "size": 5737,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/30491f69e8eef03a817850e39009f00fa7019a57"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Physical95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11f5f2b5b3357a5239666de395ff41dfafafe1d6",
+      "size": 1424,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/11f5f2b5b3357a5239666de395ff41dfafafe1d6"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/PhysicalTrace95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eab6d6513b0f2ffe70e9df44841129c10ba6b2a3",
+      "size": 9309,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/eab6d6513b0f2ffe70e9df44841129c10ba6b2a3"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/PrecreditTrace95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dfe84c7cca11b28c00433b1fe81baa2414c42928",
+      "size": 5055,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/dfe84c7cca11b28c00433b1fe81baa2414c42928"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Projection95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8091d523829ed6b645c494ecad69bc37ba400dba",
+      "size": 1754,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8091d523829ed6b645c494ecad69bc37ba400dba"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fe00ade0b23ceb76f652dd3e71215e78e873925c",
+      "size": 4431,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fe00ade0b23ceb76f652dd3e71215e78e873925c"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ReferenceBridge95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "563b1c4cbe1678903bba47b660236a3e08e73611",
+      "size": 72193,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/563b1c4cbe1678903bba47b660236a3e08e73611"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ReferenceLogical95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2518de9c357c95f6b06c0c9ac7c412e324bed423",
+      "size": 12592,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2518de9c357c95f6b06c0c9ac7c412e324bed423"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ReferenceLogicalSemantics95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "663b2af6fa87b2cfc3c8d73b88102044c4325346",
+      "size": 2737,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/663b2af6fa87b2cfc3c8d73b88102044c4325346"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ReferencePermutation95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c879b72ba0d0f3b0befafd13bf54daa876822504",
+      "size": 3359,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c879b72ba0d0f3b0befafd13bf54daa876822504"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/ReferenceProgram95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "96728dcc38e269f2dc49eb979fbba13a9ebbc737",
+      "size": 2150,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/96728dcc38e269f2dc49eb979fbba13a9ebbc737"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Return95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eaeeca1b951552131b44df4884463ea9cf8a21a5",
+      "size": 24303,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/eaeeca1b951552131b44df4884463ea9cf8a21a5"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/RootNative95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "883ede6070950b1435b4372a481c096834f15f67",
+      "size": 3230,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/883ede6070950b1435b4372a481c096834f15f67"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Stage95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "096aeffc26350ca0fb65ac3683f7405b1ebcdfdb",
+      "size": 3422,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/096aeffc26350ca0fb65ac3683f7405b1ebcdfdb"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/StrictExit95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cda62440e2c37935cdd79ba3141e20cddf729ecf",
+      "size": 5381,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cda62440e2c37935cdd79ba3141e20cddf729ecf"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/SwapBank95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fd48ee28f2b992f9fb692f00686852b302aceeae",
+      "size": 2344,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fd48ee28f2b992f9fb692f00686852b302aceeae"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Terminal95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2cfa9f17eb4878522e4e7667911c56323648b727",
+      "size": 5759,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2cfa9f17eb4878522e4e7667911c56323648b727"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/TypedPrewidth95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3977c2c2bfeab5a9a73177675d3be1a50b908b2",
+      "size": 10483,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f3977c2c2bfeab5a9a73177675d3be1a50b908b2"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/WidthSteps95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4dda34730cd0321d8e00fe54b776580c5c95a343",
+      "size": 4641,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4dda34730cd0321d8e00fe54b776580c5c95a343"
+    },
+    {
+      "path": "Cryptids/ReductionSupport/Riemann95/Witness95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2f0b9fa8e289468aa1a18cdb0cef719eb7e1869e",
+      "size": 4997,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2f0b9fa8e289468aa1a18cdb0cef719eb7e1869e"
+    },
+    {
+      "path": "Cryptids/Riemann104.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "94f41ffd4fd4fb7e591047ebdf77411141b420c8",
+      "size": 9289,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/94f41ffd4fd4fb7e591047ebdf77411141b420c8"
+    },
+    {
+      "path": "Cryptids/Riemann120.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3950d82d05943946a04c2a8423837bb76c55396",
+      "size": 53367,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f3950d82d05943946a04c2a8423837bb76c55396"
+    },
+    {
+      "path": "Cryptids/Riemann95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3fd86d0b954485707b620846f36ccd98d5ba970f",
+      "size": 1519,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3fd86d0b954485707b620846f36ccd98d5ba970f"
+    },
+    {
+      "path": "Cryptids/Riemann95Definition.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cabc27cb96a7eecdfb8254e98c8dc0a9c9144a38",
+      "size": 1153,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cabc27cb96a7eecdfb8254e98c8dc0a9c9144a38"
+    },
+    {
+      "path": "Cryptids/Semantics",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "356480d62532d5464257bc2d7d9315e019d15fb3",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/356480d62532d5464257bc2d7d9315e019d15fb3"
+    },
+    {
+      "path": "Cryptids/Semantics/ErdosTernary14.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d213cefd531044b76afe7985557136e0c16bf95",
+      "size": 754,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3d213cefd531044b76afe7985557136e0c16bf95"
+    },
+    {
+      "path": "Cryptids/Semantics/ErdosTernary15.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3d7e3f05b7916a77f0bf7ee0973aa70f23e1c060",
+      "size": 3268,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3d7e3f05b7916a77f0bf7ee0973aa70f23e1c060"
+    },
+    {
+      "path": "Cryptids/Semantics/Goldbach.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7264bbde277e99bd6495d34ccebb98facfcd911a",
+      "size": 3274,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/7264bbde277e99bd6495d34ccebb98facfcd911a"
+    },
+    {
+      "path": "Cryptids/Semantics/PA.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e1e6ec44721a1b8e2838e44d7df22615d8e204f",
+      "size": 2543,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8e1e6ec44721a1b8e2838e44d7df22615d8e204f"
+    },
+    {
+      "path": "Cryptids/Semantics/PA",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "6377f4fab9bd65dd269b2a62add3e7d3f0bc3746",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/6377f4fab9bd65dd269b2a62add3e7d3f0bc3746"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Adequacy.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84c973c7cbe9f4842eb1d98827d5729cd04f9504",
+      "size": 72266,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/84c973c7cbe9f4842eb1d98827d5729cd04f9504"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Arithmetic.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c5b5d4be07680c82bc49ecf3654e455398b6c942",
+      "size": 163137,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c5b5d4be07680c82bc49ecf3654e455398b6c942"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Completeness.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9f2b9b3b8a08ede91a17d296e364b846860a4573",
+      "size": 60250,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9f2b9b3b8a08ede91a17d296e364b846860a4573"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Syntax.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4109060052ed316e026f0b6b48f949e458a8de85",
+      "size": 28001,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4109060052ed316e026f0b6b48f949e458a8de85"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Zf380.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3f14ce20fb9f89612372ccf94128ac5ff747e17",
+      "size": 34218,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f3f14ce20fb9f89612372ccf94128ac5ff747e17"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Zf393",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5de3aa5cb918d6132163f4b5c4413a831cecce72",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/5de3aa5cb918d6132163f4b5c4413a831cecce72"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Zf393/Backend.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "07596350a1d7cc3d136f962df955a9c05ad0afe9",
+      "size": 123519,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/07596350a1d7cc3d136f962df955a9c05ad0afe9"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Zf393/Program.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c385de44bbdd97a9852c4a3b5b5acae4ca0977d",
+      "size": 212396,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6c385de44bbdd97a9852c4a3b5b5acae4ca0977d"
+    },
+    {
+      "path": "Cryptids/Semantics/PA/Zf393/Soundness.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "69b5e05048f27a224ad681520fe95609350f4511",
+      "size": 59179,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/69b5e05048f27a224ad681520fe95609350f4511"
+    },
+    {
+      "path": "Cryptids/Semantics/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a295ee0b6d4631d26121aa8e5115cbb38ce348f5",
+      "size": 45538,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a295ee0b6d4631d26121aa8e5115cbb38ce348f5"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fd06a712211a21ccce4ccaee24137275869b204",
+      "size": 4828,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1fd06a712211a21ccce4ccaee24137275869b204"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4962985353bb21aa8ee3136776d7cf59d08adb4b",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/4962985353bb21aa8ee3136776d7cf59d08adb4b"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/Analytic.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab33c577477ffc2a28071dd239373f3036016354",
+      "size": 33482,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/ab33c577477ffc2a28071dd239373f3036016354"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/DigammaBinet.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46ae1d9009895affea6433438058db0fdc9bbf78",
+      "size": 96093,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/46ae1d9009895affea6433438058db0fdc9bbf78"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/Dispatcher.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a93473af097633c4537ff07d8a24d1f6e64ecd95",
+      "size": 106739,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a93473af097633c4537ff07d8a24d1f6e64ecd95"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/ExplicitLarge.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f3aa6ead731417fc76f76e6d0993c3bb302761c0",
+      "size": 17346,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f3aa6ead731417fc76f76e6d0993c3bb302761c0"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/Gadgets.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e86a6d38c96894568f762d4cb8aec1ac28ffe6a9",
+      "size": 112943,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e86a6d38c96894568f762d4cb8aec1ac28ffe6a9"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/HorizontalBounds.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "11d3b915f9e756426c1b93fb6240d00ea1e10415",
+      "size": 117417,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/11d3b915f9e756426c1b93fb6240d00ea1e10415"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/RegisterMachine.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "75f8ffb156eae5e6b02602ecfa5789fe45dce624",
+      "size": 138898,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/75f8ffb156eae5e6b02602ecfa5789fe45dce624"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/Schmidt.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "73fcc9cec23539a746ae258216a0f3bbac1cb862",
+      "size": 75721,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/73fcc9cec23539a746ae258216a0f3bbac1cb862"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/VonMangoldtCount.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a464022fc964044601d02250f162abdfc8bedfb3",
+      "size": 115986,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a464022fc964044601d02250f162abdfc8bedfb3"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann/WeightedStieltjes.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb01963fb2f81d49217e0e6b0dd1ec2a852f2805",
+      "size": 284872,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/fb01963fb2f81d49217e0e6b0dd1ec2a852f2805"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "33981627c528044b058c7c2a570ee3c5b2b7375e",
+      "size": 2147,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/33981627c528044b058c7c2a570ee3c5b2b7375e"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "725e7a8e571a5ee98170b2b05fb3fbfc0c2c11b3",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/725e7a8e571a5ee98170b2b05fb3fbfc0c2c11b3"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120/Analytic.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "469ca1a628495aef02674162dce48c95cb6ec1ff",
+      "size": 58805,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/469ca1a628495aef02674162dce48c95cb6ec1ff"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120/Backend.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0802b364dc5f0cb23d369776fdde01a96fee811a",
+      "size": 188090,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0802b364dc5f0cb23d369776fdde01a96fee811a"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120/Bridge.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "99bc161289a5dd38186c8fcbbd16311e8b9f1d13",
+      "size": 2418,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/99bc161289a5dd38186c8fcbbd16311e8b9f1d13"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120/Program.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "16d583f574881bcc560a4903e109da4fcd577a16",
+      "size": 91479,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/16d583f574881bcc560a4903e109da4fcd577a16"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann120/VonMangoldt.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2d471fcf96a60826a4e203f333dfd0e57088c9d0",
+      "size": 107775,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2d471fcf96a60826a4e203f333dfd0e57088c9d0"
+    },
+    {
+      "path": "Cryptids/Semantics/Riemann95.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "476d1101cb827e1a29ce61232d2e7b8b0727fecf",
+      "size": 683,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/476d1101cb827e1a29ce61232d2e7b8b0727fecf"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d03057a06fc7011a3f4f1306214030c9a4ecc15f",
+      "size": 6491,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d03057a06fc7011a3f4f1306214030c9a4ecc15f"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "092f81a0a7ea70be1048ebd3bebb7b0a18334b7d",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/092f81a0a7ea70be1048ebd3bebb7b0a18334b7d"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/Boot.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "120543b246c49353419be6a824cd462acd91e0d2",
+      "size": 60598,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/120543b246c49353419be6a824cd462acd91e0d2"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/Dispatcher.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c7800f754ecf18b5a5c12382ca726f636c8d62d2",
+      "size": 159441,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c7800f754ecf18b5a5c12382ca726f636c8d62d2"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/Gadgets.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "90faf336afb31b58e3c6278d43e8aa6658d94027",
+      "size": 130710,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/90faf336afb31b58e3c6278d43e8aa6658d94027"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/RegisterMachine.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6ac5913b6e93074fadf2aa8283a108500bd922ea",
+      "size": 48236,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6ac5913b6e93074fadf2aa8283a108500bd922ea"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/Soundness.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "611e3edc534df805b76f13bd09bf4edecd5a6323",
+      "size": 16986,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/611e3edc534df805b76f13bd09bf4edecd5a6323"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf/Subroutines.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "c6c1af9329ad8a77af2f5bfe31c62d12dd67c06e",
+      "size": 195704,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/c6c1af9329ad8a77af2f5bfe31c62d12dd67c06e"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf393.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "257eba82d54d80e50c5c787c5ac7c0c62355e027",
+      "size": 3239,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/257eba82d54d80e50c5c787c5ac7c0c62355e027"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf393",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "383d4713350af2dd891a136b926c9e491fb382d8",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/383d4713350af2dd891a136b926c9e491fb382d8"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf393/Backend.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "294b8e7d5e8617f205a2db6c05c56c15524927a2",
+      "size": 245493,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/294b8e7d5e8617f205a2db6c05c56c15524927a2"
+    },
+    {
+      "path": "Cryptids/Semantics/Zf393/Program.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "55b4495bc0e47d00650367d7e69681a4b07d35c1",
+      "size": 211629,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/55b4495bc0e47d00650367d7e69681a4b07d35c1"
+    },
+    {
+      "path": "Cryptids/Zf380.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77e9fa83210c798f22b13eb503972e3758c8e842",
+      "size": 115094,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/77e9fa83210c798f22b13eb503972e3758c8e842"
+    },
+    {
+      "path": "Cryptids/Zf393.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e5787bdbc321f3a411cfc0a03ea44bef8fe5c0a7",
+      "size": 75354,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/e5787bdbc321f3a411cfc0a03ea44bef8fe5c0a7"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "size": 11358,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d645695673349e3947e8e5ae42332d0ac3164cd7"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "979d9ea0aa735b88641028a3af316faca72b9bc0",
+      "size": 10112,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/979d9ea0aa735b88641028a3af316faca72b9bc0"
+    },
+    {
+      "path": "RELATED_WORK.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2b524999ef0b24ee575a331f3b924ae47520aa3a",
+      "size": 9982,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/2b524999ef0b24ee575a331f3b924ae47520aa3a"
+    },
+    {
+      "path": "artifacts",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "2ee4c015356b5964a8c0f5af7f70875da756bbc0",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/2ee4c015356b5964a8c0f5af7f70875da756bbc0"
+    },
+    {
+      "path": "artifacts/a6",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "74b6126eac532ad9fc2fc9b9e38d225719f3a5a3",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/74b6126eac532ad9fc2fc9b9e38d225719f3a5a3"
+    },
+    {
+      "path": "artifacts/a6/Audit.lean",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52be35969a5d73dd9c6a66fb0aa99ef80ff20d84",
+      "size": 404,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/52be35969a5d73dd9c6a66fb0aa99ef80ff20d84"
+    },
+    {
+      "path": "artifacts/a6/PROOF.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cd686bedd2b7386a0ab6f00746e198780ff5c505",
+      "size": 14367,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/cd686bedd2b7386a0ab6f00746e198780ff5c505"
+    },
+    {
+      "path": "artifacts/a6/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4c7937b91c98fac78fcd51853f2f91dc17dd35cf",
+      "size": 4830,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4c7937b91c98fac78fcd51853f2f91dc17dd35cf"
+    },
+    {
+      "path": "artifacts/erdos_ternary_14",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c66597294f3f292e58957edab18afde3346d06c7",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/c66597294f3f292e58957edab18afde3346d06c7"
+    },
+    {
+      "path": "artifacts/erdos_ternary_14/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a115a38c757f0faa11b9358dd72adc8a36005038",
+      "size": 2861,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a115a38c757f0faa11b9358dd72adc8a36005038"
+    },
+    {
+      "path": "artifacts/erdos_ternary_14/machine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63fe8922b365175f8763e1469278c5c0b5938b48",
+      "size": 120,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/63fe8922b365175f8763e1469278c5c0b5938b48"
+    },
+    {
+      "path": "artifacts/erdos_ternary_14/source_sterin.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "380f5b1101a1ab1430251a662ecc04d0e20c8e09",
+      "size": 98,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/380f5b1101a1ab1430251a662ecc04d0e20c8e09"
+    },
+    {
+      "path": "artifacts/goldbach_21",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "dc5e2b281338fac47888c8b2766a45947eb8dea2",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/dc5e2b281338fac47888c8b2766a45947eb8dea2"
+    },
+    {
+      "path": "artifacts/goldbach_21/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "61caf1686bfe1675bd2b119d36fdfd18a6b542b9",
+      "size": 8094,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/61caf1686bfe1675bd2b119d36fdfd18a6b542b9"
+    },
+    {
+      "path": "artifacts/goldbach_21/machine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "172f7483d5a6c078a2f4c7600e5f1ad0ee7a4e67",
+      "size": 190,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/172f7483d5a6c078a2f4c7600e5f1ad0ee7a4e67"
+    },
+    {
+      "path": "artifacts/riemann_104",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "47d143db19e921965db074bd9559b21217c8db38",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/47d143db19e921965db074bd9559b21217c8db38"
+    },
+    {
+      "path": "artifacts/riemann_104/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ef478f0fe60f7a092555a81b59965cf7c806b32",
+      "size": 5444,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3ef478f0fe60f7a092555a81b59965cf7c806b32"
+    },
+    {
+      "path": "artifacts/riemann_104/machine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ca741ec4f4afbfe1cbf7aec33b24a08f5b9c219",
+      "size": 1009,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1ca741ec4f4afbfe1cbf7aec33b24a08f5b9c219"
+    },
+    {
+      "path": "artifacts/riemann_95",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "fbc6e4c56cfcff3c3a09af78f6aa5b37586b4e25",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/fbc6e4c56cfcff3c3a09af78f6aa5b37586b4e25"
+    },
+    {
+      "path": "artifacts/riemann_95/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a2f40d5c103b81338035383b09a32fb12b903fe",
+      "size": 2214,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3a2f40d5c103b81338035383b09a32fb12b903fe"
+    },
+    {
+      "path": "artifacts/riemann_95/machine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6f841a883bcf826d1fbdbd1c66497e072231c55",
+      "size": 924,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d6f841a883bcf826d1fbdbd1c66497e072231c55"
+    },
+    {
+      "path": "artifacts/zf_380",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "053dcc01a3b046f2d622a8b7fe7f1d3b9d231dfd",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/053dcc01a3b046f2d622a8b7fe7f1d3b9d231dfd"
+    },
+    {
+      "path": "artifacts/zf_380/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dbdda54e7230986c81a06d9670a3e04a5ed76d20",
+      "size": 4195,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/dbdda54e7230986c81a06d9670a3e04a5ed76d20"
+    },
+    {
+      "path": "artifacts/zf_380/machine.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d6da4a2538f420c97b250222e7748511612c149d",
+      "size": 4282,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d6da4a2538f420c97b250222e7748511612c149d"
+    },
+    {
+      "path": "baselines",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "745aa309d9b3129601037f2ff3b2bf08e44c0426",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/745aa309d9b3129601037f2ff3b2bf08e44c0426"
+    },
+    {
+      "path": "baselines/PROVENANCE.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a2ed84f155dad25767c390c01936b530e49a05be",
+      "size": 3491,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a2ed84f155dad25767c390c01936b530e49a05be"
+    },
+    {
+      "path": "baselines/sources",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "c757444458407cc8ac75d0d487ad5ccd0c72c3d3",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/c757444458407cc8ac75d0d487ad5ccd0c72c3d3"
+    },
+    {
+      "path": "baselines/sources/erdos_ternary_15_sterin_woods.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "506ddf380f46012b09469116fdb554ebb06a2672",
+      "size": 1180,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/506ddf380f46012b09469116fdb554ebb06a2672"
+    },
+    {
+      "path": "baselines/sources/goldbach_25_bbchallenge.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3e72ac981d235d17ed5a1b9000e2b3b96e5bc8de",
+      "size": 175,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/3e72ac981d235d17ed5a1b9000e2b3b96e5bc8de"
+    },
+    {
+      "path": "baselines/sources/riemann_120_shunia.tm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1ff983163b0d7f6180957b3d90b4e629bbc64dfc",
+      "size": 2948,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1ff983163b0d7f6180957b3d90b4e629bbc64dfc"
+    },
+    {
+      "path": "baselines/sources/riemann_744_sorear.tm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "56d25278efaae4e6b7aaa1c253ed490845f785d9",
+      "size": 53806,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/56d25278efaae4e6b7aaa1c253ed490845f785d9"
+    },
+    {
+      "path": "baselines/sources/zf_393_wade.tm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5a6ec4a05c43a5e7115b243a7c25025f3305696",
+      "size": 33454,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d5a6ec4a05c43a5e7115b243a7c25025f3305696"
+    },
+    {
+      "path": "baselines/sources/zf_432_wade.tm",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "abd60f26de079d36d0d8d81e1f38ed377187037b",
+      "size": 36892,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/abd60f26de079d36d0d8d81e1f38ed377187037b"
+    },
+    {
+      "path": "baselines/tables",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "b34ac6eb650316fbbfe5968a4d77757297ee0e25",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/b34ac6eb650316fbbfe5968a4d77757297ee0e25"
+    },
+    {
+      "path": "baselines/tables/erdos_ternary_15.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "107e864a9ee0c5041d9b11e6833d1ecb829b9afc",
+      "size": 729,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/107e864a9ee0c5041d9b11e6833d1ecb829b9afc"
+    },
+    {
+      "path": "baselines/tables/goldbach_25.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "af21c1dade8878ccf9f54d9b2837d8a37bc5320a",
+      "size": 816,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/af21c1dade8878ccf9f54d9b2837d8a37bc5320a"
+    },
+    {
+      "path": "baselines/tables/riemann_120.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dcc81d5a81c9c8216fb2b0ddc29b703a377ba276",
+      "size": 3225,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/dcc81d5a81c9c8216fb2b0ddc29b703a377ba276"
+    },
+    {
+      "path": "baselines/tables/riemann_744.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "107bf8569ecf958cc413eba1a1a2063f56ab055f",
+      "size": 33830,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/107bf8569ecf958cc413eba1a1a2063f56ab055f"
+    },
+    {
+      "path": "baselines/tables/zf_393.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a30fb56ad117cf9fb23c050f50a8ae35ffafea6d",
+      "size": 15792,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/a30fb56ad117cf9fb23c050f50a8ae35ffafea6d"
+    },
+    {
+      "path": "baselines/tables/zf_432.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8e04d1ec0000ea41c6c49dab4129befdcf20345a",
+      "size": 17402,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/8e04d1ec0000ea41c6c49dab4129befdcf20345a"
+    },
+    {
+      "path": "comparator",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "178a8e1ef1e971651ddef7430add5b0067a075a5",
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/trees/178a8e1ef1e971651ddef7430add5b0067a075a5"
+    },
+    {
+      "path": "comparator/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f5a903c6ec6306bc878c6cce733ed6ad7cd0a6e0",
+      "size": 9259,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f5a903c6ec6306bc878c6cce733ed6ad7cd0a6e0"
+    },
+    {
+      "path": "comparator/a6.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "429ef91afadab60301e674f261a97e58a525ae1d",
+      "size": 315,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/429ef91afadab60301e674f261a97e58a525ae1d"
+    },
+    {
+      "path": "comparator/all.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45857bbc7cb8cce23d60a20b4cd8f8a3ff127305",
+      "size": 2559,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/45857bbc7cb8cce23d60a20b4cd8f8a3ff127305"
+    },
+    {
+      "path": "comparator/busy_beaver.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1448dafc010544522affa7b45633d610c06c5776",
+      "size": 59323,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/1448dafc010544522affa7b45633d610c06c5776"
+    },
+    {
+      "path": "comparator/constructive.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "043f3a3c582f0afed650f407a746644be30dbe2b",
+      "size": 1104,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/043f3a3c582f0afed650f407a746644be30dbe2b"
+    },
+    {
+      "path": "comparator/erdos_ternary_14.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d7936f43c34ad092a09bbbafed3354daa6dc45d",
+      "size": 420,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/0d7936f43c34ad092a09bbbafed3354daa6dc45d"
+    },
+    {
+      "path": "comparator/erdos_ternary_15.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "397065c8a228baea273aa7bfa5df5dfbfcc68ac9",
+      "size": 377,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/397065c8a228baea273aa7bfa5df5dfbfcc68ac9"
+    },
+    {
+      "path": "comparator/goldbach_21.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6eebe2c7ad172cf565939c5cd3ad074b211be620",
+      "size": 286,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/6eebe2c7ad172cf565939c5cd3ad074b211be620"
+    },
+    {
+      "path": "comparator/goldbach_semantics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfe01ea1967f3aacab1355323a8ab5d833167971",
+      "size": 360,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/bfe01ea1967f3aacab1355323a8ab5d833167971"
+    },
+    {
+      "path": "comparator/pa_semantics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "4418c2b7b9165261b0fe524c433c94ff94205e90",
+      "size": 692,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/4418c2b7b9165261b0fe524c433c94ff94205e90"
+    },
+    {
+      "path": "comparator/riemann_104.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "64cea8fbe3e4008b333cf2cdd367e1c63f796912",
+      "size": 286,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/64cea8fbe3e4008b333cf2cdd367e1c63f796912"
+    },
+    {
+      "path": "comparator/riemann_120.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "86402fc4cc5c5f3ab9bb9b0ff7d2797d34f1cf16",
+      "size": 371,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/86402fc4cc5c5f3ab9bb9b0ff7d2797d34f1cf16"
+    },
+    {
+      "path": "comparator/riemann_95.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f104cc84345c90796e476b7593b2a59fec97d4e2",
+      "size": 405,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f104cc84345c90796e476b7593b2a59fec97d4e2"
+    },
+    {
+      "path": "comparator/riemann_semantics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "802549c599a6cb09e1b498582034765e89fbe3c0",
+      "size": 373,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/802549c599a6cb09e1b498582034765e89fbe3c0"
+    },
+    {
+      "path": "comparator/zf_380.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de5666b701693386286d531212283bd95ec6e637",
+      "size": 271,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/de5666b701693386286d531212283bd95ec6e637"
+    },
+    {
+      "path": "comparator/zf_393.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "396959ae0f1d0e5ba1eac9ad634d87da69e4879b",
+      "size": 447,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/396959ae0f1d0e5ba1eac9ad634d87da69e4879b"
+    },
+    {
+      "path": "comparator/zf_semantics.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5bc7059f49facec322e69f8c7f536d4662e4cd98",
+      "size": 388,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5bc7059f49facec322e69f8c7f536d4662e4cd98"
+    },
+    {
+      "path": "formalization.yaml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb6409e1ca1711d013e19fc1207752c4a4d2252f",
+      "size": 25155,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/eb6409e1ca1711d013e19fc1207752c4a4d2252f"
+    },
+    {
+      "path": "lake-manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "513527cb59ef475fc6bd4206bd2fadc616669035",
+      "size": 4373,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/513527cb59ef475fc6bd4206bd2fadc616669035"
+    },
+    {
+      "path": "lakefile.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f078509b6dd9a2814906c52c0e68a5e9f94dd4db",
+      "size": 582,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/f078509b6dd9a2814906c52c0e68a5e9f94dd4db"
+    },
+    {
+      "path": "lean-toolchain",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "9532ebf33701f2ff0a999f12b21fb7a675f24e6e",
+      "size": 29,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/9532ebf33701f2ff0a999f12b21fb7a675f24e6e"
+    },
+    {
+      "path": "literate-overrides.css",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "227a5a0310230c65e25f03a9006ed7b71163b50d",
+      "size": 320,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/227a5a0310230c65e25f03a9006ed7b71163b50d"
+    },
+    {
+      "path": "literate.toml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7f130a45d80fb18cc64aa72fbbc2b0e1c6002ec",
+      "size": 2095,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/d7f130a45d80fb18cc64aa72fbbc2b0e1c6002ec"
+    },
+    {
+      "path": "verify.py",
+      "mode": "100755",
+      "type": "blob",
+      "sha": "5ace947bdb4fd8e5065dc61734ba701f5f2c7356",
+      "size": 45746,
+      "url": "https://api.github.com/repos/google-deepmind/cryptids/git/blobs/5ace947bdb4fd8e5065dc61734ba701f5f2c7356"
+    }
+  ],
+  "truncated": false
+}

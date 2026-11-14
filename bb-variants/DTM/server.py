@@ -36,6 +36,7 @@ def load_champions() -> dict[str, Any]:
 
 
 def run_fast_sim(spec: str, cap: int, slice_rad: int = 48) -> dict[str, Any]:
+    cap = max(1, min(int(cap), 10_000_000_000))
     dtm = DTM.parse(spec)
     norm_spec = dtm.spec()
     if os.path.exists(FAST_EXE):
@@ -44,7 +45,7 @@ def run_fast_sim(spec: str, cap: int, slice_rad: int = 48) -> dict[str, Any]:
             stdin=subprocess.DEVNULL,
             capture_output=True,
             text=True,
-            timeout=30,
+            timeout=120,
         )
         if proc.returncode == 0 and proc.stdout.strip():
             data = json.loads(proc.stdout.strip().splitlines()[-1])
@@ -89,6 +90,7 @@ def run_fast_search(payload: dict[str, Any]) -> dict[str, Any]:
     cap = min(int(payload.get("cap", 100000)), 10_000_000)
     budget_ms = max(100, min(int(payload.get("budget_ms", 1200)), 10_000))
     mutate_spec = payload.get("mutate_spec", "").strip()
+    order_str = payload.get("order", "").strip()
     seed = int(payload.get("seed", random.randint(1, 2**31 - 1)))
 
     if os.path.exists(FAST_EXE):
@@ -103,6 +105,8 @@ def run_fast_search(payload: dict[str, Any]) -> dict[str, Any]:
             "--budget-ms", str(budget_ms),
             "--seed", str(seed),
         ]
+        if order_str:
+            cmd.extend(["--order", order_str])
         if mutate_spec:
             cmd.extend(["--mutate", DTM.parse(mutate_spec).spec()])
         else:
@@ -219,6 +223,8 @@ class DTMHandler(http.server.SimpleHTTPRequestHandler):
                     "signature": dtm.signature(),
                     "equivalent_tm": dtm.to_equivalent_standard_tm(),
                     "num_rules": len(dtm.rules),
+                    "order": dtm.order_str() if dtm.order is not None else None,
+                    "schedule": dtm.schedule(),
                     "rules": [{"states": r.states, "symbols": r.symbols} for r in dtm.rules],
                 })
                 return

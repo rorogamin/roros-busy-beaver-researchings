@@ -1,0 +1,18 @@
+File ".\work2.v", line 32, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work2.v", line 384, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 807, characters 8-24:
+Error: In environment
+b, n : nat
+x : nat
+Unable to unify "f_veblen b x x" with
+ "(fix f_veblen (b : nat) : nat -> nat -> nat :=
+     match b with
+     | 0 => fgh_tower
+     | S b' => veblen_next (f_veblen b')
+     end)
+    b (iter_nat (fun x : nat => f_veblen b x x) n n) x".
+

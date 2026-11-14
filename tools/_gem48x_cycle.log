@@ -1,0 +1,57 @@
+  sweep q_old = 1
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  harness: harness skeleton: not yet wired
+  sweep q_old = 2
+  sweep q_old = 3
+  sweep q_old = 4
+  sweep q_old = 5
+  sweep q_old = 6
+  sweep q_old = 7
+  sweep q_old = 8
+  sweep q_old = 9
+  sweep q_old = 10
+  sweep q_old = 11
+  sweep q_old = 12
+  sweep q_old = 13
+  sweep q_old = 14
+  sweep q_old = 15
+  sweep q_old = 16
+  sweep q_old = 17
+  sweep q_old = 18
+  sweep q_old = 19
+  sweep q_old = 20
+  sweep q_old = 21
+  sweep q_old = 22
+  sweep q_old = 23
+  sweep q_old = 24
+  sweep q_old = 25
+  sweep q_old = 26
+  sweep q_old = 27
+  sweep q_old = 28
+  sweep q_old = 29
+  sweep q_old = 30
+  sweep q_old = 31
+  sweep q_old = 32
+  sweep q_old = 33
+  sweep q_old = 34
+  sweep q_old = 35
+  sweep q_old = 36
+  sweep q_old = 37
+  sweep q_old = 38
+  sweep q_old = 39
+  sweep q_old = 40
+  sweep q_old = 41
+  sweep q_old = 42
+  sweep q_old = 43
+  sweep q_old = 44
+  sweep q_old = 45
+  sweep q_old = 46
+  sweep q_old = 47
+  sweep q_old = 48
+18432 cycle cases: 18432 FAILURES

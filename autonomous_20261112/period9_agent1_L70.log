@@ -1,0 +1,6 @@
+t=100000000 p=-1 s=1 min=-2 max=70
+t=200000000 p=-1 s=1 min=-2 max=70
+t=300000000 p=1 s=1 min=-2 max=70
+t=400000000 p=-1 s=2 min=-2 max=70
+t=500000000 p=-1 s=1 min=-2 max=70
+NOCYCLE cap=500000000 p=-1 s=1 min=-2 max=70

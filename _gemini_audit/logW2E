@@ -1,0 +1,38 @@
+File ".\work2.v", line 32, characters 0-51:
+Warning: "From Coq" has been replaced by "From Stdlib".
+[deprecated-from-Coq,deprecated-since-9.0,deprecated,default]
+File ".\work2.v", line 384, characters 0-121:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1115, characters 0-92:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1119, characters 2-64:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1119, characters 2-64:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1191, characters 0-280:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1191, characters 0-280:
+Warning: To avoid stack overflow, large numbers in nat are interpreted as
+applications of Init.Nat.of_num_uint. [abstract-large-number,numbers,default]
+File ".\work2.v", line 1280, characters 9-17:
+Error:
+In environment
+Htm1 :
+  step_tm_with (trans_T48 tau_eta0_phi5) 1653 (cfg_worm (-21) 1 W_eta0_1731) =
+  Some (cfg_worm (-22) 2 W_eta0_3384)
+Hw1 : step_worm_2d W_eta0_1731 1 = Some (W_eta0_3384, 2)
+Htm2 :
+  step_tm_with (trans_T48 tau_eta0_phi5) 2743 (cfg_worm (-22) 2 W_eta0_3384) =
+  Some (cfg_worm (-23) 3 W_eta0_6127)
+Hw2 : step_worm_2d W_eta0_3384 2 = Some (W_eta0_6127, 3)
+Unable to unify
+ "verified_macro_run ?M1384 ?M1385 ?M1386 ?M1387 (?M1388 + ?M1391) ?M1392"
+with
+ "verified_macro_run (trans_T48 tau_eta0_phi5) (-22) 2 W_eta0_3384 2743
+    (cfg_worm (-23) 3 W_eta0_6127)".
+

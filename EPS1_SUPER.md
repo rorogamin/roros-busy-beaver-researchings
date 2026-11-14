@@ -233,3 +233,78 @@ observed-context fixpoint (a refreshed corpus found no further
 merges).  The residual wall is unchanged in kind: the walk-back
 families' landing tails and the append chain, documented in
 EPS1_WALKWALL.md.
+
+-----------------------------------------------------------------------
+2026-11-11  r5 UNDER-50 GATE: measured NO (71/72/76)
+-----------------------------------------------------------------------
+The next one-object revision was measured with
+`tools/eps1_odi_under50.py` (exit 0; every gate green):
+
+    sn=1: 71 states / 128 rows, exact bisimulation floor 71
+    sn=2: 72 states / 131 rows, exact bisimulation floor 72
+    sn=3: 76 states / 138 rows, exact bisimulation floor 76
+
+Gate 1 census landings are 43 / 231 / 2418, all model-equal; gate 2
+is 400 starts per build, ALL OK; gate 3 tiers 1..7 are exact for all
+three builds.  The separate observed-context pass found 0 further
+merges on sn=1 and sn=2.  The floor is therefore 71 on the shipped
+one-object layout, not 49.
+
+The r5 route-A reordering was tested and rejected before shipping:
+widening the singleton at dispatch and reusing the shared return walk
+saves the WR_A family on paper, but the shared pred/home tail erases
+the top mark at its terminal.  A corrected return needs a three-state
+landing (and the park-extension writer), which gives the states back;
+the experimental table was not gate-green and was not committed.  The
+67-state U3 draft is not an alternative either: it dies at N3 and
+fails move faithfulness.
+
+Why the 21-state gap remains: the four p>=1/p0 walk-back families
+(WB_P, WR_FS, WB_ABS, WR_A) plus their terminals, the append counter,
+and the cascade measure.  This is the fork problem, not dead-row
+slack: the trace corpus leaves dead rows but every candidate merge on
+a live symbol changes a landing.  No under-50 table is claimed.  The
+next architecture must free a case bit at the walk terminal (a
+multi-track or self-delimiting code) or move the park to the active
+end with an explicit park-shift rule; both remain open ledger items.
+
+-----------------------------------------------------------------------
+2026-11-11  r5 TIER-1 SPECIALIZATION: 61 states
+-----------------------------------------------------------------------
+The odometer pivot produced a smaller table for the exact tier-1 run,
+`tools/eps1_odi_t1.py`.  It starts from the 71-state build, retains only
+the rows fired by `chain_of(D.tower(1))`, prunes to reachable states,
+and applies the two surviving observed-context merges:
+
+    reached: 63 states / 89 rows
+    merged:  61 states / 87 rows
+
+the exact bisimulation pass on the restricted table has no further
+merge.  The script checks all 9 tier-1 campaigns move-for-move against
+`eps1_chain.step` and exits 0.  This is a run-specialized table, not the
+general odometer: absent rows, tier-2+ inputs and FGH bounds are out of
+scope, and no such claim is made.  The finite trace certificate below is
+not an FGH proof.
+
+-----------------------------------------------------------------------
+2026-11-11  r5 TIER-1 ROCQ FINITE TRACE
+-----------------------------------------------------------------------
+`tools/emit_eps1_odi_t1_rocq.py` emits `rocq/Eps1OdiT1.v`, a generated,
+self-contained finite-trace certificate for that same 61-state table:
+
+    states 61 / rows 87
+    rest1_at  ...  rest9_at   step_tm 24/55/77/98/126/167/186/203/214
+    dead_at_215                step_tm 215 init = None
+    exact_run                  step_tm 214 = Some rest9 /\ 215 = None
+
+`coqc -Q . Top Eps1OdiT1.v` against Rocq 9.1.0 exits 0.  Every
+`Print Assumptions` reports `Closed under the global context`; there is
+no Axiom, Parameter, Hypothesis or Admitted step.  The first eight rest
+configurations are the `eps1_chain` model's expected landings, so the
+certificate checks model equality at eight boundaries and an empty tape
+at the ninth; the ninth head is not part of an empty-tape configuration.
+
+This is a finite trace certificate for the exact tier-1 run, not a proof
+of a general odometer or of an FGH bound, and it does not change the
+71/72/76 general counts.  The 61-state table still has deliberately
+absent rows outside that run.
