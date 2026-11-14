@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATS Studio — Absorbing Tag System</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo-group">
+      <div class="logo-badge">ATS</div>
+      <div>
+        <div class="app-title">Absorbing Tag System Studio</div>
+        <div class="app-subtitle">Queue simulator &amp; space-time diagram · Tagy Tag</div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="preset-picker-group">
+        <span class="preset-label">Machine</span>
+        <select id="presetSelect" class="preset-select">
+          <option value="">Custom tape</option>
+        </select>
+        <button class="btn btn-cyan" id="btnLoadPreset">Load</button>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn" id="btnExport" title="Download the current space-time diagram as a PNG">Export PNG</button>
+    </div>
+  </header>
+
+  <main class="app-container">
+    <section class="main-column">
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Step</span>
+          <span class="metric-value metric-highlight" id="metricStep">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Tokens</span>
+          <span class="metric-value" id="metricTokens">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">ATS length</span>
+          <span class="metric-value" id="metricLength">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Zeros</span>
+          <span class="metric-value" id="metricZeros">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Non-fn(1)</span>
+          <span class="metric-value" id="metricCore">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Observed types</span>
+          <span class="metric-value" id="metricTypes">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Max tokens</span>
+          <span class="metric-value" id="metricMax">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Token decreases</span>
+          <span class="metric-value" id="metricDecreases">0</span>
+        </div>
+      </div>
+
+      <div id="statusBadge" class="status-badge">Ready — press Run, Step, or +100.</div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Space-time diagram <span class="dim">(time flows down; each row is a snapshot of the queue)</span></span>
+          <div class="controls-row compact">
+            <label class="mini-label" for="viewMode">View</label>
+            <select id="viewMode" class="preset-select mini-select">
+              <option value="overview" selected>Whole tape (sampled)</option>
+              <option value="head">Head window</option>
+              <option value="tail">Tail window</option>
+            </select>
+            <button class="btn btn-xs" id="btnZoomIn" title="Show fewer rows, larger">−</button>
+            <button class="btn btn-xs" id="btnZoomOut" title="Show more rows, smaller">+</button>
+            <button class="btn btn-xs" id="btnFit">Fit</button>
+          </div>
+        </div>
+        <div class="spacetime-wrap">
+          <canvas id="spacetimeCanvas"></canvas>
+          <div id="spacetimeReadout" class="spacetime-readout"></div>
+        </div>
+        <div class="diagram-footer">
+          <div class="legend">
+            <span><i class="legend-dot" style="background:#22c55e"></i>primitive 1</span>
+            <span><i class="legend-dot" style="background:#64748b"></i>primitive 0</span>
+            <span><i class="legend-dot fn1-dot"></i>fn(1)</span>
+            <span><i class="legend-dot" style="background:#f59e0b"></i>zero-only fn</span>
+            <span><i class="legend-dot" style="background:#f472b6"></i>mixed fn</span>
+            <span><i class="legend-dot" style="background:#a78bfa"></i>zero-free composite</span>
+          </div>
+          <div class="rows-control">
+            <span id="rowsLabel" class="dim">240 rows</span>
+            <input type="range" id="rowsRange" min="30" max="1000" value="240" step="10">
+          </div>
+        </div>
+        <div class="diagram-note">
+          Large tapes are sampled into fixed columns. Use “Head window” or “Tail window” to inspect the queue ends.
+          Hover a row for its exact sample counts.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Live queue ribbon <span class="dim">(head at left, tail at right)</span></span>
+          <span id="tapeShape" class="mono dim">0 tokens</span>
+        </div>
+        <div class="tape-ribbon" id="tapeRibbon"></div>
+      </div>
+
+      <div class="card rules-card">
+        <details>
+          <summary>ATS rules used by this simulator</summary>
+          <div class="rules-copy">
+            <p>A token is a primitive bit <code>0</code>/<code>1</code> or a function <code>fn(alpha)</code> with non-empty binary <code>alpha</code>. One step is <strong>absorption</strong>, then <strong>head execution</strong>. The head is always the first token; the tape is a FIFO queue.</p>
+            <ol>
+              <li><strong>Absorb:</strong> scan left-to-right. An internal function followed by a primitive absorbs that bit into its argument and removes the primitive. Keep scanning at the same function through a run of primitives.</li>
+              <li><strong>Execute the first token:</strong> <code>0</code> does nothing. <code>1</code> copies the next two tokens to the tail. <code>fn(alpha)</code> with no <code>1</code> behaves like <code>0</code>; <code>fn(1)</code> behaves like <code>1</code>; a composite uses the zero-rule (delete the last token) and one-rule (append <code>fn(1)</code> and the shortened argument) in count-dependent order.</li>
+              <li><strong>Halt</strong> when the queue becomes empty. A step counts once per head execution, even if absorption did nothing.</li>
+            </ol>
+            <p class="dim">Exact reference semantics live in <code>ats.py</code>; this browser tool is intended for exploration, not proof checking.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <aside class="side-column">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Initial tape</span>
+          <span class="mono dim">editable</span>
+        </div>
+        <label class="field-label" for="tapeInput">Tokens, separated by commas or spaces</label>
+        <textarea id="tapeInput" class="tape-input" rows="7" spellcheck="false" placeholder="[fn(010), fn(011), ...]"></textarea>
+        <div class="controls-row">
+          <button class="btn btn-cyan" id="btnApply">Load tape</button>
+          <button class="btn" id="btnReset">Reset run</button>
+        </div>
+        <div id="tapeError" class="tape-error"></div>
+        <div id="presetNote" class="preset-note"></div>
+        <div class="syntax-help">
+          Examples: <code>1</code>, <code>0</code>, <code>fn(1)</code>, <code>fn(0101)</code>.
+          <code>fn(0)</code> is a function token, not a primitive zero.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Playback</span>
+          <span class="mono dim">head execution / step</span>
+        </div>
+        <div class="controls-row">
+          <button class="btn btn-green" id="btnRunPause">Run</button>
+          <button class="btn" id="btnStep">Step</button>
+          <button class="btn" id="btnStep100">+100</button>
+          <button class="btn" id="btnStep10k">+10k</button>
+        </div>
+        <div class="controls-row playback-second">
+          <div class="input-group">
+            <label for="speedSelect">Speed</label>
+            <select id="speedSelect" class="preset-select">
+              <option value="10">10 st/s</option>
+              <option value="100">100 st/s</option>
+              <option value="1000" selected>1,000 st/s</option>
+              <option value="10000">10,000 st/s</option>
+              <option value="100000">100,000 st/s</option>
+            </select>
+          </div>
+          <div class="playback-hint">
+            Snapshots are adaptive: early steps are kept every step, then thinned as the run grows.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Observed token types</span>
+          <span class="mono dim" id="metricTypesLabel">0</span>
+        </div>
+        <div id="typeList" class="type-list">—</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Reading the diagram</span>
+        </div>
+        <div class="read-guide">
+          <p><strong>Whole tape</strong> samples the complete queue into columns; this is the right default for Grove, whose token count grows past 10,000.</p>
+          <p><strong>Head window</strong> shows the first 400 tokens, where the next execution happens. <strong>Tail window</strong> shows where copies and the zero-rule land.</p>
+          <p>Colors encode token classes, not token identity. A row can therefore hold many <code>fn(1)</code> tokens without drawing every one.</p>
+          <p class="dim">The diagram is a visualization of the ATS queue, not a Turing-machine tape: there is no moving head, only the queue front.</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="simulator.js"></script>
+  <script src="spacetime.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>
