@@ -263,5 +263,5 @@ py -3.14 -m venv .venv
 
 ## CET(3) 5-Round Champion & Holdouts (2026-11-13)
 
-- **5-Round CET(3) Champion**: `1LB---_1LC1RB_0RB0LC | 1RB0LC_1LA0RC_1RA1RB` (isomorphic `...|1RC0LB_1RA1RC_1LA0RB`), verified via exhaustive `3x2` engine-vs-glider scan and [`bb-variants/CET/CET3_5round_champ.v`](bb-variants/CET/CET3_5round_champ.v) (`rocq compile` `1.26s`, `652.9 MB` peak memory, `Closed under the global context`).
-- Full details and `s18/residue_s20.txt` (`17,843` holdouts) rule classification are in [`bb-variants/CET/CET3_New_Champions_and_Holdouts.md`](bb-variants/CET/CET3_New_Champions_and_Holdouts.md).
+- **5-Round CET(3) Champion**: `1LB---_1LC1RB_0RB0LC | 1RB0LC_1LA0RC_1RA1RB` (isomorphic `...|1RC0LB_1RA1RC_1LA0RB`), verified via exhaustive `3x2` engine-vs-glider scan and [`bb-variants/CET/greaterthan10tetrate5champ/CET3_5round_champ.v`](bb-variants/CET/greaterthan10tetrate5champ/CET3_5round_champ.v) (`rocq compile` `1.41s`, `652.8 MB` peak memory, `Closed under the global context`).
+- Full details and `s18/residue_s20.txt` (`17,843` holdouts) rule classification are in [`bb-variants/CET/greaterthan10tetrate5champ/CET3_New_Champions_and_Holdouts.md`](bb-variants/CET/greaterthan10tetrate5champ/CET3_New_Champions_and_Holdouts.md).
