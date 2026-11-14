@@ -244,17 +244,24 @@ def fill_traps(tm):
 
 
 def add_boot(tm, start):
-    """Blank-tape bootstrap.  Nine states write the ten cells of
-    start_tape() right to left; the last one leaves the head on cell 0 of
-    that string -- the wall's c0 -- which is blank, so it needs no write.
-    9 states, 18 tuples, and the machine then starts on empty tape."""
-    s = bits_to_string(start_tape())            # ___1__111_
-    names = ['BOOT%d' % i for i in range(len(s) - 1)]
-    for i, st in enumerate(names):
-        ch = s[len(s) - 1 - i]                  # written at position -i
-        nx = names[i + 1] if i + 1 < len(names) else start
-        tm.wr(st, 1 if ch == '1' else 0, 'L', nx)
-    return names[0]
+    """Blank-tape bootstrap: two states.
+
+    The wall needs only its marker cell.  A wall group is 0 m2 m1 m0 0 with
+    m0 = 1, and every leftward walk recognises the wall by that single bit, so
+    a lone 1 *is* the wall; its c0..c2 and c4 are blank, which is what a blank
+    tape already says.  The end marker need not be written either: AP0 writes
+    the first record (plain group, block, END) blind, straight after the wall,
+    so start_tape()'s END group only ever stood in for that position.
+
+        BOOT0  write 1 at 0 (the wall's c3) and step right -> c4
+        BOOT1  step right                                  -> c0 of the END
+                                                              cell AP0 writes
+
+    2 states, 4 tuples.
+    """
+    tm.wr('BOOT0', 1, 'R', 'BOOT1')          # the wall's m0
+    tm.same('BOOT1', 'R', start)            # c4 -> the cell after the group
+    return 'BOOT0'
 
 
 def compact(tm, protect=()):
@@ -267,7 +274,7 @@ def compact(tm, protect=()):
     minimisation merges a run of identical "move right" states into one state
     with a self-loop, because a finite automaton cannot tell them apart -- but
     the machine can, since each of those states sits on a different cell.  That
-    collapse silently broke the 9-state bootstrap (it ran forever on a blank
+    collapse silently broke the bootstrap (it ran forever on a blank
     tape), so only exact duplicates are merged here.
 
     Returns the state -> representative map.
@@ -296,10 +303,9 @@ def compact(tm, protect=()):
 def build(halt_on=5, boot=True):
     tm = TM()
     t = tm.t
-    # the start tape is fixed (wall + end marker, no blocks), so the reader is
-    # blind: ten rights to the end marker's bf, five back to its c0
-    START = mchain(tm, 'T', 10, 'R', 'T#e')
-    mchain(tm, 'T#e', 5, 'L', 'AP0')
+    # the bootstrap ends on the cell right of the wall, which is exactly where
+    # AP0 starts writing the first record
+    START = 'AP0'
 
     # a new record always starts at candidate 0
     wchain(tm, 'AP0', [0, 0, 0, 0, 0] + [1] + group(END), 'R', 'AP0#b')
@@ -390,15 +396,15 @@ def build(halt_on=5, boot=True):
                        WALL: 'NOPE#bf'})
     markleft(tm, 'FBm', B, 'FA#r0_0')              # new B, one record left
     markleft(tm, 'P3w', W, 'FC#p')                 # round one: A -> left walker
-    prevgrp(tm, 'FC', {PLAIN: 'FC1#s', W: 'FC1#s', WALL: 'WY#wsk'})
+    prevgrp(tm, 'FC', {PLAIN: 'FC1#s', W: 'FC1#s', WALL: 'ADVW#wsk'})
     mchain(tm, 'FC1#s', 5, 'L', 'FC2#p')
-    prevgrp(tm, 'FC2', {PLAIN: 'FCm#0', W: 'FCm#0', WALL: 'WY#wsk'})
-    markleft(tm, 'FCm', A, 'WY#r0_0')              # new A, two records left
+    prevgrp(tm, 'FC2', {PLAIN: 'FCm#0', W: 'FCm#0', WALL: 'ADVW#wsk'})
     # the left walker is two records right of the new A: if the new A does not
-    # exist this round still runs (WY#wsk), and with no A left the next mismatch
-    # walk hits the wall -- legal
-    walkright(tm, 'WY', {W: 'CW#0', PLAIN: 'WY#wsk', A: 'WY#wsk',
-                         B: 'WY#wsk'})
+    # exist this round still runs (ADVW#wsk), and with no A left the next
+    # mismatch walk hits the wall -- legal.  That walk is the same rightward
+    # hunt for the next W as the advance pass uses, so it is the same code:
+    # both enter at a group's c0 and only `on` decides where a marker goes.
+    markleft(tm, 'FCm', A, 'ADVW#r0_0')            # new A, two records left
 
     # verdicts: one shared path.  The verdict rides in the end marker -- 7 for
     # legal (no m matched, the search ran off the wall) and 3 for illegal (a
@@ -495,9 +501,9 @@ def export_morphett(tm, start, path):
              '; tape: groups 0 m2 m1 m0 0, records = group + 1^(v+1)',
              '; markers: 0 plain, 1 wall, 2 B, 4 A, 6 W, 7 end, 3 end(illegal)',
              ';',
-             '; initial tape: blank.  States BOOT0..BOOT8 write',
-             ';   ' + bits_to_string(start_tape()) + '  (right to left, 9 states)',
-             '; and leave the head on the wall c0; state 0 is the bootstrap.', '']
+             '; initial tape: blank.  States BOOT0 and BOOT1 write the wall',
+             '; (a single 1, its m0) and stop on the cell right of it, where',
+             '; AP0 writes the first record; state 0 is the bootstrap.', '']
     for (q, b) in sorted(tm.tr):
         w, mv, nx = tm.tr[(q, b)]
         lines.append('%s %s %s %s %s' % (ids[q], '1' if b else '_',
@@ -597,8 +603,8 @@ def main():
     ok &= not dangling
     ns, nt, sid = export_morphett(tm5, start5, 'uubin.tm')
     print('wrote uubin.tm: %d states, %d tuples, start %s' % (ns, nt, sid))
-    print('start: blank tape (bootstrap writes %s, head ends on its c0)'
-          % bits_to_string(start_tape()))
+    print('start: blank tape (2-state bootstrap writes the wall, then AP0 '
+          'writes the first record)')
     print('ALL CHECKS PASSED' if ok else 'SOMETHING FAILED')
     return 0 if ok else 1
 
