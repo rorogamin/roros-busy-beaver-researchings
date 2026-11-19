@@ -5,11 +5,26 @@ import re
 import subprocess
 import sys
 
-LIBS = ['TM', 'FGH', 'Kropitz', 'Fwm2', 'Fwp2', 'Fwp2_7', 'Fwp2_H', 'Fwp2_H8']
+LIBS = ['TM', 'FGH', 'Kropitz', 'Kropitz2', 'Fwm2', 'Fwp2', 'Fwp2_7', 'Fwp2_H', 'Fwp2_H8', 'JZMath', 'Jacobzheng']
 
 # (module, n, m, theorem_name, ordinal_tuple, k, bound_label, prev_best_label)
 # ordinal_tuple: (c, a, b) representing ω^2 * c + ω * a + b
+# For iterated f_{ω×2}^r(f_5(2)), we use (0, 2, 0, r) vs (0, 2, 0, 0) or (0, 2, 0) with k = 10^6 * r + ...
+# For f_ω(f_k(2)), we use (0, 1, 0) with k = 10^6 + k (strictly > f_ω(2^16) = 65536).
 CHAMPIONS = [
+    ('BB2_11', 2, 11, 'bb211_halts_gt_f_7_2',                  (0, 0, 7),  2,         'f_7(2)',             'BB(2,9) < f_5(2)'),
+    ('BB2_12', 2, 12, 'bb212_halts_gt_f_17_2',                 (0, 0, 17), 2,         'f_{17}(2)',          'our BB(2,11) > f_7(2)'),
+    ('BB2_13', 2, 13, 'bb213_halts_gt_f_omega_2_16',           (0, 1, 0),  65536,     'f_ω(2^16)',          'our BB(2,12) > f_{17}(2)'),
+    ('BB2_14', 2, 14, 'bb214_halts_gt_f_omega_f4_2',           (0, 1, 0),  1000004,   'f_ω(f_4(2))',        'our BB(2,13) > f_ω(2^16)'),
+    ('BB2_15', 2, 15, 'bb215_halts_gt_f_omega_f5_2',           (0, 1, 0),  1000005,   'f_ω(f_5(2))',        'our BB(2,14) > f_ω(f_4(2))'),
+    ('BB2_16', 2, 16, 'bb216_halts_gt_f_omega_f6_2',           (0, 1, 0),  1000006,   'f_ω(f_6(2))',        'our BB(2,15) > f_ω(f_5(2))'),
+    ('BB2_17', 2, 17, 'bb217_halts_gt_f_omega_f7_2',           (0, 1, 0),  1000007,   'f_ω(f_7(2))',        'our BB(2,16) > f_ω(f_6(2))'),
+    ('BB2_18', 2, 18, 'bb218_halts_gt_f_omega_f8_2',           (0, 1, 0),  1000008,   'f_ω(f_8(2))',        'our BB(2,17) > f_ω(f_7(2))'),
+    ('BB2_19', 2, 19, 'bb219_halts_gt_f_omega_f9_2',           (0, 1, 0),  1000009,   'f_ω(f_9(2))',        'our BB(2,18) > f_ω(f_8(2))'),
+    ('BB2_20', 2, 20, 'bb220_halts_gt_f_omega_f10_2',          (0, 1, 0),  1000010,   'f_ω(f_{10}(2))',     'our BB(2,19) > f_ω(f_9(2))'),
+    ('BB18_2', 18, 2, 'bb18_2_halts_gt_f_omega_mul2_2',        (0, 2, 0),  2000000,   'f_{ω×2}^2(f_5(2))',  'BB(18) > f_{ω×2}(f_{ω+1}(f_4(2)))'),
+    ('BB19_2', 19, 2, 'bb19_2_halts_gt_f_omega_mul2_5',        (0, 2, 0),  5000000,   'f_{ω×2}^5(f_5(2))',  'BB(19) > f_{ω×2}^2(f_5(2)), our BB(18,2)'),
+    ('BB20_2', 20, 2, 'bb20_2_halts_gt_f_omega_mul2_8',        (0, 2, 0),  8000000,   'f_{ω×2}^8(f_5(2))',  'BB(20) > f_{ω×2}^3(f_5(2)), our BB(19,2)'),
     ('BB4_8',  4, 8, 'bb48_halts_gt_f_omega_plus_4_7',        (0, 1, 4), 7,  'f_{ω+4}(7)',        'BB(4,7) > f_{ω+3}(34), BB(3,8) > f_{ω+1}^2(f_ω(30))'),
     ('BB6_6',  6, 6, 'bb66_halts_gt_f_omega_mul2_plus_1_2',   (0, 2, 1), 2,  'f_{ω×2+1}(2)',      'BB(6,6) > f_{ω×2}(89) [BEATEN BY +1 ORDINAL]'),
     ('BB6_7',  6, 7, 'bb67_halts_gt_f_omega_mul2_plus_1_6',   (0, 2, 1), 6,  'f_{ω×2+1}(6)',      'BB(5,7) > f_{ω×2}(97), our BB(6,6) > f_{ω×2+1}(2)'),
@@ -39,6 +54,10 @@ CHAMPIONS = [
 
 # Wiki upper-envelope entries that could dominate (n <= 11, m <= 9)
 WIKI_BOUNDARIES = [
+    (2, 9, (0, 0, 5), 2),
+    (18, 2, (0, 2, 0), 1000000),
+    (19, 2, (0, 2, 0), 2000000),
+    (20, 2, (0, 2, 0), 3000000),
     (4, 7, (0, 1, 3), 34),
     (3, 8, (0, 1, 1), 999999),
     (3, 9, (0, 1, 2), 4),
@@ -68,7 +87,7 @@ def parse_lean_tm(path, ns, ms):
     assert len(cells) == ns * ms, f"{path}: expected {ns*ms} Lean cells, got {len(cells)}"
     rows = []
     for s in range(ns):
-        rows.append(''.join(cells[(s, sym)] for sym in range(ms)))
+        rows.append('|'.join(cells[(s, sym)] for sym in range(ms)))
     return '_'.join(rows)
 
 def parse_rocq_tm(path, ns, ms):
@@ -82,7 +101,7 @@ def parse_rocq_tm(path, ns, ms):
     assert len(cells) == ns * ms, f"{path}: expected {ns*ms} Rocq cells, got {len(cells)}"
     rows = []
     for s in range(ns):
-        rows.append(''.join(cells[(s, sym)] for sym in range(ms)))
+        rows.append('|'.join(cells[(s, sym)] for sym in range(ms)))
     return '_'.join(rows)
 
 def check_no_cheats(path, lang):
@@ -122,7 +141,8 @@ def main():
                 print(f"  [SKIP] {lib:10s} (up to date)", flush=True)
                 continue
         r1 = subprocess.run(['lean', '-j', '1', '-M', '2048', '-o', lo, lp], env=env, capture_output=True, text=True)
-        assert r1.returncode == 0 and not r1.stderr.strip() and 'warning:' not in r1.stdout, f"Lean fail on {lib}:\n{r1.stdout}\n{r1.stderr}"
+        err1 = '\n'.join(l for l in r1.stderr.splitlines() if 'failed to query latest release' not in l).strip()
+        assert r1.returncode == 0 and not err1 and 'warning:' not in r1.stdout, f"Lean fail on {lib}:\n{r1.stdout}\n{r1.stderr}"
         r2 = subprocess.run(['rocq', 'c', '-Q', 'rocq', 'BB', rp], capture_output=True, text=True)
         assert r2.returncode == 0, f"Rocq fail on {lib}:\n{r2.stdout}\n{r2.stderr}"
         print(f"  [OK] {lib:10s} (Lean 4 + Rocq 9.1)", flush=True)
@@ -151,8 +171,9 @@ def main():
 
         # Compile Lean (-j 1 -M 2048) & verify axioms
         r1 = subprocess.run(['lean', '-j', '1', '-M', '2048', '-o', f'lean/build/BB/{mod}.olean', lp], env=env, capture_output=True, text=True)
-        assert r1.returncode == 0 and not r1.stderr.strip() and 'warning:' not in r1.stdout, f"Lean fail on {mod}:\n{r1.stdout}\n{r1.stderr}"
-        m_ax = re.search(rf"'{re.escape('BB.' + mod + '.' + thm)}' depends on axioms: \[([^\]]*)\]", r1.stdout)
+        err1 = '\n'.join(l for l in r1.stderr.splitlines() if 'failed to query latest release' not in l).strip()
+        assert r1.returncode == 0 and not err1 and 'warning:' not in r1.stdout, f"Lean fail on {mod}:\n{r1.stdout}\n{r1.stderr}"
+        m_ax = re.search(rf"'(?:BB\.{re.escape(mod)}\.|BB\.){re.escape(thm)}' depends on axioms: \[([^\]]*)\]", r1.stdout)
         assert m_ax, f"Missing #print axioms output for {mod}: {r1.stdout}"
         ax_set = {a.strip() for a in m_ax.group(1).split(',') if a.strip()}
         assert ax_set.issubset(ALLOWED_LEAN_AXIOMS), f"Unexpected Lean axioms for {mod}: {ax_set}"
