@@ -1,0 +1,138 @@
+
+## Contents
+
+## Trivial Champions
+
+## 2-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2)        | 6                                                       | Tibor Radó
+BB(3)        | 21                                                      | Proven by Shen Lin
+BB(4)        | 107                                                     | Allen Brady
+BB(5)        | 47176870                                                | Heiner Marxen & Jürgen Buntrock in 1989
+BB(6)        | >10↑↑10↑↑10↑↑8                                          | mxdys in 2025
+BB(7)        | >3↑^{20}3>f_{ω}(20)                                     | Jeff Ketchersid and Gemini in Oct 2026 (claimed)
+BB(8)        | >f_{ω}^{3}(12)                                          | Jeff Ketchersid and Gemini in Oct 2026 (claimed)
+BB(9)        | >f_{ω}^{7}(12)                                          | Jeff Ketchersid and Gemini in Oct 2026 (claimed)
+BB(10)       | >f_{ω+1}(2↑^{36}3)>g_{64}                               | Jeff Ketchersid and Claude in Oct 2026 (claimed)
+BB(11)       | >f_{ω+2}^{2}(f_{5}(34))                                 | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(12)       | >f_{ω+2}^{8}(f_{3}(6))                                  | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(13)       | >f_{ω+3}(19)                                            | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(14)       | >f_{ω+3}(f_{ω}(3))                                      | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(15)       | >f_{ω×2}(13)                                            | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(16)       | >f_{ω×2}(f_{ω}(14))                                     | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(17)       | >f_{ω×2}(f_{ω}^{4}(13))                                 | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(18)       | >f_{ω×2}(f_{ω+1}(f_{4}(2)))                             | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(19)       | >f_{ω×2}^{2}(f_{5}(2))                                  | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(20)       | >f_{ω×2}^{3}(f_{5}(2))                                  | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(21)       | >f_{ω^{2}}^{3}(4↑↑341)                                  | Racheline in 2024
+BB(25)       | >f_{ω^{2}}^{5}(4↑↑341)                                  | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(29)       | >f_{ω^{ω}}(3)                                           | mxdys in Oct 2026 (claimed)
+BB(30)       | >f_{ω^{ω}}(9)                                           | Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)
+BB(31)       | >f_{ω↑↑4}(3)                                            | mxdys in Oct 2026 (claimed)
+BB(32)       | >f_{ω↑↑4}(8)                                            | Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)
+BB(33)       | >f_{ω↑↑6}(3)                                            | mxdys in Oct 2026 (claimed)
+BB(34)       | >f_{ω↑↑6}(4)                                            | Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)
+BB(48)       | >f_{ε_{1}}(3)                                           | roromachine14 and Gemini in 2026
+BB(150)      | >f_{lim(BMS)}(10↑↑15)                                   | Patcail in 2025 [ 1 ]
+BB(1015)     | >D^{5}(99)= Loader's Number                             | CatsAreFluffy in 2024 [ 2 ]
+Domain       | Runtime                                                 | Discovered by
+BB(67)       | >q^{81}(q(5)−2)                                         | racheline in 2025
+
+## 3-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,3)      | 38                                                      | Allen Brady in 1988
+BB(3,3)      | >10^{17}                                                | Terry & Shawn Ligocki in 2007
+BB(4,3)      | >10↑^{4}4                                               | Pavel Kropitz in 2024
+BB(5,3)      | >f_{ω}(2↑^{7}7)                                         | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(6,3)      | >f_{ω}^{2}(10↑↑↑6)                                      | Jacobzheng in 2026
+BB(7,3)      | >f_{ω+1}(11)                                            | User:Loader3229 in Nov 2026
+BB(8,3)      | >f_{ω+1}^{3}(f_{ω}^{3}(14))>g_{64}                      | User:Loader3229 in Nov 2026
+BB(9,3)      | >f_{ω+2}^{3}(f_{ω+1}^{2}(f_{ω}(14)))                    | User:Loader3229 in Nov 2026
+BB(10,3)     | >f_{ω×2}(11)                                            | User:Loader3229 in Nov 2026
+BB(11,3)     | >f_{ω×2+1}(21)                                          | User:Loader3229 in Nov 2026
+BB(12,3)     |                                                         | 
+BB(13,3)     | >f_{ω×2+1}^{3}(3)                                       | User:Loader3229 in Nov 2026
+BB(14,3)     | >f_{ω×2+2}(14)                                          | User:Loader3229 in Nov 2026
+BB(36,3)     | >f_{ε_{0}}(7)                                           | Wythagoras in 2014 [ 3 ]
+BB(37,3)     | >f_{ε_{0}}(373676378)                                   | Wythagoras in 2014 [ 4 ]
+
+## 4-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,4)      | 3932964                                                 | Terry & Shawn Ligocki in 2005
+BB(3,4)      | >2↑^{15}5                                               | Pavel Kropitz in 2024
+BB(4,4)      | >f_{ω}(2↑^{5}3)                                         | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(5,4)      | >f_{ω+1}(65536)>g_{64}                                  | Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)
+BB(6,4)      | >f_{ω+1}^{6}(65536)                                     | @Big_numbers in Nov 2026
+BB(7,4)      | >f_{ω+3}(21)                                            | User:Loader3229 in Nov 2026
+BB(8,4)      | >f_{ω+8}^{2}(4)                                         | User:Loader3229 in Nov 2026
+BB(9,4)      | >f_{ω^{2}}(18)                                          | User:Loader3229 in Nov 2026
+BB(10,4)     | >f_{ω^{2}}^{3}(3)                                       | User:Loader3229 in Nov 2026
+BB(11,4)     | >f_{ω^{2}+1}(f_{ω^{2}}(f_{ω+3}^{2}(4)))                 | User:Loader3229 in Nov 2026
+BB(12,4)     | >f_{ω^{2}+2}(15)                                        | User:Loader3229 in Nov 2026
+BB(13,4)     | >f_{ω^{2}+3}(15)                                        | User:Loader3229 in Nov 2026
+BB(31,4)     | >f_{ε_{0}}(373676378)                                   | Wythagoras in 2014 [ 5 ]
+
+## 5-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,5)      | >10^{10^{10^{3314360}}}                                 | Daniel Yuan in 2024
+BB(3,5)      | >f_{ω}(2↑^{15}5)>f_{ω}^{2}(15)                          | Racheline in 2024
+BB(4,5)      | >f_{ω+1}(27041)>g_{64}                                  | User:Loader3229 in Oct 2026
+BB(5,5)      | >f_{ω+2}(55)                                            | User:Loader3229 in Nov 2026
+BB(6,5)      | >f_{ω+3}(11)                                            | User:Loader3229 in Oct 2026
+BB(7,5)      | >f_{ω+3}^{2}(10)                                        | User:Loader3229 in Oct 2026
+BB(8,5)      | >f_{ω^{2}}(13)                                          | User:Loader3229 in Nov 2026
+BB(9,5)      | >f_{ω^{2}+1}(6)                                         | User:Loader3229 in Nov 2026
+BB(10,5)     | >f_{ω^{2}+2}(4)                                         | User:Loader3229 in Nov 2026
+BB(11,5)     |                                                         | 
+BB(12,5)     | >f_{ω^{ω}}^{6}(14)                                      | User:Loader3229 in Nov 2026
+BB(13,5)     |                                                         | 
+BB(14,5)     | >f_{ω^{ω}+1}(51)                                        | User:Loader3229 in Nov 2026
+BB(17,5)     | >f_{ε_{0}}(20)                                          | User:Loader3229 in Nov 2026
+BB(19,5)     | >f_{ε_{0}}(1.7⋅10^{352})                                | Wythagoras in 2014 [ 6 ]
+BB(94,5)     | >f_{ψ_{0}(Ω_{2})}(1.7⋅10^{352})                         | Wythagoras in 2014 [ 7 ]
+
+## 6-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,6)      | >10↑↑10↑↑10^{10^{115}}                                  | Pavel Kropitz in 2023
+BB(3,6)      | >f_{ω}^{3}(15)                                          | User:Loader3229 in Oct 2026
+BB(4,6)      | >f_{ω+2}(29)                                            | User:Loader3229 in Nov 2026
+BB(5,6)      | >f_{ω+3}(31)                                            | User:Loader3229 in Nov 2026
+BB(6,6)      | >f_{ω×2}(89)                                            | User:Loader3229 in Nov 2026
+BB(7,6)      | >f_{ω^{2}}(110)                                         | User:Loader3229 in Nov 2026
+BB(8,6)      | >f_{ω^{2}+1}(f_{ω}(31))                                 | User:Loader3229 in Nov 2026
+BB(12,6)     | >f_{ω^{ω}+1}(330)                                       | User:Loader3229 in Nov 2026
+BB(61,6)     | >f_{ψ_{0}(Ω_{2})}(1.7⋅10^{352})                         | Wythagoras in 2014 [ 8 ]
+
+## 7-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,7)      | >10↑↑10↑↑10↑↑155                                        | roromachine14 in 2026
+BB(3,7)      | >f_{ω+1}(117)>g_{64}                                    | User:Loader3229 in Nov 2026
+BB(4,7)      | >f_{ω+3}(34)                                            | User:Loader3229 in Nov 2026
+BB(5,7)      | >f_{ω×2}(97)                                            | User:Loader3229 in Nov 2026
+BB(18,7)     | >f_{ε_{0}}(1.7⋅10^{352})                                | Wythagoras in 2014 [ 9 ]
+BB(46,7)     | >f_{ψ_{0}(Ω_{2})}(1.7⋅10^{352})                         | Wythagoras in 2014 [ 10 ]
+BB(134,7)    | >f_{ψ_{0}(Ω_{ω})}(2050)                                 | LittlePeng9+Wythagoras in 2014 [ 11 ]
+
+## 8-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,8)      | >10↑↑10↑↑10↑↑10↑↑155                                    | roromachine14 in 2026
+BB(3,8)      | >f_{ω+1}^{2}(f_{ω}(30))                                 | User:Loader3229 in Nov 2026
+BB(17,8)     | >f_{ε_{0}}(1.7⋅10^{352})                                | Wythagoras in 2014 [ 12 ]
+
+## 9-Symbol TMs
+Domain       | Runtime                                                 | Discovered by
+BB(2,9)      | >10↑↑10↑↑10↑↑10↑↑10↑↑155                                | roromachine14 in 2026
+BB(3,9)      | >f_{ω+2}(4)                                             | User:Loader3229 in Nov 2026
+BB(42,9)     | >f_{ψ_{0}(Ω_{2})}(1.7⋅10^{352})                         | Wythagoras in 2014 [ 13 ]
+
+## Zoology
+Classification | Description                                             | Scale
+Trivial      | The simplest champions that can exist. They mostly appear in some BB-adjacent functions likeBBforBBCS. | O ( n )
+Chaotic      | Have a chaotic behavior with repeating patterns that go back and forth. | O ( 2 n )
+Countdown    | Compute a number then "count down" (usually while bouncing) until reaching 0. They are common in some BB-adjacent functions likeBBf. | O ( n 2 )
+Collatz-like | Compute aCollatz-likefunction. Repeatedly multiply and add a number depending of its modulo until reaching a number with a certain modulo. | O ( 2 n )
+Random walk  | Compute aCollatz-likefunction with a random walk.       | O ( 2 2 n )
+Tetrational  |                                                         | O ( 2 ↑ ↑ n )
+Ackermannian |                                                         | O ( 2 ↑ n 3 )
+
+## References
