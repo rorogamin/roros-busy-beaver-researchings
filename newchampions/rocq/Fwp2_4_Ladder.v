@@ -337,3 +337,306 @@ Section L_Lemmas.
   Qed.
 
 End L_Lemmas.
+
+(* Level 4: M, N core (adds I3 = 3RM, M3 = 3LN, N0 = 0LL, N1=N2=N3 = 2LN) *)
+Record Fwp2_4_MNCore (tm : TM) : Prop := mkFwp2_4_MNCore {
+  mn_l : Fwp2_4_LCore tm;
+  mn_I3 : tm 8 3 = Some (mkAction 3 DR (Some 12));
+  mn_M3 : tm 12 3 = Some (mkAction 3 DL (Some 13));
+  mn_N0 : tm 13 0 = Some (mkAction 0 DL (Some 11));
+  mn_N1 : tm 13 1 = Some (mkAction 2 DL (Some 13));
+  mn_N2 : tm 13 2 = Some (mkAction 2 DL (Some 13));
+  mn_N3 : tm 13 3 = Some (mkAction 2 DL (Some 13))
+}.
+
+Section MN_Lemmas.
+  Variable tm : TM.
+  Hypothesis hc : Fwp2_4_MNCore tm.
+
+  Lemma mn_N_finish : forall R, R <> [] ->
+    Reaches tm (mkCfgR (Some 13) [] (0 :: R)) (mkCfgR (Some 6) [] (3 :: 3 :: 0 :: 0 :: 0 :: R)) 8.
+  Proof.
+    intros R HR.
+    replace 8 with (1 + 7) by lia.
+    destruct R as [| r R']; [contradiction |].
+    eapply reaches_trans.
+    - apply steps_one. unfold step, mkCfgR; simpl; rewrite (mn_N0 tm hc); reflexivity.
+    - apply (l_L_finish tm (mn_l tm hc) (0 :: r :: R') ltac:(discriminate)).
+  Qed.
+
+  (* One 3-cycle: G> 3^m (0 :: 3 :: 3 :: R) -> G> 3^m' (0 :: 3 :: R) with fPlus f_omega2 3 (m - 1) < m' *)
+  Lemma mn_three_step : forall m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: 3 :: 3 :: R)))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 fPlus f_omega2 3 (m - 1) < m' /\ 3 <= m'.
+  Proof.
+    intros m R Hm.
+    destruct (f4_rule_G3_rep tm (ijk_core tm (l_ijk tm (mn_l tm hc))) m (0 :: 3 :: 3 :: R) ltac:(lia))
+      as [a [b [t1 [H1 [Ha [Hge1 _]]]]]].
+    set (L0 := rep (S b) 2 (rep a 1 (rep (m - 1) 3 []))).
+    assert (H2 : Reaches tm (F4cfg (m - 1) a b (0 :: 3 :: 3 :: R))
+                            (mkCfgR (Some 8) (1 :: L0) (3 :: 3 :: R)) 1).
+    { unfold F4cfg, L0. apply steps_one. unfold step, mkCfgR; simpl; rewrite (ijk_F0 tm (l_ijk tm (mn_l tm hc))); reflexivity. }
+    assert (H3 : Reaches tm (mkCfgR (Some 8) (1 :: L0) (3 :: 3 :: R))
+                            (mkCfgR (Some 12) (3 :: 1 :: L0) (3 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (mn_I3 tm hc); reflexivity. }
+    assert (H4 : Reaches tm (mkCfgR (Some 12) (3 :: 1 :: L0) (3 :: R))
+                            (mkCfgR (Some 13) (1 :: L0) (3 :: 3 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (mn_M3 tm hc); reflexivity. }
+    assert (Hfa : Forall nz (1 :: L0)).
+    { constructor; [left; reflexivity |].
+      unfold L0. apply forall_rep; [right; left; reflexivity |].
+      apply forall_rep; [left; reflexivity |].
+      apply forall_rep; [right; right; reflexivity | constructor]. }
+    pose proof (sweep_left_nz tm 13 2 (1 :: L0) 3 (3 :: R)
+                  (mn_N1 tm hc) (mn_N2 tm hc) (mn_N3 tm hc) (or_intror (or_intror eq_refl)) Hfa ltac:(discriminate)) as H5.
+    pose proof (mn_N_finish (rep (S (length (1 :: L0))) 2 (3 :: R)) ltac:(discriminate)) as H6.
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm hc)) 2 (0 :: rep (S (length (1 :: L0))) 2 (3 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m0 [t7 [H7 [_ [Hge7 _]]]]].
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm hc)) m0 (rep (S (length (1 :: L0))) 2 (3 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m1 [t8 [H8 [_ [Hge8 _]]]]].
+    destruct (l_two_rep tm (mn_l tm hc) (S (length (1 :: L0))) m1 (3 :: R) Hge8 ltac:(discriminate))
+      as [m2 [t9 [H9 [Hm2 Hge9]]]].
+    exists m2, (t1 + 1 + 1 + 1 + S (length (1 :: L0)) + 8 + t7 + t8 + t9).
+    split.
+    - eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [exact H1 | exact H2] | exact H3] | exact H4] | exact H5] | exact H6] | exact H7] | exact H8] | exact H9].
+    - split; [| exact Hge9].
+      assert (Hlen : m - 1 + (m - 1) <= S (length (1 :: L0))).
+      { specialize (Hge1 ltac:(lia)).
+        pose proof (F4B_gt_f_omega2 (m - 1) ltac:(lia)) as Hgt.
+        pose proof (fgh_ge_self _ f_omega2_props (m - 1)) as Hself.
+        simpl length. unfold L0. rewrite !length_rep, length_nil. lia. }
+      assert (HfP : FGHProps (fPlus f_omega2 2)) by (apply fPlus_props, f_omega2_props).
+      assert (Hcmp : iter (fPlus f_omega2 2) (m - 1) (m - 1) <= iter (fPlus f_omega2 2) (S (length (1 :: L0))) (m1 - 1)).
+      { eapply Nat.le_trans; [| apply iter_mono_steps; [apply fgh_ge_self, HfP | exact Hlen]].
+        rewrite iter_add.
+        apply iter_mono_arg; [apply fgh_mono, HfP |].
+        pose proof (iter_ge_add_pos _ (fgh_gt_pos _ HfP) (m - 1) (m1 - 1) ltac:(lia)). lia. }
+      assert (Heq : forall n, fPlus f_omega2 3 n = iter (fPlus f_omega2 2) n n) by reflexivity.
+      rewrite Heq. lia.
+  Qed.
+
+  (* Iterated 3-cycles: G> 3^m (0 :: rep n 3 (3 :: R)) -> G> 3^m' (0 :: 3 :: R) *)
+  Lemma mn_three_rep : forall n m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: rep n 3 (3 :: R))))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 iter (fPlus f_omega2 3) n (m - 1) <= m' - 1 /\ 3 <= m'.
+  Proof.
+    induction n as [| n' IH]; intros m R Hm.
+    - exists m, 0. split; [apply reaches_zero | simpl; lia].
+    - destruct (mn_three_step m (rep n' 3 R) Hm) as [m1 [t1 [H1 [Hm1 Hge1]]]].
+      destruct (IH m1 R Hge1) as [m2 [t2 [H2 [Hm2 Hge2]]]].
+      exists m2, (t1 + t2).
+      split; [simpl rep; rewrite rep_r; eapply reaches_trans; [exact H1 | rewrite rep_r in H2; exact H2] |].
+      split; [| exact Hge2].
+      replace (iter (fPlus f_omega2 3) (S n') (m - 1))
+        with (iter (fPlus f_omega2 3) n' (fPlus f_omega2 3 (m - 1)))
+        by (replace (S n') with (n' + 1) by lia; rewrite iter_add; reflexivity).
+      eapply Nat.le_trans; [| exact Hm2].
+      apply iter_mono_arg; [apply fgh_mono, fPlus_props, f_omega2_props | lia].
+  Qed.
+
+End MN_Lemmas.
+
+(* Level 5: O core (adds M2 = 3LO, O0 = 0LN, O1=O2=O3 = 3LO) *)
+Record Fwp2_4_OCore (tm : TM) : Prop := mkFwp2_4_OCore {
+  o_mn : Fwp2_4_MNCore tm;
+  o_M2 : tm 12 2 = Some (mkAction 3 DL (Some 14));
+  o_O0 : tm 14 0 = Some (mkAction 0 DL (Some 13));
+  o_O1 : tm 14 1 = Some (mkAction 3 DL (Some 14));
+  o_O2 : tm 14 2 = Some (mkAction 3 DL (Some 14));
+  o_O3 : tm 14 3 = Some (mkAction 3 DL (Some 14))
+}.
+
+Section O_Lemmas.
+  Variable tm : TM.
+  Hypothesis hc : Fwp2_4_OCore tm.
+
+  Lemma o_O_finish : forall R, R <> [] ->
+    Reaches tm (mkCfgR (Some 14) [] (0 :: R)) (mkCfgR (Some 6) [] (3 :: 3 :: 0 :: 0 :: 0 :: 0 :: R)) 9.
+  Proof.
+    intros R HR.
+    replace 9 with (1 + 8) by lia.
+    destruct R as [| r R']; [contradiction |].
+    eapply reaches_trans.
+    - apply steps_one. unfold step, mkCfgR; simpl; rewrite (o_O0 tm hc); reflexivity.
+    - apply (mn_N_finish tm (o_mn tm hc) (0 :: r :: R') ltac:(discriminate)).
+  Qed.
+
+  (* One 2-after-3 cycle: G> 3^m (0 :: 3 :: 2 :: R) -> G> 3^m' (0 :: 3 :: R) with fPlus f_omega2 4 (m - 1) < m' *)
+  Lemma o_four_step : forall m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: 3 :: 2 :: R)))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 fPlus f_omega2 4 (m - 1) < m' /\ 3 <= m'.
+  Proof.
+    intros m R Hm.
+    destruct (f4_rule_G3_rep tm (ijk_core tm (l_ijk tm (mn_l tm (o_mn tm hc)))) m (0 :: 3 :: 2 :: R) ltac:(lia))
+      as [a [b [t1 [H1 [Ha [Hge1 _]]]]]].
+    set (L0 := rep (S b) 2 (rep a 1 (rep (m - 1) 3 []))).
+    assert (H2 : Reaches tm (F4cfg (m - 1) a b (0 :: 3 :: 2 :: R))
+                            (mkCfgR (Some 8) (1 :: L0) (3 :: 2 :: R)) 1).
+    { unfold F4cfg, L0. apply steps_one. unfold step, mkCfgR; simpl; rewrite (ijk_F0 tm (l_ijk tm (mn_l tm (o_mn tm hc)))); reflexivity. }
+    assert (H3 : Reaches tm (mkCfgR (Some 8) (1 :: L0) (3 :: 2 :: R))
+                            (mkCfgR (Some 12) (3 :: 1 :: L0) (2 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (mn_I3 tm (o_mn tm hc)); reflexivity. }
+    assert (H4 : Reaches tm (mkCfgR (Some 12) (3 :: 1 :: L0) (2 :: R))
+                            (mkCfgR (Some 14) (1 :: L0) (3 :: 3 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (o_M2 tm hc); reflexivity. }
+    assert (Hfa : Forall nz (1 :: L0)).
+    { constructor; [left; reflexivity |].
+      unfold L0. apply forall_rep; [right; left; reflexivity |].
+      apply forall_rep; [left; reflexivity |].
+      apply forall_rep; [right; right; reflexivity | constructor]. }
+    pose proof (sweep_left_nz tm 14 3 (1 :: L0) 3 (3 :: R)
+                  (o_O1 tm hc) (o_O2 tm hc) (o_O3 tm hc) (or_intror (or_intror eq_refl)) Hfa ltac:(discriminate)) as H5.
+    pose proof (o_O_finish (rep (S (length (1 :: L0))) 3 (3 :: R)) ltac:(discriminate)) as H6.
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm hc))) 2 (0 :: 0 :: rep (S (length (1 :: L0))) 3 (3 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m0 [t7 [H7 [_ [Hge7 _]]]]].
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm hc))) m0 (0 :: rep (S (length (1 :: L0))) 3 (3 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m0' [t8 [H8 [_ [Hge8 _]]]]].
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm hc))) m0' (rep (S (length (1 :: L0))) 3 (3 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m1 [t9 [H9 [_ [Hge9 _]]]]].
+    destruct (mn_three_rep tm (o_mn tm hc) (S (length (1 :: L0))) m1 R Hge9)
+      as [m2 [t10 [H10 [Hm2 Hge10]]]].
+    exists m2, (t1 + 1 + 1 + 1 + S (length (1 :: L0)) + 9 + t7 + t8 + t9 + t10).
+    split.
+    - eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [exact H1 | exact H2] | exact H3] | exact H4] | exact H5] | exact H6] | exact H7] | exact H8] | exact H9] | exact H10].
+    - split; [| exact Hge10].
+      assert (Hlen : m - 1 + (m - 1) <= S (length (1 :: L0))).
+      { specialize (Hge1 ltac:(lia)).
+        pose proof (F4B_gt_f_omega2 (m - 1) ltac:(lia)) as Hgt.
+        pose proof (fgh_ge_self _ f_omega2_props (m - 1)) as Hself.
+        simpl length. unfold L0. rewrite !length_rep, length_nil. lia. }
+      assert (HfP : FGHProps (fPlus f_omega2 3)) by (apply fPlus_props, f_omega2_props).
+      assert (Hcmp : iter (fPlus f_omega2 3) (m - 1) (m - 1) <= iter (fPlus f_omega2 3) (S (length (1 :: L0))) (m1 - 1)).
+      { eapply Nat.le_trans; [| apply iter_mono_steps; [apply fgh_ge_self, HfP | exact Hlen]].
+        rewrite iter_add.
+        apply iter_mono_arg; [apply fgh_mono, HfP |].
+        pose proof (iter_ge_add_pos _ (fgh_gt_pos _ HfP) (m - 1) (m1 - 1) ltac:(lia)). lia. }
+      assert (Heq : forall n, fPlus f_omega2 4 n = iter (fPlus f_omega2 3) n n) by reflexivity.
+      rewrite Heq. lia.
+  Qed.
+
+  (* Iterated 4-cycles: G> 3^m (0 :: 3 :: rep n 2 R) -> G> 3^m' (0 :: 3 :: R) *)
+  Lemma o_four_rep : forall n m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: 3 :: rep n 2 R)))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 iter (fPlus f_omega2 4) n (m - 1) <= m' - 1 /\ 3 <= m'.
+  Proof.
+    induction n as [| n' IH]; intros m R Hm.
+    - exists m, 0. split; [apply reaches_zero | simpl; lia].
+    - destruct (o_four_step m (rep n' 2 R) Hm) as [m1 [t1 [H1 [Hm1 Hge1]]]].
+      destruct (IH m1 R Hge1) as [m2 [t2 [H2 [Hm2 Hge2]]]].
+      exists m2, (t1 + t2).
+      split; [eapply reaches_trans; [exact H1 | exact H2] |].
+      split; [| exact Hge2].
+      replace (iter (fPlus f_omega2 4) (S n') (m - 1))
+        with (iter (fPlus f_omega2 4) n' (fPlus f_omega2 4 (m - 1)))
+        by (replace (S n') with (n' + 1) by lia; rewrite iter_add; reflexivity).
+      eapply Nat.le_trans; [| exact Hm2].
+      apply iter_mono_arg; [apply fgh_mono, fPlus_props, f_omega2_props | lia].
+  Qed.
+
+End O_Lemmas.
+
+(* Level 6: P core (adds M1 = 2LP, P0 = 3LO, P1=P2=P3 = 2LP) *)
+Record Fwp2_4_PCore (tm : TM) : Prop := mkFwp2_4_PCore {
+  p_o : Fwp2_4_OCore tm;
+  p_M1 : tm 12 1 = Some (mkAction 2 DL (Some 15));
+  p_P0 : tm 15 0 = Some (mkAction 3 DL (Some 14));
+  p_P1 : tm 15 1 = Some (mkAction 2 DL (Some 15));
+  p_P2 : tm 15 2 = Some (mkAction 2 DL (Some 15));
+  p_P3 : tm 15 3 = Some (mkAction 2 DL (Some 15))
+}.
+
+Section P_Lemmas.
+  Variable tm : TM.
+  Hypothesis hc : Fwp2_4_PCore tm.
+
+  Lemma p_P_finish : forall R, R <> [] ->
+    Reaches tm (mkCfgR (Some 15) [] (0 :: R)) (mkCfgR (Some 6) [] (3 :: 3 :: 0 :: 0 :: 0 :: 0 :: 3 :: R)) 10.
+  Proof.
+    intros R HR.
+    replace 10 with (1 + 9) by lia.
+    destruct R as [| r R']; [contradiction |].
+    eapply reaches_trans.
+    - apply steps_one. unfold step, mkCfgR; simpl; rewrite (p_P0 tm hc); reflexivity.
+    - apply (o_O_finish tm (p_o tm hc) (3 :: r :: R') ltac:(discriminate)).
+  Qed.
+
+  (* One 1-after-3 cycle: G> 3^m (0 :: 3 :: 1 :: R) -> G> 3^m' (0 :: 3 :: R) with fPlus f_omega2 5 (m - 1) < m' *)
+  Lemma p_five_step : forall m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: 3 :: 1 :: R)))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 fPlus f_omega2 5 (m - 1) < m' /\ 3 <= m'.
+  Proof.
+    intros m R Hm.
+    destruct (f4_rule_G3_rep tm (ijk_core tm (l_ijk tm (mn_l tm (o_mn tm (p_o tm hc))))) m (0 :: 3 :: 1 :: R) ltac:(lia))
+      as [a [b [t1 [H1 [Ha [Hge1 _]]]]]].
+    set (L0 := rep (S b) 2 (rep a 1 (rep (m - 1) 3 []))).
+    assert (H2 : Reaches tm (F4cfg (m - 1) a b (0 :: 3 :: 1 :: R))
+                            (mkCfgR (Some 8) (1 :: L0) (3 :: 1 :: R)) 1).
+    { unfold F4cfg, L0. apply steps_one. unfold step, mkCfgR; simpl; rewrite (ijk_F0 tm (l_ijk tm (mn_l tm (o_mn tm (p_o tm hc))))); reflexivity. }
+    assert (H3 : Reaches tm (mkCfgR (Some 8) (1 :: L0) (3 :: 1 :: R))
+                            (mkCfgR (Some 12) (3 :: 1 :: L0) (1 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (mn_I3 tm (o_mn tm (p_o tm hc))); reflexivity. }
+    assert (H4 : Reaches tm (mkCfgR (Some 12) (3 :: 1 :: L0) (1 :: R))
+                            (mkCfgR (Some 15) (1 :: L0) (3 :: 2 :: R)) 1).
+    { apply steps_one. unfold step, mkCfgR; simpl; rewrite (p_M1 tm hc); reflexivity. }
+    assert (Hfa : Forall nz (1 :: L0)).
+    { constructor; [left; reflexivity |].
+      unfold L0. apply forall_rep; [right; left; reflexivity |].
+      apply forall_rep; [left; reflexivity |].
+      apply forall_rep; [right; right; reflexivity | constructor]. }
+    pose proof (sweep_left_nz tm 15 2 (1 :: L0) 3 (2 :: R)
+                  (p_P1 tm hc) (p_P2 tm hc) (p_P3 tm hc) (or_intror (or_intror eq_refl)) Hfa ltac:(discriminate)) as H5.
+    pose proof (p_P_finish (rep (S (length (1 :: L0))) 2 (2 :: R)) ltac:(discriminate)) as H6.
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm (p_o tm hc)))) 2 (0 :: 0 :: 3 :: rep (S (length (1 :: L0))) 2 (2 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m0 [t7 [H7 [_ [Hge7 _]]]]].
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm (p_o tm hc)))) m0 (0 :: 3 :: rep (S (length (1 :: L0))) 2 (2 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m0' [t8 [H8 [_ [Hge8 _]]]]].
+    destruct (ijk_zero_step tm (l_ijk tm (mn_l tm (o_mn tm (p_o tm hc)))) m0' (3 :: rep (S (length (1 :: L0))) 2 (2 :: R)) ltac:(lia) ltac:(discriminate))
+      as [m1 [t9 [H9 [_ [Hge9 _]]]]].
+    destruct (o_four_rep tm (p_o tm hc) (S (S (length (1 :: L0)))) m1 R Hge9)
+      as [m2 [t10 [H10 [Hm2 Hge10]]]].
+    exists m2, (t1 + 1 + 1 + 1 + S (length (1 :: L0)) + 10 + t7 + t8 + t9 + t10).
+    split.
+    - eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [exact H1 | exact H2] | exact H3] | exact H4] | exact H5] | exact H6] | exact H7] | exact H8] | exact H9] |].
+      rewrite <- rep_r in H10. exact H10.
+    - split; [| exact Hge10].
+      assert (Hlen : m - 1 + (m - 1) <= S (S (length (1 :: L0)))).
+      { specialize (Hge1 ltac:(lia)).
+        pose proof (F4B_gt_f_omega2 (m - 1) ltac:(lia)) as Hgt.
+        pose proof (fgh_ge_self _ f_omega2_props (m - 1)) as Hself.
+        simpl length. unfold L0. rewrite !length_rep, length_nil. lia. }
+      assert (HfP : FGHProps (fPlus f_omega2 4)) by (apply fPlus_props, f_omega2_props).
+      assert (Hcmp : iter (fPlus f_omega2 4) (m - 1) (m - 1) <= iter (fPlus f_omega2 4) (S (S (length (1 :: L0)))) (m1 - 1)).
+      { eapply Nat.le_trans; [| apply iter_mono_steps; [apply fgh_ge_self, HfP | exact Hlen]].
+        rewrite iter_add.
+        apply iter_mono_arg; [apply fgh_mono, HfP |].
+        pose proof (iter_ge_add_pos _ (fgh_gt_pos _ HfP) (m - 1) (m1 - 1) ltac:(lia)). lia. }
+      assert (Heq : forall n, fPlus f_omega2 5 n = iter (fPlus f_omega2 4) n n) by reflexivity.
+      rewrite Heq. lia.
+  Qed.
+
+  (* Iterated 5-cycles: G> 3^m (0 :: 3 :: rep n 1 R) -> G> 3^m' (0 :: 3 :: R) *)
+  Lemma p_five_rep : forall n m R, 3 <= m ->
+    exists m' t, Reaches tm (mkCfgR (Some 6) [] (rep m 3 (0 :: 3 :: rep n 1 R)))
+                            (mkCfgR (Some 6) [] (rep m' 3 (0 :: 3 :: R))) t /\
+                 iter (fPlus f_omega2 5) n (m - 1) <= m' - 1 /\ 3 <= m'.
+  Proof.
+    induction n as [| n' IH]; intros m R Hm.
+    - exists m, 0. split; [apply reaches_zero | simpl; lia].
+    - destruct (p_five_step m (rep n' 1 R) Hm) as [m1 [t1 [H1 [Hm1 Hge1]]]].
+      destruct (IH m1 R Hge1) as [m2 [t2 [H2 [Hm2 Hge2]]]].
+      exists m2, (t1 + t2).
+      split; [eapply reaches_trans; [exact H1 | exact H2] |].
+      split; [| exact Hge2].
+      replace (iter (fPlus f_omega2 5) (S n') (m - 1))
+        with (iter (fPlus f_omega2 5) n' (fPlus f_omega2 5 (m - 1)))
+        by (replace (S n') with (n' + 1) by lia; rewrite iter_add; reflexivity).
+      eapply Nat.le_trans; [| exact Hm2].
+      apply iter_mono_arg; [apply fgh_mono, fPlus_props, f_omega2_props | lia].
+  Qed.
+
+End P_Lemmas.
