@@ -1,0 +1,747 @@
+# Original f_ω core (Pavel Kropitz)
+
+* f_ω core fw_4 from BB(3,4) champion with 3 states 4 symbols 9 non-halt transitions.
+* The input config is B(k, n, m) 2 = 0^inf 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* B(k, 0, m) 2 -> HALT
+* output size is comparable to 2^^...^^(n+2) with k-1 ^s; ^ is Knuth up-arrow.
+* importance: k > n > m
+name fw_4
+cfg BCFG(A) 2^1
+slot k n m
+core ---3LB1RZ2RA_---3RB1LC2RA_3RB1LB3LC2RC
+
+
+# Original f_ω core (Jacobzheng)
+
+* f_ω core fw_3 from a former BB(11,3) champion with 5 states 3 symbols 13 non-halt transitions.
+* The input config is 1^n A> 1 0
+* Please increase state or symbol count to search!
+name fw_3
+cfg 1^n A> 1^1 0^1
+slot n
+core ---1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD
+
+
+# Original double f_ω core (Racheline)
+
+* double f_ω core dfw_5 from BB(3,5) champion with 3 states 5 symbols 12 non-halt transitions.
+* The input config is B(k, n, m) 2 = 0^inf 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* B(k, 0, m) 2 -> B(k+2m+1, 0, 0) 4
+* B(k, 0, m) 4 -> B(k-1, 2m+2,0 ) 4
+* B(1, 0, m) 4 -> 3^(2m+3) B> 4 -> HALT
+* output size is comparable to f_ω(2^^...^^(n+2)) with k-1 ^s; ^ is Knuth up-arrow.
+* importance: k > n > m
+name dfw_5
+cfg BCFG(A) 2^1
+slot k n m
+core ---3LB4LC2RA4LB_---3RB1LC2RA1RZ_3RB1LB3LC2RC4LC
+
+
+# Another double f_ω core
+
+* double f_ω core dfw_4 with 4 states 4 symbols 13 non-halt transitions.
+* The input config is B(k, n, m) 0 = 0^inf 3^(2m+1) 2^k A> 1^n 0 with n >= 1
+* B(k, 0, m) 0 -> B(2m+1, k, 0) 2
+* Please use other start state instead of A
+* importance: k > n > m
+name dfw_4
+cfg BCFG(A) BLANK
+slot k n m
+core 2LD3LB1RZ2RA_---3RB1LC2RA_3RB1LB3LC2RC_3RA---1LD3LD
+
+
+# Triple f_ω cores
+
+* triple f_ω core tfw_5 with 4 states 5 symbols 16 non-halt transitions.
+* The input config is B(k, n, m) 0 = 0^inf 3^(2m+1) 2^k A> 1^n 0 with n >= 1
+* B(k, 0, m) 0 -> B(2m+1, k, 0) 2
+* Please use other start state instead of A
+* importance: k > n > m
+name tfw_5
+cfg BCFG(A) BLANK
+slot k n m
+core 2LD3LB4LC2RA4LB_---3RB1LC2RA1RZ_3RB1LB3LC2RC4LC_3RA---1LD3LD---
+
+* triple f_ω core tfw_6 with 3 states 6 symbols 15 non-halt transitions.
+* The input config is B(k, n, m) 2 = 0^inf 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* importance: k > n > m
+name tfw_6
+cfg BCFG(A) 2^1
+slot k n m
+core ---3LB4LC2RA4LB5LB_---3RB1LC2RA5LC1RZ_3RB1LB3LC2RC4LC5LC
+
+
+# f_(ω+1) cores
+
+* f_(ω+1) core fw1_3 with 7 states 3 symbols 16 non-halt transitions.
+* The input config is 1^m F> 1^n 2 with n >= 1
+* importance: n > m
+name fw1_3
+cfg 1^m F> 1^n 2^1
+slot n>=1 m
+core ---1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC------_1RC2LE1LG_---0LA1RZ_1LD2RA2LG
+
+* f_(ω+1) core fw1_4 with 4 states 4 symbols 13 non-halt transitions.
+* The input config is B'(k, n, m) 2^p 0 = 0^inf 3^(2m+1) 2^k B> 1^n 2^p 0 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fw1_4
+cfg BCFG(B) 2^p BLANK
+slot p>=1 k n m
+core ---3RA1LC2RB_1RZ3LA1LD2RB_3RA1LA3LC2RC_3RA---1LD3LD
+
+* f_(ω+1) core fw1_5 with 5 states 5 symbols 15 non-halt transitions.
+* The input config is B(k, n, m) 4^p 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 0 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fw1_5
+cfg BCFG(A) 4^p BLANK
+slot p>=1 k n m
+core ---3LB4LC2RA4LB_---3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ---------4LE_------------3LC
+
+* f_(ω+1) core fw1_6 with 3 states 6 symbols 13 non-halt transitions.
+* The input config is B(k, n, m) 4 5^p 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4 5^p 0 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fw1_6
+cfg BCFG(A) 4^1 5^p BLANK
+slot p>=1 k n m
+core ---3LB---2RA4LB---_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---
+
+
+# f_(ω+1)+f_ω machine
+
+* The f_(ω+1)+f_ω machine fw1fw_4 (from Jeff Ketchersid) with 5 states 4 symbols 19 non-halt transitions.
+* The input config is B(k, n, m) 0^inf = 0^inf 3^(2m+1) 2^k A> 1^n 0^inf with n >= 1
+* This machine itself will go to B(5, 1, 0) 0^inf config. To validate just start at state A.
+* To search based on this machine, use more states and set start state to F.
+* importance: k > n > m
+name fw1fw_4
+cfg BCFG(A) BLANK
+slot k n m
+core 1RB3LC1LD2RA_2RC1RZ2LB2LB_1LD3RC1LE2RA_3RC0LB1LD3LD_3RC1LC3LE2RE
+
+
+# f_(ω+2) cores
+
+* f_(ω+2) core fw2_3 with 7 states 3 symbols 18 non-halt transitions.
+* The input config is 1^m F> 0^n 1^k 2 with n >= 1
+* importance: k > n > m
+name fw2_3
+cfg 1^m F> 0^n 1^k 2^1
+slot k n>=1 m
+core ---1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD---_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG
+
+* f_(ω+2) core fw2_4 with 6 states 4 symbols 19 non-halt transitions.
+* The input config is B'(k, n, m) 2^p 0^q 1 = 0^inf 3^(2m+1) 2^k B> 1^n 2^p 0^q 1 with n >= 1, q >= 1
+* importance: q > p > k > n > m
+name fw2_4
+cfg BCFG(B) 2^p 0^q 1^1
+slot q>=1 p k n m
+core ---3RA1LC2RB_2RE3LA1LD2RB_3RA1LA3LC2RC_3RA---1LD3LD_0LE1RZ2LE2LF_2RC------2LF
+
+* f_(ω+2) core fw2_5 with 5 states 5 symbols 17 non-halt transitions.
+* The input config is B'(k, n, m) 2^p 4^q 0 = 0^inf 3^(2m+1) 2^k B> 1^n 2^p 4^q 0 with n >= 1, q >= 1
+* importance: q > p > k > n > m
+name fw2_5
+cfg BCFG(B) 2^p 4^q BLANK
+slot q>=1 p k n m
+core ---3RA1LC2RB---_1RZ3LA1LD2RB2LE_3RA1LA3LC2RC---_3RA---1LD3LD---_2RC---2LE2LE---
+
+* f_(ω+2) core fw2_6 with 4 states 6 symbols 16 non-halt transitions.
+* The input config is B(k, n, m) 4^p 5^q 00 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 5^q 00 with n >= 1, p >= 1
+* importance: q > p > k > n > m
+name fw2_6
+cfg BCFG(A) 4^p 5^q BLANK
+slot q p>=1 k n m
+core ---3LB---2RA4LB---_1RZ3RB1LC2RA3RD---_3RB1LB3LC2RC4LC---_3RB------4LD4LC4LD
+
+* f_(ω+2) core fw2_7 with 3 states 7 symbols 18 non-halt transitions.
+* The input config is B(k, n, m) 4 5^p 6^q 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4 5^p 6^q 0 with n >= 1, q >= 1
+* importance: q > p > k > n > m
+name fw2_7
+cfg BCFG(A) 4^1 5^p 6^q BLANK
+slot q>=1 p k n m
+core ---3LB5LA2RA4LB4LC5LA_1RZ3RB1LC2RA3RB4LC6LC_3RB1LB3LC2RC4LC---6LC
+
+
+# f_(ω+3) cores
+
+* f_(ω+3) core fw3_3 with 9 states 3 symbols 22 non-halt transitions.
+* The input config is 1^m F> 0^n 1^k 2^p 0 with n >= 1
+* importance: p > k > n > m
+name fw3_3
+cfg 1^m F> 0^n 1^k 2^p 0^1
+slot p k n>=1 m
+core ---1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD---_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ---2LI_1RD1LI---
+
+* f_(ω+3) core fw3_4 with 7 states 4 symbols 21 non-halt transitions.
+* The input config is 1^m F> 0^n 1^k 2^p 3 with n >= 1
+* importance: p > k > n > m
+name fw3_4
+cfg 1^m F> 0^n 1^k 2^p 3^1
+slot p k n>=1 m
+core ---1LE2RA1LF_0LE2LE2RB---_1RF1RC2RB0LB_0RC0LD------_1RC2LE1LG---_0LA0LD3LG1RZ_1LD2RA2LG---
+
+* f_(ω+3) core fw3_5 with 6 states 5 symbols 22 non-halt transitions.
+* The input config is B(k, n, m) 4^p 3^q 1^r 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 3^q 1^r 0 with n >= 1
+* importance: r > q > p > k > n > m
+name fw3_5
+cfg BCFG(A) 4^p 3^q 1^r BLANK
+slot r q p k n m
+core ---3LB4LC2RA4LB_---3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF---4LD4LE_3RB------4LE3LC_4LC------3LF3LF
+
+* f_(ω+3) core fw3_6 with 5 states 6 symbols 19 non-halt transitions.
+* The input config is B(k, n, m) 4^p 5^q 2^r 00 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 5^q 2^r 00 with n >= 1, p >= 1
+* importance: r > q > p > k > n > m
+name fw3_6
+cfg BCFG(A) 4^p 5^q 2^r BLANK
+slot r q p>=1 k n m
+core ---3LB---2RA4LB---_1RZ3RB1LC2RA3RD---_3RB1LB3LC2RC4LC---_3RB---5LE4LD4LC4LD_4LC------5LE------
+
+* f_(ω+3) core fw3_7 with 4 states 7 symbols 20 non-halt transitions.
+* The input config is B(k, n, m) 4^p 5^q 6^r 00 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 5^q 6^r 00 with n >= 1, p >= 1
+* importance: r > q > p > k > n > m
+name fw3_7
+cfg BCFG(A) 4^p 5^q 6^r BLANK
+slot r q p>=1 k n m
+core ---3LB---2RA4LB------_1RZ3RB1LC2RA3RD---4LC_3RB1LB3LC2RC4LC---5LD_3RB---6LC4LD4LC4LD6LC
+
+
+# f_(ω+4) cores
+
+* f_(ω+4) core fw4_5 with 7 states 5 symbols 26 non-halt transitions.
+* Input config is B(k, n, m) 4^p 3^q 1^r 2^s 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 3^q 1^r 2^s 0 with n >= 1
+* importance: s > r > q > p > k > n > m
+name fw4_5
+cfg BCFG(A) 4^p 3^q 1^r 2^s BLANK
+slot s r q p k n m
+core ---3LB4LC2RA4LB_---3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF1LG4LD4LE_3RB------4LE3LC_4LC------3LF3LF_3LF------1LG1LG
+
+* f_(ω+4) core fw4_8 with 4 states 8 symbols 26 non-halt transitions.
+* From https://github.com/rorogamin/roros-busy-beaver-researchings/blob/main/newchampions/search/fw4_8.txt
+* Input config is B(k, n, m) 4^p 5^q 6^r 7^s 0^inf = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 5^q 6^r 7^s 0^inf with n >= 1, p >= 1, s >= 1
+* importance: s > r > q > p > k > n > m
+name fw4_8
+cfg BCFG(A) 4^p 5^q 6^r 7^s BLANK
+slot s>=1 r q p>=1 k n m
+core 5LC3LB7LA2RA4LB---4LB6LA_1RZ3RB1LC2RA3RD3RA4LC---_3RB1LB3LC2RC4LC---5LD---_3RB---6LC4LD4LC4LD6LC7LA
+
+
+# f_(ω*2) cores
+
+* f_(ω*2) core fwm2_3 with 8 states 3 symbols 21 non-halt transitions.
+* The input config is 1^m B> 0 2^k 1^n 0 with n >= 1
+* importance: k > n > m
+name fwm2_3
+cfg 1^m B> 0 2^k 1^n 0^1
+slot k n>=1 m
+core 1LD2RG2LA_2LE2LH2RB_---1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA
+
+* f_(ω*2) core fwm2_5 with 6 states 5 symbols 24 non-halt transitions.
+* Input config is B'(k, n, m) 0 = 0^inf 3^(2m+1) 2^k D> 1^n 0 with n >= 1
+* importance: k > n > m
+name fwm2_5
+cfg BCFG(D) BLANK
+slot k n m
+core ---3LB4LC2RA4LB_---3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE---_---3RF---2RD4LC
+
+* f_(ω*2) core fwm2_6 with 6 states 6 symbols 22 non-halt transitions.
+* Input config is 0^inf 5 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* importance: k > n > m
+name fwm2_6
+cfg 5^1 BCFG(A) 2^1
+slot k n m
+core ---3LB1RZ2RA4LB---_---3RB1LD2RA3LF---_3RB1LB3LC2RC4LC0LE_3RB---3LC2RC---3RE_5RC3RE---4LC------_5RB------1LF------
+
+* f_(ω*2) core fwm2_7 with 5 states 7 symbols 25 non-halt transitions.
+* Input config is B(k, n, m) 2 = 0^inf 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* importance: k > n > m
+name fwm2_7
+cfg BCFG(A) 2^1
+slot k n m
+core ---3LB1RZ2RA6LE3LC5RA_---3RB1LD2RA---------_3RB1LB3LC2RC---1LC1LC_6RE---3LC2RC4LE6LD5RD_---5RE---5LE6RE4LD5RA
+
+
+# f_(ω*2)+f_ω cores
+
+* f_(ω*2)+f_ω core fwm2fw_5 with 6 states 5 symbols 28 non-halt transitions.
+* Input config is B(k, n, m) 0 = 0^inf 3^(2m+1) 2^k A> 1^n 0 with n >= 1
+* importance: k > n > m
+name fwm2fw_5
+cfg BCFG(A) BLANK
+slot k n m
+core 1LF3LB4LC2RA4LB_---3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_---3RF4LE2RD4LC
+
+
+# double f_(ω*2) cores
+
+* double f_(ω*2) core dfwm2_5 with 8 states 5 symbols 28 non-halt transitions.
+* Input config is B(k, n, m) 2 = 0^inf 3^(2m+1) 2^k A> 1^n 2 with n >= 1
+* importance: k > n > m
+name dfwm2_5
+cfg BCFG(A) 2^1
+slot k n m
+core ---3LB4LC2RA4LB_------1LD2RA---_3RB1LB3LC2RC4LC_3RE---3LC2RC---_---3RE---4LH1RZ_---3LG---2RF4LG_---3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+
+
+# f_(ω*2+1) cores
+
+* f_(ω*2+1) core fwm21_3 with 10 states 3 symbols 26 non-halt transitions.
+* The input config is 1^m B> 0 2^k 1^n 0 1^p 2 with n >= 1, p >= 1
+* importance: p > k > n > m
+* Please increase state or symbol count to search!
+name fwm21_3
+cfg 1^m B> 0^1 2^k 1^n 0^1 1^p 2^1
+slot p>=1 k n>=1 m
+core 1LD2RG2LA_2LE2LH2RB_---1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI---_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_---0LH1RZ
+
+* f_(ω*2+1) core fwm21_4 with 10 states 4 symbols 27 non-halt transitions.
+* The input config is 1^m B> 0 2^k 1^n 0^p 3 with n >= 1
+* importance: p > k > n > m
+name fwm21_4
+cfg 1^m B> 0^1 2^k 1^n 0^p 3^1
+slot p k n>=1 m
+core ------------_2LE2LH2RB1RZ_0RI1RC2RB---_0RC1RD0LG---_0LF1LE1LE---_1RG1RC------_0RC1LH2RG---_1RC2LH1LJ---_2LE3RI1LI2LI_1LD2RG2LJ---
+
+* f_(ω*2+1) core fwm21_5 with 8 states 5 symbols 31 non-halt transitions.
+* The input config is B(k, n, m) 4^p 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4^p 0 with n >= 1
+* importance: p > k > n > m
+name fwm21_5
+cfg BCFG(A) 4^p BLANK
+slot p k n m
+core ---3LB4LC2RA4LB_1RZ---1LD2RA4LD_3RB1LB3LC2RC4LC_3RE---3LC2RC3LC_---3RE---4LH4RB_---3LG---2RF4LG_---3RG1LH2RF2RA_3RG1LG3LH2RH4LH
+
+* f_(ω*2+1) core fwm21_6 with 7 states 6 symbols 26 non-halt transitions.
+* Input config is 0^inf 5 3^(2m+1) 2^k A> 1^n 2^p 5 with n >= 1
+* importance: p > k > n > m
+name fwm21_6
+cfg 5^1 BCFG(A) 2^p 5^1
+slot p k n m
+core ---3LB1LG2RA4LB1RZ_---3RB1LD2RA3LF---_3RB1LB3LC2RC4LC0LE_3RB---3LC2RC---3RE_5RC3RE---4LC------_5RB------1LF------_------1LG3LG---0LE
+
+* f_(ω*2+1) core fwm21_7 with 5 states 7 symbols 30 non-halt transitions.
+* Input config is 0^inf 3^(2m+1) 2^k B> 1^n 2^p 0^inf with n >= 1, p >= 1
+* importance: p > k > n > m
+name fwm21_7
+cfg BCFG(B) 2^p BLANK
+slot p>=1 k n m
+core ---3RA1LD2RB3LA2RA---_1RZ3LA4LE2RB6LE3LC5RB_3RA1LA3LC2RC---1LC1LC_6RE---3LC2RC4LE6LD5RD_3RA5RE5LE5LE6RE4LD5RB
+
+* f_(ω*2+1) core fwm21_7i with 6 states 7 symbols 28 non-halt transitions.
+* From https://github.com/rorogamin/roros-busy-beaver-researchings/blob/main/newchampions/search/my_cores.txt
+* Input config is 0^inf 5 3^(2m+1) 2^k A> 1^n 2^p 5 0^inf with n >= 1, p >= 1
+* importance: p > k > n > m
+name fwm21_7i
+cfg 5^1 BCFG(A) 2^p 5^1 BLANK
+slot p>=1 k n m
+core ---3LB1LF2RA4LB5RC1LF_1RZ3RB1LD2RA3LF------_3RB1LB3LC2RC4LC0LE3RD_3RB2RA3LC2RC---3RE---_5RC3RE---4LC---------_5RB---6LA1LF---------
+
+* f_(ω*2+1) core fwm21_8 with 5 states 8 symbols 28 non-halt transitions.
+* Input config is 0^inf 3^(2m+1) 2^k A> 1^n 7^p 2 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fwm21_8
+cfg BCFG(A) 7^p 2^1
+slot p>=1 k n m
+core ---3LB1RZ2RA6LE3LC5RA7LB_---3RB1LD2RA---------3LC_3RB1LB3LC2RC---1LC1LC7LC_6RE---3LC2RC4LE6LD5RD---_---5RE---5LE6RE4LD5RA---
+
+* f_(ω*2+1)+f_(ω+1) core fwm21fw1_7 with 6 states 7 symbols 33 non-halt transitions.
+* Input config is 0^inf 3^(2m+1) 2^k B> 1^n 2^1 4^p 2^1 0^inf with n >= 1
+* importance: k > n > m
+name fwm21fw1_7
+cfg BCFG(B) 2^1 4^p 2^1 BLANK
+slot p k n m
+core 5LF6LA5RA---6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA---4LC4LC4LA6LC5RC_3RE1LE3LD2RD---6LC5RC_6RA3RE1LD2RB2RE2LE2LE_---------------5LF5RE
+
+* f_(ω*2+1)+double f_(ω+1) core fwm21dfw1_7 with 6 states 7 symbols 34 non-halt transitions.
+* Input config is 0^inf 3^(2m+1) 2^k B> 1^n 2 4^p 312 0^inf with n >= 1
+* importance: k > n > m
+name fwm21dfw1_7
+cfg BCFG(B) 2^1 4^p 3^1 1^1 2^1 BLANK
+slot p k n m
+core 5LF6LA5RA---6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA4RC4LC4LC4LA6LC5RC_3RE1LE3LD2RD---6LC5RC_6RA3RE1LD2RB2RE2LE2LE_---------------5LF5RE
+
+* f_(ω*2+1)+triple f_(ω+1) core fwm21tfw1_7 with 6 states 7 symbols 35 non-halt transitions.
+* Input config is 0^inf 3^(2m+1) 2^k B> 1^n 2 4^p 35 0^inf with n >= 1
+* importance: k > n > m
+name fwm21tfw1_7
+cfg BCFG(B) 2^1 4^p 3^1 5^1 BLANK
+slot p k n m
+core 5LF6LA5RA---6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA4RC4LC4LC4LA6LC5RC_3RE1LE3LD2RD4LA6LC5RC_6RA3RE1LD2RB2RE2LE2LE_---------------5LF5RE
+
+
+# f_(ω*2+2) cores
+
+* f_(ω*2+2) core fwm22_3 with 12 states 3 symbols 28 non-halt transitions.
+* The input config is 1^m B> 0 2^k 1^n 0 1^p 2^q 0 with n >= 1, p >= 1
+* importance: q > p > k > n > m
+name fwm22_3
+cfg 1^m B> 0^1 2^k 1^n 0^1 1^p 2^q BLANK
+slot q>=1 p k n>=1 m
+core 1LD2RG2LA_2LE2LH2RB_---1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI---_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_1RZ0LH1LK_0LK2LL1LK_0LF------
+
+* f_(ω*2+2) core fwm22_8 with 6 states 8 symbols 32 non-halt transitions.
+* From https://github.com/rorogamin/roros-busy-beaver-researchings/blob/main/newchampions/search/my_cores.txt
+* Input config is 0^inf 5 3^(2m+1) 2^k A> 1^n 2^p 7^q 5 0^inf with n >= 1, q >= 1
+* importance: q > p > k > n > m
+name fwm22_8
+cfg 5^1 BCFG(A) 2^p 7^q 5^1 BLANK
+slot q>=1 p k n m
+core ---3LB1LF2RA4LB5RC1LF2LE_1RZ3RB1LD2RA3LF---------_3RB1LB3LC2RC4LC0LE3RD7RB_3RB2RA3LC2RC---3RE---3RD_5RC3RE7LA4LC------------_5RB---6LA1LF------------
+
+
+# f_(ω^2) cores
+
+* f_(ω^2) core fwp2_3 with 16 states 3 symbols 43 non-halt transitions.
+* Input config is 1^n P> 1^m with n >= 2, m >= 2
+* importance: n > m
+name fwp2_3
+cfg 1^n P> 1^m BLANK
+slot n>=2 m>=2
+core ---1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_---1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_------0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP
+
+* f_(ω^2) core fwp2_4 with 8 states 4 symbols 29 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^n 0^inf with n >= 3
+* Please increase state or symbol count to search!
+name fwp2_4
+cfg ACG> 3^n BLANK
+slot n>=3
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RZ3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE
+
+* f_(ω^2) core fwp2_5 with 8 states 5 symbols 30 non-halt transitions.
+* Input config is 0^inf {C or G}> 3^n 0^inf with n >= 3
+name fwp2_5
+cfg CG> 3^n BLANK
+slot n>=3
+core 1LD2RG2LA---3LG_---2LH2RB2RF---_---1RC2RB3LG---_0RC1RC1LD4RD---_4RD1LE1LE---3LE_1RZ3LD2LE3LE---_1RG1LH2RG3LG3LG_1RC2LH1LA---1LE
+
+* f_(ω^2) core fwp2_6 with 7 states 6 symbols 31 non-halt transitions.
+* Input config is 0^inf 5^r 3^(2m+1) 2^k A> 1^n 2 with n >= 1, r >= 1
+* importance: r > k > n > m
+name fwp2_6
+cfg 5^r BCFG(A) 2^1
+slot r>=1 k n m
+core ---3LB1RZ2RA4LB---_---3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE---4LC3LG5LE_5RB5RB---1LF---5LF_5LF------1LG---5LG
+
+
+# f_(ω^2+1) cores
+
+* f_(ω^2+1) core fwp21_3 with 19 states 3 symbols 54 non-halt transitions.
+* Input config is 1^n P> 1^m 0^2 1^k with n >= 2, m >= 2
+* importance: n > m
+name fwp21_3
+cfg 1^n P> 1^m 0^2 1^k BLANK
+slot k n>=2 m>=2
+core ---1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS---
+
+* f_(ω^2+1) core fwp21_4 with 10 states 4 symbols 35 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^m 0^n 1 with n >= 2, m >= 1
+* importance: n > m
+name fwp21_4
+cfg ACG> 3^m 0^n 1^1
+slot n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ------_3RC3LJ3LJ3LJ
+
+* f_(ω^2+1) core fwp21_5 with 9 states 5 symbols 34 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^m 0^n 4 with n >= 1, m >= 1
+* importance: n > m
+name fwp21_5
+cfg ACG> 3^m 0^n 4^1
+slot n>=1 m>=1
+core 1LD2RG2LA3LG---_---2LH2RB2RF---_---1RC2RB3LG---_0RC1RC1LD3RD---_3RD1LE1LE3LE---_3LI3LD2LE3LE1RZ_1RG1LH2RG3LG---_1RC2LH1LA1LE---_0RC3LI3LI3LI---
+
+* f_(ω^2+1) core fwp21_6 with 8 states 6 symbols 38 non-halt transitions.
+* Input config is 0^inf 5^r 3^(2m+1) 2^k A> 1^n 2^p 5 with n >= 1, r >= 1
+* importance: p > r > k > n > m
+name fwp21_6
+cfg 5^r BCFG(A) 2^p 5^1
+slot p r>=1 k n m
+core ---3LB2LH2RA4LB1RZ_---3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE---4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG---5LG_------1LH1LH---5RG
+
+* f_(ω^2+1) core fwp21_7 with 7 states 7 symbols 37 non-halt transitions.
+* From https://github.com/rorogamin/roros-busy-beaver-researchings/blob/main/newchampions/search/my_cores.txt
+* Input config is 0^inf 5^r 3^(2m+1) 2^k A> 1^n 2^p 5 0^inf with n >= 1, p >= 1, r >= 1
+* importance: p > r > k > n > m
+name fwp21_7
+cfg 5^r BCFG(A) 2^p 5^1 BLANK
+slot p>=1 r>=1 k n m
+core ---3LB6LA2RA4LB5RC5LA_1RZ3RB1LD2RA3LF5RB6LD_3RB1LB3LC2RC4LC1LE5RB_3RB3RE3LC2RC---3RD1LA_5RB3RE---4LC3LG5LE---_5RB5RB---1LF---5LF---_5LF------1LG---5LG---
+
+
+# f_(ω^2+1)+f_ω cores
+
+* f_(ω^2+1)+f_ω core fwp21fw_4 with 11 states 4 symbols 39 non-halt transitions.
+* The input config is 1^n G> 1^m 0  with n >= 2, m >= 1
+* importance: n > m
+name fwp21fw_4
+cfg 1^n G> 1^m 0^1
+slot n>=2 m>=1
+core 1LD2RG2LA3LG_1LK2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ------_3RC3LJ3LJ3LJ_0LF0LK0LK---
+
+* f_(ω^2+1)+f_ω core fwp21fw_6 with 8 states 6 symbols 41 non-halt transitions.
+* Input config is B(k, n, m) 4 0^inf = 0^inf 3^(2m+1) 2^k A> 1^n 4 0^inf with n >= 1
+* importance: k > n > m
+name fwp21fw_6
+cfg BCFG(A) 4^1 BLANK
+slot k n m
+core 5LH3LB2LH2RA4LB1RZ_---3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC---3RD_5RB3RE1LE4LC3LG5LE_5RB5RB---1LF5LF5LF_5LF4RG1LB1LG2LG5LG_------1LH1LH---5RG
+
+
+# f_(ω^2+2) cores
+
+* f_(ω^2+2) core fwp22_4 with 11 states 4 symbols 40 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^m 0^n 1^k 2 with n >= 2, m >= 1
+* importance: k > n > m
+name fwp22_4
+cfg ACG> 3^m 0^n 1^k 2^1
+slot k n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK
+
+* f_(ω^2+2) core fwp22_5 with 10 states 5 symbols 41 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^m 4^n 0^k 4 with n >= 2, m >= 1
+* importance: k > n > m
+name fwp22_5
+cfg ACG> 3^m 4^n 0^k 4^1
+slot k>=1 n>=2 m>=1
+core 1LD2RG2LA3LG3LG_---2LH2RB2RF---_0LJ1RC2RB3LG1RZ_0RC1RC1LD3RD---_3RD1LE1LE3LE---_4RC3LD2LE3LE3LI_1RG1LH2RG3LG---_1RC2LH1LA1LE---_0RC3LI3LI3LI---_3RA4LJ4LJ4LJ---
+
+* f_(ω^2+2) core fwp22_7 with 8 states 7 symbols 42 non-halt transitions.
+* From https://github.com/rorogamin/roros-busy-beaver-researchings/blob/main/newchampions/search/my_cores.txt
+* Input config is 0^inf 5^r 3^(2m+1) 2^k A> 1^n 2^p 5^q 6 with n >= 1, q >= 1, r >= 1
+* importance: q > p > r > k > n > m
+name fwp22_7
+cfg 5^r BCFG(A) 2^p 5^q 6^1
+slot q>=1 p r>=1 k n m
+core ---3LB2LH2RA4LB6LH1RZ_---3RB1LD2RA3LF5RB---_3RB1LB3LC2RC4LC1LE---_3RB3RE3LC2RC---3RD---_5RB3RE4RG4LC3LG5LE---_5RB5RB---1LF5LF5LF---_5LF4RG1LB1LG---5LG2LH_------1LH1LH2LH5RG---
+
+
+# f_(ω^2+2)+f_ω and above
+
+* f_(ω^2+2)+f_ω core fwp22fw_4 with 12 states 4 symbols 44 non-halt transitions.
+* The input config is 1^n G> 1^m 0  with n >= 2, m >= 1
+* importance: n > m
+name fwp22fw_4
+cfg 1^n G> 1^m 0^1
+slot n>=2 m>=1
+core 1LD2RG2LA3LG_2LL2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL---
+
+* f_(ω^2+3) core fwp23_4 with 12 states 4 symbols 45 non-halt transitions.
+* Input config is 0^inf {A or C or G}> 3^m 0^n 1^k 2^p 3 with n >= 2, m >= 1
+* importance: p > k > n > m
+name fwp23_4
+cfg ACG> 3^m 0^n 1^k 2^p 3^1
+slot p k n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL
+
+* f_(ω^ω) core fwpw_5 with 12 states 5 symbols 46 non-halt transitions.
+* The input config is B(k, n, m) 4 2 = 0^inf 3^(2m+1) 2^k A> 1^n 4 2 with n >= 1
+* importance: k > n > m
+name fwpw_5
+cfg BCFG(A) 4^1 2^1
+slot k n m
+core ---3LB1RZ2RA3LL_---3RB1LD2RA---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_---1LH1LG3LH4LH_---1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---
+
+* f_(ω^ω) core fwpw_8 with 8 states 8 symbols 46 non-halt transitions.
+* The input config is B(k, n, m) 4 2 = 0^inf 3^(2m+1) 2^k A> 1^n 4 2 with n >= 1
+* importance: k > n > m
+name fwpw_8
+cfg BCFG(A) 4^1 2^1
+slot k n m
+core ---3LB1RZ2RA3LG---------_7RH3RB1LD2RA4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE---4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_---5RH---6RH4RF------7RH
+
+* double f_(ω^ω) core dfwpw_5 with 12 states 5 symbols 50 non-halt transitions.
+* The input config is B(k, n, m) 4 3 0 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4 3 0 0 with n >= 1
+* importance: k > n > m
+name dfwpw_5
+cfg BCFG(A) 4^1 3^1 BLANK
+slot k n m
+core 4RB3LB1RZ2RA3LL_2LC3RB1LD2RA---_3RB1LB3LC2RC4LH_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_---1LH1LG3LH4LH_3RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---
+
+* f_(ω^ω+1) core fwpw1_5a with 12 states 5 symbols 48 non-halt transitions.
+* The input config is B(k, n, m) 4 2^p 0 = 0^inf 3^(2m+1) 2^k A> 1^n 4 2^p 0 with n >= 1, p >= 1
+* Please use other start state instead of A
+* importance: p > k > n > m
+name fwpw1_5a
+cfg BCFG(A) 4^1 2^p BLANK
+slot p>=1 k n m
+core 1RZ3LB4LH2RA3LL_---3RB1LD2RA---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_---1LH1LG3LH4LH_2RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---
+
+* f_(ω^ω+1) core fwpw1_5b with 12 states 5 symbols 48 non-halt transitions.
+* The input config is B(k, n, m) 4 0^p 2 = 0^inf 3^(2m+1) 2^k A> 1^n 4 0^p 2 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fwpw1_5b
+cfg BCFG(A) 4^1 0^p 2^1
+slot p>=1 k n m
+core 4LH3LB1RZ2RA3LL_---3RB1LD2RA---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_---1LH1LG3LH4LH_2RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---
+
+* f_(ω^ω+1) core fwpw1_6 with 12 states 6 symbols 48 non-halt transitions.
+* The input config is B(k, n, m) 4 2^p 5 = 0^inf 3^(2m+1) 2^k A> 1^n 4 2^p 5 with n >= 1, p >= 1
+* importance: p > k > n > m
+name fwpw1_6
+cfg BCFG(A) 4^1 2^p 5^1
+slot p>=1 k n m
+core ---3LB4LH2RA3LL1RZ_---3RB1LD2RA------_3RB1LB3LC2RC------_2RE---3LC2RC------_3RB2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RB1LL1LL1LL------
+
+* f_(ω^ω+1) core fwpw1_8 with 9 states 8 symbols 48 non-halt transitions.
+* importance: k > n > m
+name fwpw1_8
+cfg BCFG(AI) 4^1 2^p 5^1
+slot p k n m
+core ---3LB4LE2RA3LG1RZ------_7RH3RB1LD2RA4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_---5RH---6RH4RF------7RH_3RI3LB2RI2LI------------
+
+* f_(ε0) core fe0_5 from Wythagoras' BB(19,5) champion, with 17 states 5 symbols 68 non-halt transitions.
+* Input config is 1^m B> 2^n 0^inf with n >= 3, m >= 1.
+* Output config is 0^inf 1^{KirbyParisHydra(n,m-1)+2} Z> 0^inf
+* KirbyParisHydra(n,m) >= KirbyParisHydra(n,0) = KirbyParisHydra(n) > f_(ε0)(n-3)
+* importance: n > m
+name fe0_5
+cfg 1^m B> 2^n BLANK
+slot n>=3 m>=1
+core ------0RF0RD1LQ_1RZ1RB2LC------_0LI4RC2RC3RC2RC_1LE1RD2RD3RD---_3LA1LE2LE3LE---_0LG1RF2RF3RF---_0RI0LH---3RI---_2LA1LH2LH3LH---_3RN---0LA0LI---_2RO---2LJ3LJ---_2LL---2RK3RK4RK_3RO2RO2LL3LL4LL_3LL---2RM3RM4RM_4LJ1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RB1LQ2LQ3LQ1LQ
+
+name fwm21_8_fix
+cfg BCFG(A) 7^p 2^1
+slot p>=1 k n m
+core ---3LB1RZ2RA6LE3LC5RA7LB_---3RB1LD2RA---------3LC_3RB1LB3LC2RC---1LC1LC7LC_6RE---3LC2RC4LE6LD5RD---_---5RE---5LE6RE4LD5RA5LE
+
+name fwm21_8_blank
+cfg BCFG(B) 7^p BLANK
+slot p>=1 k n m
+core ---3RA1LD2RB---------3LC_1RZ3LA---2RB6LE3LC5RB7LA_3RA1LA3LC2RC---1LC1LC7LC_6RE---3LC2RC4LE6LD5RD---_---5RE---5LE6RE4LD5RB5LE
+
+name fwpw1_6_blank
+cfg BCFG(B) 4^1 2^p BLANK
+slot p>=1 k n m
+core ---3RA1LD2RB------_1RZ3LA4LH2RB3LL---_3RA1LA3LC2RC------_2RE---3LC2RC------_3RA2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RA1LL1LL1LL------
+
+name fwpw2_6
+cfg BCFG(B) 4^1 2^p 5^q BLANK
+slot q>=1 p>=0 k n m
+core ---3RA1LD2RB------_1RZ3LA4LH2RB3LL2LM_3RA1LA3LC2RC------_2RE---3LC2RC------_3RA2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RA1LL1LL1LL------_0RC---2LM2LM------
+
+name fwpw3_7
+cfg BCFG(B) 4^1 2^p 5^q 6^r BLANK
+slot r>=1 q>=0 p>=0 k n m
+core ---3RA1LD2RB---------_1RZ3LA4LH2RB3LL2LM5LN_3RA1LA3LC2RC---------_2RE---3LC2RC---------_3RA2RE2RE4RF---------_1LG1RF3LG3RF4LG------_2RJ0LH2LG2LI4LK------_---1LH1LG3LH4LH------_2RC1LI3LG3LI4LI------_---1RJ2RJ3RJ4RF------_---1LK3LE3LK---------_3RA1LL1LL1LL---------_0RC---2LM2LM---------_3RN---5LN5LN---2RB---
+
+name fwpw_8_blank
+cfg BCFG(H) 4^1 BLANK
+slot k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE---4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB---2RH3LG---------
+
+name fwpw1_8_blank
+cfg BCFG(HI) 4^1 2^p BLANK
+slot p>=1 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG---------_3RI3LB2RI2LI------------
+
+name fwpw2_8_blank
+cfg BCFG(HI) 4^1 2^p 5^q BLANK
+slot q>=1 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ------_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------
+
+name fwpw3_8_blank
+cfg BCFG(HI) 4^1 2^p 5^q 6^r BLANK
+slot r>=1 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK---_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH------
+
+name fwpw4_8_blank
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s BLANK
+slot s>=1 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK6LL_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH------_3RL---6LL6LL------2RH---
+
+
+
+
+
+
+name fwp23fw_4
+cfg 1^n G> 1^m 0^1
+slot n>=2 m>=2
+core 1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_0LL2LM2LM---
+
+name fwp24_4
+cfg ACG> 3^m 0^n 1^k 2^p 3^q BLANK
+slot q>=2 p>=0 k>=0 n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ------3LN_0LL2LN2LN2LN
+
+name fwp25_4
+cfg ACG> 3^m 0^n 1^k 2^p 3^q 2^r BLANK
+slot r>=1 q>=1 p>=0 k>=0 n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ---3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO
+
+name fwp26_4
+cfg ACG> 3^m 0^n 1^k 2^p 3^q 2^r 1^s BLANK
+slot s>=1 r>=0 q>=1 p>=0 k>=0 n>=2 m>=1
+core 1LD2RG2LA3LG_---2LH2RB2RF_---1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP
+
+name fwpw5_13_9_blank
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 8^t BLANK
+slot t>=1 s>=0 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB---_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------------_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI---------------_0RC---2LJ2LJ---------------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---
+
+name fwp22_5_sw
+cfg BCG> 3^m 4^n 0^k 4^1
+slot k>=1 n>=2 m>=1
+core ---2LH2RA2RF---_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD---_3RD1LE1LE3LE---_4RC3LD2LE3LE3LI_1RG1LH2RG3LG---_1RC2LH1LB1LE---_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ---
+
+name fwpw2_5
+cfg BCFG(H) 4^1 0^p 2^q BLANK
+slot q>=2 p>=0 k n m
+core ---1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---_1RZ---0LN------_3RB---0LN0LN---
+
+name fwpw3_5
+cfg BCFG(H) 4^1 0^p 2^q 4^r BLANK
+slot r>=1 q>=1 p>=0 k n m
+core ---1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---_1RZ---0LN---2LO_3RB---0LN0LN---_0RC---2LO2LO---
+
+name fwpw4_5
+cfg BCFG(H) 4^1 0^p 2^q 4^r 3^s BLANK
+slot s>=1 r>=0 q>=1 p>=0 k n m
+core ---1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC---_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_---1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---_1RZ---0LN4LP2LO_3RB---0LN0LN---_0RC---2LO2LO2RP_3RO---4LP4LP2RM
+
+name fwpw3_6
+cfg BCFG(B) 4^1 2^p 5^q 4^r BLANK
+slot r>=1 q>=1 p>=0 k n m
+core ---3RA1LD2RB------_1RZ3LA4LH2RB3LL2RN_3RA1LA3LC2RC------_2RE---3LC2RC------_3RA2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RA1LL1LL1LL------_0RC---2LM2LM------_1RZ---------5LO2LM_3RO---5LO5LO---2RB
+
+name fwpw4_6
+cfg BCFG(B) 4^1 2^p 5^q 4^r 3^s BLANK
+slot s>=1 r>=0 q>=1 p>=0 k n m
+core ---3RA1LD2RB------_1RZ3LA4LH2RB3LL2RN_3RA1LA3LC2RC------_2RE---3LC2RC------_3RA2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RA1LL1LL1LL------_0RC---2LM2LM------_1RZ------4LP5LO2LM_3RO---5LO5LO2RP2RB_3RO---4LP4LP2RN---
+
+name fwpw4_7
+cfg BCFG(B) 4^1 2^p 5^q 6^r 5^s BLANK
+slot s>=1 r>=1 q>=0 p>=0 k n m
+core ---3RA1LD2RB---------_1RZ3LA4LH2RB3LL2LM2RO_3RA1LA3LC2RC---------_2RE---3LC2RC---------_3RA2RE2RE4RF---------_1LG1RF3LG3RF4LG------_2RJ0LH2LG2LI4LK------_---1LH1LG3LH4LH------_2RC1LI3LG3LI4LI------_---1RJ2RJ3RJ4RF------_---1LK3LE3LK---------_3RA1LL1LL1LL---------_0RC---2LM2LM---------_3RN---5LN5LN---2RB---_1RZ------------6LP5LN_3RP---6LP6LP------2RB
+
+name fwpw5_8
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 6^t BLANK
+slot t>=1 s>=1 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH------_3RL---6LL6LL------2RH---_1RZ---------------7LN6LL_3RN---7LN7LN---------2RH
+
+name fwpw6_8
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 5^t BLANK
+slot t>=1 s>=1 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH------_3RL---6LL6LL------2RH---_1RZ------------6LO7LN6LL_3RN---7LN7LN------2RO2RH_3RN---6LO6LO------2RM---
+
+name fwpw7_8
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 2^t BLANK
+slot t>=1 s>=1 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH------_3RL---6LL6LL------2RH---_1RZ---5LP------6LO7LN6LL_3RN---7LN7LN------2RO2RH_3RN---6LO6LO---2RP2RM---_3RO---5LP5LP---2RM------
+
+name fwpw6_9
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 8^1 7^t BLANK
+slot t>=1 s>=0 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB---_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------------_1RZ3LB4LE2RH3LG2LJ5LK6LL2RN_3RI3LB2RI2LI---------------_0RC---2LJ2LJ---------------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---_1RZ------------------8LO7LM_3RO---8LO8LO------------2RH
+
+name fwpw7_9
+cfg BCFG(HI) 4^1 2^p 5^q 6^r 7^s 8^1 6^t BLANK
+slot t>=1 s>=0 r>=0 q>=0 p>=0 k n m
+core ---5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB---_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------------_1RZ3LB4LE2RH3LG2LJ5LK6LL2RN_3RI3LB2RI2LI---------------_0RC---2LJ2LJ---------------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---_1RZ---------------7LP8LO7LM_3RO---8LO8LO---------2RP2RH_3RO---7LP7LP---------2RN---
+
+name racheline21
+cfg 1^4 R> 1^p BLANK
+slot p>=4
+core 0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_---1LR
+
+name racheline25
+cfg 1^4 R> 1^p BLANK
+slot p>=4
+core 0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_---0LT_1LH1LU_---1LV_0LH0LW_1LH0LX_1LH1LY_---1LR

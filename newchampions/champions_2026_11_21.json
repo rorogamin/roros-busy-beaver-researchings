@@ -1,0 +1,869 @@
+[
+  {
+    "states": 21,
+    "symbols": 2,
+    "core": "racheline21_opt",
+    "step": 1884,
+    "cfg": "0^inf 1^3 H> 0 [1,4,1^31,2] 00 1^3 0^inf",
+    "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0RC0LT_1LH1LU_0RS1LR",
+    "rank": [
+      30,
+      3,
+      2,
+      33
+    ],
+    "bound": "> f_{\u03c9^2}^3(f_\u03c9^2(f_{33}(21)))",
+    "halted_at": null,
+    "beats_wiki": "BB(21,2)"
+  },
+  {
+    "states": 22,
+    "symbols": 2,
+    "core": "racheline22_opt",
+    "step": 329,
+    "cfg": "0^inf 1^3 H> 0 [1,4,1^7,2] 00 1^5 0^inf",
+    "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RS1LR_1RF0LQ",
+    "rank": [
+      30,
+      3,
+      4,
+      9
+    ],
+    "bound": "> f_{\u03c9^2}^3(f_\u03c9^4(f_9(21)))",
+    "halted_at": null,
+    "beats_wiki": "BB(21,2)"
+  },
+  {
+    "states": 23,
+    "symbols": 2,
+    "core": "racheline23_opt",
+    "step": 120,
+    "cfg": "0^inf S> 00 1100 1^8 0^inf -> 111 H> 0 [1,4,1,2] 00 1^7 0^inf",
+    "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RV1LR_0LW0LW_0LS1LV",
+    "rank": [
+      30,
+      3,
+      6,
+      341
+    ],
+    "bound": "> f_{\u03c9^2}^3(f_\u03c9^6(4 \u2191\u2191 341))",
+    "halted_at": null,
+    "beats_wiki": "BB(21,2)"
+  },
+  {
+    "states": 24,
+    "symbols": 2,
+    "core": "racheline24_opt",
+    "step": 246,
+    "cfg": "0^inf S> 00 1100 1^14 0^inf -> 111 H> 0 [1,4,1,2] 00 1^13 0^inf",
+    "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RW1LR_0LX0LW_0LP0LX_0LS1LV",
+    "rank": [
+      30,
+      3,
+      12,
+      341
+    ],
+    "bound": "> f_{\u03c9^2}^3(f_\u03c9^{12}(4 \u2191\u2191 341))",
+    "halted_at": null,
+    "beats_wiki": "BB(21,2)"
+  },
+  {
+    "states": 25,
+    "symbols": 2,
+    "core": "racheline25_opt",
+    "step": 1999,
+    "cfg": "0^inf 1^3 H> 0 [1,4,1^33,2] 00 1^5 0^inf",
+    "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RW1LV_0LH0LW_1LX0LX_1LH1LY_1LW1LR",
+    "rank": [
+      30,
+      5,
+      4,
+      35
+    ],
+    "bound": "> f_{\u03c9^2}^5(f_\u03c9^4(f_{35}(21)))",
+    "halted_at": null,
+    "beats_wiki": "BB(25,2)"
+  },
+  {
+    "states": 8,
+    "symbols": 3,
+    "core": "fw2_3",
+    "step": 44,
+    "cfg": "1^1 F> 0^1 1^4 2",
+    "tm": "2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RE_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_1RA1RD0RH",
+    "rank": [
+      11,
+      1,
+      4,
+      1
+    ],
+    "bound": "> f_{\u03c9+2}(4)",
+    "halted_at": null,
+    "beats_wiki": "BB(8,3)"
+  },
+  {
+    "states": 9,
+    "symbols": 3,
+    "core": "fw3_3",
+    "step": 39,
+    "cfg": "1^1 F> 0^1 1^3 2^4 0",
+    "tm": "2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH",
+    "rank": [
+      12,
+      1,
+      4,
+      3
+    ],
+    "bound": "> f_{\u03c9+3}(4)",
+    "halted_at": null,
+    "beats_wiki": "BB(9,3)"
+  },
+  {
+    "states": 16,
+    "symbols": 3,
+    "core": "fwp2_3",
+    "step": 8,
+    "cfg": "1^2 P> 1^3 0^inf",
+    "tm": "1RL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LA1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_1RH1RP0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP",
+    "rank": [
+      30,
+      1,
+      2,
+      3
+    ],
+    "bound": "> f_{\u03c9^2}(2)",
+    "halted_at": null,
+    "beats_wiki": "BB(14,3)"
+  },
+  {
+    "states": 17,
+    "symbols": 3,
+    "core": "fwp2_3",
+    "step": 15,
+    "cfg": "1^6 P> 1^2 0^inf",
+    "tm": "0RH1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2RA1RQ0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RL0RI1RP",
+    "rank": [
+      30,
+      1,
+      6,
+      2
+    ],
+    "bound": "> f_{\u03c9^2}(6)",
+    "halted_at": null,
+    "beats_wiki": "BB(17,3)"
+  },
+  {
+    "states": 18,
+    "symbols": 3,
+    "core": "fwp2_3",
+    "step": 205,
+    "cfg": "1^17 P> 1^3 0^inf",
+    "tm": "2LL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2LR0RA0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RQ0LQ2RR_1LH---0LN",
+    "rank": [
+      30,
+      1,
+      17,
+      3
+    ],
+    "bound": "> f_{\u03c9^2}(17)",
+    "halted_at": null,
+    "beats_wiki": "BB(17,3)"
+  },
+  {
+    "states": 22,
+    "symbols": 3,
+    "core": "fwp21_3",
+    "step": 150,
+    "cfg": "1^5 P> 1^2 0 1^14 0^inf",
+    "tm": "1LT1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS1RD_2LQ---1RU_2RV2RU1LU_1LU1LL---",
+    "rank": [
+      31,
+      1,
+      14,
+      5
+    ],
+    "bound": "> f_{\u03c9^2+1}(14)",
+    "halted_at": null,
+    "beats_wiki": "BB(21,3)"
+  },
+  {
+    "states": 10,
+    "symbols": 4,
+    "core": "fwp21_4",
+    "step": 31,
+    "cfg": "0^inf A|C|G> 3^4 0^3 1 0^inf",
+    "tm": "1LD2RG2LA3LG_0LI2LH2RB2RF_1LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ0RE0LI_3RC3LJ3LJ3LJ",
+    "rank": [
+      30,
+      3,
+      4,
+      0
+    ],
+    "bound": "> f_{\u03c9^2}^3(4)",
+    "halted_at": null,
+    "beats_wiki": "BB(10,4)"
+  },
+  {
+    "states": 12,
+    "symbols": 4,
+    "core": "fwp22fw_4",
+    "step": 9,
+    "cfg": "1^2 G> 1^2 0",
+    "tm": "1LD2RG2LA3LG_2LL2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL---",
+    "rank": [
+      32,
+      1,
+      2,
+      2
+    ],
+    "bound": "> f_{\u03c9^2+2}(f_\u03c9(2))",
+    "halted_at": null,
+    "beats_wiki": "BB(12,4)"
+  },
+  {
+    "states": 13,
+    "symbols": 4,
+    "core": "fwp23fw_4",
+    "step": 9,
+    "cfg": "1^2 G> 1^2 0",
+    "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_0LL2LM2LM---",
+    "rank": [
+      33,
+      1,
+      2,
+      2
+    ],
+    "bound": "> f_{\u03c9^2+3}(f_\u03c9(2))",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 14,
+    "symbols": 4,
+    "core": "fwp24_4",
+    "step": 58,
+    "cfg": "0^inf A|C|G> 3^2 0^3 1^0 2^0 3^8 0^inf",
+    "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_2LF1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ3LM3LM3LN_0LL2LN2LN2LN",
+    "rank": [
+      34,
+      0,
+      7,
+      0
+    ],
+    "bound": "> f_{\u03c9^2+4}(7)",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 15,
+    "symbols": 4,
+    "core": "fwp25_4",
+    "step": 17,
+    "cfg": "0^inf A|C|G> 3^2 0^3 1^0 2^0 3^1 2^3 0^inf",
+    "tm": "1LD2RG2LA3LG_---2LH2RB2RF_2LM1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LI3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO",
+    "rank": [
+      35,
+      0,
+      3,
+      1
+    ],
+    "bound": "> f_{\u03c9^2+5}(3)",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 16,
+    "symbols": 4,
+    "core": "fwp26_4",
+    "step": 303,
+    "cfg": "0^inf A|C|G> 3^2 0^4 1^0 2^0 3^1 2^15 1^1 0^inf",
+    "tm": "1LD2RG2LA3LG_1LP2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP",
+    "rank": [
+      36,
+      0,
+      1,
+      15
+    ],
+    "bound": "> f_{\u03c9^2+6}(1)",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 17,
+    "symbols": 4,
+    "core": "fwp26_4",
+    "step": 304,
+    "cfg": "0^inf A|C|G> 3^2 0^4 1^0 2^0 3^1 2^0 1^17 0^inf",
+    "tm": "1LD2RG2LA3LG_1LQ2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_1LP1LQ1LQ---",
+    "rank": [
+      36,
+      0,
+      17,
+      0
+    ],
+    "bound": "> f_{\u03c9^2+6}(17)",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 18,
+    "symbols": 4,
+    "core": "fwp26_4",
+    "step": 634,
+    "cfg": "0^inf A|C|G> 3^2 0^4 1^0 2^0 3^1 2^3 1^39 0^inf",
+    "tm": "1LD2RG2LA3LG_1RQ2LH2RB2RF_2LE1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_2RR2RQ1LQ1LI_1LQ------3LP",
+    "rank": [
+      36,
+      0,
+      39,
+      3
+    ],
+    "bound": "> f_{\u03c9^2+6}(39)",
+    "halted_at": null,
+    "beats_wiki": "BB(13,4)"
+  },
+  {
+    "states": 7,
+    "symbols": 5,
+    "core": "fwm2fw_5",
+    "step": 146,
+    "cfg": "0^inf 3^(3) 2^16 A> 1^1 0^inf",
+    "tm": "1LF3LB4LC2RA4LB_2RF3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_1LG3RF4LE2RD4LC_2LC2RB3LG2RG0LA",
+    "rank": [
+      20,
+      1,
+      16,
+      1
+    ],
+    "bound": "> f_{\u03c9\u00d72}(f_\u03c9(16))",
+    "halted_at": null,
+    "beats_wiki": "BB(7,5)"
+  },
+  {
+    "states": 11,
+    "symbols": 5,
+    "core": "fwp22_5_sw",
+    "step": 126,
+    "cfg": "0^inf B|C|G> 3^2 4^2 0^6 4 0^inf",
+    "tm": "4LG2LH2RA2RF2RD_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD0LK_3RD1LE1LE3LE---_4RC3LD2LE3LE3LI_1RG1LH2RG3LG4RA_1RC2LH1LB1LE1RK_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ4RA_1LJ4RJ0LD4LG---",
+    "rank": [
+      32,
+      0,
+      6,
+      2
+    ],
+    "bound": "> f_{\u03c9^2+2}(6)",
+    "halted_at": null,
+    "beats_wiki": "BB(10,5)"
+  },
+  {
+    "states": 13,
+    "symbols": 5,
+    "core": "fwpw1_5b",
+    "step": 148,
+    "cfg": "0^inf 3^(1) 2^2 A> 1^1 4 0^9 2",
+    "tm": "4LH3LB1RZ2RA3LL_3LH3RB1LD2RA3LB_3RB1LB3LC2RC4RC_2RE2LL3LC2RC4LB_3RB2RE2RE4RF0RH_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_4RJ1LH1LG3LH4LH_2RC1LI3LG3LI4LI_2LB1RJ2RJ3RJ4RF_---1LK3LE3LK1RF_3RB1LL1LL1LL0LM_3LL---0LM------",
+    "rank": [
+      41,
+      1,
+      9,
+      2
+    ],
+    "bound": "> f_{\u03c9^\u03c9+1}(9)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,5)"
+  },
+  {
+    "states": 14,
+    "symbols": 5,
+    "core": "fwpw2_5",
+    "step": 409,
+    "cfg": "0^inf 3^(1) 2^2 H> 1^1 4 0^3 2^22 0^inf",
+    "tm": "1RE1LA1LG3LA4LA_2RH3RB1LD2RH2LM_3RB1LB3LC2RC4RJ_2RE---3LC2RC---_3RB2RE2RE4RF0LJ_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_4LL1RJ2RJ3RJ4RF_2LD1LK3LE3LK1LJ_3RB1LL1LL1LL2RN_1RZ2RC0LN4RF---_3RB---0LN0LN2LG",
+    "rank": [
+      42,
+      0,
+      21,
+      3
+    ],
+    "bound": "> f_{\u03c9^\u03c9+2}(21)",
+    "halted_at": null,
+    "beats_wiki": "BB(14,5)"
+  },
+  {
+    "states": 15,
+    "symbols": 5,
+    "core": "fwpw3_5",
+    "step": 825,
+    "cfg": "0^inf 3^(1) 2^2 H> 1^1 4 0^2 2^1 4^27 0^inf",
+    "tm": "2RG1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC4RH_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_0RK1RJ2RJ3RJ4RF_2LH1LK3LE3LK---_3RB1LL1LL1LL---_1RZ4LJ0LN---2LO_3RB---0LN0LN---_0RC---2LO2LO2LD",
+    "rank": [
+      43,
+      0,
+      27,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+3}(27)",
+    "halted_at": null,
+    "beats_wiki": "BB(14,5)"
+  },
+  {
+    "states": 16,
+    "symbols": 5,
+    "core": "fwpw4_5",
+    "step": 359,
+    "cfg": "0^inf 3^(1) 2^2 H> 1^1 4 0^2 2^1 4^0 3^20 0^inf",
+    "tm": "3LG1LA1LG3LA4LA_2RH3RB1LD2RH3LK_3RB1LB3LC2RC1RP_2RE---3LC2RC---_3RB2RE2RE4RF0RI_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_1LP1RJ2RJ3RJ4RF_4LP1LK3LE3LK4LL_3RB1LL1LL1LL---_1RZ4RB0LN4LP2LO_3RB---0LN0LN---_0RC0LK2LO2LO2RP_3RO4LB4LP4LP2RM",
+    "rank": [
+      44,
+      0,
+      20,
+      0
+    ],
+    "bound": "> f_{\u03c9^\u03c9+4}(20)",
+    "halted_at": null,
+    "beats_wiki": "BB(14,5)"
+  },
+  {
+    "states": 18,
+    "symbols": 5,
+    "core": "fe0_5",
+    "step": 2040,
+    "cfg": "1^1 B> 2^59 0^inf",
+    "tm": "4RP---0RF0RD1LQ_1RZ1RB2LC4LG3RR_0LI4RC2RC3RC2RC_1LE1RD2RD3RD2RD_3LA1LE2LE3LE2LK_0LG1RF2RF3RF---_0RI0LH3RI3RI1RI_2LA1LH2LH3LH2RF_3RN4RC0LA0LI2LB_2RO1LO2LJ3LJ1LH_2LL3RR2RK3RK4RK_3RO2RO2LL3LL4LL_3LL1LR2RM3RM4RM_4LJ1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RB1LQ2LQ3LQ1LQ_2RK4LR3LD0RA4LG",
+    "rank": [
+      50,
+      0,
+      56,
+      1
+    ],
+    "bound": "> f_{\u03b5_0}(56)",
+    "halted_at": null,
+    "beats_wiki": "BB(17,5)"
+  },
+  {
+    "states": 6,
+    "symbols": 6,
+    "core": "fwm21_6 (Lean 4)",
+    "step": 100,
+    "cfg": "Lean 4 proved: halts > f_{\u03c9\u00d72+1}(2)",
+    "tm": "5RE3LB4LF2RA4LB1RZ_5LE3RB1LD2RA3LF3RD_3RB1LB3LC2RC4LC0LE_3RB2RD3LC2RC1LE3RE_5RC3RE2RA4LC2LE2LA_5RB1RZ1LF1LF1RF5LF",
+    "rank": [
+      21,
+      1,
+      2,
+      0
+    ],
+    "bound": "> f_{\u03c9\u00d72+1}(2)",
+    "halted_at": null,
+    "beats_wiki": "BB(6,6)"
+  },
+  {
+    "states": 7,
+    "symbols": 6,
+    "core": "fwp21_6 (Lean 4)",
+    "step": 100,
+    "cfg": "Lean 4 proved: halts > f_{\u03c9^2+1}(2)",
+    "tm": "1LE3LB2LF2RA4LB2RA_4LF3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC1RZ3RD_5RB3RE1RZ4LC3LG5LE_5RB4RF1LF1LF2LF5RG_5LF5RG1LA1LG1RD5LG",
+    "rank": [
+      31,
+      1,
+      2,
+      0
+    ],
+    "bound": "> f_{\u03c9^2+1}(2)",
+    "halted_at": null,
+    "beats_wiki": "BB(7,6)"
+  },
+  {
+    "states": 13,
+    "symbols": 6,
+    "core": "fwpw2_6",
+    "step": 67,
+    "cfg": "0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^6 0^inf",
+    "tm": "1LF3RA1LD2RB1RM---_1RZ3LA4LH2RB3LL2LM_3RA1LA3LC2RC------_2RE4RK3LC2RC---0LC_3RA2RE2RE4RF1RM---_1LG1RF3LG3RF4LG1LA_2RJ0LH2LG2LI4LK---_3LD1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_1RH1RJ2RJ3RJ4RF---_---1LK3LE3LK4RE---_3RA1LL1LL1LL------_0RC5LM2LM2LM4LF---",
+    "rank": [
+      42,
+      0,
+      6,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+2}(6)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 14,
+    "symbols": 6,
+    "core": "fwpw2_5",
+    "step": 423,
+    "cfg": "0^inf 3^(1) 2^2 H> 1^1 4 0^3 2^28 0^inf",
+    "tm": "5RK1LA1LG3LA4LA5LH_2RH3RB1LD2RH2RJ---_3RB1LB3LC2RC------_2RE---3LC2RC------_3RB2RE2RE4RF5RC---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK---_4LA3LB2RM2RH3LL1RF_2RC1LI3LG3LI4LI1RL_1LE1RJ2RJ3RJ4RF2LA_3LA1LK3LE3LK2LK2LG_3RB1LL1LL1LL5LI0RB_1RZ0RA0LN5RE------_3RB---0LN0LN------",
+    "rank": [
+      42,
+      0,
+      27,
+      3
+    ],
+    "bound": "> f_{\u03c9^\u03c9+2}(27)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 15,
+    "symbols": 6,
+    "core": "fwpw3_5",
+    "step": 902,
+    "cfg": "0^inf 3^(1) 2^2 H> 1^1 4 0^0 2^1 4^35 0^inf",
+    "tm": "1RJ1LA1LG3LA4LA---_2RH3RB1LD2RH3LJ---_3RB1LB3LC2RC0LN---_2RE---3LC2RC---4RG_3RB2RE2RE4RF1LL---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK0RM_4LA3LB2RM2RH3LL---_2RC1LI3LG3LI4LI---_4RI1RJ2RJ3RJ4RF---_0RG1LK3LE3LK------_3RB1LL1LL1LL------_1RZ4RC0LN---2LO---_3RB---0LN0LN5RB---_0RC---2LO2LO------",
+    "rank": [
+      43,
+      0,
+      35,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+3}(35)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 16,
+    "symbols": 6,
+    "core": "fwpw4_6",
+    "step": 414,
+    "cfg": "0^inf 3^(1) 2^2 B> 1^1 4 2^2 5^1 4^1 3^25 0^inf",
+    "tm": "4LL3RA1LD2RB3LE0LK_1RZ3LA4LH2RB3LL2RN_3RA1LA3LC2RC5LK5LE_2RE4RK3LC2RC------_3RA2RE2RE4RF5LL5RH_1LG1RF3LG3RF4LG0RG_2RJ0LH2LG2LI4LK---_4RI1LH1LG3LH4LH2LL_2RC1LI3LG3LI4LI---_2RH1RJ2RJ3RJ4RF5LK_5LF1LK3LE3LK3LD---_3RA1LL1LL1LL1RM---_0RC5LN2LM2LM------_1RZ2LL0RP4LP5LO2LM_3RO3LH5LO5LO2RP2RB_3RO4RG4LP4LP2RN---",
+    "rank": [
+      44,
+      0,
+      25,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+4}(25)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 17,
+    "symbols": 6,
+    "core": "fe0_5",
+    "step": 536,
+    "cfg": "1^3 B> 2^27 0^inf",
+    "tm": "1LJ---0RF0RD1LQ---_1RZ1RB2LC---------_0LI4RC2RC3RC2RC---_1LE1RD2RD3RD2LE---_3LA1LE2LE3LE---1LQ_0LG1RF2RF3RF------_0RI0LH---3RI------_2LA1LH2LH3LH2LH---_3RN---0LA0LI1LH---_2RO4RH2LJ3LJ5RD---_2LL5RO2RK3RK4RK---_3RO2RO2LL3LL4LL---_3LL---2RM3RM4RM---_4LJ1LN2LN3LN1LO5RD_1RB4RP1RK0RM4LN---_4LJ1RP2RP3RP0RP---_1RB1LQ2LQ3LQ1LQ---",
+    "rank": [
+      50,
+      0,
+      24,
+      3
+    ],
+    "bound": "> f_{\u03b5_0}(24)",
+    "halted_at": null,
+    "beats_wiki": "BB(17,5)"
+  },
+  {
+    "states": 6,
+    "symbols": 7,
+    "core": "fwm21tfw1_7",
+    "step": 51,
+    "cfg": "0^inf 3^(1) 2^1 B> 1^2 2 4^2 3 5 0^inf",
+    "tm": "5LF6LA5RA4RF6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA4RC4LC4LC4LA6LC5RC_3RE1LE3LD2RD4LA6LC5RC_6RA3RE1LD2RB2RE2LE2LE_3LC3RA---3LD3LA5LF5RE",
+    "rank": [
+      21,
+      2,
+      3,
+      2
+    ],
+    "bound": "> f_{\u03c9\u00d72+1}(f_{\u03c9+1}^3(2))",
+    "halted_at": null,
+    "beats_wiki": "BB(6,7)"
+  },
+  {
+    "states": 13,
+    "symbols": 7,
+    "core": "fwpw2_6",
+    "step": 129,
+    "cfg": "0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^8 0^inf",
+    "tm": "1LH3RA1LD2RB---5LC3LJ_1RZ3LA4LH2RB3LL2LM---_3RA1LA3LC2RC5LE1LB5RK_2RE1RD3LC2RC6LC------_3RA2RE2RE4RF5LM6LA---_1LG1RF3LG3RF4LG---4LF_2RJ0LH2LG2LI4LK------_3LK1LH1LG3LH4LH---2RE_2RC1LI3LG3LI4LI---4RD_6LF1RJ2RJ3RJ4RF---2RD_6RI1LK3LE3LK---------_3RA1LL1LL1LL------6LF_0RC6RB2LM2LM---------",
+    "rank": [
+      42,
+      0,
+      8,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+2}(8)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 14,
+    "symbols": 7,
+    "core": "fwpw3_7",
+    "step": 629,
+    "cfg": "0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^1 6^22 0^inf",
+    "tm": "0LK3RA1LD2RB------4RC_1RZ3LA4LH2RB3LL2LM5LN_3RA1LA3LC2RC---0LH---_2RE---3LC2RC---2LK---_3RA2RE2RE4RF---1LJ5RD_1LG1RF3LG3RF4LG6LF6LN_2RJ0LH2LG2LI4LK------_---1LH1LG3LH4LH------_2RC1LI3LG3LI4LI------_6LA1RJ2RJ3RJ4RF------_0LG1LK3LE3LK---6LE---_3RA1LL1LL1LL---------_0RC---2LM2LM---------_3RN5RD5LN5LN6LK2RB---",
+    "rank": [
+      43,
+      0,
+      22,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+3}(22)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 5,
+    "symbols": 8,
+    "core": "fwm21_8_blank",
+    "step": 447,
+    "cfg": "0^inf 3^(1) 2^1 B> 1^4 7^18 0^inf",
+    "tm": "4LE3RA1LD2RB3RC6LC7LD3LC_1RZ3LA2LA2RB6LE3LC5RB7LA_3RA1LA3LC2RC4LB1LC1LC7LC_6RE4LA3LC2RC4LE6LD5RD3LC_7LC5RE1RA5LE6RE4LD5RB5LE",
+    "rank": [
+      21,
+      1,
+      18,
+      1
+    ],
+    "bound": "> f_{\u03c9\u00d72+1}(18)",
+    "halted_at": null,
+    "beats_wiki": "BB(5,7)"
+  },
+  {
+    "states": 10,
+    "symbols": 8,
+    "core": "fwpw2_8_blank",
+    "step": 325,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^2 5^28 0^inf",
+    "tm": "5LJ5RA4LI6RA4RF5LJ6RD7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE6RE3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF7LD6LJ---7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---1LD2LC6LC_1RZ3LB4LE2RH3LG2LJ------_3RI3LB2RI2LI---1RE------_0RC---2LJ2LJ---5LG5LB5RJ",
+    "rank": [
+      42,
+      0,
+      28,
+      2
+    ],
+    "bound": "> f_{\u03c9^\u03c9+2}(28)",
+    "halted_at": null,
+    "beats_wiki": "BB(9,8)"
+  },
+  {
+    "states": 11,
+    "symbols": 8,
+    "core": "fwpw3_8_blank",
+    "step": 200,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^2 6^11 0^inf",
+    "tm": "2LC5RA6LE6RA4RF6RB6LA7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---6RC6LJ7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK---_3RI3LB2RI2LI---6RI5RA5RJ_0RC6RE2LJ2LJ---7RE3LI6RH_3RK---5LK5LK---2RH2LH3RE",
+    "rank": [
+      43,
+      0,
+      11,
+      2
+    ],
+    "bound": "> f_{\u03c9^\u03c9+3}(11)",
+    "halted_at": null,
+    "beats_wiki": "BB(9,8)"
+  },
+  {
+    "states": 12,
+    "symbols": 8,
+    "core": "fwpw4_8_blank",
+    "step": 74,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^1 7^5 0^inf",
+    "tm": "7LK5RA0LE6RA4RF2RB---7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---------0LD_1RZ3LB4LE2RH3LG2LJ5LK6LL_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH7LF0LA_3RL---6LL6LL------2RH---",
+    "rank": [
+      44,
+      0,
+      5,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+4}(5)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 13,
+    "symbols": 8,
+    "core": "fwpw4_8_blank",
+    "step": 124,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^2 7^9 0^inf",
+    "tm": "7LI5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK6LL_3RI3LB2RI2LI---------4RJ_0RC---2LJ2LJ---------3LL_3RK---5LK5LK---2RH------_3RL---6LL6LL3RM---2RH---_3RE1LG---7LM1RE------4RJ",
+    "rank": [
+      44,
+      0,
+      9,
+      2
+    ],
+    "bound": "> f_{\u03c9^\u03c9+4}(9)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 14,
+    "symbols": 8,
+    "core": "fwpw5_8",
+    "step": 167,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^1 7^1 6^6 0^inf",
+    "tm": "6LI5RA7RN6RA4RF1RD4RD7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE2LE3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF5LK2RH5RJ7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---6LA4RB5RK_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI7LM1LA6RJ1RM_0RC4LN2LJ2LJ1RM3RE6RH---_3RK6RD5LK5LK6RJ2RH0LI4RJ_3RL---6LL6LL3LF1RA2RH0LL_1RZ3LG0LG7LL6RE---7LN6LL_3RN3RL7LN7LN------3LA2RH",
+    "rank": [
+      45,
+      0,
+      6,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+5}(6)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 15,
+    "symbols": 8,
+    "core": "fwpw6_8",
+    "step": 106,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^3 5^0 6^0 7^1 5^8 0^inf",
+    "tm": "6LD5RA2LI6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF------7RC7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI7LO0RC---4RI_0RC---2LJ2LJ------------_3RK---5LK5LK7LK2RH---2LB_3RL---6LL6LL------2RH---_1RZ------------6LO7LN6LL_3RN---7LN7LN------2RO2RH_3RN---6LO6LO2LI---2RM7LI",
+    "rank": [
+      46,
+      0,
+      8,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+6}(8)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 16,
+    "symbols": 8,
+    "core": "fwpw7_8",
+    "step": 138,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^2 7^1 2^8 0^inf",
+    "tm": "5LN5RA---6RA4RF---3LB7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE1RM3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG2RL2RF---1RJ_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI---7RL---2LN_0RC7LI2LJ2LJ3RK0RG5RE6RD_3RK1RI5LK5LK3LO2RH1RL---_3RL5LN6LL6LL---4RO2RH4RP_1RZ1RK5LP---6RL6LO7LN6LL_3RN0RG7LN7LN---1RA2RO2RH_3RN3RG6LO6LO1RC2RP2RM---_3RO6RN5LP5LP---2RM5RE---",
+    "rank": [
+      47,
+      0,
+      8,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+7}(8)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 4,
+    "symbols": 9,
+    "core": "fw4_8",
+    "step": 304,
+    "cfg": "0^inf 3^(1) 2^1 A> 1^2 4^4 5^3 6^3 7^12 0^inf",
+    "tm": "5LC3LB7LA2RA4LB8LB4LB6LA7RA_1RZ3RB1LC2RA3RD3RA4LC0LC2LA_3RB1LB3LC2RC4LC5LC5LD8LC3RA_3RB---6LC4LD4LC4LD6LC7LA---",
+    "rank": [
+      13,
+      1,
+      12,
+      3
+    ],
+    "bound": "> f_{\u03c9+4}(12)",
+    "halted_at": null,
+    "beats_wiki": "BB(4,8)"
+  },
+  {
+    "states": 5,
+    "symbols": 9,
+    "core": "fwm21_8_blank",
+    "step": 8294,
+    "cfg": "0^inf 3^(1) 2^2 B> 1^2 7^80 0^inf",
+    "tm": "8LC3RA1LD2RB---7LE4LD3LC0RC_1RZ3LA1LD2RB6LE3LC5RB7LA---_3RA1LA3LC2RC---1LC1LC7LC7RD_6RE2RA3LC2RC4LE6LD5RD6LB7LD_8RA5RE1LE5LE6RE4LD5RB5LE1LD",
+    "rank": [
+      21,
+      1,
+      80,
+      2
+    ],
+    "bound": "> f_{\u03c9\u00d72+1}(80)",
+    "halted_at": null,
+    "beats_wiki": "BB(5,7)"
+  },
+  {
+    "states": 11,
+    "symbols": 9,
+    "core": "fwpw3_8_blank",
+    "step": 1390,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^4 6^35 0^inf",
+    "tm": "8LK5RA---6RA4RF------7RA7RG_7RA3RB1LD2RH4LF0LC2LD7LB2RJ_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE6LK_3RB1LG1LG1LG------3LG2LD---_1RZ3LB4LE2RH3LG2LJ5LK2LD1RG_3RI3LB2RI2LI---------------_0RC1RC2LJ2LJ---------------_3RK---5LK5LK8LF2RH---0LG8RF",
+    "rank": [
+      43,
+      0,
+      35,
+      4
+    ],
+    "bound": "> f_{\u03c9^\u03c9+3}(35)",
+    "halted_at": null,
+    "beats_wiki": "BB(9,8)"
+  },
+  {
+    "states": 12,
+    "symbols": 9,
+    "core": "fwpw4_8_blank",
+    "step": 194,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^1 7^12 0^inf",
+    "tm": "5LF5RA1LI6RA4RF8LD---7RA5LH_7RA3RB1LD2RH4LF0LC2LD7LB---_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB1LE_3RB7RE1LI4RF8RG8LB---7RE7LL_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------------_1RZ3LB4LE2RH3LG2LJ5LK6LL0RC_3RI3LB2RI2LI---5LF7LI------_0RC---2LJ2LJ------7RC------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH7LL---",
+    "rank": [
+      44,
+      0,
+      12,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+4}(12)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 13,
+    "symbols": 9,
+    "core": "fwpw5_13_9_blank",
+    "step": 130,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^1 7^3 8^5 0^inf",
+    "tm": "7LK5RA4RE6RA4RF2RA5LL7RA4LG_7RA3RB1LD2RH4LF0LC2LD7LB4RA_3RB1LB3LC2RC4LC1LC3LC1LB6LA_7RE8RM3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF8LM1RK8LE7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG5RI8LD---0RI---_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI8LG4LJ------1LG_0RC---2LJ2LJ5LB1LA------5LA_3RK3RG5LK5LK4RH2RH1RF0RF---_3RL---6LL6LL4RH0LG2RH1RD---_3RM8RF7LM7LM4LI------2RH3RA",
+    "rank": [
+      45,
+      0,
+      5,
+      3
+    ],
+    "bound": "> f_{\u03c9^\u03c9+5}(5)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 14,
+    "symbols": 9,
+    "core": "fwpw5_13_9_blank",
+    "step": 165,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^1 5^1 6^1 7^1 8^9 0^inf",
+    "tm": "8LG5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB0RG_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE8LG_3RB1LG1LG1LG8LF------0LE---_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI------------7LK_0RC---2LJ2LJ---------------_3RK2RN5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---_---------------------8LE---",
+    "rank": [
+      45,
+      0,
+      9,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+5}(9)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  },
+  {
+    "states": 16,
+    "symbols": 9,
+    "core": "fwpw7_8",
+    "step": 195,
+    "cfg": "0^inf 3^(1) 2^1 H|I> 1^1 4 2^0 5^0 6^0 7^1 2^11 0^inf",
+    "tm": "4LG5RA3LM6RA4RF7RC0RP7RA8RF_7RA3RB1LD2RH4LF0LC2LD7LB0RG_3RB1LB3LC2RC4LC1LC3LC1LB5RM_7RE---3LC2RC4LD1LD3LD3LB8RB_3RB7RE1LI4RF------8RA7RE1LE_1LB5RF3LB6RF4LB1LF3LF3LE0LK_3RB1LG1LG1LG5LA------2RG---_1RZ3LB4LE2RH3LG2LJ5LK2RM---_3RI3LB2RI2LI---------2RL---_0RC---2LJ2LJ---------7LJ7LM_3RK4RN5LK5LK---2RH8RO6LE---_3RL0LM6LL6LL------2RH3LD---_1RZ3RA5LP1RK---6LO7LN6LL5RO_3RN6RB7LN7LN6RA8LN2RO2RH2LM_3RN---6LO6LO8RF2RP2RM------_3RO---5LP5LP---2RM0RI---8RC",
+    "rank": [
+      47,
+      0,
+      11,
+      1
+    ],
+    "bound": "> f_{\u03c9^\u03c9+7}(11)",
+    "halted_at": null,
+    "beats_wiki": "BB(12,6)"
+  }
+]

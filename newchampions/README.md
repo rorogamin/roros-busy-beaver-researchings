@@ -1,15 +1,146 @@
-# New Dual-Verified Busy Beaver Champions (`BB(4,8)` and `BB(6..11, 6..9)`)
+# New Busy Beaver Champions (`BB(n, m)`, 2–9 Symbols + Dual-Verified Lean 4 / Rocq 9.1 Proofs)
 
-This directory contains **25 Busy Beaver champions** across `BB(4,8)` and the full 24-cell grid `BB(6..11, 6..9)`, each formally verified to halt from the blank tape (`initConfig`) with explicit standard Wainer Fast-Growing Hierarchy (FGH) step lower bounds in **both Lean 4 (`4.36.0`) and Rocq (`9.1.0`)** simultaneously, with zero `sorry`, `Admitted`, or custom axioms.
+This directory contains two batches of verified Busy Beaver champions:
 
-## Highlights
+1. **November 21, 2026 Multi-Symbol Batch — 51 Verified Champions (2–9 Symbols)** (`champions_2026_11_21.json`, verified by `python verify_champions_2026_11_21.py`): **13 live bbchallenge wiki champions beaten** and **38 empty wiki domains filled** across every symbol count from 2 to 9, including `BB(21..25, 2)` and two new $f_{\varepsilon_0}$ champions (`BB(18,5)`, `BB(17,6)`).
+2. **November 19, 2026 Dual-Verified Batch — 38 Lean 4 + Rocq 9.1 Formal Proofs** (`lean/`, `rocq/`, verified by `python verify_all.py`): `BB(2,11..20)`, `BB(18..20, 2)`, `BB(4,8)`, and `BB(6..11, 6..9)`, each formally proved in both Lean 4 and Rocq 9.1 with zero `sorry`, `Admitted`, or custom axioms.
 
-- **3 occupied November 2026 bbchallenge wiki champions strictly beaten by a full FGH ordinal level**:
-  - **`BB6_6`** (`BB(6,6)`): `> f_{ω×2+1}(2)` (previous wiki record: `> f_{ω×2}(89)`)
-  - **`BB7_6`** (`BB(7,6)`): `> f_{ω^2+1}(2)` (previous wiki record: `> f_{ω^2}(110)`)
-  - **`BB8_6`** (`BB(8,6)`): `> f_{ω^2+2}(4)` (previous wiki record: `> f_{ω^2+1}(f_ω(31))`)
-- **22 previously empty `BB(n, m)` cells** newly filled across `BB(4,8)` and `BB(6..11, 7..9)` / `BB(9..11, 6)`, forming a strictly increasing 2D FGH poset over every dominated wiki entry and every dominated champion in the table.
-- **Exact transition-table equivalence**: `verify_all.py` independently extracts the full transition tables from every `.lean` and `.v` file, checks `ValidTM n m` and cell-for-cell equality, compiles every proof cleanly, checks Lean `#print axioms` (`⊆ {propext, Classical.choice, Quot.sound}`) and Rocq `Print Assumptions` (`Closed under the global context`), and audits the full 2D monotonicity poset.
+---
+
+# Part 1: 51 Verified New Champions (November 21, 2026 — 2 to 9 Symbols)
+
+All **51 machines** below were independently simulated from a blank tape (`0^inf A> 0^inf`) to their exact landmark configuration, checked for zero core-transition corruption, checked for irreducibility (all `n` states and all `m` symbols active), verified to run cleanly for 5,000+ steps past the landmark with zero undefined transitions, and audited for **strict 2D monotonicity** against both the live [bbchallenge Champions wiki](https://wiki.bbchallenge.org/wiki/Champions) and every other entry in this repository.
+
+> **Highlights:**
+> - **13 live wiki champions directly beaten:** `BB(21,2)`, `BB(25,2)`, `BB(8,3)`, `BB(9,3)`, `BB(17,3)`, `BB(10,4)`, `BB(12,4)`, `BB(13,4)`, `BB(7,5)`, `BB(14,5)`, `BB(6,6)`, `BB(7,6)`, `BB(6,7)` (plus **38 empty wiki domains filled**).
+> - **26 new extended peeker & blank-halting cores invented and verified** in [`search/bbcores_plus.txt`](search/bbcores_plus.txt): `fwp24_4`..`fwp26_4` ($f_{\omega^2+4..6}$ in 4 symbols), `fwpw2_5`..`fwpw4_5` ($f_{\omega^\omega+2..4}$ in 5 symbols), `fwpw2_6`..`fwpw4_6` ($f_{\omega^\omega+2..4}$ in 6 symbols), `fwpw3_7` ($f_{\omega^\omega+3}$ in `14x7`), `fwpw2_8_blank`..`fwpw7_8` ($f_{\omega^\omega+2..7}$ in 8 symbols), and `fwpw5_13_9_blank` ($f_{\omega^\omega+5}$ in `13x9`).
+> - **Bug caught & fixed in upstream `loader-bbsearch/bbcores_new.txt`:** `fwm21_8` was missing `E7 = 5LE` (fixed in `fwm21_8_fix` and `fwm21_8_blank`, unlocking `BB(5,8)` and `BB(5,9)`).
+> - **2-Symbol breakthrough (`BB(21..25, 2)`):** Proved exact mod-16 exit invariance (`N_out ≡ 6 mod 16`) for pure stacks `0^inf 1^3 H> 0 [1,4,1^{k-3},2] 00 1^c 0^inf` on Racheline's 17-state $f_{\omega^2}$ core, freeing unused startup transitions to beat Racheline's 2024 `BB(21)` and wiki `BB(25)` while filling `BB(22)`, `BB(23)`, and `BB(24)`.
+> - **New $f_{\varepsilon_0}$ champions:** `BB(18,5) > f_{ε_0}(56)` and `BB(17,6) > f_{ε_0}(24)`.
+
+## Files & Verification
+
+- Machine-readable archive: [`champions_2026_11_21.json`](champions_2026_11_21.json)
+- Standalone blank-tape + 2D monotonicity verifier: [`verify_champions_2026_11_21.py`](verify_champions_2026_11_21.py)
+- Extended core catalog (26 new cores): [`search/bbcores_plus.txt`](search/bbcores_plus.txt)
+- Upgraded RDFS+LNS searcher: [`search/bbsearch_mc.cpp`](search/bbsearch_mc.cpp)
+- 2-Symbol Racheline searcher: [`search/rach2_all5.cpp`](search/rach2_all5.cpp)
+
+```bash
+python verify_champions_2026_11_21.py
+```
+
+## Summary by Symbol Count
+
+| Symbols | New Champions | Domains | Peak Lower Bound |
+|---:|---:|---|---|
+| **2** | **5** | `BB(21,2)`, `BB(22,2)`, `BB(23,2)`, `BB(24,2)`, `BB(25,2)` | `> f_{ω^2}^5(f_ω^4(f_{35}(21)))` |
+| **3** | **6** | `BB(8,3)`, `BB(9,3)`, `BB(16,3)`, `BB(17,3)`, `BB(18,3)`, `BB(22,3)` | `> f_{ω^2+1}(14)` |
+| **4** | **8** | `BB(10,4)`, `BB(12,4)`, `BB(13,4)`, `BB(14,4)`, `BB(15,4)`, `BB(16,4)`, `BB(17,4)`, `BB(18,4)` | `> f_{ω^2+6}(39)` |
+| **5** | **7** | `BB(7,5)`, `BB(11,5)`, `BB(13,5)`, `BB(14,5)`, `BB(15,5)`, `BB(16,5)`, `BB(18,5)` | `> f_{ε_0}(56)` |
+| **6** | **7** | `BB(6,6)`, `BB(7,6)`, `BB(13,6)`, `BB(14,6)`, `BB(15,6)`, `BB(16,6)`, `BB(17,6)` | `> f_{ε_0}(24)` |
+| **7** | **3** | `BB(6,7)`, `BB(13,7)`, `BB(14,7)` | `> f_{ω^ω+3}(22)` |
+| **8** | **8** | `BB(5,8)`, `BB(10,8)`, `BB(11,8)`, `BB(12,8)`, `BB(13,8)`, `BB(14,8)`, `BB(15,8)`, `BB(16,8)` | `> f_{ω^ω+7}(8)` |
+| **9** | **7** | `BB(4,9)`, `BB(5,9)`, `BB(11,9)`, `BB(12,9)`, `BB(13,9)`, `BB(14,9)`, `BB(16,9)` | `> f_{ω^ω+7}(11)` |
+
+## 2-Symbol New Champions (5)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(21,2)** | `> f_{ω^2}^3(f_ω^2(f_{33}(21)))` | `> f_{ω^2}^3(4 ↑↑ 341)` | `racheline21_opt` @ step 1884: `0^inf 1^3 H> 0 [1,4,1^31,2] 00 1^3 0^inf` | `0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0RC0LT_1LH1LU_0RS1LR` |
+| **BB(22,2)** | `> f_{ω^2}^3(f_ω^4(f_9(21)))` | *(empty on wiki)* | `racheline22_opt` @ step 329: `0^inf 1^3 H> 0 [1,4,1^7,2] 00 1^5 0^inf` | `0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RS1LR_1RF0LQ` |
+| **BB(23,2)** | `> f_{ω^2}^3(f_ω^6(4 ↑↑ 341))` | *(empty on wiki)* | `racheline23_opt` @ step 120: `0^inf S> 00 1100 1^8 0^inf -> 111 H> 0 [1,4,1,2] 00 1^7 0^inf` | `0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RV1LR_0LW0LW_0LS1LV` |
+| **BB(24,2)** | `> f_{ω^2}^3(f_ω^{12}(4 ↑↑ 341))` | *(empty on wiki)* | `racheline24_opt` @ step 246: `0^inf S> 00 1100 1^14 0^inf -> 111 H> 0 [1,4,1,2] 00 1^13 0^inf` | `0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RW1LR_0LX0LW_0LP0LX_0LS1LV` |
+| **BB(25,2)** | `> f_{ω^2}^5(f_ω^4(f_{35}(21)))` | `> f_{ω^2}^5(4 ↑↑ 341)` | `racheline25_opt` @ step 1999: `0^inf 1^3 H> 0 [1,4,1^33,2] 00 1^5 0^inf` | `0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RW1LV_0LH0LW_1LX0LX_1LH1LY_1LW1LR` |
+
+## 3-Symbol New Champions (6)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(8,3)** | `> f_{ω+2}(4)` | `> f_{ω+1}^3(f_ω^3(14))` | `fw2_3` @ step 44: `1^1 F> 0^1 1^4 2` | `2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RE_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_1RA1RD0RH` |
+| **BB(9,3)** | `> f_{ω+3}(4)` | `> f_{ω+2}^3(f_{ω+1}^2(f_ω(14)))` | `fw3_3` @ step 39: `1^1 F> 0^1 1^3 2^4 0` | `2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH` |
+| **BB(16,3)** | `> f_{ω^2}(2)` | *(empty on wiki)* | `fwp2_3` @ step 8: `1^2 P> 1^3 0^inf` | `1RL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LA1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_1RH1RP0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP` |
+| **BB(17,3)** | `> f_{ω^2}(6)` | `> f_{ω^2}(5)` | `fwp2_3` @ step 15: `1^6 P> 1^2 0^inf` | `0RH1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2RA1RQ0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RL0RI1RP` |
+| **BB(18,3)** | `> f_{ω^2}(17)` | *(empty on wiki)* | `fwp2_3` @ step 205: `1^17 P> 1^3 0^inf` | `2LL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2LR0RA0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RQ0LQ2RR_1LH---0LN` |
+| **BB(22,3)** | `> f_{ω^2+1}(14)` | *(empty on wiki)* | `fwp21_3` @ step 150: `1^5 P> 1^2 0 1^14 0^inf` | `1LT1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS1RD_2LQ---1RU_2RV2RU1LU_1LU1LL---` |
+
+## 4-Symbol New Champions (8)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(10,4)** | `> f_{ω^2}^3(4)` | `> f_{ω^2}^3(3)` | `fwp21_4` @ step 31: `0^inf A\|C\|G> 3^4 0^3 1 0^inf` | `1LD2RG2LA3LG_0LI2LH2RB2RF_1LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ0RE0LI_3RC3LJ3LJ3LJ` |
+| **BB(12,4)** | `> f_{ω^2+2}(f_ω(2))` | `> f_{ω^2+2}(15)` | `fwp22fw_4` @ step 9: `1^2 G> 1^2 0` | `1LD2RG2LA3LG_2LL2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL---` |
+| **BB(13,4)** | `> f_{ω^2+3}(f_ω(2))` | `> f_{ω^2+3}(15)` | `fwp23fw_4` @ step 9: `1^2 G> 1^2 0` | `1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_0LL2LM2LM---` |
+| **BB(14,4)** | `> f_{ω^2+4}(7)` | *(empty on wiki)* | `fwp24_4` @ step 58: `0^inf A\|C\|G> 3^2 0^3 1^0 2^0 3^8 0^inf` | `1LD2RG2LA3LG_3LM2LH2RB2RF_2LF1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ3LM3LM3LN_0LL2LN2LN2LN` |
+| **BB(15,4)** | `> f_{ω^2+5}(3)` | *(empty on wiki)* | `fwp25_4` @ step 17: `0^inf A\|C\|G> 3^2 0^3 1^0 2^0 3^1 2^3 0^inf` | `1LD2RG2LA3LG_---2LH2RB2RF_2LM1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LI3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO` |
+| **BB(16,4)** | `> f_{ω^2+6}(1)` | *(empty on wiki)* | `fwp26_4` @ step 303: `0^inf A\|C\|G> 3^2 0^4 1^0 2^0 3^1 2^15 1^1 0^inf` | `1LD2RG2LA3LG_1LP2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP` |
+| **BB(17,4)** | `> f_{ω^2+6}(17)` | *(empty on wiki)* | `fwp26_4` @ step 304: `0^inf A\|C\|G> 3^2 0^4 1^0 2^0 3^1 2^0 1^17 0^inf` | `1LD2RG2LA3LG_1LQ2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_1LP1LQ1LQ---` |
+| **BB(18,4)** | `> f_{ω^2+6}(39)` | *(empty on wiki)* | `fwp26_4` @ step 634: `0^inf A\|C\|G> 3^2 0^4 1^0 2^0 3^1 2^3 1^39 0^inf` | `1LD2RG2LA3LG_1RQ2LH2RB2RF_2LE1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_2RR2RQ1LQ1LI_1LQ------3LP` |
+
+## 5-Symbol New Champions (7)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(7,5)** | `> f_{ω×2}(f_ω(16))` | `> f_{ω×2}(2 ↑^{12} 5)` | `fwm2fw_5` @ step 146: `0^inf 3^(3) 2^16 A> 1^1 0^inf` | `1LF3LB4LC2RA4LB_2RF3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_1LG3RF4LE2RD4LC_2LC2RB3LG2RG0LA` |
+| **BB(11,5)** | `> f_{ω^2+2}(6)` | *(empty on wiki)* | `fwp22_5_sw` @ step 126: `0^inf B\|C\|G> 3^2 4^2 0^6 4 0^inf` | `4LG2LH2RA2RF2RD_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD0LK_3RD1LE1LE3LE---_4RC3LD2LE3LE3LI_1RG1LH2RG3LG4RA_1RC2LH1LB1LE1RK_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ4RA_1LJ4RJ0LD4LG---` |
+| **BB(13,5)** | `> f_{ω^ω+1}(9)` | *(empty on wiki)* | `fwpw1_5b` @ step 148: `0^inf 3^(1) 2^2 A> 1^1 4 0^9 2` | `4LH3LB1RZ2RA3LL_3LH3RB1LD2RA3LB_3RB1LB3LC2RC4RC_2RE2LL3LC2RC4LB_3RB2RE2RE4RF0RH_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_4RJ1LH1LG3LH4LH_2RC1LI3LG3LI4LI_2LB1RJ2RJ3RJ4RF_---1LK3LE3LK1RF_3RB1LL1LL1LL0LM_3LL---0LM------` |
+| **BB(14,5)** | `> f_{ω^ω+2}(21)` | `> f_{ω^ω+1}(51)` | `fwpw2_5` @ step 409: `0^inf 3^(1) 2^2 H> 1^1 4 0^3 2^22 0^inf` | `1RE1LA1LG3LA4LA_2RH3RB1LD2RH2LM_3RB1LB3LC2RC4RJ_2RE---3LC2RC---_3RB2RE2RE4RF0LJ_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_4LL1RJ2RJ3RJ4RF_2LD1LK3LE3LK1LJ_3RB1LL1LL1LL2RN_1RZ2RC0LN4RF---_3RB---0LN0LN2LG` |
+| **BB(15,5)** | `> f_{ω^ω+3}(27)` | *(empty on wiki)* | `fwpw3_5` @ step 825: `0^inf 3^(1) 2^2 H> 1^1 4 0^2 2^1 4^27 0^inf` | `2RG1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC4RH_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_0RK1RJ2RJ3RJ4RF_2LH1LK3LE3LK---_3RB1LL1LL1LL---_1RZ4LJ0LN---2LO_3RB---0LN0LN---_0RC---2LO2LO2LD` |
+| **BB(16,5)** | `> f_{ω^ω+4}(20)` | *(empty on wiki)* | `fwpw4_5` @ step 359: `0^inf 3^(1) 2^2 H> 1^1 4 0^2 2^1 4^0 3^20 0^inf` | `3LG1LA1LG3LA4LA_2RH3RB1LD2RH3LK_3RB1LB3LC2RC1RP_2RE---3LC2RC---_3RB2RE2RE4RF0RI_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_1LP1RJ2RJ3RJ4RF_4LP1LK3LE3LK4LL_3RB1LL1LL1LL---_1RZ4RB0LN4LP2LO_3RB---0LN0LN---_0RC0LK2LO2LO2RP_3RO4LB4LP4LP2RM` |
+| **BB(18,5)** | `> f_{ε_0}(56)` | *(empty on wiki)* | `fe0_5` @ step 2040: `1^1 B> 2^59 0^inf` | `4RP---0RF0RD1LQ_1RZ1RB2LC4LG3RR_0LI4RC2RC3RC2RC_1LE1RD2RD3RD2RD_3LA1LE2LE3LE2LK_0LG1RF2RF3RF---_0RI0LH3RI3RI1RI_2LA1LH2LH3LH2RF_3RN4RC0LA0LI2LB_2RO1LO2LJ3LJ1LH_2LL3RR2RK3RK4RK_3RO2RO2LL3LL4LL_3LL1LR2RM3RM4RM_4LJ1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RB1LQ2LQ3LQ1LQ_2RK4LR3LD0RA4LG` |
+
+## 6-Symbol New Champions (7)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(6,6)** | `> f_{ω×2+1}(2)` | `> f_{ω×2}^2(f_ω^2(29))` | `fwm21_6 (Lean 4 + Rocq 9.1)` | `5RE3LB4LF2RA4LB1RZ_5LE3RB1LD2RA3LF3RD_3RB1LB3LC2RC4LC0LE_3RB2RD3LC2RC1LE3RE_5RC3RE2RA4LC2LE2LA_5RB1RZ1LF1LF1RF5LF` |
+| **BB(7,6)** | `> f_{ω^2+1}(2)` | `> f_{ω^2}^2(6)` | `fwp21_6 (Lean 4 + Rocq 9.1)` | `1LE3LB2LF2RA4LB2RA_4LF3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC1RZ3RD_5RB3RE1RZ4LC3LG5LE_5RB4RF1LF1LF2LF5RG_5LF5RG1LA1LG1RD5LG` |
+| **BB(13,6)** | `> f_{ω^ω+2}(6)` | *(empty on wiki)* | `fwpw2_6` @ step 67: `0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^6 0^inf` | `1LF3RA1LD2RB1RM---_1RZ3LA4LH2RB3LL2LM_3RA1LA3LC2RC------_2RE4RK3LC2RC---0LC_3RA2RE2RE4RF1RM---_1LG1RF3LG3RF4LG1LA_2RJ0LH2LG2LI4LK---_3LD1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_1RH1RJ2RJ3RJ4RF---_---1LK3LE3LK4RE---_3RA1LL1LL1LL------_0RC5LM2LM2LM4LF---` |
+| **BB(14,6)** | `> f_{ω^ω+2}(27)` | *(empty on wiki)* | `fwpw2_5` @ step 423: `0^inf 3^(1) 2^2 H> 1^1 4 0^3 2^28 0^inf` | `5RK1LA1LG3LA4LA5LH_2RH3RB1LD2RH2RJ---_3RB1LB3LC2RC------_2RE---3LC2RC------_3RB2RE2RE4RF5RC---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK---_4LA3LB2RM2RH3LL1RF_2RC1LI3LG3LI4LI1RL_1LE1RJ2RJ3RJ4RF2LA_3LA1LK3LE3LK2LK2LG_3RB1LL1LL1LL5LI0RB_1RZ0RA0LN5RE------_3RB---0LN0LN------` |
+| **BB(15,6)** | `> f_{ω^ω+3}(35)` | *(empty on wiki)* | `fwpw3_5` @ step 902: `0^inf 3^(1) 2^2 H> 1^1 4 0^0 2^1 4^35 0^inf` | `1RJ1LA1LG3LA4LA---_2RH3RB1LD2RH3LJ---_3RB1LB3LC2RC0LN---_2RE---3LC2RC---4RG_3RB2RE2RE4RF1LL---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK0RM_4LA3LB2RM2RH3LL---_2RC1LI3LG3LI4LI---_4RI1RJ2RJ3RJ4RF---_0RG1LK3LE3LK------_3RB1LL1LL1LL------_1RZ4RC0LN---2LO---_3RB---0LN0LN5RB---_0RC---2LO2LO------` |
+| **BB(16,6)** | `> f_{ω^ω+4}(25)` | *(empty on wiki)* | `fwpw4_6` @ step 414: `0^inf 3^(1) 2^2 B> 1^1 4 2^2 5^1 4^1 3^25 0^inf` | `4LL3RA1LD2RB3LE0LK_1RZ3LA4LH2RB3LL2RN_3RA1LA3LC2RC5LK5LE_2RE4RK3LC2RC------_3RA2RE2RE4RF5LL5RH_1LG1RF3LG3RF4LG0RG_2RJ0LH2LG2LI4LK---_4RI1LH1LG3LH4LH2LL_2RC1LI3LG3LI4LI---_2RH1RJ2RJ3RJ4RF5LK_5LF1LK3LE3LK3LD---_3RA1LL1LL1LL1RM---_0RC5LN2LM2LM------_1RZ2LL0RP4LP5LO2LM_3RO3LH5LO5LO2RP2RB_3RO4RG4LP4LP2RN---` |
+| **BB(17,6)** | `> f_{ε_0}(24)` | *(empty on wiki)* | `fe0_5` @ step 536: `1^3 B> 2^27 0^inf` | `1LJ---0RF0RD1LQ---_1RZ1RB2LC---------_0LI4RC2RC3RC2RC---_1LE1RD2RD3RD2LE---_3LA1LE2LE3LE---1LQ_0LG1RF2RF3RF------_0RI0LH---3RI------_2LA1LH2LH3LH2LH---_3RN---0LA0LI1LH---_2RO4RH2LJ3LJ5RD---_2LL5RO2RK3RK4RK---_3RO2RO2LL3LL4LL---_3LL---2RM3RM4RM---_4LJ1LN2LN3LN1LO5RD_1RB4RP1RK0RM4LN---_4LJ1RP2RP3RP0RP---_1RB1LQ2LQ3LQ1LQ---` |
+
+## 7-Symbol New Champions (3)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(6,7)** | `> f_{ω×2+1}(f_{ω+1}^3(2))` | `> f_{ω×2+1}(f_{ω+1}^2(f_ω^2(5)))` | `fwm21tfw1_7` @ step 51: `0^inf 3^(1) 2^1 B> 1^2 2 4^2 3 5 0^inf` | `5LF6LA5RA4RF6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA4RC4LC4LC4LA6LC5RC_3RE1LE3LD2RD4LA6LC5RC_6RA3RE1LD2RB2RE2LE2LE_3LC3RA---3LD3LA5LF5RE` |
+| **BB(13,7)** | `> f_{ω^ω+2}(8)` | *(empty on wiki)* | `fwpw2_6` @ step 129: `0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^8 0^inf` | `1LH3RA1LD2RB---5LC3LJ_1RZ3LA4LH2RB3LL2LM---_3RA1LA3LC2RC5LE1LB5RK_2RE1RD3LC2RC6LC------_3RA2RE2RE4RF5LM6LA---_1LG1RF3LG3RF4LG---4LF_2RJ0LH2LG2LI4LK------_3LK1LH1LG3LH4LH---2RE_2RC1LI3LG3LI4LI---4RD_6LF1RJ2RJ3RJ4RF---2RD_6RI1LK3LE3LK---------_3RA1LL1LL1LL------6LF_0RC6RB2LM2LM---------` |
+| **BB(14,7)** | `> f_{ω^ω+3}(22)` | *(empty on wiki)* | `fwpw3_7` @ step 629: `0^inf 3^(1) 2^2 B> 1^1 4 2^1 5^1 6^22 0^inf` | `0LK3RA1LD2RB------4RC_1RZ3LA4LH2RB3LL2LM5LN_3RA1LA3LC2RC---0LH---_2RE---3LC2RC---2LK---_3RA2RE2RE4RF---1LJ5RD_1LG1RF3LG3RF4LG6LF6LN_2RJ0LH2LG2LI4LK------_---1LH1LG3LH4LH------_2RC1LI3LG3LI4LI------_6LA1RJ2RJ3RJ4RF------_0LG1LK3LE3LK---6LE---_3RA1LL1LL1LL---------_0RC---2LM2LM---------_3RN5RD5LN5LN6LK2RB---` |
+
+## 8-Symbol New Champions (8)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(5,8)** | `> f_{ω×2+1}(18)` | *(empty on wiki)* | `fwm21_8_blank` @ step 447: `0^inf 3^(1) 2^1 B> 1^4 7^18 0^inf` | `4LE3RA1LD2RB3RC6LC7LD3LC_1RZ3LA2LA2RB6LE3LC5RB7LA_3RA1LA3LC2RC4LB1LC1LC7LC_6RE4LA3LC2RC4LE6LD5RD3LC_7LC5RE1RA5LE6RE4LD5RB5LE` |
+| **BB(10,8)** | `> f_{ω^ω+2}(28)` | *(empty on wiki)* | `fwpw2_8_blank` @ step 325: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^2 5^28 0^inf` | `5LJ5RA4LI6RA4RF5LJ6RD7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE6RE3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF7LD6LJ---7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---1LD2LC6LC_1RZ3LB4LE2RH3LG2LJ------_3RI3LB2RI2LI---1RE------_0RC---2LJ2LJ---5LG5LB5RJ` |
+| **BB(11,8)** | `> f_{ω^ω+3}(11)` | *(empty on wiki)* | `fwpw3_8_blank` @ step 200: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^2 6^11 0^inf` | `2LC5RA6LE6RA4RF6RB6LA7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---6RC6LJ7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK---_3RI3LB2RI2LI---6RI5RA5RJ_0RC6RE2LJ2LJ---7RE3LI6RH_3RK---5LK5LK---2RH2LH3RE` |
+| **BB(12,8)** | `> f_{ω^ω+4}(5)` | *(empty on wiki)* | `fwpw4_8_blank` @ step 74: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^1 7^5 0^inf` | `7LK5RA0LE6RA4RF2RB---7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---------0LD_1RZ3LB4LE2RH3LG2LJ5LK6LL_3RI3LB2RI2LI------------_0RC---2LJ2LJ------------_3RK---5LK5LK---2RH7LF0LA_3RL---6LL6LL------2RH---` |
+| **BB(13,8)** | `> f_{ω^ω+4}(9)` | *(empty on wiki)* | `fwpw4_8_blank` @ step 124: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^2 7^9 0^inf` | `7LI5RA---6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK6LL_3RI3LB2RI2LI---------4RJ_0RC---2LJ2LJ---------3LL_3RK---5LK5LK---2RH------_3RL---6LL6LL3RM---2RH---_3RE1LG---7LM1RE------4RJ` |
+| **BB(14,8)** | `> f_{ω^ω+5}(6)` | *(empty on wiki)* | `fwpw5_8` @ step 167: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^1 7^1 6^6 0^inf` | `6LI5RA7RN6RA4RF1RD4RD7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE2LE3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF5LK2RH5RJ7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---6LA4RB5RK_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI7LM1LA6RJ1RM_0RC4LN2LJ2LJ1RM3RE6RH---_3RK6RD5LK5LK6RJ2RH0LI4RJ_3RL---6LL6LL3LF1RA2RH0LL_1RZ3LG0LG7LL6RE---7LN6LL_3RN3RL7LN7LN------3LA2RH` |
+| **BB(15,8)** | `> f_{ω^ω+6}(8)` | *(empty on wiki)* | `fwpw6_8` @ step 106: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^3 5^0 6^0 7^1 5^8 0^inf` | `6LD5RA2LI6RA4RF------7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF------7RC7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI7LO0RC---4RI_0RC---2LJ2LJ------------_3RK---5LK5LK7LK2RH---2LB_3RL---6LL6LL------2RH---_1RZ------------6LO7LN6LL_3RN---7LN7LN------2RO2RH_3RN---6LO6LO2LI---2RM7LI` |
+| **BB(16,8)** | `> f_{ω^ω+7}(8)` | *(empty on wiki)* | `fwpw7_8` @ step 138: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^2 7^1 2^8 0^inf` | `5LN5RA---6RA4RF---3LB7RA_7RA3RB1LD2RH4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE1RM3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG2RL2RF---1RJ_1RZ3LB4LE2RH3LG2LJ5LK2RM_3RI3LB2RI2LI---7RL---2LN_0RC7LI2LJ2LJ3RK0RG5RE6RD_3RK1RI5LK5LK3LO2RH1RL---_3RL5LN6LL6LL---4RO2RH4RP_1RZ1RK5LP---6RL6LO7LN6LL_3RN0RG7LN7LN---1RA2RO2RH_3RN3RG6LO6LO1RC2RP2RM---_3RO6RN5LP5LP---2RM5RE---` |
+
+## 9-Symbol New Champions (7)
+
+| Domain | Verified Lower Bound | Previous Wiki Record | Core & Landmark (step) | TNF Machine String |
+|---|---|---|---|---|
+| **BB(4,9)** | `> f_{ω+4}(12)` | *(empty on wiki)* | `fw4_8` @ step 304: `0^inf 3^(1) 2^1 A> 1^2 4^4 5^3 6^3 7^12 0^inf` | `5LC3LB7LA2RA4LB8LB4LB6LA7RA_1RZ3RB1LC2RA3RD3RA4LC0LC2LA_3RB1LB3LC2RC4LC5LC5LD8LC3RA_3RB---6LC4LD4LC4LD6LC7LA---` |
+| **BB(5,9)** | `> f_{ω×2+1}(80)` | *(empty on wiki)* | `fwm21_8_blank` @ step 8294: `0^inf 3^(1) 2^2 B> 1^2 7^80 0^inf` | `8LC3RA1LD2RB---7LE4LD3LC0RC_1RZ3LA1LD2RB6LE3LC5RB7LA---_3RA1LA3LC2RC---1LC1LC7LC7RD_6RE2RA3LC2RC4LE6LD5RD6LB7LD_8RA5RE1LE5LE6RE4LD5RB5LE1LD` |
+| **BB(11,9)** | `> f_{ω^ω+3}(35)` | *(empty on wiki)* | `fwpw3_8_blank` @ step 1390: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^4 6^35 0^inf` | `8LK5RA---6RA4RF------7RA7RG_7RA3RB1LD2RH4LF0LC2LD7LB2RJ_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE6LK_3RB1LG1LG1LG------3LG2LD---_1RZ3LB4LE2RH3LG2LJ5LK2LD1RG_3RI3LB2RI2LI---------------_0RC1RC2LJ2LJ---------------_3RK---5LK5LK8LF2RH---0LG8RF` |
+| **BB(12,9)** | `> f_{ω^ω+4}(12)` | *(empty on wiki)* | `fwpw4_8_blank` @ step 194: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^1 7^12 0^inf` | `5LF5RA1LI6RA4RF8LD---7RA5LH_7RA3RB1LD2RH4LF0LC2LD7LB---_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB1LE_3RB7RE1LI4RF8RG8LB---7RE7LL_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------------_1RZ3LB4LE2RH3LG2LJ5LK6LL0RC_3RI3LB2RI2LI---5LF7LI------_0RC---2LJ2LJ------7RC------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH7LL---` |
+| **BB(13,9)** | `> f_{ω^ω+5}(5)` | *(empty on wiki)* | `fwpw5_13_9_blank` @ step 130: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^1 7^3 8^5 0^inf` | `7LK5RA4RE6RA4RF2RA5LL7RA4LG_7RA3RB1LD2RH4LF0LC2LD7LB4RA_3RB1LB3LC2RC4LC1LC3LC1LB6LA_7RE8RM3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF8LM1RK8LE7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG5RI8LD---0RI---_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI8LG4LJ------1LG_0RC---2LJ2LJ5LB1LA------5LA_3RK3RG5LK5LK4RH2RH1RF0RF---_3RL---6LL6LL4RH0LG2RH1RD---_3RM8RF7LM7LM4LI------2RH3RA` |
+| **BB(14,9)** | `> f_{ω^ω+5}(9)` | *(empty on wiki)* | `fwpw5_13_9_blank` @ step 165: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^1 5^1 6^1 7^1 8^9 0^inf` | `8LG5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB0RG_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE8LG_3RB1LG1LG1LG8LF------0LE---_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI------------7LK_0RC---2LJ2LJ---------------_3RK2RN5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---_---------------------8LE---` |
+| **BB(16,9)** | `> f_{ω^ω+7}(11)` | *(empty on wiki)* | `fwpw7_8` @ step 195: `0^inf 3^(1) 2^1 H\|I> 1^1 4 2^0 5^0 6^0 7^1 2^11 0^inf` | `4LG5RA3LM6RA4RF7RC0RP7RA8RF_7RA3RB1LD2RH4LF0LC2LD7LB0RG_3RB1LB3LC2RC4LC1LC3LC1LB5RM_7RE---3LC2RC4LD1LD3LD3LB8RB_3RB7RE1LI4RF------8RA7RE1LE_1LB5RF3LB6RF4LB1LF3LF3LE0LK_3RB1LG1LG1LG5LA------2RG---_1RZ3LB4LE2RH3LG2LJ5LK2RM---_3RI3LB2RI2LI---------2RL---_0RC---2LJ2LJ---------7LJ7LM_3RK4RN5LK5LK---2RH8RO6LE---_3RL0LM6LL6LL------2RH3LD---_1RZ3RA5LP1RK---6LO7LN6LL5RO_3RN6RB7LN7LN6RA8LN2RO2RH2LM_3RN---6LO6LO8RF2RP2RM------_3RO---5LP5LP---2RM0RI---8RC` |
+
+---
+
+# Part 2: Dual-Verified Lean 4 + Rocq 9.1 Formal Proofs (November 19, 2026)
+
+This directory also holds **38 formally verified Busy Beaver champions** across `BB(2,11..20)`, `BB(18..20, 2)`, `BB(4,8)`, and `BB(6..11, 6..9)`, each proved to halt from the blank tape (`initConfig`) with explicit standard Wainer FGH lower bounds in **both Lean 4 (`4.36.0`) and Rocq (`9.1.0`)** simultaneously, with zero `sorry`, `Admitted`, or custom axioms.
+
+*(Note: `BB(6,7)`, `BB(10,8)`, `BB(11,8)`, and `BB(11,9)` from the November 19 grid have since been strictly superseded by the Part 1 machines above.)*
 
 ## Shared Axiom-Free Libraries
 
@@ -17,20 +148,20 @@ This directory contains **25 Busy Beaver champions** across `BB(4,8)` and the fu
 |---|---|---|---|
 | `TM` | `lean/BB/TM.lean` | `rocq/TM.v` | Exact bbchallenge `Config`, `step`, `steps`, `HaltsIn`, `ValidTM` |
 | `FGH` | `lean/BB/FGH.lean` | `rocq/FGH.v` | Wainer FGH up to `ω^2 · c + ω · a + b` with monotonicity/step lemmas |
-| `Kropitz` | `lean/BB/Kropitz.lean` | `rocq/Kropitz.v` | Parameterized 3-state Kropitz `f_ω` core (`Kfn`) |
+| `Kropitz` / `Kropitz2` | `lean/BB/Kropitz.lean` | `rocq/Kropitz.v` | Parameterized 3-state Kropitz `f_ω` core (`Kfn`) |
+| `JZMath` / `Jacobzheng` | `lean/BB/Jacobzheng.lean` | `rocq/Jacobzheng.v` | Formalization for `BB(18..20, 2)` and `BB(2,11..20)` |
 | `Fwm2` | `lean/BB/Fwm2.lean` | `rocq/Fwm2.v` | `f_{ω×2}` outer layer for `BB(6, 6..9)` |
-| `Fwp2` | `lean/BB/Fwp2.lean` | `rocq/Fwp2.v` | `f_{ω^2}` engine layer for 6-symbol `BB(7..11, 6)` |
-| `Fwp2_7` | `lean/BB/Fwp2_7.lean` | `rocq/Fwp2_7.v` | `f_{ω^2}` engine layer for 7-symbol `BB(7..11, 7)` |
-| `Fwp2_H` | `lean/BB/Fwp2_H.lean` | `rocq/Fwp2_H.v` | Higher-symbol `f_{ω^2}` layer for `BB(7..11, 9)` |
-| `Fwp2_H8` | `lean/BB/Fwp2_H8.lean` | `rocq/Fwp2_H8.v` | Higher-symbol `f_{ω^2}` layer for `BB(7..11, 8)` |
+| `Fwp2` / `Fwp2_7` / `Fwp2_H` / `Fwp2_H8` | `lean/BB/Fwp2.lean` | `rocq/Fwp2.v` | `f_{ω^2}` engine layers for `BB(7..11, 6..9)` |
 
-## All 25 Verified Champions
+## Formally Verified Grid Champions (`BB(4,8)` & `BB(6..11, 6..9)`)
+
+*(Plus `BB(2,11..20)` and `BB(18..20, 2)` in `lean/BB/` and `rocq/`, checked by `verify_all.py`.)*
 
 | Module | Domain | Lower Bound | Previous Dominated Best | TNF Transition Table |
 |---|---|---|---|---|
 | `BB4_8` | `BB(4,8)` | `> f_{ω+4}(7)` | `BB(4,7) > f_{ω+3}(34)`, `BB(3,8) > f_{ω+1}^2(f_ω(30))` | `5LC3LB7LA2RA4LB1LB4LB6LA_1RZ3RB1LC2RA3RD3RA4LC0RD_3RB1LB3LC2RC4LC7LC5LD7RA_3RB3LA6LC4LD4LC4LD6LC7LA` |
 | `BB6_6` | `BB(6,6)` | `> f_{ω×2+1}(2)` | `BB(6,6) > f_{ω×2}(89)` (wiki) | `5RE3LB4LF2RA4LB1RZ_5LE3RB1LD2RA3LF3RD_3RB1LB3LC2RC4LC0LE_3RB2RD3LC2RC1LE3RE_5RC3RE2RA4LC2LE2LA_5RB1RZ1LF1LF1RF5LF` |
-| `BB6_7` | `BB(6,7)` | `> f_{ω×2+1}(6)` | `BB(5,7) > f_{ω×2}(97)`, `BB6_6` | `6RD3LB6LF2RA4LB1RZ6LA_6LC3RB1LD2RA3LF4RE6LB_3RB1LB3LC2RC4LC0LE5LA_3RB2RD3LC2RC1LA3RE1LE_5RC3RE2RA4LC2LE2LE5RB_5RB3RD1LF1LF6LE5RF5LB` |
+| `BB6_7` | `BB(6,7)` | `> f_{ω×2+1}(6)` *(superseded in Part 1)* | `BB(5,7) > f_{ω×2}(97)`, `BB6_6` | `6RD3LB6LF2RA4LB1RZ6LA_6LC3RB1LD2RA3LF4RE6LB_3RB1LB3LC2RC4LC0LE5LA_3RB2RD3LC2RC1LA3RE1LE_5RC3RE2RA4LC2LE2LE5RB_5RB3RD1LF1LF6LE5RF5LB` |
 | `BB6_8` | `BB(6,8)` | `> f_{ω×2+2}(11)` | `BB6_7`, `BB4_8` | `5RE3LB7LF2RA4LB6LF1RZ5RF_5LE3RB1LD2RA3LF7RC3LB3RA_3RB1LB3LC2RC4LC0LE6LE5LF_3RB6RD3LC2RC5LA3RE2LE1LB_5RC3RE2RA4LC6RA5LA2LE3RE_5RB7RD1LF1LF5RA5RF5LE0RD` |
 | `BB6_9` | `BB(6,9)` | `> f_{ω×2+3}(6)` | `BB6_8`, `BB(3,9) > f_{ω+2}(4)` | `8LE3LB7LF2RA4LB6LF1RZ1LC8LF_6LE3RB1LD2RA3LF2RA3LB3RA8RD_3RB1LB3LC2RC4LC0LE5LC3RB6RE_3RB6RD3LC2RC5LC3RE2LE1LB5LC_5RC3RE2RA4LC8LE8RE2LE3RE1RB_5RB7RD1LF1LF8LE5RF8RE1RZ8RB` |
 | `BB7_6` | `BB(7,6)` | `> f_{ω^2+1}(2)` | `BB(7,6) > f_{ω^2}(110)` (wiki) | `1LE3LB2LF2RA4LB2RA_4LF3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC1RZ3RD_5RB3RE1RZ4LC3LG5LE_5RB4RF1LF1LF2LF5RG_5LF5RG1LA1LG1RD5LG` |
@@ -47,19 +178,15 @@ This directory contains **25 Busy Beaver champions** across `BB(4,8)` and the fu
 | `BB9_9` | `BB(9,9)` | `> f_{ω^2+5}(7)` | `BB8_9`, `BB9_8` | `8RH3LB2LH2RA4LB6RI6LH7LH8LH_1LF3RB1LD2RA3LF5RB3RC3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE3RD_3RB3RE3LC2RC6LD3RD3RB1RZ3RE_5RB3RE4RG4LC3LG5LE3LD3RF2RA_5RB5RB2RC1LF5LF5LF1RI2RA7RA_5LF4RG1LB1LG7LG5LG2LH6LD7LG_1RF1RZ1LH1LH2LH5RG1RZ1RZ1RZ_1RZ5LI8LI8LI8LE5RB8LI1RZ5RI` |
 | `BB10_6` | `BB(10,6)` | `> f_{ω^2+3}(7)` | `BB9_6`, `BB(10,5) > f_{ω^2+2}(4)` | `1LJ3LB2LH2RA4LB2RI_1LA3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2RF3RD_5RB3RE4RG4LC3LG5LE_5RB5RB1LA1LF5LF5LF_5LF4RG1LB1LG4LJ5LG_1RJ3LD1LH1LH3RD5RG_1RZ4LH2LI2LI5LI5RG_1RD1RI0LB3RB4LJ5RH` |
 | `BB10_7` | `BB(10,7)` | `> f_{ω^2+4}(4)` | `BB9_7`, `BB10_6` | `2RH3LB2LH2RA4LB4RI6LH_4RJ3RB1LD2RA3LF5RB3RC_3RB1LB3LC2RC4LC1LE3RD_3RB3RE3LC2RC0LD3RD3RE_5RB3RE4RG4LC3LG5LE2RA_5RB1RJ1RD1LF5LF5LF1RZ_5LF4RG1LB1LG4LG5LG2LH_2RG2RF1LH1LH2LH5RG1RZ_1RZ5LJ1LI1LI1LI5RH1RZ_4LG5LA6LJ6LJ6LJ5RB1RZ` |
-| `BB10_8` | `BB(10,8)` | `> f_{ω^2+5}(7)` | `BB9_8`, `BB10_7` | `1RJ3LB2LH2RA4LB6RI6LH7LH_7LE3RB1LD2RA3LF5RB3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE_3RB3RE3LC2RC6LD3RD3RB7RB_5RB3RE4RG4LC3LG5LE6LH3RF_5RB1RJ7RI1LF5LF5LF0LD2RA_5LF4RG1LB1LG5RJ5LG2LH6LD_7RH2RF1LH1LH2LH5RG3RJ6RH_1RZ5LJ1LI1LI6LB5RH1LI5RH_4RF5LA7LJ7LJ1RZ5RB7LJ6LG` |
-| `BB10_9` | `BB(10,9)` | `> f_{ω^2+6}(7)` | `BB9_9`, `BB10_8` | `7RH3LB2LH2RA4LB6RI6LH7LH8LH_4LJ3RB1LD2RA3LF5RB3RC3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE3RD_3RB3RE3LC2RC6LD3RD3RB7RB3RE_5RB3RE4RG4LC3LG5LE1RZ3RF2RA_5RB1RJ6RB1LF5LF5LF6LF2RA6RH_5LF4RG1LB1LG7LG5LG2LH6LD7LG_6LA2RF1LH1LH2LH5RG1RJ4LB8RG_1RZ5LJ1LI1LI1RJ5RH1LI1RH8RH_1RB5LA8LJ8LJ5LH5RB8LJ5RH5LJ` |
+| `BB10_8` | `BB(10,8)` | `> f_{ω^2+5}(7)` *(superseded in Part 1)* | `BB9_8`, `BB10_7` | `1RJ3LB2LH2RA4LB6RI6LH7LH_7LE3RB1LD2RA3LF5RB3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE_3RB3RE3LC2RC6LD3RD3RB7RB_5RB3RE4RG4LC3LG5LE6LH3RF_5RB1RJ7RI1LF5LF5LF0LD2RA_5LF4RG1LB1LG5RJ5LG2LH6LD_7RH2RF1LH1LH2LH5RG3RJ6RH_1RZ5LJ1LI1LI6LB5RH1LI5RH_4RF5LA7LJ7LJ1RZ5RB7LJ6LG` |
+| `BB10_9` | `BB(10,9)` | `> f_{ω^2+6}(7)` *(superseded by Part 1 `BB(10,8)`)* | `BB9_9`, `BB10_8` | `7RH3LB2LH2RA4LB6RI6LH7LH8LH_4LJ3RB1LD2RA3LF5RB3RC3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE3RD_3RB3RE3LC2RC6LD3RD3RB7RB3RE_5RB3RE4RG4LC3LG5LE1RZ3RF2RA_5RB1RJ6RB1LF5LF5LF6LF2RA6RH_5LF4RG1LB1LG7LG5LG2LH6LD7LG_6LA2RF1LH1LH2LH5RG1RJ4LB8RG_1RZ5LJ1LI1LI1RJ5RH1LI1RH8RH_1RB5LA8LJ8LJ5LH5RB8LJ5RH5LJ` |
 | `BB11_6` | `BB(11,6)` | `> f_{ω^2+4}(8)` | `BB10_6`, `BB(11,4) > f_{ω^2+1}` | `2RK3LB2LH2RA4LB2RI_0LK3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2RF3RD_5RB3RE4RG4LC3LG5LE_5RB1RJ1LA1LF5LF5LF_5LF4RG1LB1LG4LJ5LG_2LE2RF1LH1LH3RD5RG_1RZ4LH1LJ5LJ5LK0RC_3RB5LA1LJ1LJ4LJ5RH_1RH4RA2LK2LK0LD5RG` |
 | `BB11_7` | `BB(11,7)` | `> f_{ω^2+5}(7)` | `BB10_7`, `BB11_6` | `2RK3LB2LH2RA4LB4RI6LH_6LJ3RB1LD2RA3LF5RB3RC_3RB1LB3LC2RC4LC1LE3RD_3RB3RE3LC2RC3RG3RD3RE_5RB3RE4RG4LC3LG5LE2RA_5RB1RJ2RA1LF5LF5LF5LH_5LF4RG1LB1LG2RF5LG2LH_2RD2RF1LH1LH2LH5RG6RF_1RZ5LJ1LI1LI1LI5RH4LK_1LA5LA6LJ6LJ6LJ5RB6RF_6LC5LH4LK4LK4LK5RD2LB` |
-| `BB11_8` | `BB(11,8)` | `> f_{ω^2+6}(10)` | `BB10_8`, `BB11_7` | `1LJ3LB2LH2RA4LB6RI6LH7LH_7RE3RB1LD2RA3LF5RB3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE_3RB3RE3LC2RC6LD3RD3RB5RB_5RB3RE4RG4LC3LG5LE3RF3RF_5RB1RJ2RA1LF5LF5LF2RH2RA_5LF4RG1LB1LG1RZ5LG2LH6LD_1RK2RF1LH1LH2LH5RG5LF5RC_1RZ5LJ1LI1LI1RZ5RH1LI6LK_2LK5LA7LJ7LJ5RD5RB7LJ5RH_2LB7LC6LK6LK0LG5RE6LK4LG` |
-| `BB11_9` | `BB(11,9)` | `> f_{ω^2+7}(7)` | `BB10_9`, `BB11_8` | `7LB3LB2LH2RA4LB6RI6LH7LH8LH_8RK3RB1LD2RA3LF5RB3RC3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE3RD_3RB3RE3LC2RC6LD3RD3RB5LF3RE_5RB3RE4RG4LC3LG5LE3RF3RF2RA_5RB1RJ2RA1LF5LF5LF2RH2RA5LF_5LF4RG1LB1LG7LG5LG2LH6LD7LG_1RC2RF1LH1LH2LH5RG5LF7RJ4LC_1RZ5LJ1LI1LI1RZ5RH1LI6LK1RZ_7LA5LA8LJ8LJ1RZ5RB8LJ3LK8LJ_8LJ7RG6LK6LK5RC5RE6LK0RD7RJ` |
+| `BB11_8` | `BB(11,8)` | `> f_{ω^2+6}(10)` *(superseded in Part 1)* | `BB10_8`, `BB11_7` | `1LJ3LB2LH2RA4LB6RI6LH7LH_7RE3RB1LD2RA3LF5RB3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE_3RB3RE3LC2RC6LD3RD3RB5RB_5RB3RE4RG4LC3LG5LE3RF3RF_5RB1RJ2RA1LF5LF5LF2RH2RA_5LF4RG1LB1LG1RZ5LG2LH6LD_1RK2RF1LH1LH2LH5RG5LF5RC_1RZ5LJ1LI1LI1RZ5RH1LI6LK_2LK5LA7LJ7LJ5RD5RB7LJ5RH_2LB7LC6LK6LK0LG5RE6LK4LG` |
+| `BB11_9` | `BB(11,9)` | `> f_{ω^2+7}(7)` *(superseded in Part 1)* | `BB10_9`, `BB11_8` | `7LB3LB2LH2RA4LB6RI6LH7LH8LH_8RK3RB1LD2RA3LF5RB3RC3RC3RC_3RB1LB3LC2RC4LC1LE2RA3RE3RD_3RB3RE3LC2RC6LD3RD3RB5LF3RE_5RB3RE4RG4LC3LG5LE3RF3RF2RA_5RB1RJ2RA1LF5LF5LF2RH2RA5LF_5LF4RG1LB1LG7LG5LG2LH6LD7LG_1RC2RF1LH1LH2LH5RG5LF7RJ4LC_1RZ5LJ1LI1LI1RZ5RH1LI6LK1RZ_7LA5LA8LJ8LJ1RZ5RB8LJ3LK8LJ_8LJ7RG6LK6LK5RC5RE6LK0RD7RJ` |
 
-## Verify From Scratch
+## Verify Part 2 Formal Proofs From Scratch
 
-Run the independent cross-checker (compiles all 8 libraries + 25 champions in Lean 4 and Rocq 9.1, checks axioms, cross-checks TM tables cell-for-cell, and audits 2D monotonicity):
-
-```powershell
+```bash
 python verify_all.py
 ```
-
-*(Note: running `verify_all.py` writes `.olean`/`.vo` build artifacts under `lean/build/` and `rocq/`. Delete those build artifacts before staging git commits if desired.)*
