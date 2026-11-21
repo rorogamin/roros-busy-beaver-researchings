@@ -412,3 +412,19 @@ Proof.
     pose proof (fgh_ge_self _ (fOmegaPowStep_props 0 _ (fOmegaPowStep_props 0 _ fZero_props)) (fOmegaPowStep 0 (fOmegaPowStep 0 fZero) 24)). lia. }
   unfold f_omega_omega. lia.
 Qed.
+
+
+Record Fwpw_8_PeekerNCore (tm : TM) : Prop := mkFwpw_8_PeekerNCore {
+  pn_k : Fwpw_8_KCore tm;
+  pn_H7 : tm 7 7 = Some (mkAction 2 DR (Some 12));
+  pn_M7 : tm 12 7 = Some (mkAction 6 DL (Some 11));
+  pn_L0 : tm 11 0 = Some (mkAction 3 DR (Some 11));
+  pn_L2 : tm 11 2 = Some (mkAction 6 DL (Some 11));
+  pn_L3 : tm 11 3 = Some (mkAction 6 DL (Some 11));
+  pn_L6 : tm 11 6 = Some (mkAction 2 DR (Some 7));
+  pn_M6 : tm 12 6 = Some (mkAction 7 DL (Some 13));
+  pn_N0 : tm 13 0 = Some (mkAction 3 DR (Some 13));
+  pn_N2 : tm 13 2 = Some (mkAction 7 DL (Some 13));
+  pn_N3 : tm 13 3 = Some (mkAction 7 DL (Some 13));
+  pn_N7 : tm 13 7 = Some (mkAction 2 DR (Some 7))
+}.

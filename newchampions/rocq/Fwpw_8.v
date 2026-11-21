@@ -818,5 +818,190 @@ Section Fwpw_8_Lemmas.
       lia.
   Qed.
 
+  (* Parity preservation: if w++[4] preserves Odd, then (1::w)++[4] preserves Odd! *)
+  Definition PresOdd (k : nat) (w : list nat) : Prop :=
+    forall m R, 1 <= m -> Nat.Odd m ->
+      exists n' t, Reaches tm (H8cfg m k (w ++ 4 :: R)) (H8cfg n' 1 R) t /\ Nat.Odd n'.
+
+  Lemma presOdd_rep_app : forall w, PresOdd 1 w ->
+    forall c m R, 1 <= m -> Nat.Odd m ->
+      exists n' t, Reaches tm (H8cfg m 1 (rep_app c (w ++ [4]) R)) (H8cfg n' 1 R) t /\ Nat.Odd n'.
+  Proof.
+    intros w Hw. induction c as [| c' IH]; intros m R Hm Hodd.
+    - exists m, 0. split; [apply reaches_zero | exact Hodd].
+    - simpl rep_app. rewrite <- app_assoc. simpl.
+      destruct (Hw m (rep_app c' (w ++ [4]) R) Hm Hodd) as [n1 [t1 [H1 Hodd1]]].
+      assert (Hn1 : 1 <= n1) by (destruct Hodd1 as [q ->]; lia).
+      destruct (IH n1 R Hn1 Hodd1) as [n2 [t2 [H2 Hodd2]]].
+      exists n2, (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | exact Hodd2].
+  Qed.
+
+  Lemma presOdd_13_level1 : PresOdd 1 [1; 3].
+  Proof.
+    intros m R Hm [q Hq].
+    destruct (w8_rule_1_low m [3] R ltac:(constructor; [right; reflexivity | constructor])) as [t1 [H1 _]].
+    (* m + 3 = 2 * (q + 2) copies of [3; 4], each adding 3 -> 1 + 3 * 2 * (q + 2) is Odd! *)
+    assert (Hpairs : forall p a R0, 1 <= a ->
+      exists t, Reaches tm (H8cfg a 1 (rep_app (2 * p) [3; 4] R0)) (H8cfg (a + 6 * p) 1 R0) t).
+    { induction p as [| p' IHp]; intros a R0 Ha.
+      - exists 0. replace (a + 6 * 0) with a by lia. apply reaches_zero.
+      - replace (2 * S p') with (2 + 2 * p') by lia. rewrite rep_app_add. simpl rep_app.
+        pose proof (w8_rule_3 a 1 (4 :: 3 :: 4 :: rep_app (2 * p') [3; 4] R0)) as Hs1.
+        destruct (w8_rule_4 a 2 (3 :: 4 :: rep_app (2 * p') [3; 4] R0) ltac:(lia)) as [t2 [Hs2 _]].
+        pose proof (w8_rule_3 (a + 2 + 1) 1 (4 :: rep_app (2 * p') [3; 4] R0)) as Hs3.
+        destruct (w8_rule_4 (a + 2 + 1) 2 (rep_app (2 * p') [3; 4] R0) ltac:(lia)) as [t4 [Hs4 _]].
+        destruct (IHp (a + 2 + 1 + 2 + 1) R0 ltac:(lia)) as [t5 Hs5].
+        replace (a + 2 + 1 + 2 + 1 + 6 * p') with (a + 6 * S p') in Hs5 by lia.
+        exists (1 + t2 + 1 + t4 + t5).
+        eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [eapply reaches_trans; [exact Hs1 | exact Hs2] | exact Hs3] | exact Hs4] | exact Hs5]. }
+    replace (m + 3) with (2 * (q + 2)) in H1 by lia.
+    destruct (Hpairs (q + 2) 1 R ltac:(lia)) as [t2 H2].
+    exists (1 + 6 * (q + 2)), (t1 + t2).
+    split; [eapply reaches_trans; [exact H1 | exact H2] | exists (3 * (q + 2)); lia].
+  Qed.
+
+  Lemma presOdd_step : forall k w, W8Word w -> PresOdd (S k) w -> PresOdd (S k) (1 :: w).
+  Proof.
+    induction k as [| k' IH]; intros w Hw Hodd m R Hm Hmo.
+    - destruct (w8_rule_1_low m w R Hw) as [t1 [H1 _]].
+      destruct (presOdd_rep_app w Hodd (m + 3) 1 R ltac:(lia) (ex_intro _ 0 eq_refl)) as [n' [t2 [H2 Hodd']]].
+      exists n', (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | exact Hodd'].
+    - destruct (w8_rule_1_high m (S k') (w ++ 4 :: R) ltac:(lia)) as [t1 [H1 _]].
+      assert (Hrep1 : forall c, PresOdd (S k') (rep c 1 (3 :: w))).
+      { induction c as [| c' IHc].
+        - intros a R0 Ha Hao. pose proof (w8_rule_3 a (S k') (w ++ 4 :: R0)) as Hs1.
+          destruct (Hodd a R0 Ha Hao) as [n' [t2 [Hs2 Ho']]].
+          exists n', (1 + t2). split; [eapply reaches_trans; [exact Hs1 | exact Hs2] | exact Ho'].
+        - apply IH; [| exact IHc].
+          assert (Hwr : forall j u, W8Word u -> W8Word (rep j 1 u))
+            by (induction j; intros; [exact H | constructor; [left; reflexivity | apply IHj; exact H]]).
+          apply Hwr; constructor; [right; reflexivity | exact Hw]. }
+      assert (Hra : rep (S m) 1 (3 :: w ++ 4 :: R) = rep (S m) 1 (3 :: w) ++ 4 :: R)
+        by (clear; induction (S m); simpl; [reflexivity | f_equal; exact IHn]).
+      rewrite Hra in H1.
+      destruct (Hrep1 (S m) 1 R ltac:(lia) (ex_intro _ 0 eq_refl)) as [n' [t2 [H2 Hodd']]].
+      exists n', (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | exact Hodd'].
+  Qed.
+
+  (* Combined FGH + Odd preservation: RunWOdd k w f *)
+  Definition RunWOdd (k : nat) (w : list nat) (f : nat -> nat) : Prop :=
+    forall m R, 1 <= m -> Nat.Odd m ->
+      exists n' t, Reaches tm (H8cfg m k (w ++ 4 :: R)) (H8cfg n' 1 R) t /\
+                   f m <= n' /\ n' <= t /\ Nat.Odd n'.
+
+  Lemma runWOdd_rep_app : forall f w,
+    (forall x y, x <= y -> f x <= f y) -> (forall x, x <= f x) -> RunWOdd 1 w f ->
+    forall c m R, 1 <= m -> Nat.Odd m ->
+      exists n' t, Reaches tm (H8cfg m 1 (rep_app c (w ++ [4]) R)) (H8cfg n' 1 R) t /\
+                   iter f c m <= n' /\ (1 <= c -> n' <= t) /\ Nat.Odd n'.
+  Proof.
+    intros f w Hmono Hself Hw. induction c as [| c' IH]; intros m R Hm Ho.
+    - exists m, 0. split; [apply reaches_zero | simpl; repeat split; [lia | lia | exact Ho]].
+    - simpl rep_app. rewrite <- app_assoc. simpl.
+      destruct (Hw m (rep_app c' (w ++ [4]) R) Hm Ho) as [n1 [t1 [H1 [Hf1 [Ht1 Ho1]]]]].
+      destruct c' as [| c''].
+      + exists n1, t1. simpl in *. split; [exact H1 | repeat split; [lia | lia | exact Ho1]].
+      + assert (Hn1 : 1 <= n1) by (pose proof (Hself m); lia).
+        destruct (IH n1 R Hn1 Ho1) as [n2 [t2 [H2 [Hf2 [Ht2 Ho2]]]]].
+        exists n2, (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] |].
+        repeat split; [| intros _; specialize (Ht2 ltac:(lia)); lia | exact Ho2].
+        assert (Hsh : f (iter f (S c'') m) = iter f (S c'') (f m)).
+        { change (iter f (S (S c'')) m = iter f (S c'') (f m)).
+          replace (S (S c'')) with (S c'' + 1) by lia. rewrite iter_add. reflexivity. }
+        rewrite Hsh.
+        eapply Nat.le_trans; [apply iter_mono_arg; [exact Hmono | exact Hf1] | exact Hf2].
+  Qed.
+
+  Lemma w8_run_F8_odd : forall k w f,
+    W8Word w -> (forall x y, x <= y -> f x <= f y) -> (forall x, x + 2 <= f x) ->
+    RunWOdd (S k) w f ->
+    RunWOdd (S k) (1 :: w) (F8_step k f).
+  Proof.
+    induction k as [| k' IH]; intros w f Hw Hmono Hinc Hrun m R Hm Ho.
+    - destruct (w8_rule_1_low m w R Hw) as [t1 [H1 _]].
+      destruct (runWOdd_rep_app f w Hmono (fun x => ltac:(pose proof (Hinc x); lia)) Hrun (m + 3) 1 R ltac:(lia) (ex_intro _ 0 eq_refl))
+        as [n' [t2 [H2 [Hf2 [Ht2 Ho']]]]].
+      exists n', (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | repeat split; [exact Hf2 | specialize (Ht2 ltac:(lia)); lia | exact Ho']].
+    - destruct (w8_rule_1_high m (S k') (w ++ 4 :: R) ltac:(lia)) as [t1 [H1 _]].
+      assert (Hrep1 : forall c,
+        RunWOdd (S k') (rep c 1 (3 :: w)) (iterF (F8_step k') c f) /\
+        (forall x y, x <= y -> iterF (F8_step k') c f x <= iterF (F8_step k') c f y) /\
+        (forall x, x + 2 <= iterF (F8_step k') c f x)).
+      { induction c as [| c' [IHr [IHm IHi]]].
+        - repeat split; [| exact Hmono | exact Hinc].
+          intros a R0 Ha Hao. pose proof (w8_rule_3 a (S k') (w ++ 4 :: R0)) as Hs1.
+          destruct (Hrun a R0 Ha Hao) as [n' [t2 [Hs2 [Hf2 [Ht2 Ho']]]]].
+          exists n', (1 + t2). split; [eapply reaches_trans; [exact Hs1 | exact Hs2] | repeat split; [exact Hf2 | lia | exact Ho']].
+        - simpl. destruct (F8_step_props k' _ IHm IHi) as [A [B _]].
+          repeat split; [| exact A | exact B].
+          apply IH; [| exact IHm | exact IHi | exact IHr].
+          assert (Hwr : forall j u, W8Word u -> W8Word (rep j 1 u))
+            by (induction j; intros; [exact H | constructor; [left; reflexivity | apply IHj; exact H]]).
+          apply Hwr; constructor; [right; reflexivity | exact Hw]. }
+      assert (Hra : rep (S m) 1 (3 :: w ++ 4 :: R) = rep (S m) 1 (3 :: w) ++ 4 :: R)
+        by (clear; induction (S m); simpl; [reflexivity | f_equal; exact IHn]).
+      rewrite Hra in H1.
+      destruct (proj1 (Hrep1 (S m)) 1 R ltac:(lia) (ex_intro _ 0 eq_refl)) as [n' [t2 [H2 [Hf2 [Ht2 Ho']]]]].
+      exists n', (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | repeat split; [exact Hf2 | lia | exact Ho']].
+  Qed.
+
+  (* Base case for RunWOdd: 1 :: rep j 3 [] at level S k! *)
+  Lemma w8_run_1_rep3_odd : forall k j,
+    RunWOdd (S k) (1 :: rep j 3 []) (F8_step k (fun m => m + 2)).
+  Proof.
+    induction k as [| k' IH]; intros j m R Hm [q Hq].
+    - destruct (w8_rule_1_low m (rep j 3 []) R) as [t1 [H1 _]].
+      { clear. induction j; [constructor | constructor; [right; reflexivity | exact IHj]]. }
+      assert (Hone : forall a R0, 1 <= a ->
+        exists t, Reaches tm (H8cfg a 1 (rep j 3 [] ++ 4 :: R0)) (H8cfg (a + j + 2) 1 R0) t /\ a + j + 2 <= t).
+      { intros a R0 Ha.
+        assert (Hra : rep j 3 [] ++ 4 :: R0 = rep j 3 (4 :: R0)) by (clear; induction j; simpl; [reflexivity | f_equal; exact IHj]).
+        rewrite Hra.
+        pose proof (w8_rule_3_rep j a 1 (4 :: R0)) as Hs1.
+        destruct (w8_rule_4 a (j + 1) R0 ltac:(lia)) as [t2 [Hs2 Ht2]].
+        replace (a + (j + 1) + 1) with (a + j + 2) in Hs2, Ht2 by lia.
+        exists (j + t2). split; [eapply reaches_trans; [exact Hs1 | exact Hs2] | lia]. }
+      assert (Hrep : forall c a R0, 1 <= a ->
+        exists t, Reaches tm (H8cfg a 1 (rep_app c (rep j 3 [] ++ [4]) R0)) (H8cfg (a + c * (j + 2)) 1 R0) t /\ (1 <= c -> a + c * (j + 2) <= t)).
+      { induction c as [| c' IHc]; intros a R0 Ha.
+        - exists 0. replace (a + 0 * (j + 2)) with a by lia. split; [apply reaches_zero | lia].
+        - simpl rep_app. rewrite <- app_assoc. simpl.
+          destruct (Hone a (rep_app c' (rep j 3 [] ++ [4]) R0) Ha) as [t2 [Hs2 Ht2]].
+          destruct c' as [| c''].
+          + exists t2. simpl in *. replace (a + (j + 2 + 0)) with (a + j + 2) by lia. split; [exact Hs2 | lia].
+          + destruct (IHc (a + j + 2) R0 ltac:(lia)) as [t3 [Hs3 Ht3]].
+            replace (a + j + 2 + S c'' * (j + 2)) with (a + S (S c'') * (j + 2)) in Hs3, Ht3 by lia.
+            exists (t2 + t3). split; [eapply reaches_trans; [exact Hs2 | exact Hs3] | intros _; specialize (Ht3 ltac:(lia)); lia]. }
+      destruct (Hrep (m + 3) 1 R ltac:(lia)) as [t2 [H2 Ht2]].
+      assert (Hiter : forall c z, iter (fun x => x + 2) c z = z + 2 * c)
+        by (induction c; intro z; [simpl; lia | rewrite iter_succ, IHc; lia]).
+      exists (1 + (m + 3) * (j + 2)), (t1 + t2).
+      split; [eapply reaches_trans; [exact H1 | exact H2] |].
+      repeat split.
+      + simpl. rewrite Hiter. nia.
+      + specialize (Ht2 ltac:(lia)). lia.
+      + exists ((q + 2) * (j + 2)). nia.
+    - destruct (w8_rule_1_high m (S k') (rep j 3 [] ++ 4 :: R) ltac:(lia)) as [t1 [H1 _]].
+      assert (Hbase : RunWOdd (S k') (1 :: rep (S j) 3 []) (F8_step k' (fun x => x + 2))) by apply IH.
+      assert (Hrep1 : forall c,
+        RunWOdd (S k') (rep (S c) 1 (rep (S j) 3 [])) (iterF (F8_step k') (S c) (fun x => x + 2)) /\
+        (forall x y, x <= y -> iterF (F8_step k') (S c) (fun x => x + 2) x <= iterF (F8_step k') (S c) (fun x => x + 2) y) /\
+        (forall x, x + 2 <= iterF (F8_step k') (S c) (fun x => x + 2) x)).
+      { induction c as [| c' [IHr [IHm IHi]]].
+        - destruct (F8_step_props k' (fun x => x + 2) (fun x y H => proj1 (Nat.add_le_mono_r x y 2) H) (fun x => Nat.le_refl (x + 2))) as [A [B _]].
+          simpl. repeat split; [exact Hbase | exact A | exact B].
+        - simpl. destruct (F8_step_props k' _ IHm IHi) as [A [B _]].
+          repeat split; [| exact A | exact B].
+          apply w8_run_F8_odd; [| exact IHm | exact IHi | exact IHr].
+          assert (Hwr : forall u0 u, W8Word u -> W8Word (rep u0 1 u))
+            by (induction u0; intros; [exact H | constructor; [left; reflexivity | apply IHu0; exact H]]).
+          apply (Hwr (S c')). clear. constructor; [right; reflexivity |]. induction j; [constructor | constructor; [right; reflexivity | exact IHj]]. }
+      assert (Hra : rep (S m) 1 (3 :: rep j 3 [] ++ 4 :: R) = rep (S m) 1 (rep (S j) 3 []) ++ 4 :: R)
+        by (clear; induction (S m); simpl; [reflexivity | f_equal; exact IHn]).
+      rewrite Hra in H1.
+      destruct (proj1 (Hrep1 m) 1 R ltac:(lia) (ex_intro _ 0 eq_refl)) as [n' [t2 [H2 [Hf2 [Ht2 Ho']]]]].
+      exists n', (t1 + t2). split; [eapply reaches_trans; [exact H1 | exact H2] | repeat split; [exact Hf2 | lia | exact Ho']].
+  Qed.
+
 End Fwpw_8_Lemmas.
 
