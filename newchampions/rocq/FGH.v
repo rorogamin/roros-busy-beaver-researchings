@@ -297,3 +297,80 @@ Proof.
   pose proof (iter_strict_dom H f 1 Hdom Hf x x Hx Hx) as Hlt.
   unfold fNext. lia.
 Qed.
+
+(* Structural System T extension to ω^ω and ω^ω + k:
+   fOmegaPowStep g 0 = fNext g                       (α + ω^0 = α + 1)
+   fOmegaPowStep g (S k) n = (fOmegaPowStep · k)^n g n  (α + ω^{k+1}[n] = α + ω^k * n)
+   f_omega_omega n = fOmegaPowStep fZero n n         (f_{ω^ω}(n) = f_{ω^n}(n))
+   f_omega_omega_plus k n = fPlus f_omega_omega k n  (f_{ω^ω + k}(n)) *)
+Fixpoint iterF (F : (nat -> nat) -> (nat -> nat)) (n : nat) (g : nat -> nat) : nat -> nat :=
+  match n with
+  | 0 => g
+  | S m => F (iterF F m g)
+  end.
+
+Fixpoint fOmegaPowStep (k : nat) (g : nat -> nat) : nat -> nat :=
+  match k with
+  | 0 => fNext g
+  | S k' => fun n => iterF (fOmegaPowStep k') n g n
+  end.
+
+Definition f_omega_omega (n : nat) : nat := fOmegaPowStep n fZero n.
+Definition f_omega_omega_plus (k n : nat) : nat := fPlus f_omega_omega k n.
+
+Lemma fOmegaPowStep_props_and_ge : forall k g, FGHProps g ->
+  FGHProps (fOmegaPowStep k g) /\ (forall n, 1 <= n -> g n <= fOmegaPowStep k g n).
+Proof.
+  induction k as [| k' IH]; intros g Hg.
+  - simpl. split; [apply fNext_props; exact Hg | apply fNext_ge; exact Hg].
+  - assert (Hiter : forall m, FGHProps (iterF (fOmegaPowStep k') m g)).
+    { induction m as [| m' IHm]; [exact Hg | simpl; apply (proj1 (IH _ IHm))]. }
+    assert (Hge_m : forall m n, 1 <= n -> g n <= iterF (fOmegaPowStep k') m g n).
+    { induction m as [| m' IHm]; intros n Hn; [simpl; lia |].
+      simpl. eapply Nat.le_trans; [apply IHm; exact Hn |].
+      apply (proj2 (IH _ (Hiter m'))); exact Hn. }
+    split.
+    + constructor; simpl.
+      * intro n. apply (fgh_ge_self _ (Hiter n) n).
+      * intros n Hn. apply (fgh_gt_pos _ (Hiter n) n Hn).
+      * intros x y Hxy.
+        eapply Nat.le_trans; [apply (fgh_mono _ (Hiter x) x y Hxy) |].
+        destruct y as [| y']; [assert (x = 0) by lia; subst; lia |].
+        assert (Hmono_m : forall m1 m2 n, 1 <= n -> m1 <= m2 ->
+                  iterF (fOmegaPowStep k') m1 g n <= iterF (fOmegaPowStep k') m2 g n).
+        { intros m1 m2 n Hn Hm. induction Hm as [| m'' Hle IHm]; [lia |].
+          eapply Nat.le_trans; [exact IHm |].
+          simpl. apply (proj2 (IH _ (Hiter m''))); exact Hn. }
+        apply Hmono_m; [lia | exact Hxy].
+    + intros n Hn. simpl. apply Hge_m; exact Hn.
+Qed.
+
+Lemma fOmegaPowStep_props : forall k g, FGHProps g -> FGHProps (fOmegaPowStep k g).
+Proof. intros k g Hg. exact (proj1 (fOmegaPowStep_props_and_ge k g Hg)). Qed.
+
+Lemma fOmegaPowStep_ge : forall k g, FGHProps g -> forall n, 1 <= n -> g n <= fOmegaPowStep k g n.
+Proof. intros k g Hg. exact (proj2 (fOmegaPowStep_props_and_ge k g Hg)). Qed.
+
+Lemma f_omega_omega_props : FGHProps f_omega_omega.
+Proof.
+  constructor; unfold f_omega_omega.
+  - intro n. apply (fgh_ge_self _ (fOmegaPowStep_props n fZero fZero_props) n).
+  - intros n Hn. apply (fgh_gt_pos _ (fOmegaPowStep_props n fZero fZero_props) n Hn).
+  - intros x y Hxy.
+    eapply Nat.le_trans; [apply (fgh_mono _ (fOmegaPowStep_props x fZero fZero_props) x y Hxy) |].
+    destruct y as [| y']; [assert (x = 0) by lia; subst; lia |].
+    assert (Hmono_k : forall k1 k2 n, 1 <= n -> k1 <= k2 ->
+              fOmegaPowStep k1 fZero n <= fOmegaPowStep k2 fZero n).
+    { intros k1 k2 n Hn Hk. induction Hk as [| k' Hle IHk]; [lia |].
+      eapply Nat.le_trans; [exact IHk |].
+      simpl. destruct n as [| n']; [lia |]. simpl.
+      assert (Hiter_ge : forall m h, FGHProps h ->
+                fOmegaPowStep k' h (S n') <= iterF (fOmegaPowStep k') (S m) h (S n')).
+      { induction m as [| m' IHm]; intros h Hh; [simpl; lia |].
+        eapply Nat.le_trans; [apply (IHm h Hh) |].
+        simpl. apply fOmegaPowStep_ge; [| lia].
+        clear IHm. induction m' as [| m'' IHm''];
+          [apply fOmegaPowStep_props; exact Hh | simpl; apply fOmegaPowStep_props; exact IHm'']. }
+      apply Hiter_ge; exact fZero_props. }
+    apply Hmono_k; [lia | exact Hxy].
+Qed.
