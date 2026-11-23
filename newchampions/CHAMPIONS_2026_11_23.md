@@ -1,3 +1,8 @@
+> **RETRACTED 2026-11-23.** The 38 machines below are kernel-verified halting
+> proofs, but most are *not* champions: the bbchallenge Champions table lists a
+> stronger machine for their cell. See `WIKI_CROSSCHECK_2026_11_23.md` for the
+> cell-by-cell comparison and the 9 machines that do beat the record.
+
 # Busy Beaver Champions — 2026-11-23 batch
 
 38 machines, each one an exact blank-tape bootstrap into a proven Busy Beaver core, with a kernel-checked Lean 4 certificate.
