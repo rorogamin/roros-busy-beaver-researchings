@@ -1,0 +1,344 @@
+[
+ {
+  "states": 3,
+  "symbols": 4,
+  "core": "fw_4",
+  "bound": "> f_{ω}(3)",
+  "halted_at": 241,
+  "landmark": "0^inf 3 2^16 A> 1^3 2",
+  "tnf": "1RB3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC"
+ },
+ {
+  "states": 3,
+  "symbols": 5,
+  "core": "fw_4",
+  "bound": "> f_{ω}(2)",
+  "halted_at": 263,
+  "landmark": "0^inf 3 2^13 A> 1^2 2",
+  "tnf": "0LB3LB1RZ2RA2LB_4LC3RB1LC2RA2LC_3RB1LB3LC2RC2RB"
+ },
+ {
+  "states": 3,
+  "symbols": 7,
+  "core": "fw1_6",
+  "bound": "> f_{ω+1}(14)",
+  "halted_at": 312,
+  "landmark": "0^inf 3 2 A> 1^2 4 5^14",
+  "tnf": "6LC3LB5LA2RA4LB5LC0LA_1RZ3RB1LC2RA3RB4LC0LA_3RB1LB3LC2RC4LC4RA0RA"
+ },
+ {
+  "states": 4,
+  "symbols": 4,
+  "core": "fw_4",
+  "bound": "> f_{ω}(1)",
+  "halted_at": 374,
+  "landmark": "0^inf 3 2^14 A> 1 2 3",
+  "tnf": "0LB3LB1RZ2RA_0LD3RB1LC2RA_3RB1LB3LC2RC_2RC2LB1RD3LD"
+ },
+ {
+  "states": 4,
+  "symbols": 5,
+  "core": "fw1_4",
+  "bound": "> f_{ω+1}(3)",
+  "halted_at": 308,
+  "landmark": "0^inf 3 2^13 B> 1^2 2^3",
+  "tnf": "4LC3RA1LC2RB0LC_1RZ3LA1LD2RB1RC_3RA1LA3LC2RC4LB_3RA4RD1LD3LD2LD"
+ },
+ {
+  "states": 4,
+  "symbols": 6,
+  "core": "fw1_4",
+  "bound": "> f_{ω+1}(1)",
+  "halted_at": 317,
+  "landmark": "0^inf 3 2^13 B> 1^4 2",
+  "tnf": "4LC3RA1LC2RB0LC5LA_1RZ3LA1LD2RB5LA5LC_3RA1LA3LC2RC1RA5RD_3RA2RD1LD3LD2LB2LA"
+ },
+ {
+  "states": 4,
+  "symbols": 7,
+  "core": "fw3_7",
+  "bound": "> f_{ω+3}(2)",
+  "halted_at": 108,
+  "landmark": "0^inf 3 2 A> 1^2 4^4 5^3 6^2",
+  "tnf": "5LC3LB0RA2RA4LB0LA1RC_1RZ3RB1LC2RA3RD0LA4LC_3RB1LB3LC2RC4LC6LD5LD_3RB6LA6LC4LD4LC4LD6LC"
+ },
+ {
+  "states": 5,
+  "symbols": 4,
+  "core": "fw1_4",
+  "bound": "> f_{ω+1}(13)",
+  "halted_at": 236,
+  "landmark": "0^inf 3 2 B> 1^2 2^13",
+  "tnf": "0LE3RA1LC2RB_1RZ3LA1LD2RB_3RA1LA3LC2RC_3RA2RA1LD3LD_1RA1RD2LC2LE"
+ },
+ {
+  "states": 5,
+  "symbols": 5,
+  "core": "fw2_5",
+  "bound": "> f_{ω+2}(3)",
+  "halted_at": 50,
+  "landmark": "0^inf 3 2 B> 1^3 2^2 4^3",
+  "tnf": "4LC3RA1LC2RB1RC_1RZ3LA1LD2RB2LE_3RA1LA3LC2RC0LB_3RA4RE1LD3LD1RE_2RC4LE2LE2LE1RD"
+ },
+ {
+  "states": 5,
+  "symbols": 6,
+  "core": "fw2_5",
+  "bound": "> f_{ω+2}(1)",
+  "halted_at": 17045,
+  "landmark": "0^inf 3 2 B> 1^3 2^110 4",
+  "tnf": "4LC3RA1LC2RB0LC4RD_1RZ3LA1LD2RB2LE0LA_3RA1LA3LC2RC5LA2LB_3RA0LA1LD3LD4RE0LD_2RC5RE2LE2LE4LC2RA"
+ },
+ {
+  "states": 5,
+  "symbols": 7,
+  "core": "fwm21_7",
+  "bound": "> f_{ω×2+1}(2)",
+  "halted_at": 56,
+  "landmark": "0^inf 3 2^4 B> 1 2^2",
+  "tnf": "4LD3RA1LD2RB3LA2RA0LE_1RZ3LA4LE2RB6LE3LC5RB_3RA1LA3LC2RC2LA1LC1LC_6RE0LA3LC2RC4LE6LD5RD_3RA5RE5LE5LE6RE4LD5RB"
+ },
+ {
+  "states": 6,
+  "symbols": 4,
+  "core": "fw1_4",
+  "bound": "> f_{ω+1}(1)",
+  "halted_at": 210,
+  "landmark": "0^inf 3 2^3 B> 1^3 2",
+  "tnf": "0LE3RA1LC2RB_1RZ3LA1LD2RB_3RA1LA3LC2RC_3RA2LE1LD3LD_0LC3RC1LF0LF_1LC1LF2LE1RD"
+ },
+ {
+  "states": 6,
+  "symbols": 5,
+  "core": "fwm2_5",
+  "bound": "> f_{ω×2}(2)",
+  "halted_at": 131,
+  "landmark": "0^inf 3 2^10 D> 1^2",
+  "tnf": "0LB3LB4LC2RA4LB_2LE3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE2RB_4LE3RF1LA2RD4LC"
+ },
+ {
+  "states": 6,
+  "symbols": 8,
+  "core": "fwm21_8_blank",
+  "bound": "> f_{ω×2+1}(1)",
+  "halted_at": 131,
+  "landmark": "0^inf 3 2^3 B> 1^2 7",
+  "tnf": "0LD3RA1LD2RB1LF0LD0LF3LC_1RZ3LA2RD2RB6LE3LC5RB7LA_3RA1LA3LC2RC7RD1LC1LC7LC_6RE1RD3LC2RC4LE6LD5RD2LC_0LA5RE0LF5LE6RE4LD5RB5LE_1LD2LD3RD4LC7LC1RA1LF4RD"
+ },
+ {
+  "states": 6,
+  "symbols": 9,
+  "core": "fwm21_8_blank",
+  "bound": "> f_{ω×2+1}(2)",
+  "halted_at": 182,
+  "landmark": "0^inf 3 2^4 B> 1^2 7^2",
+  "tnf": "0LD3RA1LD2RB0LF0LD0LF3LC7RF_1RZ3LA2RD2RB6LE3LC5RB7LA8LB_3RA1LA3LC2RC4RD1LC1LC7LC8RF_6RE1RD3LC2RC4LE6LD5RD7RD8LC_0LA5RE0LF5LE6RE4LD5RB5LE8LB_1LD2LD3RD4LC7LB1RA1LF8LA7LC"
+ },
+ {
+  "states": 7,
+  "symbols": 3,
+  "core": "fw1_3",
+  "bound": "> f_{ω+1}(3)",
+  "halted_at": 752,
+  "landmark": "0^inf 1^22 F> 1^3 2",
+  "tnf": "0LG1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC1LF0RG_1RC2LE1LG_2RG0LA1RZ_1LD2RA2LG"
+ },
+ {
+  "states": 7,
+  "symbols": 4,
+  "core": "fw3_4",
+  "bound": "> f_{ω+3}(1)",
+  "halted_at": 68,
+  "landmark": "0^inf 1 F> 0^4 1^2 2 3 1^2",
+  "tnf": "2RG1LE2RA1LF_0LE2LE2RB3RA_1RF1RC2RB0LB_0RC0LD3LA0RA_1RC2LE1LG3RD_0LA0LD3LG1RZ_1LD2RA2LG0LA"
+ },
+ {
+  "states": 8,
+  "symbols": 4,
+  "core": "fwm2_3",
+  "bound": "> f_{ω×2}(1)",
+  "halted_at": 90,
+  "landmark": "0^inf 1^2 B> 0 2 1 0 1^4 2",
+  "tnf": "1LD2RG2LA0RF_2LE2LH2RB0LE_2LA1RC2RB0LC_0RC1RD0LG3RB_0LF1LE1LE3RF_1RG1RZ3LA3RD_0RC1LH2RG2LD_1RC2LH1LA2LB"
+ },
+ {
+  "states": 8,
+  "symbols": 5,
+  "core": "fwm21_5",
+  "bound": "> f_{ω×2+1}(2)",
+  "halted_at": 82,
+  "landmark": "0^inf 3 2^3 A> 1^2 4^2",
+  "tnf": "0LD3LB4LC2RA4LB_1RZ4LA1LD2RA4LD_3RB1LB3LC2RC4LC_3RE4LE3LC2RC3LC_0LF3RE0LH4LH4RB_0LE3LG1RA2RF4LG_2LF3RG1LH2RF2RA_3RG1LG3LH2RH4LH"
+ },
+ {
+  "states": 8,
+  "symbols": 6,
+  "core": "fwp21_6",
+  "bound": "> f_{ω^2+1}(2)",
+  "halted_at": 222,
+  "landmark": "0^inf 5^4 3^7 2 A> 1 2^2 5^2",
+  "tnf": "0LB3LB2LH2RA4LB1RZ_0LH3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2LH3RD_5RB3RE4RD4LC3LG5LE_5RB5RB0RG1LF5LF5LF_5LF4RG1LB1LG2LD5LG_1RB2RD1LH1LH1LC5RG"
+ },
+ {
+  "states": 9,
+  "symbols": 4,
+  "core": "fwp2_4",
+  "bound": "> f_{ω^2}(4)",
+  "halted_at": 23,
+  "landmark": "0^inf G> 3^4",
+  "tnf": "1LD2RG2LA3LG_0LI2LH2RB2RF_0LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RZ3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_3RI0LE0LI3LC"
+ },
+ {
+  "states": 9,
+  "symbols": 5,
+  "core": "fwm21_5",
+  "bound": "> f_{ω×2+1}(1)",
+  "halted_at": 124,
+  "landmark": "0^inf 3 2^4 A> 1^2 4",
+  "tnf": "0LD3LB4LC2RA4LB_1RZ1RA1LD2RA4LD_3RB1LB3LC2RC4LC_3RE1RG3LC2RC3LC_0LF3RE0LG4LH4RB_0LE3LG0LI2RF4LG_0LI3RG1LH2RF2RA_3RG1LG3LH2RH4LH_0LH2LF4RG1LC4RH"
+ },
+ {
+  "states": 9,
+  "symbols": 9,
+  "core": "fwpw_8_blank",
+  "bound": "> f_{ω^ω}(32)",
+  "halted_at": 1529,
+  "landmark": "0^inf 3 2^3 H> 1^32 4",
+  "tnf": "0LG5RA0LA6RA4RF1LD0LE7RA8LE_7RA3RB1LD2RH4LF0LC2LD7LB4RA_3RB1LB3LC2RC4LC1LC3LC1LB0LI_7RE0LF3LC2RC4LD1LD3LD3LB6RH_3RB7RE0LE4RF4RA0LE2RF7RE8LC_1LB5RF3LB6RF4LB1LF3LF3LE8LI_3RB1LG1LG1LG8LA0LH0LF0LA8RG_1RZ3LB0LI2RH3LG0LI2LF0LI4LB_1LA8LF1RC1LC1RG0LE4LE2LF7LI"
+ },
+ {
+  "states": 10,
+  "symbols": 3,
+  "core": "fw_3",
+  "bound": "> f_{ω}(14)",
+  "halted_at": 313,
+  "landmark": "0^inf 1^14 A> 1 0^2 1 0^2 2",
+  "tnf": "0LF1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD_1RA0LG2LH_1RF0LH1RJ_1RG0LI2RJ_1RH0LJ1LH_1RI2LF1RI"
+ },
+ {
+  "states": 10,
+  "symbols": 5,
+  "core": "fwp22_5_sw",
+  "bound": "> f_{ω^2+2}(1)",
+  "halted_at": 51,
+  "landmark": "0^inf G> 3^2 4^3 0 4",
+  "tnf": "0LF2LH2RA2RF2RD_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD0LD_3RD1LE1LE3LE3LF_4RC3LD2LE3LE3LI_1RG1LH2RG3LG1LF_1RC2LH1LB1LE4RI_0RC3LI3LI3LI4RD_3RB4LJ4LJ4LJ2LF"
+ },
+ {
+  "states": 10,
+  "symbols": 6,
+  "core": "fwp22_5_sw",
+  "bound": "> f_{ω^2+2}(2)",
+  "halted_at": 185,
+  "landmark": "0^inf G> 3^2 4^6 0^2 4",
+  "tnf": "0LF2LH2RA2RF4RD5LB_1LD2RG2LB3LG3LG5RJ_0LJ1RC2RA3LG1RZ5RA_0RC1RC1LD3RD4RI0LF_3RD1LE1LE3LE3LF5LA_4RC3LD2LE3LE3LI4LA_1RG1LH2RG3LG1LF5LD_1RC2LH1LB1LE4LE5RB_0RC3LI3LI3LI5LA0RH_3RB4LJ4LJ4LJ2LF5RD"
+ },
+ {
+  "states": 11,
+  "symbols": 3,
+  "core": "fw_3",
+  "bound": "> f_{ω}(18)",
+  "halted_at": 1003,
+  "landmark": "0^inf 1^18 A> 1 0^5 1 0^4 2 0^3 2",
+  "tnf": "0LF1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD_1RA0LG2LH_1RF0LH0RK_1RG0LI2LK_1RH0LJ0RA_1RI0LK1LF_1RJ2LF0RI"
+ },
+ {
+  "states": 11,
+  "symbols": 4,
+  "core": "fwp22_4",
+  "bound": "> f_{ω^2+2}(1)",
+  "halted_at": 13,
+  "landmark": "0^inf G> 3^2 0^2 1 2",
+  "tnf": "1LD2RG2LA3LG_2LI2LH2RB2RF_3RB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ1LI_3RC3LJ3LJ3LJ_0LF0LK0LK0LK"
+ },
+ {
+  "states": 11,
+  "symbols": 6,
+  "core": "fwp22_5_sw",
+  "bound": "> f_{ω^2+2}(1)",
+  "halted_at": 204,
+  "landmark": "0^inf G> 3^2 4^8 0 4",
+  "tnf": "0LF2LH2RA2RF4LB5LB_1LD2RG2LB3LG3LG5RI_0LJ1RC2RA3LG1RZ5LF_0RC1RC1LD3RD4RA5RA_3RD1LE1LE3LE4RI5RB_4RC3LD2LE3LE3LI5RB_1RG1LH2RG3LG4RB5LD_1RC2LH1LB1LE4RA5RA_0RC3LI3LI3LI4RA5RA_3RB4LJ4LJ4LJ0LK0LE_1RA3RF0LK4LA5LA5RH"
+ },
+ {
+  "states": 12,
+  "symbols": 3,
+  "core": "fw_3",
+  "bound": "> f_{ω}(12)",
+  "halted_at": 418,
+  "landmark": "0^inf 1^12 A> 1 0^4 2",
+  "tnf": "0LF1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD_1RA0LG2LH_1RF0LH0RL_1RG0LI2LI_1RH0LJ2RI_1RI0LK0LL_1RJ0LL2LH_1RK2LF1LF"
+ },
+ {
+  "states": 12,
+  "symbols": 5,
+  "core": "fwpw_5",
+  "bound": "> f_{ω^ω}(4)",
+  "halted_at": 125,
+  "landmark": "0^inf 3 2^4 A> 1^4 4 2 1^2",
+  "tnf": "0LB3LB1RZ2RA3LL_0LE3RB1LD2RA0LF_3RB1LB3LC2RC4LE_2RE0RC3LC2RC0RF_3RB2RE2RE4RF4RB_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_4LE1LH1LG3LH4LH_4LC1LI3LG3LI4LI_0LD1RJ2RJ3RJ4RF_0LD1LK3LE3LK4RL_3RB1LL1LL1LL0LF"
+ },
+ {
+  "states": 13,
+  "symbols": 3,
+  "core": "fw_3",
+  "bound": "> f_{ω}(14)",
+  "halted_at": 626,
+  "landmark": "0^inf 1^14 A> 1 0^3 2 0^8 2",
+  "tnf": "0LF1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD_1RA0LG2LH_1RF0LH0RM_1RG0LI2LI_1RH0LJ2LJ_1RI0LK2RH_1RJ0LL2RM_1RK0LM0LJ_1RL2LF1LI"
+ },
+ {
+  "states": 14,
+  "symbols": 3,
+  "core": "fwm2_3",
+  "bound": "> f_{ω×2}(1)",
+  "halted_at": 124,
+  "landmark": "0^inf 1^3 B> 0 2 1 0^2 1 2",
+  "tnf": "1LD2RG2LA_2LE2LH2RB_0LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ0LN_0RC1LH2RG_1RC2LH1LA_0LJ0LC0LM_0LE0LK0LL_1RA0LL2LM_1LK0LM1RN_1RL0LN2RD_2LK2RL1RB"
+ },
+ {
+  "states": 15,
+  "symbols": 3,
+  "core": "fw_3",
+  "bound": "> f_{ω}(18)",
+  "halted_at": 988,
+  "landmark": "0^inf 1^18 A> 1 0^4 2 0^10 2",
+  "tnf": "0LF1LE2RA_1RZ2LE2RB_0RC1RC2RB_1LC2RA2LD_1RC2LE1LD_1RA0LG2LH_1RF0LH0RO_1RG0LI2LI_1RH0LJ2LJ_1RI0LK2LK_1RJ0LL2RI_1RK0LM2RL_1RL0LN2RO_1RM0LO0LK_1RN2LF1LJ"
+ },
+ {
+  "states": 18,
+  "symbols": 6,
+  "core": "fwpw3_6",
+  "bound": "> f_{ω^ω+3}(1)",
+  "halted_at": 602,
+  "landmark": "0^inf 3 2^2 B> 1 4 2^2 5^5 4",
+  "tnf": "0LE3RA1LD2RB0LF5LC_1RZ3LA4LH2RB3LL2RN_3RA1LA3LC2RC0LP5RC_2RE0LM3LC2RC0RF5RD_3RA2RE2RE4RF0LP5LL_1LG1RF3LG3RF4LG0LD_2RJ0LH2LG2LI4LK5RF_0LO1LH1LG3LH4LH5RJ_2RC1LI3LG3LI4LI5RB_0LD1RJ2RJ3RJ4RF0LR_0LD1LK3LE3LK0RD0RL_3RA1LL1LL1LL4RP5RH_0RC0LN2LM2LM5LE4RG_1RZ0LP0LN0LB5LO2LM_3RO0LP5LO5LO0LC2RB_0LQ4RC0LP0LR4RP5RF_0RQ0LR0LH0LM5LA5RB_1LA4LP1LH1LR5LQ4LO"
+ },
+ {
+  "states": 19,
+  "symbols": 4,
+  "core": "fwp26_4",
+  "bound": "> f_{ω^2+6}(1)",
+  "halted_at": 72,
+  "landmark": "0^inf G> 3^2 0^4 3 2^4 1",
+  "tnf": "1LD2RG2LA3LG_0LQ2LH2RB2RF_0LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_0LE0LB0LQ0LR_1RE0LS1RS2RS_1RR2LS3LR1LM"
+ },
+ {
+  "states": 20,
+  "symbols": 4,
+  "core": "fwp25_4",
+  "bound": "> f_{ω^2+5}(1)",
+  "halted_at": 141,
+  "landmark": "0^inf G> 3^2 0^4 3^2 2",
+  "tnf": "1LD2RG2LA3LG_0LP2LH2RB2RF_0LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ0LB3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_0LE0LR0LM0LQ_1RB0LS0RS3LT_1RE0LT2RS2LO_1RQ1RS2RQ1RT_1LS2LS3LP1RR"
+ },
+ {
+  "states": 21,
+  "symbols": 4,
+  "core": "fwp24_4",
+  "bound": "> f_{ω^2+4}(2)",
+  "halted_at": 254,
+  "landmark": "0^inf G> 3^2 0^3 2^4 3^2",
+  "tnf": "1LD2RG2LA3LG_0LM2LH2RB2RF_0LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ0LO0LM3LN_0LL2LN2LN2LN_1LE0LP2RQ0LP_1LG0LQ2RP1RU_1LP0LR2RT2LT_0LS0LR0RO2LU_1RR0LT1RU3LS_1RS0LU2LU3RU_1RT2LS3LU3LM"
+ }
+]
