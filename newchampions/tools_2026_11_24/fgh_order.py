@@ -116,7 +116,9 @@ def unwrap_limit(ord_: Ord, n: int) -> Optional[FExpr]:
         return FVal(0, 2)
     # n >= 2:
     if ord_.tier == 10:  # f_w(n) = f_n(n)
-        return FVal(n, n, n)
+        if n == 2:
+            return FVal(0, 8)  # f_2(2) = 2^2 * 2 = 8 exact
+        return FVal(n, 2, n)
     if ord_.tier == 20:  # f_{w*2}(n) = f_{w+n}(n)
         return FApp(Ord(10, n), 1, FVal(0, n))
     if ord_.tier == 25:  # f_{w*3}(n) = f_{w*2+n}(n)
@@ -188,6 +190,8 @@ def normalize(e: FExpr) -> FExpr:
                     return normalize(u)
                 # first iter produces u, remaining iters apply cur.ord to u (huge)
                 return FApp(cur.ord, cur.iters - 1, normalize(u))
+        elif c >= 3 and cur.ord.tier == 10 and cur.ord.off == 0 and cur.iters == 1:
+            return FVal(c, 2, c)
     return cur
 
 
@@ -428,6 +432,15 @@ def parse_core_bound(core: str, args: dict) -> Optional[FExpr]:
             # fwp2kfw_4: 1^n G> 1^m 0 -> f_{w^2+k}(f_w(m or n))
             n = args.get('n', 0)
             return FApp(Ord(30, off), 1, FApp(Ord(10, 0), 1, FVal(0, n)))
+        if b == 'fwp21_7':
+            p = args.get('p', 0)
+            return FApp(Ord(30, 1), 1, FVal(0, max(1, p - 1)))
+        if b == 'fwp22_7':
+            q = args.get('q', 0)
+            return FApp(Ord(30, 2), 1, FVal(0, max(1, q - 1)))
+        if b == 'fwp24_4':
+            q = args.get('q', 0)
+            return FApp(Ord(30, 4), 1, FVal(0, max(1, q - 1)))
         m_10 = re.match(r'^fwp2_(\d+)_', b)
         if m_10:
             off = int(m_10.group(1))
@@ -445,7 +458,7 @@ def parse_core_bound(core: str, args: dict) -> Optional[FExpr]:
         return FApp(Ord(20, 0), 2, FVal(0, k))
     if b.startswith('fwm2fw'):
         k = args.get('k', 0)
-        return FApp(Ord(20, 0), 1, FApp(Ord(10, 0), 1, FVal(0, k)))
+        return FApp(Ord(20, 0), 1, FApp(Ord(10, 0), 1, FVal(0, max(1, k - 1))))
     if b.startswith('fwm21tfw1'):
         p = args.get('p', 0)
         k = args.get('k', 0)
@@ -474,6 +487,15 @@ def parse_core_bound(core: str, args: dict) -> Optional[FExpr]:
     if b.startswith('fw1fw'):
         k = args.get('k', 0)
         return FApp(Ord(10, 1), 1, FVal(0, k))
+    if b == 'fw_4':
+        k = args.get('k', 0)
+        return FApp(Ord(10, 0), 1, FVal(0, max(1, k - 1)))
+    if b == 'fw2_3':
+        k = args.get('k', 0)
+        return FApp(Ord(10, 2), 1, FVal(0, max(1, k - 1)))
+    if b == 'fw3_3':
+        p = args.get('p', 0)
+        return FApp(Ord(10, 3), 1, FVal(0, max(1, p - 1)))
     if b.startswith('fw'):
         m_off = re.match(r'^fw(\d+)', b)
         off = int(m_off.group(1)) if m_off else 0
@@ -663,6 +685,16 @@ def _selftest():
     assert not strictly_beats(FApp(Ord(50, 1), 1, FVal(0, 2)), FApp(Ord(50, 0), 1, FVal(0, 1686)))
     assert strictly_beats(FApp(Ord(70, 0), 1, FVal(0, 3)), FApp(Ord(60, 0), 1, FVal(0, 1000)))
     assert not strictly_beats(FApp(Ord(70, 0), 1, FVal(0, 2)), FApp(Ord(60, 0), 1, FVal(0, 21)))
+    # Regression checks for 2026-11-24 audit
+    assert not strictly_beats(parse_core_bound('fw_4', {'k': 16}), parse_wiki_latex(r'2 \uparrow^{15} 5'))
+    assert not strictly_beats(parse_core_bound('fwm2fw_5', {'k': 2}), parse_wiki_latex(r'f_{\omega \times 2}(10^{19728})'))
+    assert not strictly_beats(parse_core_bound('fwm2fw_5', {'k': 16}), parse_wiki_latex(r'f_{\omega \times 2}(2 \uparrow^{16} 6)'))
+    assert not strictly_beats(parse_core_bound('fwp23fw_4', {'n': 2, 'm': 2}), parse_wiki_latex(r'f_{\omega^2+3}(15)'))
+    assert not strictly_beats(parse_core_bound('fwp21_7', {'r': 5, 'p': 2}), parse_wiki_latex(r'f_{\omega^2}^4(f_{\omega+1}(f_\omega(30)))'))
+    assert not strictly_beats(parse_core_bound('fwp22_7', {'r': 11, 'q': 5}), parse_wiki_latex(r'f_{\omega^2+2}(8)'))
+    assert not strictly_beats(parse_core_bound('fw2_3', {'k': 4}), parse_wiki_latex(r'f_{\omega+1}^3(f_\omega^3(14))'))
+    assert not strictly_beats(parse_core_bound('fw3_3', {'p': 4}), parse_wiki_latex(r'f_{\omega+2}^3(f_{\omega+1}^2(f_\omega(14)))'))
+    assert not strictly_beats(parse_core_bound('fwp24_4', {'q': 8}), parse_wiki_latex(r'f_{\omega^2+4}(7)'))
     print('fgh_order.py selftest: ALL PASSED')
 
 

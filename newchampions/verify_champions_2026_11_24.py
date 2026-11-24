@@ -35,9 +35,12 @@ def verify_all(post_steps: int = 10000) -> int:
     wiki = json.load(open(WIKI_PATH, "r", encoding="utf-8"))
 
     raw_wiki: Dict[Tuple[int, int], FExpr] = {}
+    wiki_tms = {}
     for k, cell in wiki["cells"].items():
         n_str, m_str = k.split("x")
         wn, wm = int(n_str), int(m_str)
+        if cell.get("tm"):
+            wiki_tms[cell["tm"]] = k
         if 2 <= wn <= 40 and 2 <= wm <= 9 and cell.get("runtime_latex"):
             pe = parse_wiki_latex(cell["runtime_latex"])
             if pe is not None:
@@ -58,6 +61,10 @@ def verify_all(post_steps: int = 10000) -> int:
             failures.append(f"{dom}: duplicate domain")
             continue
         saw_coords.add((n, m))
+
+        if tnf in wiki_tms:
+            failures.append(f"{dom}: exact duplicate of live wiki TM ({wiki_tms[tnf]})")
+            continue
 
         if core_name not in cores:
             failures.append(f"{dom}: unknown core '{core_name}'")

@@ -1,24 +1,5 @@
 [
   {
-    "states": 3,
-    "symbols": 4,
-    "domain": "BB(3,4)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fw_4",
-    "step": 241,
-    "args": {
-      "k": 16,
-      "n": 3,
-      "m": 0
-    },
-    "bound": "f_{ω}(16)",
-    "family": "ω",
-    "wiki_prev": "> 2 \\uparrow^{15} 5",
-    "wiki_floor": "f_16(5)",
-    "tm": "1RB3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC"
-  },
-  {
     "states": 4,
     "symbols": 9,
     "domain": "BB(4,9)",
@@ -82,84 +63,6 @@
     "tm": "8RB3LB1RZ2RA6LE3LC5RA7LB5LA_6LD3RB1LD2RA7LA7LB0LC3LC8RB_3RB1LB3LC2RC4LE1LC1LC7LC4LD_6RE2LB3LC2RC4LE6LD5RD8LC8LC_2LC5RE1LC5LE6RE4LD5RA3RD---"
   },
   {
-    "states": 6,
-    "symbols": 5,
-    "domain": "BB(6,5)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fwm2fw_5",
-    "step": 8,
-    "args": {
-      "k": 2,
-      "n": 1,
-      "m": 0
-    },
-    "bound": "f_{ω×2}(f_{ω}(2))",
-    "family": "ω×2",
-    "wiki_prev": "> f_{\\omega \\times 2}(10^{19728})",
-    "wiki_floor": "f_{ω×2}(f_1(19728))",
-    "tm": "1LF3LB4LC2RA4LB_2RC3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_2LB3RF4LE2RD4LC"
-  },
-  {
-    "states": 7,
-    "symbols": 5,
-    "domain": "BB(7,5)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fwm2fw_5",
-    "step": 217,
-    "args": {
-      "k": 16,
-      "n": 1,
-      "m": 1
-    },
-    "bound": "f_{ω×2}(f_{ω}(16))",
-    "family": "ω×2",
-    "wiki_prev": "> f_{\\omega \\times 2}(2 \\uparrow^{16} 6)",
-    "wiki_floor": "f_{ω×2}(f_17(6))",
-    "tm": "1LF3LB4LC2RA4LB_4RF3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_1LG3RF4LE2RD4LC_2LC2RF3LG2RG1LE"
-  },
-  {
-    "states": 7,
-    "symbols": 7,
-    "domain": "BB(7,7)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fwp21_7",
-    "step": 97,
-    "args": {
-      "k": 1,
-      "n": 2,
-      "m": 0,
-      "r": 5,
-      "p": 2
-    },
-    "bound": "f_{ω^2+1}(5)",
-    "family": "ω²+1",
-    "wiki_prev": "> f_{\\omega^2}^4(f_{\\omega+1}(f_\\omega(30)))",
-    "wiki_floor": "f_{ω^2}^4(f_{ω+1}(f_{ω}(30)))",
-    "tm": "4LG3LB6LA2RA4LB5RC5LA_1RZ3RB1LD2RA3LF5RB6LD_3RB1LB3LC2RC4LC1LE5RB_3RB3RE3LC2RC2LB3RD1LA_5RB3RE4RG4LC3LG5LE6RG_5RB5RB3LE1LF6RE5LF3LF_5LF4RG6RB1LG3RG5LG2LD"
-  },
-  {
-    "states": 8,
-    "symbols": 3,
-    "domain": "BB(8,3)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fw2_3",
-    "step": 44,
-    "args": {
-      "m": 1,
-      "n": 1,
-      "k": 4
-    },
-    "bound": "f_{ω+2}(4)",
-    "family": "ω+2",
-    "wiki_prev": "> f_{\\omega+1}^3(f_\\omega^3(14)) > g_{64}",
-    "wiki_floor": "f_{ω+1}^3(f_{ω}^3(14))",
-    "tm": "2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RE_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_1RA1RD0RH"
-  },
-  {
     "states": 8,
     "symbols": 4,
     "domain": "BB(8,4)",
@@ -185,40 +88,20 @@
     "std_format": true,
     "is_blank_fill": false,
     "core": "fwp22_7",
-    "step": 342,
+    "step": 19974,
     "args": {
       "k": 1,
       "n": 1,
       "m": 1,
-      "r": 11,
-      "p": 1,
-      "q": 5
+      "r": 1,
+      "p": 5,
+      "q": 201
     },
-    "bound": "f_{ω^2+2}(11)",
+    "bound": "f_{ω^2+2}(200)",
     "family": "ω²+2",
     "wiki_prev": "> f_{\\omega^2+2}(8)",
     "wiki_floor": "f_{ω^2+2}(8)",
-    "tm": "4LF3LB2LH2RA4LB6LH1RZ_6LF3RB1LD2RA3LF5RB0RH_3RB1LB3LC2RC4LC1LE1RE_3RB3RE3LC2RC6RE3RD0RE_5RB3RE4RG4LC3LG5LE5LE_5RB5RB6LB1LF5LF5LF6LE_5LF4RG1LB1LG5LD5LG2LH_2RE2RD1LH1LH2LH5RG6RD"
-  },
-  {
-    "states": 9,
-    "symbols": 3,
-    "domain": "BB(9,3)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fw3_3",
-    "step": 39,
-    "args": {
-      "m": 1,
-      "n": 1,
-      "k": 3,
-      "p": 4
-    },
-    "bound": "f_{ω+3}(4)",
-    "family": "ω+3",
-    "wiki_prev": "> f_{\\omega+2}^3(f_{\\omega+1}^2(f_\\omega(14)))",
-    "wiki_floor": "f_{ω+2}^3(f_{ω+1}^2(f_{ω}(14)))",
-    "tm": "2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH"
+    "tm": "1RB3LB2LH2RA4LB6LH1RZ_6LE3RB1LD2RA3LF5RB2RG_3RB1LB3LC2RC4LC1LE2RF_3RB3RE3LC2RC3LB3RD3LA_5RB3RE4RG4LC3LG5LE4LH_5RB5RB6RH1LF5LF5LF5LB_5LF4RG1LB1LG1RF5LG2LH_3RH6RD1LH1LH2LH5RG5LH"
   },
   {
     "states": 9,
@@ -373,24 +256,6 @@
   },
   {
     "states": 13,
-    "symbols": 4,
-    "domain": "BB(13,4)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fwp23fw_4",
-    "step": 9,
-    "args": {
-      "n": 2,
-      "m": 2
-    },
-    "bound": "f_{ω^2+3}(f_{ω}(2))",
-    "family": "ω²+3",
-    "wiki_prev": "> f_{\\omega^2+3}(15)",
-    "wiki_floor": "f_{ω^2+3}(15)",
-    "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_0LL2LM2LM---"
-  },
-  {
-    "states": 13,
     "symbols": 5,
     "domain": "BB(13,5)",
     "std_format": true,
@@ -476,27 +341,6 @@
     "wiki_prev": "(BLANK)",
     "wiki_floor": "f_{ω^ω+2}(17)",
     "tm": "8LG5RA---6RA4RF------7RA---_7RA3RB1LD2RH4LF0LC2LD7LB5LG_3RB1LB3LC2RC4LC1LC3LC1LB---_7RE---3LC2RC4LD1LD3LD3LB---_3RB7RE1LI4RF---------7RE---_1LB5RF3LB6RF4LB1LF3LF3LE---_3RB1LG1LG1LG---------8LM---_1RZ3LB4LE2RH3LG2LJ5LK6LL7LM_3RI3LB2RI2LI---------------_0RC---2LJ2LJ---------------_3RK---5LK5LK---2RH---------_3RL---6LL6LL------2RH------_3RM---7LM7LM---------2RH---"
-  },
-  {
-    "states": 14,
-    "symbols": 4,
-    "domain": "BB(14,4)",
-    "std_format": true,
-    "is_blank_fill": false,
-    "core": "fwp24_4",
-    "step": 58,
-    "args": {
-      "m": 2,
-      "n": 3,
-      "k": 0,
-      "p": 0,
-      "q": 8
-    },
-    "bound": "f_{ω^2+4}(8)",
-    "family": "ω²+4",
-    "wiki_prev": "> f_{\\omega^2+4}(7)",
-    "wiki_floor": "f_{ω^2+4}(7)",
-    "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_2LF1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ3LM3LM3LN_0LL2LN2LN2LN"
   },
   {
     "states": 14,
