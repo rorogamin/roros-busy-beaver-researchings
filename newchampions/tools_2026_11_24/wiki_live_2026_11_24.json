@@ -1,0 +1,1438 @@
+{
+ "cells": {
+  "2x2": {
+   "n": 2,
+   "m": 2,
+   "runtime_latex": "6",
+   "parsed_str": "6",
+   "tm": "1RB1LB_1LA1RZ",
+   "discovered_by": "[[Tibor Radó]]"
+  },
+  "2x3": {
+   "n": 2,
+   "m": 3,
+   "runtime_latex": "38",
+   "parsed_str": "38",
+   "tm": "1RB2LB1RZ_2LA2RB1LB",
+   "discovered_by": "Allen Brady in 1988"
+  },
+  "2x4": {
+   "n": 2,
+   "m": 4,
+   "runtime_latex": "3\\,932\\,964",
+   "parsed_str": "3932964",
+   "tm": "1RB2LA1RA1RA_1LB1LA3RB1RZ",
+   "discovered_by": "Terry & Shawn Ligocki in 2005"
+  },
+  "2x5": {
+   "n": 2,
+   "m": 5,
+   "runtime_latex": "> 10^{10^{10^{3\\,314\\,360}}}",
+   "parsed_str": "f_1(3314360)",
+   "tm": "1RB3LA4RB0RB2LA_1LB2LA3LA1RA1RZ",
+   "discovered_by": "Daniel Yuan in 2024"
+  },
+  "2x6": {
+   "n": 2,
+   "m": 6,
+   "runtime_latex": "> 10 \\uparrow\\uparrow 10 \\uparrow\\uparrow 10^{10^{115}}",
+   "parsed_str": "f_4(115)",
+   "tm": "1RB3RB5RA1LB5LA2LB_2LA2RA4RB1RZ3LB2LA",
+   "discovered_by": "Pavel Kropitz in 2023"
+  },
+  "2x7": {
+   "n": 2,
+   "m": 7,
+   "runtime_latex": "> 10 \\uparrow\\uparrow\\uparrow 10 \\uparrow\\uparrow 30",
+   "parsed_str": "f_5(30)",
+   "tm": "1RB2LB3LA4LA3RA6RB3RB_2LA4RA3LB2RB5RA3RA1RZ",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573682633827815566 mineralli in Nov 2026]"
+  },
+  "3x2": {
+   "n": 3,
+   "m": 2,
+   "runtime_latex": "21",
+   "parsed_str": "21",
+   "tm": "1RB1RZ_1LB0RC_1LC1LA",
+   "discovered_by": "Proven by [[Shen Lin]]"
+  },
+  "3x3": {
+   "n": 3,
+   "m": 3,
+   "runtime_latex": "> 10^{17}",
+   "parsed_str": "f_1(17)",
+   "tm": "0RB2LA1RA_1LA2RB1RC_1RZ1LB1LC",
+   "discovered_by": "Terry & Shawn Ligocki in 2007"
+  },
+  "3x4": {
+   "n": 3,
+   "m": 4,
+   "runtime_latex": "> 2 \\uparrow^{15} 5",
+   "parsed_str": "f_16(5)",
+   "tm": "1RB3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC",
+   "discovered_by": "Pavel Kropitz in 2024"
+  },
+  "3x5": {
+   "n": 3,
+   "m": 5,
+   "runtime_latex": "> f_\\omega(2 \\uparrow^{15} 5) > f_\\omega^2(15)",
+   "parsed_str": "f_{ω}^2(15)",
+   "tm": "1RB3LB4LC2RA4LB_2LC3RB1LC2RA1RZ_3RB1LB3LC2RC4LC",
+   "discovered_by": "Racheline in 2024"
+  },
+  "3x6": {
+   "n": 3,
+   "m": 6,
+   "runtime_latex": "> f_\\omega^3(15)",
+   "parsed_str": "f_{ω}^3(15)",
+   "tm": "1RB3LB4LC2RA4LB5LB_2LC3RB1LC2RA5LC1RZ_3RB1LB3LC2RC4LC5LC",
+   "discovered_by": "[[User:Loader3229]] in Oct 2026"
+  },
+  "3x7": {
+   "n": 3,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega+1}(117) > g_{64}",
+   "parsed_str": "f_{ω+1}(117)",
+   "tm": "6LC3LB6RA2RA4LB5LC5LA_1RZ3RB1LC2RA3RB4LC5RA_3RB1LB3LC2RC4LC1RA6LA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "3x8": {
+   "n": 3,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega+1}^2(f_\\omega(30))",
+   "parsed_str": "f_{ω+1}^2(f_{ω}(30))",
+   "tm": "7LC3LB5LA2RA4LB4LC5LA6LA_1RZ3RB1LC2RA3RB4LC6LC2LC_3RB1LB3LC2RC4LC7RA6LC5RA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "3x9": {
+   "n": 3,
+   "m": 9,
+   "runtime_latex": "> f_{\\omega+2}(4)",
+   "parsed_str": "f_{ω+2}(4)",
+   "tm": "7LC3LB5LA2RA4LB4LC5LA8RC6LB_1RZ3RB1LC2RA3RB4LC6LC8LC8RC_3RB1LB3LC2RC4LC8LB6LC5RB7RA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "4x2": {
+   "n": 4,
+   "m": 2,
+   "runtime_latex": "107",
+   "parsed_str": "107",
+   "tm": "1RB1LB_1LA0LC_1RZ1LD_1RD0RA",
+   "discovered_by": "Allen Brady"
+  },
+  "4x3": {
+   "n": 4,
+   "m": 3,
+   "runtime_latex": "> 10 \\uparrow^4 4",
+   "parsed_str": "f_45(10)",
+   "tm": "1RB1RD1LC_2LB1RB1LC_1RZ1LA1LD_0RB2RA2RD",
+   "discovered_by": "Pavel Kropitz in 2024"
+  },
+  "4x4": {
+   "n": 4,
+   "m": 4,
+   "runtime_latex": "> f_\\omega(2 \\uparrow^{5} 3)",
+   "parsed_str": "f_{ω}(f_6(3))",
+   "tm": "1RB2LC3RA1RZ_2RC3LB2LB0LC_1LB2RC3RA1LD_2RC1LC3RD2LD",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "4x5": {
+   "n": 4,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega+1}(27\\,041) > g_{64}",
+   "parsed_str": "f_{ω+1}(27041)",
+   "tm": "1RB3LB4LC2RA4LB_2LC3RB1LC2RA4RD_3RB1LB3LC2RC4LC_2RC2RD1RZ4RB1LC",
+   "discovered_by": "[[User:Loader3229]] in Oct 2026"
+  },
+  "4x6": {
+   "n": 4,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega+2}(29)",
+   "parsed_str": "f_{ω+2}(29)",
+   "tm": "5LD3LB5LC2RA4LB4LC_1RZ3RB1LC2RA3RD0LA_3RB1LB3LC2RC4LC1RA_3RB0LA2LC4LD4LC4LD",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "4x7": {
+   "n": 4,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega+3}(34)",
+   "parsed_str": "f_{ω+3}(34)",
+   "tm": "5LC3LB6LA2RA4LB2LD3RB_1RZ3RB1LC2RA3RD2LC4LC_3RB1LB3LC2RC4LC1RA5LD_3RB5LD6LC4LD4LC4LD6LC",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "4x8": {
+   "n": 4,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega+4}(7)",
+   "parsed_str": "f_{ω+4}(7)",
+   "tm": "5LC3LB7LA2RA4LB1LB4LB6LA_1RZ3RB1LC2RA3RD3RA4LC0RD_3RB1LB3LC2RC4LC7LC5LD7RA_3RB3LA6LC4LD4LC4LD6LC7LA",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "4x9": {
+   "n": 4,
+   "m": 9,
+   "runtime_latex": "> f_{\\omega+4}(12)",
+   "parsed_str": "f_{ω+4}(12)",
+   "tm": "5LC3LB7LA2RA4LB8LB4LB6LA7RA_1RZ3RB1LC2RA3RD3RA4LC0LC2LA_3RB1LB3LC2RC4LC5LC5LD8LC3RA_3RB---6LC4LD4LC4LD6LC7LA---",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "5x2": {
+   "n": 5,
+   "m": 2,
+   "runtime_latex": "47\\,176\\,870",
+   "parsed_str": "47176870",
+   "tm": "1RB1LC_1RC1RB_1RD0LE_1LA1LD_1RZ0LA",
+   "discovered_by": "Heiner Marxen & Jürgen Buntrock in 1989"
+  },
+  "5x3": {
+   "n": 5,
+   "m": 3,
+   "runtime_latex": "> f_\\omega(2 \\uparrow^7 7)",
+   "parsed_str": "f_{ω}(f_78(2))",
+   "tm": "1RB1LC1RA_1LA2LC1RB_1LB1LD2LC_2RE2LD1RA_1RZ2RE1RB",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "5x4": {
+   "n": 5,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega+1}(65\\,536) > g_{64}",
+   "parsed_str": "f_{ω+1}(65536)",
+   "tm": "1RB3LC1LD2RA_2RC1RZ2LB2LB_1LD3RC1LE2RA_3RC0LB1LD3LD_3RC1LC3LE2RE",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "5x5": {
+   "n": 5,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega+2}(55)",
+   "parsed_str": "f_{ω+2}(55)",
+   "tm": "4LE3RA1LC2RB4RE_1RZ3LA1LD2RB2LE_3RA1LA3LC2RC1RE_3RA4LD1LD3LD1RD_2RC4RA2LE2LE1RA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "5x6": {
+   "n": 5,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega+3}(31)",
+   "parsed_str": "f_{ω+3}(31)",
+   "tm": "1LE3LB2LA2RA4LB5RA_1RZ3RB1LC2RA3RD4RA_3RB1LB3LC2RC4LC2LB_3RB0LA5LE4LD4LC4LD_4LC5LC0RE5LE1RE2RE",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "5x7": {
+   "n": 5,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega \\times 2}^2(f_{\\omega+2}(f_{\\omega+1}(2 \\uparrow^6 4)))",
+   "parsed_str": "f_{ω×2}^2(f_{ω+2}(f_{ω+1}(f_65(2))))",
+   "tm": "4LD3RA1LD2RB3LA2RA0LE_1RZ3LA4LE2RB6LE3LC5RB_3RA1LA3LC2RC2LA1LC1LC_6RE0LA3LC2RC4LE6LD5RD_3RA5RE5LE5LE6RE4LD5RB",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "5x8": {
+   "n": 5,
+   "m": 8,
+   "runtime_latex": "",
+   "parsed_str": "(BLANK)",
+   "tm": "",
+   "discovered_by": ""
+  },
+  "5x9": {
+   "n": 5,
+   "m": 9,
+   "runtime_latex": "> f_{\\omega \\times 2+1}(80)",
+   "parsed_str": "f_{ω×2+1}(80)",
+   "tm": "8LC3RA1LD2RB---7LE4LD3LC0RC_1RZ3LA1LD2RB6LE3LC5RB7LA---_3RA1LA3LC2RC---1LC1LC7LC7RD_6RE2RA3LC2RC4LE6LD5RD6LB7LD_8RA5RE1LE5LE6RE4LD5RB5LE1LD",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "6x2": {
+   "n": 6,
+   "m": 2,
+   "runtime_latex": "> 10 \\uparrow\\uparrow 10 \\uparrow\\uparrow 10 \\uparrow\\uparrow 8",
+   "parsed_str": "f_5(8)",
+   "tm": "1RB1RA_1RC1RZ_1LD0RF_1RA0LE_0LD1RC_1RA0RE",
+   "discovered_by": "mxdys in 2025"
+  },
+  "6x3": {
+   "n": 6,
+   "m": 3,
+   "runtime_latex": "> f_\\omega^2(10\\uparrow\\uparrow\\uparrow 6)",
+   "parsed_str": "f_{ω}^2(f_4(6))",
+   "tm": "1LE2LD2LC_2RB1RB1RA_2RB1LC0LC_1RB1LD2LD_2RD2LE2LF_1RZ---1LE",
+   "discovered_by": "Jacobzheng in 2026"
+  },
+  "6x4": {
+   "n": 6,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega+1}^6(65\\,536)",
+   "parsed_str": "f_{ω+1}^6(65536)",
+   "tm": "1RB3LC1LD2RA_2RC3RF2LB2LB_1LD3RC1LE2RA_3RC0LB1LD3LD_3RC1LC3LE2RE_0LC1RF0LB1RZ",
+   "discovered_by": "@Big_numbers in Nov 2026"
+  },
+  "6x5": {
+   "n": 6,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega \\times 2}(10^{19728})",
+   "parsed_str": "f_{ω×2}(f_1(19728))",
+   "tm": "1LF3LB4LC2RA4LB_2LE3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_1LC3RF4LE2RD4LC",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "6x6": {
+   "n": 6,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega \\times 2}^2(f_\\omega^2(29))",
+   "parsed_str": "f_{ω×2}^2(f_{ω}^2(29))",
+   "tm": "5RE3LB4LF2RA4LB1RZ_5LE3RB1LD2RA3LF3RD_3RB1LB3LC2RC4LC0LE_3RB2RD3LC2RC1LE3RE_5RC3RE2RA4LC2LE2LA_5RB1RZ1LF1LF1RF5LF",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "6x7": {
+   "n": 6,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega \\times 2+1}(f_{\\omega+1}^2(f_\\omega^2(5)))",
+   "parsed_str": "f_{ω×2+1}(f_{ω+1}^2(f_{ω}^2(5)))",
+   "tm": "5LF6LA5RA4RF6RA4LD5RB_1RZ3LE6LC2RB6LA1LE5RB_6RA4RC4LC4LC4LA6LC5RC_3RE1LE3LD2RD4LA6LC5RC_6RA3RE1LD2RB2RE2LE2LE_3LC0RA------3LA5LF5RE",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "6x8": {
+   "n": 6,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega \\times 2+2}(11)",
+   "parsed_str": "f_{ω×2+2}(11)",
+   "tm": "5RE3LB7LF2RA4LB6LF1RZ5RF_5LE3RB1LD2RA3LF7RC3LB3RA_3RB1LB3LC2RC4LC0LE6LE5LF_3RB6RD3LC2RC5LA3RE2LE1LB_5RC3RE2RA4LC6RA5LA2LE3RE_5RB7RD1LF1LF5RA5RF5LE0RD",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "6x9": {
+   "n": 6,
+   "m": 9,
+   "runtime_latex": "> f_{\\omega \\times 2+3}(6)",
+   "parsed_str": "f_{ω×2+3}(6)",
+   "tm": "8LE3LB7LF2RA4LB6LF1RZ1LC8LF_6LE3RB1LD2RA3LF2RA3LB3RA8RD_3RB1LB3LC2RC4LC0LE5LC3RB6RE_3RB6RD3LC2RC5LC3RE2LE1LB5LC_5RC3RE2RA4LC8LE8RE2LE3RE1RB_5RB7RD1LF1LF8LE5RF8RE1RZ8RB",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "7x2": {
+   "n": 7,
+   "m": 2,
+   "runtime_latex": "> 3 \\uparrow^{20} 3 > f_\\omega(20)",
+   "parsed_str": "f_{ω}(20)",
+   "tm": "1RB0RG_1RC1RB_0RD1RZ_0LE0LD_0LF1LE_1RA1LF_1LC0RB",
+   "discovered_by": "Jeff Ketchersid and Gemini in Oct 2026 (claimed)"
+  },
+  "7x3": {
+   "n": 7,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega+1}(11)",
+   "parsed_str": "f_{ω+1}(11)",
+   "tm": "2RD1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LG1LD_1RC2LE1LG_1RG0LA1RZ_1LD2RA2LG",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "7x4": {
+   "n": 7,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega+3}(21)",
+   "parsed_str": "f_{ω+3}(21)",
+   "tm": "3RD1LE2RA1LF_0LE2LE2RB2RD_1RF1RC2RB0LB_0RC0LD3RC2RA_1RC2LE1LG2RF_0LA0LD3LG1RZ_1LD2RA2LG0RB",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "7x5": {
+   "n": 7,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega \\times 2}(2 \\uparrow^{16} 6)",
+   "parsed_str": "f_{ω×2}(f_17(6))",
+   "tm": "1LF3LB4LC2RA4LB_2RF3RB1LC2RA2RD_3RB1LB3LC2RC4LC_1RZ4LD1LE2RD2RD_3RF1LD3LE2RE3LF_1LG3RF4LE2RD4LC_2LC2RB3LG2RG0LA",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "7x6": {
+   "n": 7,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^2}^2(6)",
+   "parsed_str": "f_{ω^2}^2(6)",
+   "tm": "1LE3LB2LF2RA4LB2RA_4LF3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC1RZ3RD_5RB3RE1RZ4LC3LG5LE_5RB4RF1LF1LF2LF5RG_5LF5RG1LA1LG1RD5LG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "7x7": {
+   "n": 7,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega^2}^4(f_{\\omega+1}(f_\\omega(30)))",
+   "parsed_str": "f_{ω^2}^4(f_{ω+1}(f_{ω}(30)))",
+   "tm": "6RG3LB6LA2RA4LB5RC5LA_1RZ3RB1LD2RA3LF5RB6LD_3RB1LB3LC2RC4LC1LE5RB_3RB3RE3LC2RC2LF3RD1LA_5RB3RE4RF4LC3LG5LE2LA_5RB5RB2LD1LF2LE5LF2LA_5LF6LF2RE1LG---5LG1LG",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "7x8": {
+   "n": 7,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega^2+2}(7)",
+   "parsed_str": "f_{ω^2+2}(7)",
+   "tm": "7LD3LB6LA2RA4LB5RC5LA2LG_1RZ3RB1LD2RA3LF5RB6LD4RG_3RB1LB3LC2RC4LC1LE5RB3RF_3RB3RE3LC2RC7RB3RD1LA7LD_5RB3RE7RD4LC3LG5LE0LA1LG_5RB5RB2RA1LF2LA5LF5RD7LF_5LF3LA7LA1LG7LA5LG7RD0RG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "7x9": {
+   "n": 7,
+   "m": 9,
+   "runtime_latex": "> f_{\\omega^2+3}(7)",
+   "parsed_str": "f_{ω^2+3}(7)",
+   "tm": "8RG3LB6LA2RA4LB5RC5LA2LG7LE_1RZ3RB1LD2RA3LF5RB6LD1RZ5LD_3RB1LB3LC2RC4LC1LE5RB3RF3RD_3RB3RE3LC2RC7LF3RD1LA2RA8LE_5RB3RE8LA4LC3LG5LE1RZ1RZ3LA_5RB5RB2RA1LF8LF5LF1RZ1RF8LC_5LF4RG7LA1LG8RC5LG1LC4RF8RG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "8x2": {
+   "n": 8,
+   "m": 2,
+   "runtime_latex": "> f_\\omega^3(12)",
+   "parsed_str": "f_{ω}^3(12)",
+   "tm": "1RB0RA_1LC1LF_1RD0LB_1RA1LE_1LH0LC_1RG1LD_0RG0RF_1RG1RZ",
+   "discovered_by": "Jeff Ketchersid and Gemini in Oct 2026 (claimed)"
+  },
+  "8x3": {
+   "n": 8,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega+1}^3(f_\\omega^3(14)) > g_{64}",
+   "parsed_str": "f_{ω+1}^3(f_{ω}^3(14))",
+   "tm": "2LH1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD0RH_1RC2LE1LG_0LA0LD1RZ_1LD2RA2LG_2RD1LF1LG",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "8x4": {
+   "n": 8,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega+8}^2(4)",
+   "parsed_str": "f_{ω+8}^2(4)",
+   "tm": "1LD2RG2LA---_2LE2LH2RB1LF_2LA1RC2RB---_0RC1RD0LG1RH_0LF1LE1LE3LB_1RG1RZ3RD3LF_0RC1LH2RG0LC_1RC2LH1LA2LB",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "8x5": {
+   "n": 8,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^2}(13)",
+   "parsed_str": "f_{ω^2}(13)",
+   "tm": "1LD2RG2LA3LG---_4LC2LH2RB2RF0RB_4LE1RC2RB3LG4RB_0RC1RC1LD3RD3LA_3RD1LE1LE3LE4RE_1RZ3LD2LE3LE4RD_1RG1LH2RG3LG3LF_1RC2LH1LA1LE---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "8x6": {
+   "n": 8,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^2+2}(4)",
+   "parsed_str": "f_{ω^2+2}(4)",
+   "tm": "2LF3LB2LH2RA4LB4LH_1RH3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC1RZ3RD_5RB3RE4RG4LC3LG5LE_5RB5RE1RZ1LF5LF5LF_5LF4RG1LB1LG2LH5LG_1RA1RZ1LH1LH2LH5RG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "8x7": {
+   "n": 8,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega^2+2}(8)",
+   "parsed_str": "f_{ω^2+2}(8)",
+   "tm": "6LC3LB2LH2RA4LB6LH1RZ_5RA3RB1LD2RA3LF5RB0RH_3RB1LB3LC2RC4LC1LE4LH_3RB3RE3LC2RC5RF3RD1RZ_5RB3RE4RG4LC3LG5LE1RZ_5RB5RB1RZ1LF5LF5LF1RH_5LF4RG1LB1LG5LD5LG2LH_5LA0LH1LH1LH2LH5RG1RZ",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "8x8": {
+   "n": 8,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega^\\omega}(245)",
+   "parsed_str": "f_{ω^ω}(245)",
+   "tm": "6RH3LB1RZ2RA3LG---4LB6LC_7RH3RB1LD2RA4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE0LA4RF---------7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG------------_2LB5RH4LA6RH4RF------7RH",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "9x2": {
+   "n": 9,
+   "m": 2,
+   "runtime_latex": "> f_\\omega^7(12)",
+   "parsed_str": "f_{ω}^7(12)",
+   "tm": "1RB0RA_1LC1LF_1RD0LB_1RA1LE_0LH0LC_1RG1LD_0RG0RF_0LI1RZ_1RI1RC",
+   "discovered_by": "Jeff Ketchersid and Gemini in Oct 2026 (claimed)"
+  },
+  "9x3": {
+   "n": 9,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega+2}^3(f_{\\omega+1}^2(f_\\omega(14)))",
+   "parsed_str": "f_{ω+2}^3(f_{ω+1}^2(f_{ω}(14)))",
+   "tm": "2LI1LE2RA_0LE2LE2RB_1RF1RC2RB_0RC0LD2RA_1RC2LE1LG_0LA0LD1RH_1LD2RA2LG_1RZ2LA2LI_1RD1LI2LH",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "9x4": {
+   "n": 9,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2}(18)",
+   "parsed_str": "f_{ω^2}(18)",
+   "tm": "1LD2RG2LA3LG_1LI2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RZ3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0RC3LI1RI0RI",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "9x5": {
+   "n": 9,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^2+1}(6)",
+   "parsed_str": "f_{ω^2+1}(6)",
+   "tm": "1LD2RG2LA3LG---_4RI2LH2RB2RF0LD_4LC1RC2RB3LG4RB_0RC1RC1LD3RD4LB_3RD1LE1LE3LE---_3LI3LD2LE3LE1RZ_1RG1LH2RG3LG---_1RC2LH1LA1LE---_0RC3LI3LI3LI0LI",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "9x6": {
+   "n": 9,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^2+2}(7)",
+   "parsed_str": "f_{ω^2+2}(7)",
+   "tm": "4LH3LB2LH2RA4LB2RI_4LA3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC5LC3RD_5RB3RE4RG4LC3LG5LE_5RB5RB1RH1LF5LF5LF_5LF4RG1LB1LG2RG5LG_1LC1RD1LH1LH5RC5RG_1RZ5LI2LI2LI1LB5RG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "9x7": {
+   "n": 9,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega^2+3}(7)",
+   "parsed_str": "f_{ω^2+3}(7)",
+   "tm": "2RH3LB2LH2RA4LB4RI6LH_1LH3RB1LD2RA3LF5RB3RC_3RB1LB3LC2RC4LC1LE3RD_3RB3RE3LC2RC3LC3RD3RE_5RB3RE4RG4LC3LG5LE2RA_5RB5RB6RD1LF5LF5LF6RE_5LF4RG1LB1LG6RI5LG2LH_1LF6RC1LH1LH2LH5RG5LE_1RZ5LI6LI6LI6LI5RB1RZ",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "9x8": {
+   "n": 9,
+   "m": 8,
+   "runtime_latex": "> f_{\\omega^\\omega+1}(103)",
+   "parsed_str": "f_{ω^ω+1}(103)",
+   "tm": "0LB3LB4LE2RA3LG1RZ------_7RH3RB1LD2RA4LF0LC2LD7LB_3RB1LB3LC2RC4LC1LC3LC1LB_7RE---3LC2RC4LD1LD3LD3LB_3RB7RE1LI4RF---1LC---7RE_1LB5RF3LB6RF4LB1LF3LF3LE_3RB1LG1LG1LG---2LG---2LI_5LG5RH---6RH4RF---2LG7RH_3RI3LB2RI2LI---5RH---6LC",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "10x2": {
+   "n": 10,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega+1}(2 \\uparrow^{36} 3) > g_{64}",
+   "parsed_str": "f_{ω+1}(f_37(3))",
+   "tm": "1RB0RA_1LC1LF_1RD0LB_1RA1LE_1LI0LC_0RG1LD_1RH1LG_1LC0RG_0LJ0LI_1RZ0LC",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1557806386073702622 Jeff Ketchersid and Claude in Oct 2026 (claimed)]"
+  },
+  "10x3": {
+   "n": 10,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega \\times 2}(11)",
+   "parsed_str": "f_{ω×2}(11)",
+   "tm": "1LD2RG2LA_2LE2LH2RB_1LI1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RZ---_0RC1LH2RG_1RC2LH1LA_1RJ2LI2LB_0RF1LA0RI",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "10x4": {
+   "n": 10,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2}^3(3)",
+   "parsed_str": "f_{ω^2}^3(3)",
+   "tm": "1LD2RG2LA3LG_0LI2LH2RB2RF_1LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ0RE0LI_3RC3LJ3LJ3LJ",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "10x5": {
+   "n": 10,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^2+2}(4)",
+   "parsed_str": "f_{ω^2+2}(4)",
+   "tm": "3LB2LH2RA2RF0LE_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD---_3RD1LE1LE3LE0LA_4RC3LD2LE3LE3LI_1RG1LH2RG3LG---_1RC2LH1LB1LE4RE_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ4RH",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "10x6": {
+   "n": 10,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^2+3}(7)",
+   "parsed_str": "f_{ω^2+3}(7)",
+   "tm": "1LJ3LB2LH2RA4LB2RI_1LA3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2RF3RD_5RB3RE4RG4LC3LG5LE_5RB5RB1LA1LF5LF5LF_5LF4RG1LB1LG4LJ5LG_1RJ3LD1LH1LH3RD5RG_1RZ4LH2LI2LI5LI5RG_1RD1RI0LB3RB4LJ5RH",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "10x7": {
+   "n": 10,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega^2+4}(4)",
+   "parsed_str": "f_{ω^2+4}(4)",
+   "tm": "2RH3LB2LH2RA4LB4RI6LH_4RJ3RB1LD2RA3LF5RB3RC_3RB1LB3LC2RC4LC1LE3RD_3RB3RE3LC2RC0LD3RD3RE_5RB3RE4RG4LC3LG5LE2RA_5RB1RJ1RD1LF5LF5LF1RZ_5LF4RG1LB1LG4LG5LG2LH_2RG2RF1LH1LH2LH5RG1RZ_1RZ5LJ1LI1LI1LI5RH1RZ_4LG5LA6LJ6LJ6LJ5RB1RZ",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "11x2": {
+   "n": 11,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega+2}^2(f_5(34))",
+   "parsed_str": "f_{ω+2}^2(f_5(34))",
+   "tm": "1RB1RH_1RC0LD_1LD1RJ_1LE1LB_1LF1LE_1RG0LE_1RA1RG_0LI1LF_0RC1LI_1RK0RG_1RZ0LB",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "11x3": {
+   "n": 11,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega \\times 2+1}(21)",
+   "parsed_str": "f_{ω×2+1}(21)",
+   "tm": "1LD2RG2LA_2LE2LH2RB_1LG1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI1LK_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_1LK0LH1RZ_1RA2LB0RA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "11x4": {
+   "n": 11,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+1}(f_{\\omega^2}(f_{\\omega+3}^2(4)))",
+   "parsed_str": "f_{ω^2+1}(f_{ω^2}(f_{ω+3}^2(4)))",
+   "tm": "1LD2RG2LA3LG_2LI2LH2RB2RF_3RB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ1LI_3RC3LJ3LJ3LJ_0LF0LK0LK0LK",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "11x5": {
+   "n": 11,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^2+2}(6)",
+   "parsed_str": "f_{ω^2+2}(6)",
+   "tm": "4LG2LH2RA2RF2RD_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD0LK_3RD1LE1LE3LE---_4RC3LD2LE3LE3LI_1RG1LH2RG3LG4RA_1RC2LH1LB1LE1RK_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ4RA_1LJ4RJ0LD4LG---",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "11x6": {
+   "n": 11,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^2+4}(8)",
+   "parsed_str": "f_{ω^2+4}(8)",
+   "tm": "2RK3LB2LH2RA4LB2RI_0LK3RB1LD2RA3LF5RB_3RB1LB3LC2RC4LC1LE_3RB3RE3LC2RC2RF3RD_5RB3RE4RG4LC3LG5LE_5RB1RJ1LA1LF5LF5LF_5LF4RG1LB1LG4LJ5LG_2LE2RF1LH1LH3RD5RG_1RZ4LH1LJ5LJ5LK0RC_3RB5LA1LJ1LJ4LJ5RH_1RH4RA2LK2LK0LD5RG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "11x7": {
+   "n": 11,
+   "m": 7,
+   "runtime_latex": "> f_{\\omega^\\omega+1}(30)",
+   "parsed_str": "f_{ω^ω+1}(30)",
+   "tm": "0LB3LB4LH2RA3LK1RZ---_5LI3RB1LD2RA---2LB5LG_3RB1LB3LC2RC---------_5RE1LD3LC2RC---3LE3LD_3RB5RE2RE4RF1LB5RE---_1LG1RF3LG6RF4LG0LA---_5RJ0LH------4LD5LG2LI_3RE1LH4LH2LH4LH1LG3LH_0LD1LI---0LD4LI3LG3LI_5LB1RJ---6RJ4RF5RJ---_3RB1LK1LK1LK---0LI---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "12x2": {
+   "n": 12,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega+2}^8(f_3(6))",
+   "parsed_str": "f_{ω+2}^8(f_3(6))",
+   "tm": "1RB1RA_1RI1RC_0LD1LG_0RE1LD_1RZ1RF_0LL0RA_1RA0LH_1LG1LH_1RK0LJ_1LH1LI_0LL0RD_0LH1LK",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "12x3": {
+   "n": 12,
+   "m": 3,
+   "runtime_latex": "",
+   "parsed_str": "(BLANK)",
+   "tm": "",
+   "discovered_by": ""
+  },
+  "12x4": {
+   "n": 12,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+2}(15)",
+   "parsed_str": "f_{ω^2+2}(15)",
+   "tm": "1LD2RG2LA3LG_2LL2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_1LF1LL1LL---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "12x5": {
+   "n": 12,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^\\omega}^6(14)",
+   "parsed_str": "f_{ω^ω}^6(14)",
+   "tm": "1LH3RA1LD2RB---_1RZ3LA4LH2RB3LL_3RA1LA3LC2RC---_2RE---3LC2RC---_3RA2RE2RE4RF2LG_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_0LD1LH1LG3LH4LH_2RC1LI3LG3LI4LI_4LE1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RA1LL1LL1LL---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "12x6": {
+   "n": 12,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^\\omega+1}(330)",
+   "parsed_str": "f_{ω^ω+1}(330)",
+   "tm": "5LC3LB4LH2RA3LL1RZ_2LC3RB1LD2RA4RB0LC_3RB1LB3LC2RC0RL5LG_2RE2RD3LC2RC------_3RB2RE2RE4RF------_1LG1RF3LG3RF4LG1RB_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF1RA_---1LK3LE3LK------_3RB1LL1LL1LL------",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "13x2": {
+   "n": 13,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega+3}(19)",
+   "parsed_str": "f_{ω+3}(19)",
+   "tm": "1RB1RA_1RI1RC_0LD1LG_0RE1LD_0LM1RF_1RG0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_1RZ0LL_0LM1LK_0LG1LL",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "13x3": {
+   "n": 13,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega \\times 2+1}^3(3)",
+   "parsed_str": "f_{ω×2+1}^3(3)",
+   "tm": "1LD2RG2LA_2LE2LH2RB_2LM1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI1LM_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_1RZ0LH1LK_0LK2LL1LK_0LF1RB2RA_2RL0LL0LL",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "13x4": {
+   "n": 13,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+3}(15)",
+   "parsed_str": "f_{ω^2+3}(15)",
+   "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_2LF2LM2LM---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "13x5": {
+   "n": 13,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^\\omega+1}(9)",
+   "parsed_str": "f_{ω^ω+1}(9)",
+   "tm": "4LH3LB1RZ2RA3LL_3LH3RB1LD2RA3LB_3RB1LB3LC2RC4RC_2RE2LL3LC2RC4LB_3RB2RE2RE4RF0RH_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_4RJ1LH1LG3LH4LH_2RC1LI3LG3LI4LI_2LB1RJ2RJ3RJ4RF_---1LK3LE3LK1RF_3RB1LL1LL1LL0LM_3LL---0LM------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "13x6": {
+   "n": 13,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^\\omega+2}(17)",
+   "parsed_str": "f_{ω^ω+2}(17)",
+   "tm": "1LF3RA1LD2RB---4LF_---3LA4LH2RB3LL2LM_3RA1LA3LC2RC------_2RE4RM3LC2RC------_3RA2RE2RE4RF------_1LG1RF3LG3RF4LG---_2RJ0LH2LG2LI4LK---_0LD1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_1RM1RJ2RJ3RJ4RF---_---1LK3LE3LK------_3RA1LL1LL1LL------_0RC5LM2LM2LM1RA---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "14x2": {
+   "n": 14,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega+3}^4(f_\\omega(4))",
+   "parsed_str": "f_{ω+3}^4(f_{ω}(4))",
+   "tm": "1RB0LK_1RC1RB_1RD1RM_1RE0LH_1LF1RI_0LA1LG_1RL0LF_1LK1LD_1RJ0RB_1RG0LK_1LA1LK_1RZ0LF_0LN1LA_0RE1LN",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "14x3": {
+   "n": 14,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega \\times 2+2}(14)",
+   "parsed_str": "f_{ω×2+2}(14)",
+   "tm": "1LD2RG2LA_2LE2LH2RB_2LM1RC2RB_0RC1RD0LG_0LF1LE1LE_1RG1RI1LL_0RC1LH2RG_1RC2LH1LA_0RI2RI2RJ_1RZ0LH1LK_0LK2LL1LK_0LF1LG0LM_0LN2RM2LM_2RF1RB0RB",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "14x4": {
+   "n": 14,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+4}(7)",
+   "parsed_str": "f_{ω^2+4}(7)",
+   "tm": "1LD2RG2LA3LG_3LM2LH2RB2RF_2LF1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ3LM3LM3LN_0LL2LN2LN2LN",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "14x5": {
+   "n": 14,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^\\omega+2}(21)",
+   "parsed_str": "f_{ω^ω+2}(21)",
+   "tm": "1RE1LA1LG3LA4LA_2RH3RB1LD2RH2LM_3RB1LB3LC2RC4RJ_2RE---3LC2RC---_3RB2RE2RE4RF0LJ_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_4LL1RJ2RJ3RJ4RF_2LD1LK3LE3LK1LJ_3RB1LL1LL1LL2RN_1RZ2RC0LN4RF---_3RB---0LN0LN2LG",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "14x6": {
+   "n": 14,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^\\omega+2}(27)",
+   "parsed_str": "f_{ω^ω+2}(27)",
+   "tm": "5RK1LA1LG3LA4LA5LH_2RH3RB1LD2RH2RJ---_3RB1LB3LC2RC------_2RE---3LC2RC------_3RB2RE2RE4RF5RC---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK---_4LA3LB2RM2RH3LL1RF_2RC1LI3LG3LI4LI1RL_1LE1RJ2RJ3RJ4RF2LA_3LA1LK3LE3LK2LK2LG_3RB1LL1LL1LL5LI0RB_1RZ0RA0LN5RE------_3RB---0LN0LN------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "15x2": {
+   "n": 15,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}(13)",
+   "parsed_str": "f_{ω×2}(13)",
+   "tm": "1LH0LG_0LI1RC_0LD1LA_0RE1LD_0RH1RL_1RB1RF_1LA1LG_1RF0RO_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LA0RN_0LA1RO_1RZ1RM",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "15x4": {
+   "n": 15,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+5}(3)",
+   "parsed_str": "f_{ω^2+5}(3)",
+   "tm": "1LD2RG2LA3LG_---2LH2RB2RF_2LM1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LI3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "15x5": {
+   "n": 15,
+   "m": 5,
+   "runtime_latex": "> f_{\\omega^\\omega+3}(27)",
+   "parsed_str": "f_{ω^ω+3}(27)",
+   "tm": "2RG1LA1LG3LA4LA_2RH3RB1LD2RH---_3RB1LB3LC2RC4RH_2RE---3LC2RC---_3RB2RE2RE4RF---_1LG1RF3LG3RF4LG_2RJ0LA2LG2LI4LK_4LA3LB2RM2RH3LL_2RC1LI3LG3LI4LI_0RK1RJ2RJ3RJ4RF_2LH1LK3LE3LK---_3RB1LL1LL1LL---_1RZ4LJ0LN---2LO_3RB---0LN0LN---_0RC---2LO2LO2LD",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "15x6": {
+   "n": 15,
+   "m": 6,
+   "runtime_latex": "> f_{\\omega^\\omega+3}(35)",
+   "parsed_str": "f_{ω^ω+3}(35)",
+   "tm": "1RJ1LA1LG3LA4LA---_2RH3RB1LD2RH3LJ---_3RB1LB3LC2RC0LN---_2RE---3LC2RC---4RG_3RB2RE2RE4RF1LL---_1LG1RF3LG3RF4LG---_2RJ0LA2LG2LI4LK0RM_4LA3LB2RM2RH3LL---_2RC1LI3LG3LI4LI---_4RI1RJ2RJ3RJ4RF---_0RG1LK3LE3LK------_3RB1LL1LL1LL------_1RZ4RC0LN---2LO---_3RB---0LN0LN5RB---_0RC---2LO2LO------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1572862196029984838 roromachine14 in Nov 2026]"
+  },
+  "16x2": {
+   "n": 16,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}(f_\\omega(14))",
+   "parsed_str": "f_{ω×2}(f_{ω}(14))",
+   "tm": "1LG1LA_0LI1RC_0LD1LG_0RE1LD_0RM1RL_1RB1RF_1LH0LA_1RF0RN_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LG0RN_0RP1RO_1RZ1RM_1LB1LI",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "16x4": {
+   "n": 16,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+5}(15)",
+   "parsed_str": "f_{ω^2+5}(15)",
+   "tm": "1LD2RG2LA3LG_1LP2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "16x5": {
+   "n": 16,
+   "m": 5,
+   "runtime_latex": "> f_{\\varepsilon_0}(1686)",
+   "parsed_str": "f_{ε₀}(1686)",
+   "tm": "3LN3RA0RF0RD1LN_1RZ1RB2LC4RA4LM_0LI4RC2RC3RC2RC_1LE1RD2RD3RD4RK_3LA1LE2LE3LE---_0LG1RF2RF3RF2LH_0RI0LH---3RI---_2LA1LH2LH3LH---_3RP---0LA0LI---_2RO0LB2LJ3LJ---_2LL---2RK3RK4RK_3RO2RO2LL3LL4LL_3LL0LA2RM3RM4RM_1RB1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "17x2": {
+   "n": 17,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}(f_\\omega^4(13))",
+   "parsed_str": "f_{ω×2}(f_{ω}^4(13))",
+   "tm": "1LG1RH_0LI1RC_0LD1LQ_0RE1LD_0RP1RL_1RB1RF_1LQ1LG_1RF0RO_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LQ0RN_0LQ1RO_1RZ1RM_0LQ0RA_1LH0LG",
+   "discovered_by": "Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed)"
+  },
+  "17x3": {
+   "n": 17,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega^2}(5)",
+   "parsed_str": "f_{ω^2}(5)",
+   "tm": "0LL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2LN1LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RQ0LQ2RL",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "17x4": {
+   "n": 17,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+6}(17)",
+   "parsed_str": "f_{ω^2+6}(17)",
+   "tm": "1LD2RG2LA3LG_1LQ2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_1LP1LQ1LQ---",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "17x5": {
+   "n": 17,
+   "m": 5,
+   "runtime_latex": "",
+   "parsed_str": "(BLANK)",
+   "tm": "",
+   "discovered_by": ""
+  },
+  "17x7": {
+   "n": 17,
+   "m": 7,
+   "runtime_latex": "> f_{\\varepsilon_0+1}(65534)",
+   "parsed_str": "f_{ε₀+1}(65534)",
+   "tm": "1LL5LQ2LB------5RA---_0LH2LB2RB3RB2RB4RB1RB_3LC2LC0RE0RD5LP5LC3LC_5LC---1RD6RD---5RD---_0LF---2RE3RE---5RE---_0RH---1LD3RH---0LG---_2LC---2LG3LG---5LG---_3RM---0LC0LH2LC0LN---_2RN---2LI3LI---------_2LK---2RJ3RJ4RJ------_3RN---2LK3LK4LK2RN---_3LK5RB2RL3RL4RL6LL5RO_4LI---2LM3LM5LN5LM---_5RA0LQ5RJ0RL4LM4RO1RN_4LI5RQ2RO3RO0RO5RO1RZ_5RA0LQ2LP3LP5LP5LP---_1RN6LQ---------1LQ---",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "18x2": {
+   "n": 18,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}^2(f_5(2))",
+   "parsed_str": "f_{ω×2}^2(f_5(2))",
+   "tm": "1LB0LM_1RC1RN_1RD1RC_0LE1RQ_1LF1LE_0LG1LE_1RH1RI_0RH0RC_0RJ1RH_1LQ0RK_1RZ1RL_1LH1RJ_1LA1LM_0LA0RO_0LC1RP_0LA1RN_0LR1LA_0RI1LR",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1573114404617326592 roromachine14 and Gemini in Nov 2026]"
+  },
+  "18x3": {
+   "n": 18,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega^2}(8)",
+   "parsed_str": "f_{ω^2}(8)",
+   "tm": "2LL1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_1LQ1LI0LG_0RK2RJ2RJ_1RZ1RK2RB_2LR0RA0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1RQ0LQ2RR_1LH---0LN",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "18x4": {
+   "n": 18,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^2+6}(39)",
+   "parsed_str": "f_{ω^2+6}(39)",
+   "tm": "1LD2RG2LA3LG_1RQ2LH2RB2RF_2LE1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL3RM_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_1RZ2LP3LO3LN_0LL2LN2LN2LN_0LN3LO3LO3LO_3LO2LP2LP2LP_2RR2RQ1LQ1LI_1LQ------3LP",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "18x5": {
+   "n": 18,
+   "m": 5,
+   "runtime_latex": "> f_{\\varepsilon_0+1}(215)",
+   "parsed_str": "f_{ε₀+1}(215)",
+   "tm": "1LL---0RF0RD1LN_2LI1RB2LC1RB---_0LI4RC2RC3RC2RC_1LE1RD2RD3RD---_3LA1LE2LE3LE---_0LG1RF2RF3RF---_0RI0LH---3RI---_2LA1LH2LH3LH---_3RP2LI0LA0LI---_2RO0RB2LJ3LJ3RJ_2LL---2RK3RK4RK_3RO2RO2LL3LL4LL_3LL2RN2RM3RM4RM_1LQ1LN2LN3LN1LO_1LQ4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RZ2LR0LL1LR---_1RR4LR0RB0LL1RR",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "18x6": {
+   "n": 18,
+   "m": 6,
+   "runtime_latex": "> f_{\\varepsilon_0+1}(15)",
+   "parsed_str": "f_{ε₀+1}(15)",
+   "tm": "1LM---0RF0RD1LQ5LA_1RZ1RB2LC5LE---5LC_0LI4RC2RC3RC2RC5RC_1LE1RD2RD3RD------_3LA1LE2LE3LE------_0LG1RF2RF3RF------_0RI0LH2LQ3RI5RG5LR_2LA1LH2LH3LH------_3RN---0LA0LI---2LR_2RO---2LJ3LJ------_2LL---2RK3RK4RK---_3RO2RO2LL3LL4LL---_3LL4RR2RM3RM4RM---_4LJ1LN2LN3LN1LO5LN_1RB4RP1RK0RM4LN---_4LJ1RP2RP3RP0RP5RP_1RB1LQ2LQ3LQ1LQ5LQ_1RG5RR2LI5RR5RR4LR",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "19x2": {
+   "n": 19,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}^5(f_5(2))",
+   "parsed_str": "f_{ω×2}^5(f_5(2))",
+   "tm": "1LB0LM_1RC1RN_1RD1RC_0LE1RQ_1LF1LE_0LG1LE_1RH1RI_0RH0RC_0RJ1RH_1RZ0RK_1LS1RL_1RK1RJ_1LA1LM_0LA0RO_0LC1RP_0LA1RN_0LR1LA_0RI1LR_0LS0LA",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1573114404617326592 roromachine14 and Gemini in Nov 2026]"
+  },
+  "19x3": {
+   "n": 19,
+   "m": 3,
+   "runtime_latex": "",
+   "parsed_str": "(BLANK)",
+   "tm": "",
+   "discovered_by": ""
+  },
+  "19x8": {
+   "n": 19,
+   "m": 8,
+   "runtime_latex": "> f_{\\varepsilon_1}(9)",
+   "parsed_str": "f_{ε₁}(9)",
+   "tm": "6LL---0RF0RD1LN6RF------_1RZ1RB2LC5LK1RB5LC7LK---_0LI4RC2RC3RC2RC5RC5RC5RC_1LE1RD2RD3RD6RF5RD6LJ7RQ_3LA1LE2LE3LE---5LE---6LN_0LG1RF2RF3RF6LJ5RF------_0RI0LH1LR3RI---5RP6RI---_2LA1LH2LH3LH7LP5LH5LA---_3RP---0LA0LI1LF2LR------_2RO5RO2LJ3LJ---5LJ1RF6RG_2LL7RD2RK3RK4RK5RK6RK---_3RO2RO2LL3LL4LL5LL6LL5RO_3LL4RO2RM3RM4RM5RM6RM---_1RB1LN2LN3LN1LO5LN7RE4LF_1RB4RP1RK0RM4LN7RQ6LN1LB_4LJ1RP2RP3RP0RP5RP6RP7LM_5LL---2RQ3RQ4RQ5RQ6RQ---_1RB4RS2LR3LR4LR5LR7LR4LN_2LR---2RS3RS4RS5RS------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "20x2": {
+   "n": 20,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\times 2}^8(f_5(2))",
+   "parsed_str": "f_{ω×2}^8(f_5(2))",
+   "tm": "1LB0LM_1RC1RN_1RD1RC_0LE1RQ_1LF1LE_0LG1LE_1RH1RI_0RH0RC_0RJ1RH_0RT0RK_1LS1RL_1RK1RJ_1LA1LM_0LA0RO_0LC1RP_0LA1RN_0LR1LA_0RI1LR_0LS0LA_1RZ0RK",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1573114404617326592 roromachine14 and Gemini in Nov 2026]"
+  },
+  "20x3": {
+   "n": 20,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega^2+1}(3)",
+   "parsed_str": "f_{ω^2+1}(3)",
+   "tm": "1LT1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS0RD_2LQ1LL1LA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "20x7": {
+   "n": 20,
+   "m": 7,
+   "runtime_latex": "> f_{\\varepsilon_1}(20)",
+   "parsed_str": "f_{ε₁}(20)",
+   "tm": "6LF---0RF0RD1LN6RF---_1RZ1RB2LC4RF1RB5LC3LP_0LI4RC2RC3RC2RC5RC5RC_1LE1RD2RD3RD---5RD---_3LA1LE2LE3LE4LF5LE---_0LG1RF2RF3RF6LJ5RF5LH_0RI0LH5LN3RI------6RI_2LA1LH2LH3LH6LM5LH5LA_3RP---0LA0LI---2LS---_2RO5RO2LJ3LJ2RH5LJ1RF_2LL---2RK3RK4RK5RK6RK_3RO2RO2LL3LL4LL5LL6LL_3LL6LO2RM3RM4RM5RM6RM_1RB1LN2LN3LN1LO5LN5RE_1RB4RP1RK0RM4LN0RQ6LN_4LJ1RP2RP3RP0RP5RP6RP_5LR---2RQ3RQ4RQ5RQ6RQ_5RO---2LR3LR4LR5LR6LR_1RB4RT2LS3LS4LS5LS---_2LS---2RT3RT4RT5RT---",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "20x9": {
+   "n": 20,
+   "m": 9,
+   "runtime_latex": "> f_{\\varepsilon_1}(21)",
+   "parsed_str": "f_{ε₁}(21)",
+   "tm": "6LF---0RF0RD1LN6RF---5LN---_1RZ1RB2LC4RF1RB5LC3LP---8RO_0LI4RC2RC3RC2RC5RC5RC5RC5RC_1LE1RD2RD3RD---5RD---------_3LA1LE2LE3LE---5LE---------_0LG1RF2RF3RF6LJ5RF5LH------_0RI0LH---3RI------6RI------_2LA1LH2LH3LH6LM5LH5LA------_3RP---0LA0LI8LO2LS---------_2RO5RO2LJ3LJ---5LJ1RF------_2LL---2RK3RK4RK5RK6RK------_3RO2RO2LL3LL4LL5LL6LL------_3LL6LO2RM3RM4RM5RM6RM------_1RB1LN2LN3LN1LO5LN5LI---7RA_1RB4RP1RK0RM4LN0RQ6LN------_4LJ1RP2RP3RP0RP5RP6RP------_5LR---2RQ3RQ4RQ5RQ6RQ------_5RO---2LR3LR4LR5LR6LR------_1RB4RT2LS3LS4LS5LS---------_2LS---2RT3RT4RT5RT---------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "21x2": {
+   "n": 21,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^2}^3(f_\\omega^2(f_{33}(21)))",
+   "parsed_str": "f_{ω^2}^3(f_{ω}^2(f_33(21)))",
+   "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0RC0LT_1LH1LU_0RS1LR",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "21x3": {
+   "n": 21,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega^2+1}(7)",
+   "parsed_str": "f_{ω^2+1}(7)",
+   "tm": "1LT1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS2LU_0RD0LS0LU_2LR2LA1RA",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "21x4": {
+   "n": 21,
+   "m": 4,
+   "runtime_latex": "> f_{\\omega^\\omega+1}(f_{\\omega^\\omega}(20))",
+   "parsed_str": "f_{ω^ω+1}(f_{ω^ω}(20))",
+   "tm": "2LS1RA2LJ3RA_0RA3RB1LD2RI_3RB1LB3LC2RC_1RE0LG3LC2RC_1RZ1RE0LF2LD_2LD1LF2LN3LF_1RG1LU3LC---_0RH1RH2RA---_2RE3LB3LM2RI_2LP0LK2LF0LL_1LM1LK2LK3LK_3LN1LL2LL3LL_3RB0LO1LM1LM_3RI0LP1LN3LN_1RQ1LO------_1RR1LP------_0RQ1RQ2RS3RQ_0RR1RR2RT3RR_1LJ1RS0LF3RS_3LJ1RT2RC3RT_0RH1LU------",
+   "discovered_by": "[[User:Loader3229]] in Nov 2026"
+  },
+  "21x6": {
+   "n": 21,
+   "m": 6,
+   "runtime_latex": "> f_{\\varepsilon_1}(5)",
+   "parsed_str": "f_{ε₁}(5)",
+   "tm": "5RD1LN0RK0RM4LN0RQ_1RZ1RB2LI5LS1RB5LI_0LI5RC2RC3RC2RC5RC_1LE1RD2RD3RD5LE5RD_3LO1LE2LE3LE5LD5LE_0LG1RF2RF3RF1LR5RF_0RI0LH---3RI4RI4RR_2LO1LH2LH3LH5LO5LH_3RP4RC0LO0LI---2LS_2RA0RF2LJ3LJ0RF5LJ_2LU1RK2RK3RK4RK5RK_3RA1LL2LL3LL4LL5LL_3LL1RM2RM3RM4RM5RM_1RB1LN2LN3LN1LO5LN_1RB4RP0RF0RD1LN4RF_4LJ1RP2RP3RP0RP5RP_5LR1RQ2RQ3RQ4RQ5RQ_5RA1LR2LR3LR4LR5LR_1RB4RT2LS3LS4LS5LS_2LS5LO2RT3RT4RT5RT_2RA1LU2LU3LU4LU5LU",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "21x7": {
+   "n": 21,
+   "m": 7,
+   "runtime_latex": "> f_{\\varepsilon_1}(21)",
+   "parsed_str": "f_{ε₁}(21)",
+   "tm": "6LF---0RF0RD1LN6RF---_1RZ1RB2LC4RF1RB5LC3LP_0LI4RC2RC3RC2RC5RC5RC_1LE1RD2RD3RD---5RD---_3LA1LE2LE3LE5LU5LE---_0LG1RF2RF3RF6LJ5RF5LH_0RI0LH---3RI------6RI_2LA1LH2LH3LH6LM5LH5LA_3RP---0LA0LI---2LS---_2RO5RO2LJ3LJ---5LJ1RF_2LL---2RK3RK4RK5RK6RK_3RO2RO2LL3LL4LL5LL6LL_3LL6LO2RM3RM4RM5RM6RM_1RB1LN2LN3LN1LO5LN4RE_1RB4RP1RK0RM4LN0RQ6LN_4LJ1RP2RP3RP0RP5RP6RP_5LR---2RQ3RQ4RQ5RQ6RQ_5RO---2LR3LR4LR5LR6LR_1RB4RT2LS3LS4LS5LS---_2LS---2RT3RT4RT5RT---_---------4RA6RH------",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "22x2": {
+   "n": 22,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^2}^3(f_\\omega^4(f_9(21)))",
+   "parsed_str": "f_{ω^2}^3(f_{ω}^4(f_9(21)))",
+   "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RS1LR_1RF0LQ",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "22x3": {
+   "n": 22,
+   "m": 3,
+   "runtime_latex": "> f_{\\omega^2+1}(14)",
+   "parsed_str": "f_{ω^2+1}(14)",
+   "tm": "1LT1LE2RA_0LG2LE2RB_1RC1RC2RB_0LF2RA2LD_1RC2LE1LD_0RC0RC2RN_0RJ2RH1LG_1LI2RH1LP_0LQ1LI0LG_0RK2RJ2RJ_0RL1RK2RB_1RZ0LI0LH_0RM2LE2RM_2RN2RN2LL_0RM0LP0LP_2LO2LO2LP_1LR1LQ1LQ_1RS1LP1LQ_0LR1RS1RD_2LQ---1RU_2RV2RU1LU_1LU1LL---",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "22x6": {
+   "n": 22,
+   "m": 6,
+   "runtime_latex": "> f_{\\varepsilon_1}(7)",
+   "parsed_str": "f_{ε₁}(7)",
+   "tm": "3LO1LN0RK0RM4LN0RQ_1RZ1RB2LI4RV1RB5LI_0LI5RC2RC3RC2RC5RC_1LE1RD2RD3RD4LA5RD_3LO1LE2LE3LE---5LE_0LG1RF2RF3RF1LR5RF_0RI0LH5LS3RI4RI5LL_2LO1LH2LH3LH5LO5LH_3RP4RC0LO0LI1RL2LS_2RA0RF2LJ3LJ0RF5LJ_2LU1RK2RK3RK4RK5RK_3RA1LL2LL3LL4LL5LL_3LL1RM2RM3RM4RM5RM_1RB1LN2LN3LN1LO5LN_1RB4RP0RF0RD1LN4RF_4LJ1RP2RP3RP0RP5RP_5LR1RQ2RQ3RQ4RQ5RQ_5RA1LR2LR3LR4LR5LR_1RB4RT2LS3LS4LS5LS_2LS5LG2RT3RT4RT5RT_2RA1LU2LU3LU4LU5LU_1RL1LD---3LN---0LI",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "23x2": {
+   "n": 23,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^2}^3(f_\\omega^6(4 \\uparrow\\uparrow 341))",
+   "parsed_str": "f_{ω^2}^3(f_{ω}^6(f_3(341)))",
+   "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RV1LR_0LW0LW_0LS1LV",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "23x6": {
+   "n": 23,
+   "m": 6,
+   "runtime_latex": "> f_{\\varepsilon_1}(10)",
+   "parsed_str": "f_{ε₁}(10)",
+   "tm": "1LE1LN0RK0RM4LN0RQ_1RZ1RB2LI1RV1RB5LI_0LI5RC2RC3RC2RC5RC_1LE1RD2RD3RD3LW5RD_3LO1LE2LE3LE4RS5LE_0LG1RF2RF3RF1LR5RF_0RI0LH---3RI4RI0LW_2LO1LH2LH3LH5LO5LH_3RP4RC0LO0LI0LD2LS_2RA0RF2LJ3LJ0RF5LJ_2LU1RK2RK3RK4RK5RK_3RA1LL2LL3LL4LL5LL_3LL1RM2RM3RM4RM5RM_1RB1LN2LN3LN1LO5LN_1RB4RP0RF0RD1LN4RF_4LJ1RP2RP3RP0RP5RP_5LR1RQ2RQ3RQ4RQ5RQ_5RA1LR2LR3LR4LR5LR_1RB4RT2LS3LS4LS5LS_2LS5LF2RT3RT4RT5RT_2RA1LU2LU3LU4LU5LU_3RH4RE4LW---5LW4RS_4RD5RV---------0RD",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1573798756229316681/1574096336402513941 roromachine14 and Gemini in Nov 2026]"
+  },
+  "24x2": {
+   "n": 24,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^2}^3(f_\\omega^{12}(4 \\uparrow\\uparrow 341))",
+   "parsed_str": "f_{ω^2}^3(f_{ω}^12(f_3(341)))",
+   "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_1RW1LR_0LX0LW_0LP0LX_0LS1LV",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "25x2": {
+   "n": 25,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^2}^5(f_\\omega^4(f_{35}(21)))",
+   "parsed_str": "f_{ω^2}^5(f_{ω}^4(f_35(21)))",
+   "tm": "0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_0LV0LT_1LH1LU_0RW1LV_0LH0LW_1LX0LX_1LH1LY_1LW1LR",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1084047886494470185/1573732257196146708 roromachine14 in Nov 2026]"
+  },
+  "29x2": {
+   "n": 29,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^\\omega}(3)",
+   "parsed_str": "f_{ω^ω}(3)",
+   "tm": "",
+   "discovered_by": "mxdys in Oct 2026 (claimed)"
+  },
+  "30x2": {
+   "n": 30,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega^\\omega}(9)",
+   "parsed_str": "f_{ω^ω}(9)",
+   "tm": "",
+   "discovered_by": "Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)"
+  },
+  "31x2": {
+   "n": 31,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\uparrow \\uparrow 4}(3)",
+   "parsed_str": "f_{ω↑↑k}(4)",
+   "tm": "",
+   "discovered_by": "mxdys in Oct 2026 (claimed)"
+  },
+  "31x4": {
+   "n": 31,
+   "m": 4,
+   "runtime_latex": "> f_{\\varepsilon_0}(373\\,676\\,378)",
+   "parsed_str": "f_{ε₀}(373676378)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User:Wythagoras/Rado%27s_sigma_function/BB(31,4)</ref>"
+  },
+  "32x2": {
+   "n": 32,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\uparrow \\uparrow 4}(8)",
+   "parsed_str": "f_{ω↑↑k}(8)",
+   "tm": "",
+   "discovered_by": "Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)"
+  },
+  "33x2": {
+   "n": 33,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\uparrow \\uparrow 6}(3)",
+   "parsed_str": "f_{ω↑↑k}(6)",
+   "tm": "",
+   "discovered_by": "mxdys in Oct 2026 (claimed)"
+  },
+  "34x2": {
+   "n": 34,
+   "m": 2,
+   "runtime_latex": "> f_{\\omega \\uparrow \\uparrow 6}(4)",
+   "parsed_str": "f_{ω↑↑k}(6)",
+   "tm": "",
+   "discovered_by": "Jeff Ketchersid and Gemini Argon in Nov 2026 (claimed)"
+  },
+  "36x3": {
+   "n": 36,
+   "m": 3,
+   "runtime_latex": "> f_{\\varepsilon_0}(7)",
+   "parsed_str": "f_{ε₀}(7)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User:Wythagoras/Rado%27s_sigma_function/BB(36,3)</ref>"
+  },
+  "37x3": {
+   "n": 37,
+   "m": 3,
+   "runtime_latex": "> f_{\\varepsilon_0}(373\\,676\\,378)",
+   "parsed_str": "f_{ε₀}(373676378)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User:Wythagoras/Rado%27s_sigma_function/BB(37,3)</ref>"
+  },
+  "42x9": {
+   "n": 42,
+   "m": 9,
+   "runtime_latex": "> f_{\\psi_0(\\Omega_2)}(1.7\\cdot10^{352})",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User_blog:Wythagoras/Hydra_machines</ref>"
+  },
+  "46x7": {
+   "n": 46,
+   "m": 7,
+   "runtime_latex": "> f_{\\psi_0(\\Omega_2)}(1.7\\cdot10^{352})",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User_blog:Wythagoras/Hydra_machines</ref>"
+  },
+  "48x2": {
+   "n": 48,
+   "m": 2,
+   "runtime_latex": "> f_{\\varepsilon_1}(3)",
+   "parsed_str": "f_{ε₁}(3)",
+   "tm": "",
+   "discovered_by": "[https://discord.com/channels/960643023006490684/1331570843829932063/1567585091172040726 roromachine14 and Gemini in 2026]"
+  },
+  "61x6": {
+   "n": 61,
+   "m": 6,
+   "runtime_latex": "> f_{\\psi_0(\\Omega_2)}(1.7\\cdot10^{352})",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User_blog:Wythagoras/Hydra_machines</ref>"
+  },
+  "94x5": {
+   "n": 94,
+   "m": 5,
+   "runtime_latex": "> f_{\\psi_0(\\Omega_2)}(1.7\\cdot10^{352})",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User_blog:Wythagoras/Hydra_machines</ref>"
+  },
+  "134x7": {
+   "n": 134,
+   "m": 7,
+   "runtime_latex": "> f_{\\psi_0(\\Omega_\\omega)}(2\\,050)",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "LittlePeng9+Wythagoras in 2014<ref>https://googology.fandom.com/wiki/User:Wythagoras/Rado%27s_sigma_function/Analysis_of_LittlePeng9%27s_work/Hydra_machines</ref>"
+  },
+  "150x2": {
+   "n": 150,
+   "m": 2,
+   "runtime_latex": "> f_{lim(BMS)}(10\\uparrow\\uparrow 15)",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "Patcail in 2025<ref>https://discord.com/channels/960643023006490684/1026577255754903572/1328863966688182345</ref>"
+  },
+  "1015x2": {
+   "n": 1015,
+   "m": 2,
+   "runtime_latex": "> D^{5}(99) = Loader's Number",
+   "parsed_str": "f_{ψ₀(Ω₂)}(1000)",
+   "tm": "",
+   "discovered_by": "CatsAreFluffy in 2024<ref>https://github.com/CatsAreFluffy/metamath-turing-machines/commit/85948b04fc4aeb983ca6d63d6aee5ad6ef308bfe</ref>"
+  }
+ },
+ "floors": {
+  "2x2": "6",
+  "2x3": "38",
+  "2x4": "3932964",
+  "2x5": "f_1(3314360)",
+  "2x6": "f_4(115)",
+  "2x7": "f_5(30)",
+  "2x8": "f_5(30)",
+  "2x9": "f_5(30)",
+  "3x2": "21",
+  "3x3": "f_1(17)",
+  "3x4": "f_16(5)",
+  "3x5": "f_{ω}^2(15)",
+  "3x6": "f_{ω}^3(15)",
+  "3x7": "f_{ω+1}(117)",
+  "3x8": "f_{ω+1}^2(f_{ω}(30))",
+  "3x9": "f_{ω+2}(4)",
+  "4x2": "107",
+  "4x3": "f_45(10)",
+  "4x4": "f_{ω}(f_6(3))",
+  "4x5": "f_{ω+1}(27041)",
+  "4x6": "f_{ω+2}(29)",
+  "4x7": "f_{ω+3}(34)",
+  "4x8": "f_{ω+4}(7)",
+  "4x9": "f_{ω+4}(12)",
+  "5x2": "47176870",
+  "5x3": "f_{ω}(f_78(2))",
+  "5x4": "f_{ω+1}(65536)",
+  "5x5": "f_{ω+2}(55)",
+  "5x6": "f_{ω+3}(31)",
+  "5x7": "f_{ω×2}^2(f_{ω+2}(f_{ω+1}(f_65(2))))",
+  "5x8": "f_{ω×2}^2(f_{ω+2}(f_{ω+1}(f_65(2))))",
+  "5x9": "f_{ω×2+1}(80)",
+  "6x2": "f_5(8)",
+  "6x3": "f_{ω}^2(f_4(6))",
+  "6x4": "f_{ω+1}^6(65536)",
+  "6x5": "f_{ω×2}(f_1(19728))",
+  "6x6": "f_{ω×2}^2(f_{ω}^2(29))",
+  "6x7": "f_{ω×2+1}(f_{ω+1}^2(f_{ω}^2(5)))",
+  "6x8": "f_{ω×2+2}(11)",
+  "6x9": "f_{ω×2+3}(6)",
+  "7x2": "f_{ω}(20)",
+  "7x3": "f_{ω+1}(11)",
+  "7x4": "f_{ω+3}(21)",
+  "7x5": "f_{ω×2}(f_17(6))",
+  "7x6": "f_{ω^2}^2(6)",
+  "7x7": "f_{ω^2}^4(f_{ω+1}(f_{ω}(30)))",
+  "7x8": "f_{ω^2+2}(7)",
+  "7x9": "f_{ω^2+3}(7)",
+  "8x2": "f_{ω}^3(12)",
+  "8x3": "f_{ω+1}^3(f_{ω}^3(14))",
+  "8x4": "f_{ω+8}^2(4)",
+  "8x5": "f_{ω^2}(13)",
+  "8x6": "f_{ω^2+2}(4)",
+  "8x7": "f_{ω^2+2}(8)",
+  "8x8": "f_{ω^ω}(245)",
+  "8x9": "f_{ω^ω}(245)",
+  "9x2": "f_{ω}^7(12)",
+  "9x3": "f_{ω+2}^3(f_{ω+1}^2(f_{ω}(14)))",
+  "9x4": "f_{ω^2}(18)",
+  "9x5": "f_{ω^2+1}(6)",
+  "9x6": "f_{ω^2+2}(7)",
+  "9x7": "f_{ω^2+3}(7)",
+  "9x8": "f_{ω^ω+1}(103)",
+  "9x9": "f_{ω^ω+1}(103)",
+  "10x2": "f_{ω+1}(f_37(3))",
+  "10x3": "f_{ω×2}(11)",
+  "10x4": "f_{ω^2}^3(3)",
+  "10x5": "f_{ω^2+2}(4)",
+  "10x6": "f_{ω^2+3}(7)",
+  "10x7": "f_{ω^2+4}(4)",
+  "10x8": "f_{ω^ω+1}(103)",
+  "10x9": "f_{ω^ω+1}(103)",
+  "11x2": "f_{ω+2}^2(f_5(34))",
+  "11x3": "f_{ω×2+1}(21)",
+  "11x4": "f_{ω^2+1}(f_{ω^2}(f_{ω+3}^2(4)))",
+  "11x5": "f_{ω^2+2}(6)",
+  "11x6": "f_{ω^2+4}(8)",
+  "11x7": "f_{ω^ω+1}(30)",
+  "11x8": "f_{ω^ω+1}(103)",
+  "11x9": "f_{ω^ω+1}(103)",
+  "12x2": "f_{ω+2}^8(f_3(6))",
+  "12x3": "f_{ω×2+1}(21)",
+  "12x4": "f_{ω^2+2}(15)",
+  "12x5": "f_{ω^ω}^6(14)",
+  "12x6": "f_{ω^ω+1}(330)",
+  "12x7": "f_{ω^ω+1}(330)",
+  "12x8": "f_{ω^ω+1}(330)",
+  "12x9": "f_{ω^ω+1}(330)",
+  "13x2": "f_{ω+3}(19)",
+  "13x3": "f_{ω×2+1}^3(3)",
+  "13x4": "f_{ω^2+3}(15)",
+  "13x5": "f_{ω^ω+1}(9)",
+  "13x6": "f_{ω^ω+2}(17)",
+  "13x7": "f_{ω^ω+2}(17)",
+  "13x8": "f_{ω^ω+2}(17)",
+  "13x9": "f_{ω^ω+2}(17)",
+  "14x2": "f_{ω+3}^4(f_{ω}(4))",
+  "14x3": "f_{ω×2+2}(14)",
+  "14x4": "f_{ω^2+4}(7)",
+  "14x5": "f_{ω^ω+2}(21)",
+  "14x6": "f_{ω^ω+2}(27)",
+  "14x7": "f_{ω^ω+2}(27)",
+  "14x8": "f_{ω^ω+2}(27)",
+  "14x9": "f_{ω^ω+2}(27)",
+  "15x2": "f_{ω×2}(13)",
+  "15x3": "f_{ω×2+2}(14)",
+  "15x4": "f_{ω^2+5}(3)",
+  "15x5": "f_{ω^ω+3}(27)",
+  "15x6": "f_{ω^ω+3}(35)",
+  "15x7": "f_{ω^ω+3}(35)",
+  "15x8": "f_{ω^ω+3}(35)",
+  "15x9": "f_{ω^ω+3}(35)",
+  "16x2": "f_{ω×2}(f_{ω}(14))",
+  "16x3": "f_{ω×2+2}(14)",
+  "16x4": "f_{ω^2+5}(15)",
+  "16x5": "f_{ε₀}(1686)",
+  "16x6": "f_{ε₀}(1686)",
+  "16x7": "f_{ε₀}(1686)",
+  "16x8": "f_{ε₀}(1686)",
+  "16x9": "f_{ε₀}(1686)",
+  "17x2": "f_{ω×2}(f_{ω}^4(13))",
+  "17x3": "f_{ω^2}(5)",
+  "17x4": "f_{ω^2+6}(17)",
+  "17x5": "f_{ε₀}(1686)",
+  "17x6": "f_{ε₀}(1686)",
+  "17x7": "f_{ε₀+1}(65534)",
+  "17x8": "f_{ε₀+1}(65534)",
+  "17x9": "f_{ε₀+1}(65534)",
+  "18x2": "f_{ω×2}^2(f_5(2))",
+  "18x3": "f_{ω^2}(8)",
+  "18x4": "f_{ω^2+6}(39)",
+  "18x5": "f_{ε₀+1}(215)",
+  "18x6": "f_{ε₀+1}(215)",
+  "18x7": "f_{ε₀+1}(65534)",
+  "18x8": "f_{ε₀+1}(65534)",
+  "18x9": "f_{ε₀+1}(65534)",
+  "19x2": "f_{ω×2}^5(f_5(2))",
+  "19x3": "f_{ω^2}(8)",
+  "19x4": "f_{ω^2+6}(39)",
+  "19x5": "f_{ε₀+1}(215)",
+  "19x6": "f_{ε₀+1}(215)",
+  "19x7": "f_{ε₀+1}(65534)",
+  "19x8": "f_{ε₁}(9)",
+  "19x9": "f_{ε₁}(9)",
+  "20x2": "f_{ω×2}^8(f_5(2))",
+  "20x3": "f_{ω^2+1}(3)",
+  "20x4": "f_{ω^2+6}(39)",
+  "20x5": "f_{ε₀+1}(215)",
+  "20x6": "f_{ε₀+1}(215)",
+  "20x7": "f_{ε₁}(20)",
+  "20x8": "f_{ε₁}(20)",
+  "20x9": "f_{ε₁}(21)",
+  "21x2": "f_{ω^2}^3(f_{ω}^2(f_33(21)))",
+  "21x3": "f_{ω^2+1}(7)",
+  "21x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "21x5": "f_{ε₀+1}(215)",
+  "21x6": "f_{ε₁}(5)",
+  "21x7": "f_{ε₁}(21)",
+  "21x8": "f_{ε₁}(21)",
+  "21x9": "f_{ε₁}(21)",
+  "22x2": "f_{ω^2}^3(f_{ω}^4(f_9(21)))",
+  "22x3": "f_{ω^2+1}(14)",
+  "22x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "22x5": "f_{ε₀+1}(215)",
+  "22x6": "f_{ε₁}(7)",
+  "22x7": "f_{ε₁}(21)",
+  "22x8": "f_{ε₁}(21)",
+  "22x9": "f_{ε₁}(21)",
+  "23x2": "f_{ω^2}^3(f_{ω}^6(f_3(341)))",
+  "23x3": "f_{ω^2+1}(14)",
+  "23x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "23x5": "f_{ε₀+1}(215)",
+  "23x6": "f_{ε₁}(10)",
+  "23x7": "f_{ε₁}(21)",
+  "23x8": "f_{ε₁}(21)",
+  "23x9": "f_{ε₁}(21)",
+  "24x2": "f_{ω^2}^3(f_{ω}^12(f_3(341)))",
+  "24x3": "f_{ω^2+1}(14)",
+  "24x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "24x5": "f_{ε₀+1}(215)",
+  "24x6": "f_{ε₁}(10)",
+  "24x7": "f_{ε₁}(21)",
+  "24x8": "f_{ε₁}(21)",
+  "24x9": "f_{ε₁}(21)",
+  "25x2": "f_{ω^2}^5(f_{ω}^4(f_35(21)))",
+  "25x3": "f_{ω^2+1}(14)",
+  "25x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "25x5": "f_{ε₀+1}(215)",
+  "25x6": "f_{ε₁}(10)",
+  "25x7": "f_{ε₁}(21)",
+  "25x8": "f_{ε₁}(21)",
+  "25x9": "f_{ε₁}(21)",
+  "26x2": "f_{ω^2}^5(f_{ω}^4(f_35(21)))",
+  "26x3": "f_{ω^2+1}(14)",
+  "26x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "26x5": "f_{ε₀+1}(215)",
+  "26x6": "f_{ε₁}(10)",
+  "26x7": "f_{ε₁}(21)",
+  "26x8": "f_{ε₁}(21)",
+  "26x9": "f_{ε₁}(21)",
+  "27x2": "f_{ω^2}^5(f_{ω}^4(f_35(21)))",
+  "27x3": "f_{ω^2+1}(14)",
+  "27x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "27x5": "f_{ε₀+1}(215)",
+  "27x6": "f_{ε₁}(10)",
+  "27x7": "f_{ε₁}(21)",
+  "27x8": "f_{ε₁}(21)",
+  "27x9": "f_{ε₁}(21)",
+  "28x2": "f_{ω^2}^5(f_{ω}^4(f_35(21)))",
+  "28x3": "f_{ω^2+1}(14)",
+  "28x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "28x5": "f_{ε₀+1}(215)",
+  "28x6": "f_{ε₁}(10)",
+  "28x7": "f_{ε₁}(21)",
+  "28x8": "f_{ε₁}(21)",
+  "28x9": "f_{ε₁}(21)",
+  "29x2": "f_{ω^ω}(3)",
+  "29x3": "f_{ω^ω}(3)",
+  "29x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "29x5": "f_{ε₀+1}(215)",
+  "29x6": "f_{ε₁}(10)",
+  "29x7": "f_{ε₁}(21)",
+  "29x8": "f_{ε₁}(21)",
+  "29x9": "f_{ε₁}(21)",
+  "30x2": "f_{ω^ω}(9)",
+  "30x3": "f_{ω^ω}(9)",
+  "30x4": "f_{ω^ω+1}(f_{ω^ω}(20))",
+  "30x5": "f_{ε₀+1}(215)",
+  "30x6": "f_{ε₁}(10)",
+  "30x7": "f_{ε₁}(21)",
+  "30x8": "f_{ε₁}(21)",
+  "30x9": "f_{ε₁}(21)",
+  "31x2": "f_{ω↑↑k}(4)",
+  "31x3": "f_{ω↑↑k}(4)",
+  "31x4": "f_{ε₀}(373676378)",
+  "31x5": "f_{ε₀+1}(215)",
+  "31x6": "f_{ε₁}(10)",
+  "31x7": "f_{ε₁}(21)",
+  "31x8": "f_{ε₁}(21)",
+  "31x9": "f_{ε₁}(21)",
+  "32x2": "f_{ω↑↑k}(8)",
+  "32x3": "f_{ω↑↑k}(8)",
+  "32x4": "f_{ε₀}(373676378)",
+  "32x5": "f_{ε₀+1}(215)",
+  "32x6": "f_{ε₁}(10)",
+  "32x7": "f_{ε₁}(21)",
+  "32x8": "f_{ε₁}(21)",
+  "32x9": "f_{ε₁}(21)",
+  "33x2": "f_{ω↑↑k}(8)",
+  "33x3": "f_{ω↑↑k}(8)",
+  "33x4": "f_{ε₀}(373676378)",
+  "33x5": "f_{ε₀+1}(215)",
+  "33x6": "f_{ε₁}(10)",
+  "33x7": "f_{ε₁}(21)",
+  "33x8": "f_{ε₁}(21)",
+  "33x9": "f_{ε₁}(21)",
+  "34x2": "f_{ω↑↑k}(8)",
+  "34x3": "f_{ω↑↑k}(8)",
+  "34x4": "f_{ε₀}(373676378)",
+  "34x5": "f_{ε₀+1}(215)",
+  "34x6": "f_{ε₁}(10)",
+  "34x7": "f_{ε₁}(21)",
+  "34x8": "f_{ε₁}(21)",
+  "34x9": "f_{ε₁}(21)",
+  "35x2": "f_{ω↑↑k}(8)",
+  "35x3": "f_{ω↑↑k}(8)",
+  "35x4": "f_{ε₀}(373676378)",
+  "35x5": "f_{ε₀+1}(215)",
+  "35x6": "f_{ε₁}(10)",
+  "35x7": "f_{ε₁}(21)",
+  "35x8": "f_{ε₁}(21)",
+  "35x9": "f_{ε₁}(21)",
+  "36x2": "f_{ω↑↑k}(8)",
+  "36x3": "f_{ε₀}(7)",
+  "36x4": "f_{ε₀}(373676378)",
+  "36x5": "f_{ε₀+1}(215)",
+  "36x6": "f_{ε₁}(10)",
+  "36x7": "f_{ε₁}(21)",
+  "36x8": "f_{ε₁}(21)",
+  "36x9": "f_{ε₁}(21)",
+  "37x2": "f_{ω↑↑k}(8)",
+  "37x3": "f_{ε₀}(373676378)",
+  "37x4": "f_{ε₀}(373676378)",
+  "37x5": "f_{ε₀+1}(215)",
+  "37x6": "f_{ε₁}(10)",
+  "37x7": "f_{ε₁}(21)",
+  "37x8": "f_{ε₁}(21)",
+  "37x9": "f_{ε₁}(21)",
+  "38x2": "f_{ω↑↑k}(8)",
+  "38x3": "f_{ε₀}(373676378)",
+  "38x4": "f_{ε₀}(373676378)",
+  "38x5": "f_{ε₀+1}(215)",
+  "38x6": "f_{ε₁}(10)",
+  "38x7": "f_{ε₁}(21)",
+  "38x8": "f_{ε₁}(21)",
+  "38x9": "f_{ε₁}(21)",
+  "39x2": "f_{ω↑↑k}(8)",
+  "39x3": "f_{ε₀}(373676378)",
+  "39x4": "f_{ε₀}(373676378)",
+  "39x5": "f_{ε₀+1}(215)",
+  "39x6": "f_{ε₁}(10)",
+  "39x7": "f_{ε₁}(21)",
+  "39x8": "f_{ε₁}(21)",
+  "39x9": "f_{ε₁}(21)",
+  "40x2": "f_{ω↑↑k}(8)",
+  "40x3": "f_{ε₀}(373676378)",
+  "40x4": "f_{ε₀}(373676378)",
+  "40x5": "f_{ε₀+1}(215)",
+  "40x6": "f_{ε₁}(10)",
+  "40x7": "f_{ε₁}(21)",
+  "40x8": "f_{ε₁}(21)",
+  "40x9": "f_{ε₁}(21)"
+ }
+}
