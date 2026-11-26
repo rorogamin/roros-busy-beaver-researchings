@@ -1485,3 +1485,463 @@ BB(5,4): (f_w)^3(2{15}5), 1RB3LB1RD2RA_2LC3RB1LC2RA_3RB1LB3LC2RC_1LE2LE3LE1RZ_3R
    f_w(f_w(10{4}10^^65533)) row on claimed level: one more f_w iterate
    and a much larger argument.  The step count is the reporter's estimate,
    not an independently verified or Rocq-proved result here.)
+
+-------------------------------------------------------------------------
+WIKI SYNC -- current Champions table, captured 2026-11-16
+-------------------------------------------------------------------------
+Source: https://wiki.bbchallenge.org/wiki/Champions, raw wikitext
+(the rendered page hides the Runtime column behind LaTeX; the raw
+wikitext carries it as plain <math> markup, which is what is used here).
+
+ADD, not replace: every earlier row in this file is preserved.  Of the
+89 rows in the wiki tables, 47 already carry a machine string recorded
+in this ledger and are not repeated.  25 rows carry a machine string that
+this ledger did not have; they are listed below.  17 further rows have
+no machine string on the wiki at all (link-only: BB(29), BB(30), BB(31), BB(32), BB(33), BB(34), BB(48), BB(150), BB(1015), BB(36,3), BB(37,3), BB(31,4), BB(94,5), BB(61,6), BB(46,7), BB(134,7), BB(42,9));
+this file already records those, or records them as link-only.
+
+Level text is the wiki's own, rendered in this file's ASCII convention
+(w = omega, * = times, ^ = power, {n} = n Knuth arrows, ^^ = two arrows).
+Machine strings are copied from the raw wikitext, not retyped from a
+rendering.  Nothing here was simulated, parsed into a proof, or verified
+in Rocq/Lean by this repository; "never independently verified" is the
+wiki's own status column, carried over as status only.
+
+Where a domain already had a different machine recorded above, both rows
+are kept and no ordering between them is asserted here: neither level is
+checkable by simulation, and the earlier row may claim a higher level
+than the wiki's current machine (BB(18) is such a case).
+
+
+--- 2-symbol ---
+
+BB(11): > f_{w+2}^2(f_5(34))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB1RH_1RC0LD_1LD1RJ_1LE1LB_1LF1LE_1RG0LE_1RA1RG_0LI1LF_0RC1LI_1RK0RG_1RZ0LB
+
+BB(12): > f_{w+2}^8(f_3(6))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB1RA_1RI1RC_0LD1LG_0RE1LD_1RZ1RF_0LL0RA_1RA0LH_1LG1LH_1RK0LJ_1LH1LI_0LL0RD_0LH1LK
+
+BB(13): > f_{w+3}(19)
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB1RA_1RI1RC_0LD1LG_0RE1LD_0LM1RF_1RG0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_1RZ0LL_0LM1LK_0LG1LL
+
+BB(14): > f_{w+3}(f_w(3))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB1RA_1RI1RC_0LD1LG_0RE1LD_0LK1RF_1RM0RA_1RA0LH_1LG1LH_1RE0LJ_1LH1LI_1RZ0LL_1LN1LK_1RK0LH_1LD0RK
+
+BB(15): > f_{w*2}(13)
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  No machine was recorded for this domain before.)
+  1LH0LG_0LI1RC_0LD1LA_0RE1LD_0RH1RL_1RB1RF_1LA1LG_1RF0RO_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LA0RN_0LA1RO_1RZ1RM
+
+BB(16): > f_{w*2}(f_w(14))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LG1LA_0LI1RC_0LD1LG_0RE1LD_0RM1RL_1RB1RF_1LH0LA_1RF0RN_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LG0RN_0RP1RO_1RZ1RM_1LB1LI
+
+BB(17): > f_{w*2}(f_w^4(13))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LG1RH_0LI1RC_0LD1LQ_0RE1LD_0RP1RL_1RB1RF_1LQ1LG_1RF0RO_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LQ0RN_0LQ1RO_1RZ1RM_0LQ0RA_1LH0LG
+
+BB(18): > f_{w*2}(f_{w+1}(f_4(2)))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LH0LG_0LI1RC_0LD1LA_0RE1LD_0RH1RL_1RB1RF_1LA1LG_1RF1RM_1LJ1LI_0LK1LI_1RL1RE_0RL0RF_0LN1RM_1LQ0LO_0LR1LP_1LQ1LN_1LF0LM_0RC1RZ
+
+BB(19): > f_{w*2}^2(f_5(2))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LB0LM_1RC1RN_1RD1RC_0LE1RQ_1LF1LE_0LG1LE_1RH1RI_0RH0RC_0RJ1RH_0RS0RK_1LN1RL_1LM1RJ_1LA1LM_0LA0RO_0LC1RP_0LA1RN_0LR1LA_0RI1LR_1RZ1LL
+
+BB(20): > f_{w*2}^3(f_5(2))
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LB0LM_1RC1RN_1RD1RC_0LE1RQ_1LF1LE_0LG1LE_1RH1RI_0RH0RC_0RJ1RH_0RT0RK_1LS1RL_1LM1RJ_1LA1LM_0LA0RO_0LC1RP_0LA1RN_0LR1LA_0RI1LR_0LA0LA_1RZ1LK
+
+BB(25): > f_{w^2}^5(4^^341)
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  No machine was recorded for this domain before.)
+  0LI0LF_0RJ1RG_0RD1LC_1RH1RE_1LO0RH_1LA1LF_0LC1LA_1RB1RH_1RD0LF_1LP0RK_0LM1LL_0LL1LM_1LE1LN_0RQ0LM_0RP1LO_1LR0RH_1LF1RQ_1RZ0LS_1LH0LT_1LH1LU_0LE1LV_0LH0LW_1LH0LX_1LH1LY_0LE1LR
+
+
+--- 3-symbol ---
+
+BB(5,3): > f_w(2{7}7)
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; never verified.  No machine was recorded for this domain before.)
+  1RB1LC1RA_1LA2LC1RB_1LB1LD2LC_2RE2LD1RA_1RZ2RE1RB
+
+
+--- 4-symbol ---
+
+BB(4,4): > f_w(2{5}3)
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; not independently verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB2LC3RA1RZ_2RC3LB2LB0LC_1LB2RC3RA1LD_2RC1LC3RD2LD
+
+BB(5,4): > f_{w+1}(65536) > g64
+  (wiki-current 2026-11-16; Jeff Ketchersid, Claude and Gemini in Nov 2026 (claimed).  wiki verification: Claimed analysis by Claude; not independently verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB3LC1LD2RA_2RC1RZ2LB2LB_1LD3RC1LE2RA_3RC0LB1LD3LD_3RC1LC3LE2RE
+
+BB(6,4): > f_{w+1}^4(65536)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1RB3LC1LD2RA_2RC1RF2LB2LB_1LD3RC1LE2RA_3RC0LB1LD3LD_3RC1LC3LE2RE_0LC0LB0LD1RZ
+
+BB(10,4): > f_{w^2}^3(3)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  1LD2RG2LA3LG_0LI2LH2RB2RF_1LB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ1RZ0RE0LI_3RC3LJ3LJ3LJ
+
+BB(11,4): > f_{w^2+1}(f_{w^2}(f_{w+3}^2(4)))
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LD2RG2LA3LG_2LI2LH2RB2RF_3RB1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ1LI_3RC3LJ3LJ3LJ_0LF0LK0LK0LK
+
+BB(12,4): > f_{w^2+2}(15)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  Differs from the machine already recorded for this domain; both rows kept, no order asserted.)
+  1LD2RG2LA3LG_2LL2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1RZ---_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_1LF1LL1LL---
+
+BB(13,4): > f_{w^2+3}(15)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  1LD2RG2LA3LG_3LM2LH2RB2RF_1LG1RC2RB3LG_0RC1RC1LD3RD_3RD1LE1LE3LE_1RI3LD2LE3LE_1RG1LH2RG3LG_1RC2LH1LA1LE_0LJ0LK1LL1RZ_3RC3LJ3LJ3LJ_0LF0LK0LK0LK_0LK1LL1LL1LL_2LF2LM2LM---
+
+
+--- 5-symbol ---
+
+BB(9,5): > f_{w^2+1}(6)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  1LD2RG2LA3LG---_4RI2LH2RB2RF0LD_4LC1RC2RB3LG4RB_0RC1RC1LD3RD4LB_3RD1LE1LE3LE---_3LI3LD2LE3LE1RZ_1RG1LH2RG3LG---_1RC2LH1LA1LE---_0RC3LI3LI3LI0LI
+
+BB(10,5): > f_{w^2+2}(4)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  3LB2LH2RA2RF0LE_1LD2RG2LB3LG3LG_0LJ1RC2RA3LG1RZ_0RC1RC1LD3RD---_3RD1LE1LE3LE0LA_4RC3LD2LE3LE3LI_1RG1LH2RG3LG---_1RC2LH1LB1LE4RE_0RC3LI3LI3LI---_3RB4LJ4LJ4LJ4RH
+
+BB(12,5): > f_{w^w}^6(14)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  1LH3RA1LD2RB---_1RZ3LA4LH2RB3LL_3RA1LA3LC2RC---_2RE---3LC2RC---_3RA2RE2RE4RF2LG_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_0LD1LH1LG3LH4LH_2RC1LI3LG3LI4LI_4LE1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RA1LL1LL1LL---
+
+BB(14,5): > f_{w^w+1}(51)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  2LG3LB2RM2RA3LL_2LC3RB1LD2RA1RL_3RB1LB3LC2RC3LB_2RE---3LC2RC---_3RB2RE2RE4RF4LB_1LG1RF3LG3RF4LG_2RJ0LH2LG2LI4LK_3RF1LH1LG3LH4LH_4LB1LI3LG3LI4LI_0RH1RJ2RJ3RJ4RF_---1LK3LE3LK---_3RB1LL1LL1LL---_1RZ0RF2LN------_3RC---4LN3LN---
+
+BB(17,5): > f_{epsilon_0}(20)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  4RF---0RF0RD1LQ_1RZ1RB2LC------_0LI4RC2RC3RC2RC_1LE1RD2RD3RD---_3LA1LE2LE3LE1LG_0LG1RF2RF3RF---_0RI0LH4RD3RI2LH_2LA1LH2LH3LH0RC_3RN---0LA0LI2RF_2RO---2LJ3LJ---_2LL---2RK3RK4RK_3RO2RO2LL3LL4LL_3LL---2RM3RM4RM_4LJ1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RB1LQ2LQ3LQ1LQ
+
+
+--- 6-symbol ---
+
+BB(12,6): > f_{w^w+1}(330)
+  (wiki-current 2026-11-16; Loader3229 in Nov 2026.  wiki verification: Not independently verified.  No machine was recorded for this domain before.)
+  5LC3LB4LH2RA3LL1RZ_2LC3RB1LD2RA4RB0LC_3RB1LB3LC2RC0RL5LG_2RE2RD3LC2RC------_3RB2RE2RE4RF------_1LG1RF3LG3RF4LG1RB_2RJ0LH2LG2LI4LK---_---1LH1LG3LH4LH---_2RC1LI3LG3LI4LI---_---1RJ2RJ3RJ4RF1RA_---1LK3LE3LK------_3RB1LL1LL1LL------
+
+STATUS: recorded, not verified.  Every level above is the wiki row's claim.
+No local run, no Rocq/Lean theorem, and no independent check is asserted
+for any of these 25 rows.
+-------------------------------------------------------------------------
+BBSEARCH -- our own run, 2026-11-16
+-------------------------------------------------------------------------
+Tool: https://github.com/loader3229/bbsearch (GPL-3.0).  Cloned and built
+here with `g++ -O2 -std=c++11 -o bbsearch.exe bbsearch.cpp` (mingw-w64);
+the 48 cores are read at run time from bbcores_new.txt.
+
+What this does and does not say.  bbsearch is a depth-first search over
+machines that contain a given core; it reports "the maximum landmark
+configuration found within the given budget".  A landmark hit is a
+configuration SHAPE reached mid-run -- a left odd 3-run with 2^k, the head
+back in its core state, a right ladder of 1s, 4s, 3s ... (shape per core,
+see the tool's docs/cores.md).  It is NOT a halting time, NOT an FGH bound
+and NOT a proof.  Nothing below is Rocq- or Lean-verified, and no row here
+claims a Busy Beaver record.
+
+RUN A -- reproduce the published baseline (--all --cap 3000 --budget 3e6).
+  43 s wall on this machine, all 48 cores.  25 cores found their landmark,
+  23 did not; configs, step and node counts reproduce docs/cores.md
+  ("Measured reachability 2026-11-16") row for row.  79 "new best" configs
+  were printed over the pass.  Example, and the control for everything below:
+  fw_4  3 states / 4 symbols: 0^inf 3^(1) 2^16 A> 1^3 2  (step 241)
+  1RB3LB1RZ2RA_2LC3RB1LC2RA_3RB1LB3LC2RC
+  (that machine is the known BB(3,4) champion: the search rediscovers it,
+  which is the sanity check that our build and parameters are right.)
+
+RUN B -- the 23 that failed, at --cap 200000 --budget 1e9 each.
+  Eight of the twelve were run; every one consumed the full
+  1,006,632,960-step budget (abort=1) and found no landmark: fw4_5,
+  fwm2_6, fwm21_4, fwm21_6, fwp2_5, fwp21_5, fwpw1_5b, fwpw1_6.  The other
+  four were stopped to free the machine; nothing there had produced a
+  landmark in the baseline either.  More budget alone does not reach those construction
+  phases -- per the docs they want more states/symbols or --start cfg.
+
+RUN C -- one extra state over each core's fixed count (--states core+1,
+  --cap 50000 --budget 5e8).  This is the run that can hand back a machine
+  that is not simply the known champion.  Six cores, six machines, each
+  compared against the same core's run-A landmark:
+
+fw_4 > 4 states / 4 symbols: 0^inf 3^(1) 2^14 A> 1^1 2  (step 374)
+  0LB3LB1RZ2RA_0LD3RB1LC2RA_3RB1LB3LC2RC_2RC2LB1RD3LD
+  vs 2^16 at 3 states: smaller.  The extra state cost more search than it bought.
+
+fw_4's 4-state control is re-simulated here independently (own 200k-step
+simulator, not the tool): at step 374 the tape is 3 2^14 [A on 1] 2 3,
+matching the printed 2^14 / 1^1 2 under the core's last-segment rule.
+
+dfw_5 > 4 states / 5 symbols: 0^inf 3^(1) 2^3 A> 1^1 2  (step 67)
+  0LB3LB4LC2RA4LB_0LD3RB1LC2RA1RZ_3RB1LB3LC2RC4LC_0RC2LB1RD3LD---
+  vs 2^16 at 3 states: smaller.
+
+tfw_6 > 4 states / 6 symbols: 0^inf 3^(1) 2^3 A> 1^1 2  (step 67)
+  0LB3LB4LC2RA4LB5LB_0LD3RB1LC2RA5LC1RZ_3RB1LB3LC2RC4LC5LC_0RC2LB1RD3LD------
+  vs 2^16 at 3 states: smaller.
+
+fw1_5 > 6 states / 5 symbols: 0^inf 3^(1) 2^31 A> 1^2 4^2 0^inf  (step 2641)
+  0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ1RF4RA4LA4LE_0LC1LF2RC0LF3LC_1LC2RB4RF1RB2LA
+  vs 2^30 at 5 states: ONE COUNTER HIGHER at the same shape and the same
+  4^2 tail.  This is the run's one genuine improvement.  Not a champion
+  claim: the champion is a 5-state machine and this is a 6-state machine
+  with an extra state of freedom.  Re-simulated here independently: at step
+  2641 the tape is 3 2^31 [A on 1] 1 4 4 0, exactly the printed config.
+
+fw3_5 > 7 states / 5 symbols: 0^inf 3^(1) 2^1 A> 1^2 4^2 3^7 1^2 0^inf  (step 184)
+  0LB3LB4LC2RA4LB_0LG3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ3LF0LE4LD4LE_3RB1RG0LF4LE3LC_4LC4RE1LG3LF3LF_0LC2LE0RC1RB1LF
+  vs 4^2 3^5 1^2 at 6 states: the 3-run grows 5 -> 7 at the same p, q so
+  bigger.  The same independent simulator finds another maximal config on
+  this machine -- 3 2^7 [A on 1] 1 4 3^7 1 1 at step 357 -- because this
+  core's importance order ranks the 4-run above k (r > q > p > k > n > m),
+  so the tool's own "best" prefers 4^2 to 2^7.  Both are real configurations;
+  the tool's ranking is the one that decides its output.
+
+fwm21_5 > 9 states / 5 symbols: 0^inf 3^(1) 2^4 A> 1^2 4^1 0^inf  (step 124)
+  0LD3LB4LC2RA4LB_1RZ1RA1LD2RA4LD_3RB1LB3LC2RC4LC_3RE1RG3LC2RC3LC_0LF3RE0LG4LH4RB_0LE3LG0LI2RF4LG_0LI3RG1LH2RF2RA_3RG1LG3LH2RH4LH_0LH2LF4RG1LC4RH
+  vs 2^3 4^2 at 8 states: k is one higher but the 4-run is one lower, and
+  the importance order puts the 4-run first, so by the tool's own ranking
+  this is worse.  Recorded, not celebrated.
+
+STATUS: search output, not mathematics.  The six machines above were found
+by this run (parameters in the headings); their landmark configs and step
+numbers are the tool's.  Three were reproduced with an independent
+200k-step simulator written here (fw_4 4-state, fw1_5 6-state, fw3_5
+7-state).  No halting time, no FGH level and no Rocq/Lean proof is asserted
+for any of them, and none of them is entered as a champion anywhere else in
+this file.
+
+What this suggests next: only the +1-state fw1_5 and fw3_5 runs beat their
+own core's landmark, and only by one unit.  The shape of a machine of our
+own would come from rerunning exactly those two with a bigger --budget
+(5e8 -> 3e9) and two extra states; any level claim for the winner would
+then have to be proved in Rocq, not read off a landmark.
+-------------------------------------------------------------------------
+BBSEARCH CAMPAIGN -- 2026-11-16, 3e9 budgets: two machines of ours
+-------------------------------------------------------------------------
+Followed AGENTS.md of loader3229/bbsearch: cores are data, never present a
+landmark as a proof, budget 3e9 for real runs, run the smoke test after
+touching the core list (not touched here).  Four parallel searches, each
+--cap 200000 --budget 3e9, one or two extra states over the core:
+
+  core      states/syms  result
+  fw1_5     7 / 5        0^inf 3^(1) 2^30 A> 1^2 4^4 0^inf   step 2623
+  fw1_6     4 / 6        0^inf 3^(1) 2^5 A> 1^2 4 5^11 0^inf  step 467
+  fw3_5     8 / 5        0^inf 3^(1) 2^1 A> 1^2 4^2 3^2 1^1 0^inf  (worse
+                         than the 7-state row in the section above: 3^2 vs 3^7)
+  fwm21_5   10 / 5       no landmark (3e9 exhausted, abort=1)
+
+The two machines worth keeping (both found by this campaign, both later
+re-simulated here with the independent 200k-step simulator, which
+reproduces the printed configuration at the printed step, to the cell):
+
+fw1_5 > 7 states / 5 symbols -- 0^inf 3^(1) 2^30 A> 1^2 4^4 0^inf, step 2623
+  0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4RA_1LF0LD4LG1RB4LA
+  Same core and same 2^30 as the 5-state machine above, but the 4-run is
+  4^4 instead of 4^2, and 4-run length is this core's first importance
+  slot (p > k > n > m).  Within the tool's own ranking that is the best
+  fw1_5 machine this campaign produced.
+
+fw1_6 > 4 states / 6 symbols -- 0^inf 3^(1) 2^5 A> 1^2 4 5^11 0^inf, step 467
+  0LD3LB5LD2RA4LB5RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC3LA_1RA1LD0LD4RA2LD2LC
+  The 3-state fw1_6 core finds no landmark at all at the baseline budget
+  (docs/cores.md: 36,055 steps, 1 node).  This 4-state machine is the
+  first landmark that core has produced here, with an 11-cell 5-run.
+
+WHAT THESE ARE NOT.  Not champions, and not level claims.  A landmark is a
+mid-run shape; the level of a machine is a statement about its halting
+time, which a landmark search neither produces nor proves.  Concretely:
+the wiki's current BB(7,5) row is > f_{w+3}^2(10) (loader3229, Nov 2026)
+while the best 7-state fw1_5 landmark here is a 2^30 / 4^4 configuration,
+and a 2^30 configuration is nothing next to f_{w+3}^2(10) -- the two
+numbers live in different units.  Comparing landmark counters across
+machines of the same domain does not rank their levels.
+
+Measured here, not assumed: both machines run past 1,000,000 steps without
+halting (independent simulator), so neither is a trivially-halting
+machine, and neither is known to halt at all.  The fw1_6 machine visits its
+landmark shape exactly once (step 467) and then leaves it; the fw1_5
+machine visits its shape 17 times (k = 2, a countdown through n = 14..1,
+then the 2^30 / 4^4 event at step 2623), which is the phase structure an
+analysis would have to explain.
+
+So the honest state: we have two machines we found ourselves, with
+verified landmarks.  Turning either into an FGH machine is the second half
+of loader's process and none of it is done here -- read the construction,
+identify the counters and their recursion, write the halting-time bound,
+and prove it in Rocq (bbwork's standing rule: a level machine must halt
+within f_alpha(n) steps, verified with the rules).  Until that exists,
+these are candidates with a measured footprint, nothing more.
+--------------------------------------------------------------------------------------------------------------------------------------------
+LOADER-STYLE ANALYSIS -- fw1_6 4-state machine, 2026-11-16
+-------------------------------------------------------------------------
+Machine (found by the 3e9 campaign above, 4 states A-D, 6 symbols):
+
+  0LD3LB5LD2RA4LB5RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC3LA_1RA1LD0LD4RA2LD2LC
+
+What follows is measured on that machine with our own simulators, not
+quoted from the tool.  Nothing here is proved: every figure is a
+measurement, and the command that produced it is in bbsearch-logs/.
+
+1. THE STARTUP, 467 STEPS
+   From a blank tape the machine reaches the campaign's landmark at step
+   467:  3 2^5  A>  1^2 4 5^11  (20 cells, head in A on the 1-run); the
+   independent checker reproduces it at exactly that step.  The phase
+   tracer agrees: the tape at step 467 is 3 2^5 [1] 4 5^11, i.e. the head
+   has just consumed one of the two 1s.
+   Restarting from that exact configuration (translated) reproduces the
+   original continuation: after 1000 more steps both runs are in state B
+   with 53 cells and the head at the same relative cell.  So the landmark
+   is a genuine mid-run state, and the construction can be probed by
+   starting there with altered counters.
+
+2. THE COUNTERS, AND WHICH OF THEM MATTER
+   Three counters are visible in the landmark: k (2-run length, 5), n
+   (1-run length, 2), p (5-run length, 11).  Sweeps from the landmark
+   configuration, every run allowed 2e9 steps (the n sweep 2e8), and no run
+   halted:
+
+     k = 0..10  (n=2, p=11)   no halt for any k; head ends between -39232
+                              and -43122, cells 44702..48596, k=2 the
+                              outlier at 48596
+     p = 0..12  (k=5, n=2)    no halt for any p; head ends at -43116 every
+                              time, cells 44695+p exactly
+     n = 0..3   (k=5, p=11)   no halt for any n; head ends at -3242 every
+                              time, cells 13468+n exactly
+
+   p and n are carried along and never read again: the cell count shifts by
+   exactly the counter and the head lands on the same cell.  k perturbs the
+   phase alignment a little (up to a few thousand cells (+/-3900 across k=0..10)) and changes
+   nothing else.  No value of any counter produces a halt, and none
+   produces a halt time that grows with the counter -- which is the test
+   that matters for a level.
+
+3. THE RECURSION THAT IS ACTUALLY THERE
+   The long run is one outer loop; each iteration the head reaches a new
+   leftmost cell.  Inside a phase of length L the i-th iteration costs
+   exactly 8i-1 steps (measured: 7 at i=1, 3279 at i=410, 16383 at
+   i=2048, 24575 at i=3072 -- all exactly 8i-1), and the iteration that
+   closes the phase costs 12L-1 (12275, 24563, 49139 for the three phases
+   below).  So a phase costs
+   sum(8i-1) plus the 4L extra of its closing iteration: 4L^2 + O(L), which
+   is the 4.00x L^2 measured below.  Phase lengths:
+
+     phase  iterations   length L   cost measured   cost/L^2
+      18    1050..2072      1023         4193277     4.006
+      19    2073..4119      2047        16775165     4.003
+      20    4120..8214      4095        67104765     4.002
+
+   L = 2^10-1, 2^11-1, 2^12-1: the length doubles every phase.  Cumulative
+   from the start to the end of the L = 4095 phase: 88,073,207 steps
+   measured against (16/3)L^2 = 89,434,800 predicted by summing 4L^2 over
+   the doubling phases -- 1.5% out, which is the O(L) slop of the first and
+   last partial phases.
+
+   With L = 2^m the length of the last completed phase, the run costs
+   (16/3)L^2; in terms of tape cells C (about one cell per
+   iteration, and cumulative iterations run to 2L) that is (4/3)C^2 + O(C).  Measured cells: 41 at 1e3, 121 at 1e4, 335 at 1e5, 938 at
+   1e6, 3119 at 1e7, 9834 at 1e8, 15465 at 3e8 -- an exponent of 0.49
+   against steps, which is what a quadratic-in-cells law predicts.
+
+4. THE HALTING-TIME BOUND THIS CONSTRUCTION IMPLIES
+   None -- and that is the result, not a gap to be talked around.  An
+   f_alpha machine needs T(n) growing with some input n.  The only
+   candidates for n are k, n and p, and section 2 settles them: p and n
+   leave the trajectory exactly unchanged, k perturbs it by up to a few thousand cells, and no value of any of them terminates the run inside 2e9 steps.
+   A machine whose runtime does not respond to any counter it prints cannot
+   encode a halting-time function, so it sits at no level of the FGH no
+   matter how large its intermediate configurations are.
+
+   What the construction does imply is a divergence pattern: phases of
+   length 2^m-1 costing 4L^2, repeating with no termination test.  The
+   fixed tail 3 3 1 3 1 4 5^11 is unchanged from step 467 to 1e8 -- the one
+   part of the tape that could act as an outer termination marker is inert,
+   so nothing in the construction can end the loop.  Measured: no halt in
+   3e8 steps from blank, none in 2e9 from each of 11 k-values and each of 13
+   p-values, none in 2e8 from each of 4 n-values.
+
+   Verdict: not an FGH machine, not a champion.  A holdout-class candidate:
+   a machine that grows a stack without bound and, on all evidence here,
+   never halts.  It stays in the ledger because that classification is
+   itself the analysis result.  The 467-step landmark looked exactly like a
+   5^11 construction and the counters it printed are padding.
+
+5. WHAT A PROOF WOULD NEED (not done here)
+   Either direction needs a closed form, and section 3 supplies the
+   candidate invariant: phase length doubling with per-iteration cost 8i-1
+   and a closing iteration of 12L-1, i.e. the tape behaves as a binary
+   counter whose phase m runs 2^m-1 iterations.  A Rocq non-halting proof
+   would show that invariant is preserved by every transition and that the
+   tape never reaches the fixed tail; a halting claim would have to exhibit
+   a counter that reaches zero, and sections 2 and 4 say no such counter
+   exists.  Until one of those proofs exists this entry is a measurement,
+   not a theorem, and it is not Rocq-verified.
+
+================================================================================
+FE0_5 -- BLANK-TAPE COMPLETION (the machine the search actually returns)
+================================================================================
+
+1. WHAT THE SWEEP RETURNED
+   3e9 blank-tape, 17 states:  nothing (192 nodes, abort=1).
+   5e9 blank-tape, 18 states:  nothing (210 nodes).
+   5e9 blank-tape, 19 states:  nothing (213 nodes).
+   1e10 blank-tape, 17 states: landmark `1^2 B> 2^3 0^inf` at step 155,
+   states_used=17, 16 free cells filled:
+     A0=1LC A1=0LJ B3=0LC B4=0LA D4=0RA E4=4RF F4=2LD G2=1LG G4=4RD
+     H4=2LQ I1=1LJ I4=0LF J1=0LE J4=0RD K1=0LB M1=0LB
+
+   MACHINE (17 rows, 5 symbols, '---' = halt):
+   1LC0LJ0RF0RD1LQ_1RZ1RB2LC0LC0LA_0LI4RC2RC3RC2RC_1LE1RD2RD3RD0RA_3LA1LE2LE3LE4RF_0LG1RF2RF3RF2LD_0RI0LH1LG3RI4RD_2LA1LH2LH3LH2LQ_3RN1LJ0LA0LI0LF_2RO0LE2LJ3LJ0RD_2LL0LB2RK3RK4RK_3RO2RO2LL3LL4LL_3LL0LB2RM3RM4RM_4LJ1LN2LN3LN1LO_1RB4RP1RK0RM4LN_4LJ1RP2RP3RP0RP_1RB1LQ2LQ3LQ1LQ
+
+2. THE BOOT, READ OFF THE TRACE (155 steps)
+   A0=1LC writes the first 1 and steps left into C.  C0=0LI erases, I0=3RN
+   writes a 3, N0=4LJ a 4, J3=3LJ steps over it, J0=2RO writes a 2, O3=0RM
+   clears the 3, M4=4RM keeps the 4, M1=0LB hands to B, and B4=0LA sends the
+   head back to A, which writes the second 1 (A0 again).  C then sweeps the
+   scaffold (C2=2RC, C1=4RC, C0=0LI), I4=0LF, F2=2RF, F0=0LG and G2=1LG,
+   G0=0RI walk it down to `1 2`, and the closing pass (D4=0RA sweep 2RD,
+   E4=4RF, F sweep, G1=0LH, H 2LH, H4=2LQ, Q 1LQ/1RB, B 1RB) leaves
+   `1^2 B> 2^3` at step 155.  The boot is a 155-step assembler: 4/3 scaffold,
+   two sweeps, then B on the 2-run.
+
+3. VERIFICATION
+   Own simulator, blank tape: at 2e8 the tape is identical to the core's
+   (2,3) start -- state D, 1,438 cells, 354 ones, same word.  The boot leaves
+   no residue and no extra 1s: the completion is exactly 155-step prefix +
+   the fe0_5 engine at (2,3).
+
+4. HALTING PROFILE AGAINST THE 15,981-STEP RUN
+   bare core, 1^1 B> 2^3 : halts 15,981, score 1^39.
+   bare core, 1^2 B> 2^3 : no halt at 2e8 (state D, 1,438 cells, 354 ones),
+                           no halt at 3e9 (state H, 3,256 cells, 1,230 ones,
+                           tape 1^1229 4 2^2 3 2 3^2 ...).
+   completion, blank    : 155 steps to (2,3), then the same run: no halt at
+                           3e9.  Cells grow 1,438 -> 3,256 while the 2/3 word
+                           stays short; the left 1-block grows 354 -> 1,230.
+   So the completion never reaches the 15,981 figure.  Its boot writes two
+   1s (A0 fires twice), and every completion found so far seeds m>=2: an
+   exhaustive sweep of 28,900 A-row pairs (writes 0..4, both directions, all
+   17 states) plus B3/B4 repair produced only (3,4), and this 1e10 search
+   produced (2,3).  m=1 is reachable only by hand-setting 1^1 B> 2^3, which
+   is what the earlier analysis did.
+
+5. READING
+   m=1 is one descent level: 15,981 steps and 39 ones.
+   m=2 is one nesting level deeper: the engine sits in an inner loop with a
+   short 2/3 word and a growing 1-block (354 ones at 2e8, 1,230 at 3e9), no
+   halt at 3e9.  One extra 1 in the input moves the time scale from 1.6e4 to
+   beyond 3e9 -- the same steep response seen at (1,3) vs (1,4) (>2e8), so the
+   engine's runtime is genuinely parameter-driven, not a fixed program.
+
+6. VERDICT
+   The blank-tape machine exists, is exact, and seeds the smallest input its
+   own boot can write -- (2,3), which is already past 3e9.  That is the honest
+   comparison: the 15,981-step halt is the m=1 level, and the completion
+   starts one level down, so it measures the m=2 grind instead of a finish.
+   Still measured, not proved: T(1,3)=15,981, T(1,4)>2e8, T(2,3)>3e9, no
+   closed form, not Rocq-verified.

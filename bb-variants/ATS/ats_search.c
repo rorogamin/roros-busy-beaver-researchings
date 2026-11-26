@@ -380,9 +380,65 @@ static int state_seen(CycleSlot *tab, uint32_t gen, const Tape *t,
     return 0;
 }
 
-static Reason simulate(Tape *t, Arena *a, uint64_t max_steps,
-                       uint32_t max_tokens, CycleSlot *cycle, uint32_t cycle_gen,
-                       uint64_t *out_steps) {
+/* ---- transposition cache -------------------------------------------------
+ * Tapes are equivalent when one reaches a state another already reached: the
+ * first one's runtime is "steps to get there" plus the known runtime of the
+ * state.  Candidates share short intermediate tapes, so large parts of a sweep
+ * become lookups instead of simulations.  Keys are 128-bit state hashes and
+ * only tapes of at most CACHE_MAX_TOKENS tokens are cached (that is where
+ * convergence happens).  Limit outcomes are cached too, which is sound while
+ * the caps stay fixed: they only short-circuit into the same "did not halt
+ * within the caps" classification.
+ */
+#define CACHE_BITS 21
+#define CACHE_SIZE (1u << CACHE_BITS)
+#define CACHE_MASK (CACHE_SIZE - 1u)
+#define CACHE_MAX_TOKENS 64u
+
+enum { CK_EMPTY = 0, CK_HALT = 1, CK_NONHALT = 2, CK_LIMITED = 3 };
+
+typedef struct {
+    uint64_t h1, h2;
+    int64_t steps;   /* remaining steps to halt when kind == CK_HALT */
+    uint8_t kind;
+} CacheSlot;
+
+typedef struct {
+    uint64_t h1, h2, d;
+} Rec;
+
+static CacheSlot *g_cache;
+static Rec *g_rec;
+static uint32_t g_rec_n, g_rec_cap;
+static uint64_t g_cache_probes, g_cache_hits, g_cache_puts;
+
+static int cache_probe(uint64_t h1, uint64_t h2, int64_t *steps) {
+    uint32_t idx = (uint32_t)(h1 ^ (h1 >> 32)) & CACHE_MASK;
+    for (uint32_t i = 0; i < 8; i++) {
+        CacheSlot *s = &g_cache[idx];
+        if (s->kind == CK_EMPTY) return CK_EMPTY;
+        if (s->h1 == h1 && s->h2 == h2) { *steps = s->steps; return s->kind; }
+        idx = (idx + 1) & CACHE_MASK;
+    }
+    return CK_EMPTY;
+}
+
+static void cache_put(uint64_t h1, uint64_t h2, uint8_t kind, int64_t steps) {
+    uint32_t idx = (uint32_t)(h1 ^ (h1 >> 32)) & CACHE_MASK;
+    for (uint32_t i = 0; i < 8; i++) {
+        CacheSlot *s = &g_cache[idx];
+        if (s->kind == CK_EMPTY || (s->h1 == h1 && s->h2 == h2)) {
+            s->h1 = h1; s->h2 = h2; s->kind = kind; s->steps = steps;
+            g_cache_puts++;
+            return;
+        }
+        idx = (idx + 1) & CACHE_MASK;
+    }
+}
+
+static Reason simulate_raw(Tape *t, Arena *a, uint64_t max_steps,
+                           uint32_t max_tokens, CycleSlot *cycle, uint32_t cycle_gen,
+                           uint64_t *out_steps) {
     for (uint64_t steps = 0;; steps++) {
         if (t->n == 0) {
             *out_steps = steps;
@@ -395,6 +451,34 @@ static Reason simulate(Tape *t, Arena *a, uint64_t max_steps,
         if (t->zeros == 0 && t->n >= 2) {
             *out_steps = steps;
             return R_ZERO_FREE;
+        }
+        if (g_cache && t->n <= CACHE_MAX_TOKENS) {
+            uint64_t h1 = state_hash(t, a, 1469598103934665603ull);
+            uint64_t h2 = state_hash(t, a, 1099511628211ull + 0x9e3779b97f4a7c15ull);
+            int64_t rem = 0;
+            int kind = cache_probe(h1, h2, &rem);
+            g_cache_probes++;
+            if (kind == CK_HALT) {
+                g_cache_hits++;
+                *out_steps = steps + (uint64_t)rem;
+                return R_HALT;
+            }
+            if (kind == CK_NONHALT) {
+                g_cache_hits++;
+                *out_steps = steps;
+                return R_ZERO_FREE;
+            }
+            if (kind == CK_LIMITED) {
+                g_cache_hits++;
+                *out_steps = steps;
+                return R_LIMIT;
+            }
+            if (g_rec_n < g_rec_cap) {
+                g_rec[g_rec_n].h1 = h1;
+                g_rec[g_rec_n].h2 = h2;
+                g_rec[g_rec_n].d = steps;
+                g_rec_n++;
+            }
         }
         if (steps >= 64 && (steps & 15) == 0 && t->n <= 5000 &&
             cycle && state_seen(cycle, cycle_gen, t, a)) {
@@ -418,6 +502,27 @@ static Reason simulate(Tape *t, Arena *a, uint64_t max_steps,
             return R_HALT;
         }
     }
+}
+
+/* Run one candidate and back-fill every state it passed through. */
+static Reason simulate(Tape *t, Arena *a, uint64_t max_steps,
+                       uint32_t max_tokens, CycleSlot *cycle, uint32_t cycle_gen,
+                       uint64_t *out_steps) {
+    g_rec_n = 0;
+    Reason r = simulate_raw(t, a, max_steps, max_tokens, cycle, cycle_gen, out_steps);
+    if (g_cache) {
+        uint8_t kind = CK_EMPTY;
+        if (r == R_HALT) kind = CK_HALT;
+        else if (r == R_ZERO_FREE || r == R_CYCLE) kind = CK_NONHALT;
+        else if (r == R_LIMIT || r == R_TAPE_LIMIT) kind = CK_LIMITED;
+        if (kind != CK_EMPTY) {
+            for (uint32_t i = 0; i < g_rec_n; i++) {
+                int64_t rem = (kind == CK_HALT) ? (int64_t)(*out_steps - g_rec[i].d) : 0;
+                cache_put(g_rec[i].h1, g_rec[i].h2, kind, rem);
+            }
+        }
+    }
+    return r;
 }
 
 static void format_tape(const Token *v, uint32_t n, const Arena *a,
@@ -600,6 +705,10 @@ static void search_n(int n, uint64_t max_steps, uint32_t max_tokens,
     tape_init(&c.run, 1024);
     arena_init(&c.arena, 4096);
     c.cycle = xmalloc((size_t)CYCLE_SIZE * sizeof(CycleSlot));
+    g_cache = xmalloc((size_t)CACHE_SIZE * sizeof(CacheSlot));
+    memset(g_cache, 0, (size_t)CACHE_SIZE * sizeof(CacheSlot));
+    g_rec_cap = 1u << 18;
+    g_rec = xmalloc((size_t)g_rec_cap * sizeof(Rec));
     memset(c.cycle, 0, (size_t)CYCLE_SIZE * sizeof(CycleSlot));
 
     clock_t start = clock();
@@ -620,6 +729,10 @@ static void search_n(int n, uint64_t max_steps, uint32_t max_tokens,
     printf("arena-limit:%" PRIu64 "\n", c.arena_limited);
     printf("best:       %" PRIu64 " steps\n", c.best_steps);
     printf("tape:       %s\n", c.best_tape);
+    printf("cache:      %" PRIu64 " probes, %" PRIu64 " hits (%.1f%%), %" PRIu64 " entries\n",
+           g_cache_probes, g_cache_hits,
+           g_cache_probes ? 100.0 * (double)g_cache_hits / (double)g_cache_probes : 0.0,
+           g_cache_puts);
     printf("time:       %.2f s\n", secs);
 
     tape_destroy(&c.base);

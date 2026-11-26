@@ -1,0 +1,523 @@
+===== fw4_5 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fw4_5 states=7 symbols=5 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 3^(2m+1) 2^k A> 1^n 4^p 3^q 1^r 2^s 0^inf
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=8
+  ... steps=33554432 nodes=10
+  ... steps=50331648 nodes=13
+  ... steps=67108864 nodes=15
+  ... steps=83886080 nodes=17
+  ... steps=100663296 nodes=20
+  ... steps=117440512 nodes=22
+  ... steps=134217728 nodes=25
+  ... steps=150994944 nodes=27
+  ... steps=167772160 nodes=30
+  ... steps=184549376 nodes=32
+  ... steps=201326592 nodes=33
+  ... steps=218103808 nodes=36
+  ... steps=234881024 nodes=39
+  ... steps=251658240 nodes=41
+  ... steps=268435456 nodes=44
+  ... steps=285212672 nodes=46
+  ... steps=301989888 nodes=48
+  ... steps=318767104 nodes=50
+  ... steps=335544320 nodes=52
+  ... steps=352321536 nodes=56
+  ... steps=369098752 nodes=57
+  ... steps=385875968 nodes=60
+  ... steps=402653184 nodes=62
+  ... steps=419430400 nodes=65
+  ... steps=436207616 nodes=67
+  ... steps=452984832 nodes=69
+  ... steps=469762048 nodes=70
+  ... steps=486539264 nodes=72
+  ... steps=503316480 nodes=74
+  ... steps=520093696 nodes=76
+  ... steps=536870912 nodes=80
+  ... steps=553648128 nodes=83
+  ... steps=570425344 nodes=85
+  ... steps=587202560 nodes=87
+  ... steps=603979776 nodes=89
+  ... steps=637534208 nodes=92
+  ... steps=654311424 nodes=94
+  ... steps=671088640 nodes=96
+  ... steps=687865856 nodes=98
+  ... steps=704643072 nodes=100
+  ... steps=721420288 nodes=101
+  ... steps=738197504 nodes=104
+  ... steps=754974720 nodes=107
+  ... steps=771751936 nodes=109
+  ... steps=788529152 nodes=111
+  ... steps=805306368 nodes=113
+  ... steps=822083584 nodes=115
+  ... steps=838860800 nodes=117
+  ... steps=855638016 nodes=118
+  ... steps=872415232 nodes=121
+  ... steps=889192448 nodes=124
+  ... steps=905969664 nodes=126
+  ... steps=922746880 nodes=128
+  ... steps=939524096 nodes=130
+  ... steps=956301312 nodes=133
+  ... steps=973078528 nodes=135
+  ... steps=989855744 nodes=137
+
+---- done ----
+steps=1006632960 nodes=139 abort=1
+no landmark configuration was reached
+===== fwm2_6 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwm2_6 states=6 symbols=6 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 5 3^(2m+1) 2^k A> 1^n 2
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=8
+  ... steps=33554432 nodes=11
+  ... steps=50331648 nodes=13
+  ... steps=67108864 nodes=14
+  ... steps=83886080 nodes=15
+  ... steps=100663296 nodes=16
+  ... steps=134217728 nodes=19
+  ... steps=150994944 nodes=20
+  ... steps=167772160 nodes=22
+  ... steps=184549376 nodes=23
+  ... steps=201326592 nodes=24
+  ... steps=234881024 nodes=26
+  ... steps=251658240 nodes=27
+  ... steps=268435456 nodes=28
+  ... steps=285212672 nodes=29
+  ... steps=301989888 nodes=30
+  ... steps=318767104 nodes=32
+  ... steps=335544320 nodes=33
+  ... steps=352321536 nodes=34
+  ... steps=369098752 nodes=35
+  ... steps=385875968 nodes=37
+  ... steps=402653184 nodes=38
+  ... steps=419430400 nodes=39
+  ... steps=436207616 nodes=40
+  ... steps=452984832 nodes=41
+  ... steps=469762048 nodes=43
+  ... steps=486539264 nodes=44
+  ... steps=503316480 nodes=45
+  ... steps=520093696 nodes=46
+  ... steps=536870912 nodes=48
+  ... steps=553648128 nodes=49
+  ... steps=570425344 nodes=50
+  ... steps=587202560 nodes=51
+  ... steps=603979776 nodes=52
+  ... steps=620756992 nodes=53
+  ... steps=637534208 nodes=55
+  ... steps=654311424 nodes=56
+  ... steps=671088640 nodes=57
+  ... steps=687865856 nodes=59
+  ... steps=704643072 nodes=60
+  ... steps=721420288 nodes=61
+  ... steps=738197504 nodes=62
+  ... steps=754974720 nodes=64
+  ... steps=771751936 nodes=65
+  ... steps=788529152 nodes=66
+  ... steps=805306368 nodes=67
+  ... steps=822083584 nodes=68
+  ... steps=838860800 nodes=69
+  ... steps=855638016 nodes=70
+  ... steps=872415232 nodes=71
+  ... steps=905969664 nodes=74
+  ... steps=922746880 nodes=75
+  ... steps=939524096 nodes=77
+  ... steps=956301312 nodes=78
+  ... steps=973078528 nodes=80
+  ... steps=989855744 nodes=81
+
+---- done ----
+steps=1006632960 nodes=82 abort=1
+no landmark configuration was reached
+===== fwm21_4 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwm21_4 states=10 symbols=4 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 1^m B> 0 2^k 1^n 0^p 3
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=6
+  ... steps=33554432 nodes=9
+  ... steps=50331648 nodes=10
+  ... steps=67108864 nodes=11
+  ... steps=83886080 nodes=12
+  ... steps=100663296 nodes=13
+  ... steps=117440512 nodes=15
+  ... steps=134217728 nodes=16
+  ... steps=150994944 nodes=17
+  ... steps=167772160 nodes=18
+  ... steps=184549376 nodes=19
+  ... steps=201326592 nodes=20
+  ... steps=218103808 nodes=21
+  ... steps=234881024 nodes=22
+  ... steps=251658240 nodes=24
+  ... steps=268435456 nodes=25
+  ... steps=285212672 nodes=26
+  ... steps=301989888 nodes=27
+  ... steps=318767104 nodes=28
+  ... steps=335544320 nodes=29
+  ... steps=352321536 nodes=30
+  ... steps=369098752 nodes=31
+  ... steps=385875968 nodes=32
+  ... steps=402653184 nodes=33
+  ... steps=419430400 nodes=34
+  ... steps=436207616 nodes=36
+  ... steps=452984832 nodes=37
+  ... steps=486539264 nodes=40
+  ... steps=503316480 nodes=41
+  ... steps=520093696 nodes=41
+  ... steps=536870912 nodes=42
+  ... steps=553648128 nodes=43
+  ... steps=570425344 nodes=45
+  ... steps=587202560 nodes=46
+  ... steps=603979776 nodes=47
+  ... steps=620756992 nodes=48
+  ... steps=637534208 nodes=49
+  ... steps=654311424 nodes=50
+  ... steps=671088640 nodes=51
+  ... steps=687865856 nodes=53
+  ... steps=704643072 nodes=54
+  ... steps=721420288 nodes=55
+  ... steps=738197504 nodes=56
+  ... steps=754974720 nodes=57
+  ... steps=771751936 nodes=58
+  ... steps=788529152 nodes=59
+  ... steps=805306368 nodes=60
+  ... steps=822083584 nodes=61
+  ... steps=838860800 nodes=63
+  ... steps=855638016 nodes=64
+  ... steps=872415232 nodes=67
+  ... steps=889192448 nodes=67
+  ... steps=905969664 nodes=69
+  ... steps=922746880 nodes=70
+  ... steps=939524096 nodes=72
+  ... steps=956301312 nodes=73
+  ... steps=973078528 nodes=74
+  ... steps=989855744 nodes=75
+
+---- done ----
+steps=1006632960 nodes=77 abort=1
+no landmark configuration was reached
+===== fwm21_6 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwm21_6 states=7 symbols=6 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 5 3^(2m+1) 2^k A> 1^n 2^p 5
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=8
+  ... steps=33554432 nodes=10
+  ... steps=50331648 nodes=11
+  ... steps=67108864 nodes=12
+  ... steps=83886080 nodes=13
+  ... steps=100663296 nodes=14
+  ... steps=117440512 nodes=16
+  ... steps=134217728 nodes=16
+  ... steps=150994944 nodes=18
+  ... steps=167772160 nodes=18
+  ... steps=184549376 nodes=20
+  ... steps=201326592 nodes=21
+  ... steps=218103808 nodes=22
+  ... steps=234881024 nodes=23
+  ... steps=251658240 nodes=24
+  ... steps=268435456 nodes=25
+  ... steps=285212672 nodes=26
+  ... steps=301989888 nodes=28
+  ... steps=318767104 nodes=29
+  ... steps=335544320 nodes=30
+  ... steps=352321536 nodes=30
+  ... steps=369098752 nodes=32
+  ... steps=385875968 nodes=33
+  ... steps=402653184 nodes=34
+  ... steps=419430400 nodes=35
+  ... steps=436207616 nodes=36
+  ... steps=452984832 nodes=37
+  ... steps=469762048 nodes=38
+  ... steps=486539264 nodes=39
+  ... steps=503316480 nodes=40
+  ... steps=520093696 nodes=41
+  ... steps=536870912 nodes=43
+  ... steps=553648128 nodes=43
+  ... steps=570425344 nodes=45
+  ... steps=587202560 nodes=45
+  ... steps=603979776 nodes=47
+  ... steps=620756992 nodes=48
+  ... steps=637534208 nodes=49
+  ... steps=654311424 nodes=50
+  ... steps=671088640 nodes=51
+  ... steps=687865856 nodes=52
+  ... steps=704643072 nodes=53
+  ... steps=721420288 nodes=54
+  ... steps=738197504 nodes=55
+  ... steps=754974720 nodes=56
+  ... steps=771751936 nodes=57
+  ... steps=788529152 nodes=58
+  ... steps=805306368 nodes=60
+  ... steps=822083584 nodes=60
+  ... steps=838860800 nodes=62
+  ... steps=855638016 nodes=62
+  ... steps=872415232 nodes=64
+  ... steps=889192448 nodes=65
+  ... steps=905969664 nodes=66
+  ... steps=922746880 nodes=67
+  ... steps=939524096 nodes=67
+  ... steps=956301312 nodes=70
+  ... steps=973078528 nodes=71
+  ... steps=989855744 nodes=71
+
+---- done ----
+steps=1006632960 nodes=73 abort=1
+no landmark configuration was reached
+===== fwp2_5 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwp2_5 states=8 symbols=5 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf C|G> 3^n 0^inf
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=5
+  ... steps=33554432 nodes=9
+  ... steps=50331648 nodes=10
+  ... steps=67108864 nodes=12
+  ... steps=83886080 nodes=13
+  ... steps=100663296 nodes=14
+  ... steps=117440512 nodes=16
+  ... steps=134217728 nodes=17
+  ... steps=150994944 nodes=19
+  ... steps=167772160 nodes=20
+  ... steps=184549376 nodes=22
+  ... steps=201326592 nodes=23
+  ... steps=218103808 nodes=25
+  ... steps=234881024 nodes=26
+  ... steps=251658240 nodes=28
+  ... steps=268435456 nodes=29
+  ... steps=285212672 nodes=30
+  ... steps=301989888 nodes=31
+  ... steps=318767104 nodes=32
+  ... steps=335544320 nodes=34
+  ... steps=352321536 nodes=36
+  ... steps=369098752 nodes=37
+  ... steps=385875968 nodes=38
+  ... steps=402653184 nodes=39
+  ... steps=419430400 nodes=40
+  ... steps=436207616 nodes=43
+  ... steps=452984832 nodes=44
+  ... steps=469762048 nodes=45
+  ... steps=486539264 nodes=47
+  ... steps=503316480 nodes=48
+  ... steps=520093696 nodes=50
+  ... steps=536870912 nodes=51
+  ... steps=553648128 nodes=53
+  ... steps=570425344 nodes=55
+  ... steps=587202560 nodes=56
+  ... steps=603979776 nodes=57
+  ... steps=620756992 nodes=58
+  ... steps=637534208 nodes=61
+  ... steps=654311424 nodes=61
+  ... steps=671088640 nodes=65
+  ... steps=687865856 nodes=66
+  ... steps=704643072 nodes=67
+  ... steps=721420288 nodes=68
+  ... steps=738197504 nodes=70
+  ... steps=754974720 nodes=70
+  ... steps=771751936 nodes=72
+  ... steps=788529152 nodes=73
+  ... steps=805306368 nodes=74
+  ... steps=822083584 nodes=75
+  ... steps=838860800 nodes=78
+  ... steps=855638016 nodes=79
+  ... steps=872415232 nodes=81
+  ... steps=889192448 nodes=82
+  ... steps=905969664 nodes=84
+  ... steps=922746880 nodes=85
+  ... steps=939524096 nodes=86
+  ... steps=956301312 nodes=88
+  ... steps=973078528 nodes=89
+  ... steps=989855744 nodes=90
+
+---- done ----
+steps=1006632960 nodes=92 abort=1
+no landmark configuration was reached
+===== fwp21_5 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwp21_5 states=9 symbols=5 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf A|C|G> 3^m 0^n 4 0^inf
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=5
+  ... steps=33554432 nodes=6
+  ... steps=50331648 nodes=7
+  ... steps=67108864 nodes=8
+  ... steps=83886080 nodes=10
+  ... steps=100663296 nodes=11
+  ... steps=117440512 nodes=12
+  ... steps=134217728 nodes=13
+  ... steps=150994944 nodes=14
+  ... steps=167772160 nodes=15
+  ... steps=184549376 nodes=16
+  ... steps=201326592 nodes=17
+  ... steps=218103808 nodes=18
+  ... steps=234881024 nodes=20
+  ... steps=251658240 nodes=21
+  ... steps=268435456 nodes=22
+  ... steps=285212672 nodes=23
+  ... steps=301989888 nodes=24
+  ... steps=335544320 nodes=26
+  ... steps=352321536 nodes=27
+  ... steps=369098752 nodes=28
+  ... steps=385875968 nodes=30
+  ... steps=419430400 nodes=32
+  ... steps=436207616 nodes=33
+  ... steps=452984832 nodes=34
+  ... steps=469762048 nodes=35
+  ... steps=503316480 nodes=37
+  ... steps=520093696 nodes=38
+  ... steps=536870912 nodes=39
+  ... steps=553648128 nodes=40
+  ... steps=570425344 nodes=41
+  ... steps=603979776 nodes=44
+  ... steps=620756992 nodes=45
+  ... steps=637534208 nodes=46
+  ... steps=654311424 nodes=47
+  ... steps=671088640 nodes=48
+  ... steps=687865856 nodes=49
+  ... steps=721420288 nodes=51
+  ... steps=738197504 nodes=52
+  ... steps=754974720 nodes=53
+  ... steps=771751936 nodes=55
+  ... steps=788529152 nodes=56
+  ... steps=805306368 nodes=57
+  ... steps=838860800 nodes=59
+  ... steps=855638016 nodes=60
+  ... steps=872415232 nodes=61
+  ... steps=889192448 nodes=62
+  ... steps=905969664 nodes=64
+  ... steps=939524096 nodes=67
+  ... steps=956301312 nodes=68
+  ... steps=973078528 nodes=69
+  ... steps=989855744 nodes=70
+
+---- done ----
+steps=1006632960 nodes=72 abort=1
+no landmark configuration was reached
+===== fwpw1_5b (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwpw1_5b states=12 symbols=5 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 3^(2m+1) 2^k A> 1^n 4 0^p 2
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=6
+  ... steps=33554432 nodes=9
+  ... steps=50331648 nodes=10
+  ... steps=67108864 nodes=12
+  ... steps=83886080 nodes=13
+  ... steps=100663296 nodes=14
+  ... steps=117440512 nodes=14
+  ... steps=150994944 nodes=16
+  ... steps=167772160 nodes=17
+  ... steps=184549376 nodes=18
+  ... steps=201326592 nodes=19
+  ... steps=218103808 nodes=20
+  ... steps=251658240 nodes=22
+  ... steps=268435456 nodes=23
+  ... steps=285212672 nodes=25
+  ... steps=301989888 nodes=26
+  ... steps=318767104 nodes=27
+  ... steps=352321536 nodes=29
+  ... steps=369098752 nodes=30
+  ... steps=385875968 nodes=31
+  ... steps=402653184 nodes=32
+  ... steps=436207616 nodes=35
+  ... steps=452984832 nodes=35
+  ... steps=469762048 nodes=36
+  ... steps=486539264 nodes=37
+  ... steps=520093696 nodes=39
+  ... steps=536870912 nodes=40
+  ... steps=553648128 nodes=41
+  ... steps=570425344 nodes=43
+  ... steps=587202560 nodes=44
+  ... steps=620756992 nodes=45
+  ... steps=637534208 nodes=46
+  ... steps=654311424 nodes=47
+  ... steps=671088640 nodes=48
+  ... steps=687865856 nodes=50
+  ... steps=721420288 nodes=52
+  ... steps=738197504 nodes=53
+  ... steps=754974720 nodes=54
+  ... steps=771751936 nodes=54
+  ... steps=788529152 nodes=55
+  ... steps=805306368 nodes=56
+  ... steps=838860800 nodes=58
+  ... steps=855638016 nodes=59
+  ... steps=872415232 nodes=60
+  ... steps=889192448 nodes=61
+  ... steps=905969664 nodes=62
+  ... steps=922746880 nodes=63
+  ... steps=939524096 nodes=64
+  ... steps=956301312 nodes=65
+  ... steps=973078528 nodes=65
+
+---- done ----
+steps=1006632960 nodes=68 abort=1
+no landmark configuration was reached
+===== fwpw1_6 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fwpw1_6 states=12 symbols=6 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 3^(2m+1) 2^k A> 1^n 4 2^p 5
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=7
+  ... steps=33554432 nodes=8
+  ... steps=50331648 nodes=9
+  ... steps=67108864 nodes=10
+  ... steps=83886080 nodes=10
+  ... steps=117440512 nodes=12
+  ... steps=134217728 nodes=13
+  ... steps=150994944 nodes=13
+  ... steps=167772160 nodes=14
+  ... steps=184549376 nodes=15
+  ... steps=201326592 nodes=16
+  ... steps=218103808 nodes=16
+  ... steps=234881024 nodes=17
+  ... steps=251658240 nodes=18
+  ... steps=268435456 nodes=18
+  ... steps=301989888 nodes=20
+  ... steps=318767104 nodes=20
+  ... steps=335544320 nodes=21
+  ... steps=352321536 nodes=22
+  ... steps=369098752 nodes=23
+  ... steps=385875968 nodes=23
+  ... steps=402653184 nodes=24
+  ... steps=436207616 nodes=25
+  ... steps=452984832 nodes=26
+  ... steps=469762048 nodes=27
+  ... steps=486539264 nodes=28
+  ... steps=503316480 nodes=28
+  ... steps=520093696 nodes=29
+  ... steps=553648128 nodes=31
+  ... steps=570425344 nodes=31
+  ... steps=587202560 nodes=32
+  ... steps=603979776 nodes=33
+  ... steps=620756992 nodes=34
+  ... steps=637534208 nodes=34
+  ... steps=671088640 nodes=36
+  ... steps=687865856 nodes=36
+  ... steps=704643072 nodes=37
+  ... steps=721420288 nodes=38
+  ... steps=738197504 nodes=39
+  ... steps=754974720 nodes=39
+  ... steps=788529152 nodes=41
+  ... steps=805306368 nodes=41
+  ... steps=822083584 nodes=42
+  ... steps=838860800 nodes=43
+  ... steps=855638016 nodes=43
+  ... steps=872415232 nodes=44
+  ... steps=889192448 nodes=45
+  ... steps=922746880 nodes=46
+  ... steps=939524096 nodes=47
+  ... steps=956301312 nodes=48
+  ... steps=973078528 nodes=48
+  ... steps=989855744 nodes=49
+
+---- done ----
+steps=1006632960 nodes=50 abort=1
+no landmark configuration was reached
+===== fe0_5 (cap 200000 budget 1e9) =====
+mode=maxcfg core=fe0_5 states=17 symbols=5 cap=200000 budget=1000000000 fill=0
+landmark: 0^inf 1^m B> 2^n 0^inf
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=13
+  ... steps=33554432 nodes=14
+  ... steps=50331648 nodes=15
+  ... steps=67108864 nodes=16
+  ... steps=83886080 nodes=17
+  ... steps=100663296 nodes=18
+  ... steps=117440512 nodes=20
+  ... steps=134217728 nodes=21
+  ... steps=150994944 nodes=23
+  ... steps=167772160 nodes=23
+  ... steps=184549376 nodes=25

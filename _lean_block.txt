@@ -1,0 +1,176 @@
+/-! ### 8d. The shallow-cone phase brick
+
+A *phase* is a maximal run of steps taken from one region: the `J` region `a <= c`
+(rules `g`,`h`,`i`,`j`) or the `L` region `c < a` (rules `a`,`b`,`c`,`e`, and the halts).
+
+The brick "in the shallow cone `a <= 2c` every phase has length at most `7`" is **false as
+stated**, for a structural reason: `(a, c) = (1, c)` is shallow for every `c`, and the
+`J` phase from `(1, 3^n)` has `n` steps (each rule `j` triples `a`).  Explicitly,
+`(1, 6561)` is shallow and its `J` phase has eight steps — `shallow_phase_eight` below.
+
+What is true, and what this section proves:
+
+* `L_shallow_step` — a shallow `L` step ends the phase (`a' <= c'`) unless it is rule `e`
+  (`a = c + 2`), which sends the shallow state `(c+2, c)` to `(3c+8, 1)`, i.e. deep;
+* `jrun_odd_step` / `jrun_odd` — with `a` odd every `J` step is `i` or `j`, keeps `a` odd,
+  at least triples `a` and raises `c` by at most `3`, so `3^n * a <= c + 3n`;
+* `jrun_eight` / `J_phase_le_seven` — a `J` phase of length `8` forces `c >= 355`, hence in
+  the `J` region with `c < 355` every phase has length at most `7`.
+
+The hypothesis the brick is missing is a bound on `c`: the family measurement
+(`BB33_758_ATTACK.md` §20) shows all reachable states have `c <= 2280` at phase starts and
+`J` phases of length at most `6`, but that is a reachability invariant, not a consequence
+of `a <= 2c`. -/
+
+/-- `JRun n a c`: the next `n` steps are all taken from `J`-region states (`a <= c`). -/
+def JRun : Nat → Nat → Nat → Prop
+  | 0, _, _ => True
+  | n + 1, a, c => a ≤ c ∧ ∃ a' c', step a c = Out.next a' c' ∧ JRun n a' c'
+
+/-- `c <= 3*(c/2) + 3`: the `c`-growth of rule `a` dominates a shallow drop. -/
+theorem le_three_half (c : Nat) : c ≤ 3 * (c / 2) + 3 := by
+  have h1 : 2 * (c / 2) + c % 2 = c := Nat.div_add_mod c 2
+  have h2 : c % 2 ≤ 1 := by omega
+  omega
+
+/-- `c <= 3*((c-1)/2) + 7`: the `c`-growth of rules `b` and `c`. -/
+theorem le_three_half_pred (c : Nat) : c ≤ 3 * ((c - 1) / 2) + 7 := by
+  have h1 : 2 * ((c - 1) / 2) + (c - 1) % 2 = c - 1 := Nat.div_add_mod (c - 1) 2
+  have h2 : (c - 1) % 2 ≤ 1 := by omega
+  omega
+
+/-- A shallow `L` step ends the phase (`a' <= c'`) unless it is rule `e`. -/
+theorem L_shallow_step (a c a' c' : Nat) (hca : c < a) (h2c : a ≤ 2 * c)
+    (h : step a c = Out.next a' c') :
+    a' ≤ c' ∨ (a = c + 2 ∧ c % 4 = 3 ∧ c' = 1) := by
+  have h1 : ¬ a ≤ c := by omega
+  by_cases h4 : c % 4 = 0 ∨ c % 4 = 2
+  · rw [step_a a c h1 h4] at h
+    simp only [Out.next.injEq] at h
+    obtain ⟨rfl, rfl⟩ := h
+    left
+    have hb := le_three_half c
+    omega
+  · by_cases h5 : c % 4 = 1
+    · by_cases h6 : a = c + 1
+      · rw [step_f a c h1 h4 h5 h6] at h; exact absurd h (by simp)
+      · rw [step_b a c h1 h4 h5 h6] at h
+        simp only [Out.next.injEq] at h
+        obtain ⟨rfl, rfl⟩ := h
+        left
+        have hb := le_three_half_pred c
+        omega
+    · by_cases h6 : a = c + 1
+      · rw [step_halt1 a c h1 h4 h5 h6] at h; exact absurd h (by simp)
+      · by_cases h7 : a = c + 2
+        · rw [step_e a c h1 h4 h5 h6 h7] at h
+          simp only [Out.next.injEq] at h
+          obtain ⟨rfl, rfl⟩ := h
+          right
+          exact ⟨h7, by omega, rfl⟩
+        · by_cases h8 : a = c + 3
+          · rw [step_halt3 a c h1 h4 h5 h6 h7 h8] at h; exact absurd h (by simp)
+          · rw [step_c a c h1 h4 h5 h6 h7 h8] at h
+            simp only [Out.next.injEq] at h
+            obtain ⟨rfl, rfl⟩ := h
+            left
+            have hb := le_three_half_pred c
+            omega
+
+/-- With `a` odd the only `J` rules are `i` and `j`: `a` stays odd, at least triples,
+and `c` rises by at most `3`. -/
+theorem jrun_odd_step (a c a' c' : Nat) (h1 : a ≤ c) (h2 : a % 2 = 1)
+    (h : step a c = Out.next a' c') :
+    a' % 2 = 1 ∧ 3 * a ≤ a' ∧ c' ≤ c + 3 := by
+  by_cases h3 : c % 2 = 0
+  · rw [step_i a c h1 h2 h3] at h
+    simp only [Out.next.injEq] at h
+    obtain ⟨rfl, rfl⟩ := h
+    refine ⟨?_, by omega, by omega⟩
+    rw [Nat.mul_mod, h2]
+    decide
+  · have h3' : c % 2 = 1 := by omega
+    rw [step_j a c h1 h2 h3'] at h
+    simp only [Out.next.injEq] at h
+    obtain ⟨rfl, rfl⟩ := h
+    refine ⟨?_, by omega, by omega⟩
+    rw [Nat.add_mod, Nat.mul_mod, h2]
+    decide
+
+/-- A `J` phase of length `n+1` from an odd `a` satisfies `3^n * a <= c + 3n`. -/
+theorem jrun_odd (n a c : Nat) (h : JRun (n + 1) a c) (ha : a % 2 = 1) :
+    3 ^ n * a ≤ c + 3 * n := by
+  induction n generalizing a c with
+  | zero => simpa using h.1
+  | succ n ih =>
+      obtain ⟨h1, a', c', hstep, hrest⟩ := h
+      obtain ⟨ha', h3a, hc⟩ := jrun_odd_step a c a' c' h1 ha hstep
+      have ih' : 3 ^ n * a' ≤ c' + 3 * n := ih a' c' hrest ha'
+      calc 3 ^ (n + 1) * a = 3 ^ n * (3 * a) := by rw [Nat.pow_succ, Nat.mul_assoc]
+        _ ≤ 3 ^ n * a' := Nat.mul_le_mul_left _ h3a
+        _ ≤ c' + 3 * n := ih'
+        _ ≤ c + 3 * (n + 1) := by omega
+
+/-- A `J` phase of length `8` forces `c >= 355`. -/
+theorem jrun_eight (a c : Nat) (h : JRun 8 a c) : 355 ≤ c := by
+  by_cases ha : a % 2 = 1
+  · have h7 : 3 ^ 7 * a ≤ c + 3 * 7 := jrun_odd 7 a c h ha
+    have e : 3 ^ 7 = 2187 := by decide
+    rw [e] at h7
+    have ha1 : 1 ≤ a := by omega
+    have h2 : 2187 ≤ 2187 * a := by
+      calc 2187 = 2187 * 1 := (Nat.mul_one 2187).symm
+        _ ≤ 2187 * a := Nat.mul_le_mul_left _ ha1
+    omega
+  · have ha0 : a % 2 = 0 := by omega
+    obtain ⟨h1, a', c', hstep, hrest⟩ := h
+    by_cases hc : c % 2 = 0
+    · rw [step_g a c h1 ha0 hc] at hstep
+      exact absurd hstep (by simp)
+    · have hc1 : c % 2 = 1 := by omega
+      rw [step_h a c h1 ha0 hc1] at hstep
+      simp only [Out.next.injEq] at hstep
+      obtain ⟨rfl, rfl⟩ := hstep
+      have h6 : 3 ^ 6 * 1 ≤ (a / 2 + c + 2) + 3 * 6 :=
+        jrun_odd 6 1 (a / 2 + c + 2) hrest (by decide)
+      have e : 3 ^ 6 = 729 := by decide
+      rw [e] at h6
+      simp only [Nat.mul_one] at h6
+      have hd : a / 2 ≤ c := by
+        have h' : a / 2 ≤ a := Nat.div_le_self a 2
+        omega
+      omega
+
+/-- **The shallow-cone phase bound in its true form**: in the `J` region with `c < 355`
+no phase has length `8`, hence every phase has length at most `7`. -/
+theorem J_phase_le_seven (a c : Nat) (h : JRun 8 a c) (hc : c < 355) : False := by
+  have := jrun_eight a c h
+  omega
+
+/-- **The brick as literally stated is false.**  `(1, 6561)` satisfies `a <= 2c` and its
+`J` phase has eight steps:
+`(1,6561) -> (5,6561) -> (17,6557) -> (53,6541) -> (161,6489) -> (485,6329) ->
+(1457,5845) -> (4373,4389) -> (13121,17)`, the ninth state leaving the `J` region. -/
+theorem shallow_phase_eight : JRun 8 1 6561 := by
+  refine ⟨by decide, 5, 6561, by decide, ?_⟩
+  refine ⟨by decide, 17, 6557, by decide, ?_⟩
+  refine ⟨by decide, 53, 6541, by decide, ?_⟩
+  refine ⟨by decide, 161, 6489, by decide, ?_⟩
+  refine ⟨by decide, 485, 6329, by decide, ?_⟩
+  refine ⟨by decide, 1457, 5845, by decide, ?_⟩
+  refine ⟨by decide, 4373, 4389, by decide, ?_⟩
+  exact ⟨by decide, 13121, 17, by decide, trivial⟩
+
+/-- The start of the counterexample really is shallow: `1 <= 2*6561`. -/
+theorem shallow_phase_eight_shallow : 1 ≤ 2 * 6561 := by decide
+
+#print axioms le_three_half
+#print axioms le_three_half_pred
+#print axioms L_shallow_step
+#print axioms jrun_odd_step
+#print axioms jrun_odd
+#print axioms jrun_eight
+#print axioms J_phase_le_seven
+#print axioms shallow_phase_eight
+#print axioms shallow_phase_eight_shallow
+

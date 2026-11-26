@@ -1,0 +1,228 @@
+== fw1_6_s4: core=fw1_6 states=4 symbols=6 cap=200000 budget=3e9
+mode=maxcfg core=fw1_6 states=4 symbols=6 cap=200000 budget=3000000000 fill=0
+landmark: 0^inf 3^(2m+1) 2^k A> 1^n 4 5^p 0^inf
+start: blank tape 0^inf A> 0^inf
+
+New Best Config Found:  0^inf 3^(1) 2^1 A> 1^5 4 5^2 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD0RB
+
+New Best Config Found:  0^inf 3^(1) 2^5 A> 1^2 4 5^2 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC2LC_1RA1LD0LD2LD5LD0RC
+
+New Best Config Found:  0^inf 3^(1) 2^6 A> 1^2 4 5^2 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC5LC_1RA1LD0LD2LD5LD0RC
+
+New Best Config Found:  0^inf 3^(1) 2^3 A> 1^2 4 5^3 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD1LB
+
+New Best Config Found:  0^inf 3^(1) 2^4 A> 1^2 4 5^3 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD1LC
+  ... steps=16777216 nodes=11
+
+New Best Config Found:  0^inf 3^(1) 2^5 A> 1^2 4 5^3 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD2LC
+  ... steps=33554432 nodes=13
+
+New Best Config Found:  0^inf 3^(1) 2^1 A> 1^1 4 5^4 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD4LA
+
+New Best Config Found:  0^inf 3^(1) 2^2 A> 1^2 4 5^4 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD5LB
+
+New Best Config Found:  0^inf 3^(1) 2^3 A> 1^2 4 5^4 0^inf
+          0LD3LB4RA2RA4LB1RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC---_1RA1LD0LD2LD5LD5LC
+  ... steps=50331648 nodes=15
+  ... steps=67108864 nodes=18
+
+New Best Config Found:  0^inf 3^(1) 2^8 A> 1^2 4 5^4 0^inf
+          0LD3LB4RA2RA4LB5LC_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC5RD_1RA1LD0LD2LD5LD1LB
+
+New Best Config Found:  0^inf 3^(1) 2^3 A> 1^2 4 5^11 0^inf
+          0LD3LB4RA2RA4LB5LC_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC5RD_1RA1LD0LD2LD5LD3LC
+  ... steps=83886080 nodes=21
+  ... steps=100663296 nodes=23
+  ... steps=117440512 nodes=25
+  ... steps=134217728 nodes=28
+  ... steps=150994944 nodes=30
+  ... steps=167772160 nodes=33
+  ... steps=184549376 nodes=35
+  ... steps=201326592 nodes=40
+  ... steps=218103808 nodes=45
+  ... steps=234881024 nodes=47
+  ... steps=251658240 nodes=49
+  ... steps=268435456 nodes=56
+  ... steps=285212672 nodes=61
+  ... steps=301989888 nodes=67
+  ... steps=318767104 nodes=71
+  ... steps=335544320 nodes=74
+  ... steps=352321536 nodes=77
+  ... steps=369098752 nodes=80
+  ... steps=385875968 nodes=83
+  ... steps=402653184 nodes=87
+  ... steps=419430400 nodes=89
+  ... steps=436207616 nodes=92
+  ... steps=452984832 nodes=94
+  ... steps=469762048 nodes=98
+  ... steps=486539264 nodes=99
+  ... steps=503316480 nodes=102
+  ... steps=520093696 nodes=104
+  ... steps=536870912 nodes=108
+  ... steps=553648128 nodes=111
+  ... steps=570425344 nodes=116
+  ... steps=587202560 nodes=120
+  ... steps=603979776 nodes=122
+  ... steps=620756992 nodes=126
+  ... steps=637534208 nodes=129
+  ... steps=654311424 nodes=132
+  ... steps=671088640 nodes=134
+  ... steps=687865856 nodes=137
+  ... steps=704643072 nodes=139
+  ... steps=721420288 nodes=142
+  ... steps=738197504 nodes=146
+  ... steps=754974720 nodes=148
+  ... steps=771751936 nodes=150
+  ... steps=788529152 nodes=153
+  ... steps=805306368 nodes=157
+  ... steps=822083584 nodes=162
+  ... steps=838860800 nodes=166
+  ... steps=855638016 nodes=169
+  ... steps=872415232 nodes=171
+  ... steps=889192448 nodes=175
+  ... steps=905969664 nodes=177
+  ... steps=922746880 nodes=179
+  ... steps=939524096 nodes=181
+  ... steps=956301312 nodes=185
+  ... steps=973078528 nodes=189
+  ... steps=989855744 nodes=194
+  ... steps=1006632960 nodes=198
+  ... steps=1023410176 nodes=199
+  ... steps=1040187392 nodes=203
+  ... steps=1056964608 nodes=208
+  ... steps=1073741824 nodes=211
+  ... steps=1090519040 nodes=214
+  ... steps=1107296256 nodes=225
+  ... steps=1124073472 nodes=237
+  ... steps=1140850688 nodes=242
+  ... steps=1157627904 nodes=245
+  ... steps=1174405120 nodes=247
+  ... steps=1191182336 nodes=248
+  ... steps=1207959552 nodes=250
+  ... steps=1224736768 nodes=255
+  ... steps=1241513984 nodes=261
+  ... steps=1258291200 nodes=263
+  ... steps=1275068416 nodes=265
+  ... steps=1291845632 nodes=269
+  ... steps=1308622848 nodes=272
+  ... steps=1325400064 nodes=274
+  ... steps=1342177280 nodes=276
+  ... steps=1358954496 nodes=279
+  ... steps=1375731712 nodes=282
+  ... steps=1392508928 nodes=287
+  ... steps=1409286144 nodes=291
+  ... steps=1426063360 nodes=296
+  ... steps=1442840576 nodes=299
+  ... steps=1459617792 nodes=301
+  ... steps=1476395008 nodes=305
+  ... steps=1493172224 nodes=309
+  ... steps=1509949440 nodes=312
+  ... steps=1526726656 nodes=314
+  ... steps=1543503872 nodes=320
+  ... steps=1560281088 nodes=322
+  ... steps=1577058304 nodes=324
+  ... steps=1593835520 nodes=327
+  ... steps=1610612736 nodes=330
+  ... steps=1627389952 nodes=332
+  ... steps=1644167168 nodes=335
+  ... steps=1660944384 nodes=337
+
+New Best Config Found:  0^inf 3^(1) 2^4 A> 1^2 4 5^11 0^inf
+          0LD3LB5LD2RA4LB5RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC0LA_1RA1LD0LD4RA2LD2LC
+
+New Best Config Found:  0^inf 3^(1) 2^5 A> 1^2 4 5^11 0^inf
+          0LD3LB5LD2RA4LB5RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC3LA_1RA1LD0LD4RA2LD2LC
+  ... steps=1677721600 nodes=339
+  ... steps=1694498816 nodes=342
+  ... steps=1711276032 nodes=345
+  ... steps=1728053248 nodes=348
+  ... steps=1744830464 nodes=353
+  ... steps=1761607680 nodes=355
+  ... steps=1778384896 nodes=357
+  ... steps=1795162112 nodes=360
+  ... steps=1811939328 nodes=363
+  ... steps=1828716544 nodes=366
+  ... steps=1845493760 nodes=369
+  ... steps=1862270976 nodes=370
+  ... steps=1879048192 nodes=374
+  ... steps=1895825408 nodes=377
+  ... steps=1912602624 nodes=381
+  ... steps=1929379840 nodes=384
+  ... steps=1946157056 nodes=387
+  ... steps=1962934272 nodes=391
+  ... steps=1979711488 nodes=393
+  ... steps=1996488704 nodes=398
+  ... steps=2013265920 nodes=399
+  ... steps=2030043136 nodes=403
+  ... steps=2046820352 nodes=405
+  ... steps=2063597568 nodes=411
+  ... steps=2080374784 nodes=414
+  ... steps=2097152000 nodes=422
+  ... steps=2113929216 nodes=425
+  ... steps=2130706432 nodes=429
+  ... steps=2147483648 nodes=432
+  ... steps=2164260864 nodes=435
+  ... steps=2181038080 nodes=439
+  ... steps=2197815296 nodes=442
+  ... steps=2214592512 nodes=444
+  ... steps=2231369728 nodes=447
+  ... steps=2248146944 nodes=450
+  ... steps=2264924160 nodes=454
+  ... steps=2281701376 nodes=456
+  ... steps=2298478592 nodes=458
+  ... steps=2315255808 nodes=462
+  ... steps=2332033024 nodes=464
+  ... steps=2348810240 nodes=466
+  ... steps=2365587456 nodes=470
+  ... steps=2382364672 nodes=472
+  ... steps=2399141888 nodes=473
+  ... steps=2415919104 nodes=477
+  ... steps=2432696320 nodes=480
+  ... steps=2449473536 nodes=483
+  ... steps=2466250752 nodes=487
+  ... steps=2483027968 nodes=488
+  ... steps=2499805184 nodes=491
+  ... steps=2516582400 nodes=494
+  ... steps=2533359616 nodes=497
+  ... steps=2550136832 nodes=499
+  ... steps=2566914048 nodes=501
+  ... steps=2583691264 nodes=503
+  ... steps=2600468480 nodes=506
+  ... steps=2617245696 nodes=510
+  ... steps=2634022912 nodes=512
+  ... steps=2650800128 nodes=515
+  ... steps=2667577344 nodes=517
+  ... steps=2684354560 nodes=519
+  ... steps=2701131776 nodes=521
+  ... steps=2717908992 nodes=523
+  ... steps=2734686208 nodes=525
+  ... steps=2751463424 nodes=528
+  ... steps=2768240640 nodes=530
+  ... steps=2785017856 nodes=532
+  ... steps=2801795072 nodes=533
+  ... steps=2818572288 nodes=535
+  ... steps=2835349504 nodes=539
+  ... steps=2852126720 nodes=540
+  ... steps=2868903936 nodes=542
+  ... steps=2885681152 nodes=549
+  ... steps=2902458368 nodes=555
+  ... steps=2919235584 nodes=559
+  ... steps=2936012800 nodes=563
+  ... steps=2952790016 nodes=566
+  ... steps=2969567232 nodes=569
+  ... steps=2986344448 nodes=571
+
+---- done ----
+steps=3003121664 nodes=576 abort=1
+best 0^inf 3^(1) 2^5 A> 1^2 4 5^11 0^inf
+  step=467 states_used=4
+  0LD3LB5LD2RA4LB5RD_1RZ3RB1LC2RA3RB4LC_3RB1LB3LC2RC4LC3LA_1RA1LD0LD4RA2LD2LC
+== fw1_6_s4 DONE

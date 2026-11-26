@@ -1,0 +1,189 @@
+﻿The '''Catch-Em-Turing''' (CET) function is a variant of the Busy Beaver function proposed by [[User:NathFR76|NathFR76]] in the beginning of November 2026 in forum-general<ref>In forum-general: Catch Em Turing (CET(n)) (Busy Beaver with 2 agent) post
+https://discord.com/channels/960643023006490684/1377330731222564904</ref> on bbwiki discord.
+
+Catch-Em-Turing is a variant of the Busy Beaver problem in which two independent agents operate simultaneously on a shared tape, rather than a single Turing machine head.
+
+== Definition ==
+
+The Catch-Em-Turing system is a computational model inspired by [[Turing machine]] and the [[Busy Beaver]] problem.
+
+For each integer n ≥ 1, a CET(n) machine consists of:
+    * Exactly 2 agents.
+    * Each agent has exactly n states.
+    * Each agent has its own transition table.
+    * Both agents execute their transitions simultaneously.
+
+For Configuration:
+    * The tape is infinite in both directions.
+    * Initially, every cell contains the symbol 0.
+    * The agents are numbered Agent 1 and Agent 2.
+    * Agent 1 starts at position 0. 
+    * Agent 2 starts at position 2.
+    * Both agents begin in their respective initial states.
+
+At each step, each agent:
+    * Reads the symbol in the cell it currently occupies.
+    * Writes a symbol on that cell.
+    * Moves one cell to the left or right.
+    * Changes its state according to its transition table.
+The agents perform these operations simultaneously.
+
+A CET machine halts only when both agents occupy the same tape cell at the same time.
+There is no individual HALT state. The collision between the two agents is the sole halting condition.
+If the agents never collide, the machine does not halt.
+
+The CET function is:
+
+    CET(n) = '''max number of steps before collision'''
+
+CET(n) measures the maximum number of steps that two n-state agents can execute before meeting on the same tape cell.
+
+== Growth rate ==
+
+it's seem to see that CET(n) ≥ BB(n) by multiple agent with 2 different transition table before halt by collision.
+
+And it's seem to see that for n states et k symbols, CET(n,k) ≥ BBB(n,k) if the champion is a translated cycler, which BBB is a reference to [[Beeping Busy Beaver]].
+
+== CET Champions ==
+This is the CET(n) table. for 2 symbols
+
+[[Category:Functions]]
+{| class="wikitable"
+|-
+! Domain !! Max Steps !! Champions !! Discoverer
+|-
+| CET(1) || 1 || Agent 1: {{TM|1RA---|non_halt}}
+Agent 2: {{TM|1LA---|non_halt}}
+|| [[User:NathFR76|NathFR76]]
+Brute Force Research
+|-
+| CET(2) || 97 || Agent 1: {{TM|1LB0LB_1RB0LA|non_halt}}
+Agent 2: {{TM|1RB1LA_1LA1RB|non_halt}}
+|| [[User:NathFR76|NathFR76]]
+Brute Force Research 
+|-
+| CET(3) || > <math>10\uparrow\uparrow8.498</math>|| Agent 1: {{TM|0LB1RC_1RA1LC_1RB0LC|non_halt}}
+Agent 2: {{TM|1RB1LC_0LC0RB_1LA1LC|non_halt}}
+|| [[User:Roromachine14|roromachine14]] 
+Shift Overflow Counter Searching
+|-
+| CET(4) ||> <math>10\uparrow\uparrow23</math>|| Agent 1: {{TM|1LB0LC_1LC1RB_1RA0LD_0RC0LD|non_halt}}
+Agent 2: {{TM|0RB0LB_1RC0LD_1LD1RA_0RA1LB|}}
+|| [[User:Axolotldailyweek|Axolotldailyweek]]
+Shift Overflow Counter Searching
+|}For 3 symbols
+
+{| class="wikitable"
+|-
+! Domain !! Max Steps !! Champions !! Discoverer
+|-
+| CET(2,3) || ≥ 1,528,952,999 || Agent 1: {{TM|1RB0RA2LB_2LA2RB1LB|non_halt}}
+Agent 2: {{TM|2RB0RA2RB_2LB1RA0RB|non_halt}}
+|| [[User:Roromachine14|roromachine14]]
+TNF Research
+|}
+'''Notes:'''
+
+* Exact values are indicated explicitly.
+* A value preceded by ≥ represents a proven lower bound, not necessarily the exact value of the corresponding function.
+* Each champion is a machine that has been verified to reach the listed number of steps before satisfying its halting condition.
+* The discoverer column identifies the person or research effort responsible for finding the machine.
+
+== Extension ==
+
+A extension of CET(n) by [[User:NathFR76|NathFR76]] for n agent is called Multi Catch-Em-Turing, or MCET(n).
+
+For each integer n ≥ 1, an MCET(n) machine consists of:
+
+* Exactly n agents.
+* Each agent has exactly n states.
+* Each agent has its own transition table.
+* All agents operate on the same infinite tape.
+* All agents position is for i index the position is 2(i-1) (so: Agent 1 is at position 0, Agent 2 is at position 2, Agent 3 is at position 4, ...)
+* The tape alphabet is binary, containing the symbols 0 and 1.
+* All agents begin in their initial state, state 0.
+
+At each step:
+
+* Every agent reads the symbol in its current tape cell from the tape configuration at the beginning of that step.
+* Each agent independently determines its transition.
+* All writes are applied simultaneously. If multiple agents attempt to write to the same cell during the same step, the agent with the lowest index has priority.
+* All agents then move one cell left or right and update their states simultaneously.
+
+An MCET(n) machine halts only when all n agents occupy the same tape cell at the same time. There is no individual HALT state.
+
+== MCET Champions ==
+This is the MCET(n) table.
+
+{| class="wikitable"
+|-
+! Domain !! Max Steps !! Champions !! Discoverer
+|-
+| MCET(1) || 1 || Agent 1: 1RA---
+|| [[User:NathFR76|NathFR76]]
+Is like BB(1)
+|-
+| MCET(2) || 97 || Agent 1: 1LB0LB_1RB0LA
+Agent 2: 1RB1LA_1LA1RB
+|| [[User:NathFR76|NathFR76]]
+Like CET(2)
+|-
+| MCET(3) || ≥ 4,032,363,281 || Agent 1 : 0LB1RB_0LC0RA_1RC0LC
+Agent 2 : 0LC1RC_0LA1LC_1RA1RB
+
+Agent 3 : 1RB0LC_1RC1RB_1LA1RC
+|| [[User:NathFR76|NathFR76]]
+Simulated Annealing Research
+|}
+
+For 3 symbols
+
+{| class="wikitable"
+|-
+! Domain !! Max Steps !! Champions !! Discoverer
+|-
+| MCET(3,3) || ≥ 769,546,012 || Agent 1: 1LB2RC1LA_0LC2LB2RC_2RA2RC0LA
+Agent 2: 1LC0RC0LA_2LB1LA0RB_2RC2RC0RB
+
+Agent 3: 2LC1LA2LC_1LA1RC2RA_0RA0RC0RC
+|| [[User:67|67]]
+Exhaustive Research
+|}
+'''Notes:'''
+* Exact values are indicated explicitly.
+* A value preceded by ≥ represents a proven lower bound, not necessarily the exact value of the corresponding function.
+* Each champion is a machine that has been verified to reach the listed number of steps before satisfying its halting condition.
+* The discoverer column identifies the person or research effort responsible for finding the machine.
+
+== Computational complexity and finite search space ==
+For fixed values of n and k, the number of possible CET and MCET transition tables is finite.
+
+Each transition is determined by three choices:
+
+* The symbol to write: k possibilities.
+* The movement direction: 2 possibilities (Left or Right).
+* The next state: n possibilities.
+
+Therefore, each state-symbol pair has exactly 2kn possible transitions.
+
+Each agent has n states and k possible input symbols, resulting in nk transition entries per agent.
+
+=== CET(n,k) ===
+A CET machine contains exactly two agents, giving a total of 2nk transition entries.
+
+Therefore, the total number of possible transition tables is:
+
+<math>\mathrm{CET}(n,k) = (2kn)^{2nk}</math>
+
+=== MCET(n,k) ===
+An MCET machine contains exactly n agents, giving a total of n^2k transition entries.
+
+Therefore, the total number of possible transition tables is:
+
+<math>\mathrm{MCET}(n,k) = (2kn)^{n^2k}</math>
+
+These counts assume labelled agents, deterministic transition tables, and no individual halting state. Machines are counted as distinct whenever at least one transition entry differs.
+
+The finite search space makes exhaustive enumeration theoretically possible for every fixed pair (n,k), although the number of machines grows extremely rapidly.
+
+== References ==

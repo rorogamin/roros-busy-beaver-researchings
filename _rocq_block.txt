@@ -1,0 +1,206 @@
+(* ------------------------------------------------------------------ *)
+(** ** 8d. The shallow-cone phase brick                               *)
+(* ------------------------------------------------------------------ *)
+
+(** A *phase* is a maximal run of steps taken from one region: the [J] region
+    [a <= c] (rules [g],[h],[i],[j]) or the [L] region [c < a] (rules
+    [a],[b],[c],[e] and the halts).
+
+    The brick "in the shallow cone [a <= 2c] every phase has length at most 7"
+    is **false as stated**: [(1, 3^n)] is shallow for every [n] and its [J]
+    phase has [n] steps (each rule [j] triples [a]).  Explicitly [(1,6561)] is
+    shallow and its [J] phase has eight steps ([shallow_phase_eight] below).
+
+    What is true, and proved here:
+
+    - [L_shallow_step]: a shallow [L] step ends the phase ([a' <= c']) unless it
+      is rule [e] ([a = c + 2]), which sends the shallow state [(c+2, c)] to
+      [(3c+8, 1)], i.e. into the deep cone;
+    - [jrun_odd_step] / [jrun_odd]: with [a] odd every [J] step is [i] or [j],
+      keeps [a] odd, at least triples [a] and raises [c] by at most 3, so
+      [3^n * a <= c + 3n];
+    - [jrun_eight] / [J_phase_le_seven]: a [J] phase of length 8 forces
+      [c >= 355], hence in the [J] region with [c < 355] every phase has length
+      at most 7.
+
+    The hypothesis the brick is missing is a bound on [c]: the family
+    measurement (BB33_758_ATTACK.md section 20) gives [c <= 2280] at every phase
+    start, but that is a reachability invariant, not a consequence of [a <= 2c]. *)
+
+Fixpoint JRun (n a c : nat) {struct n} : Prop :=
+  match n with
+  | O => True
+  | S n' => a <= c /\ (exists a' c' : nat, step a c = Next a' c' /\ JRun n' a' c')
+  end.
+
+(** [1 <= a] from [a mod 2 = 1]. *)
+Lemma mod2_one_pos (a : nat) (H : a mod 2 = 1) : 1 <= a.
+Proof. destruct a; [simpl in H; discriminate | lia]. Qed.
+
+(** [c <= 3*(c/2) + 3]: rule [a] grows [c] faster than a shallow drop. *)
+Lemma le_three_half (c : nat) : c <= 3 * (c / 2) + 3.
+Proof.
+  pose proof (Nat.div_add_mod c 2) as H.
+  pose proof (Nat.mod_upper_bound c 2 (by lia)) as H2.
+  lia.
+Qed.
+
+(** [c <= 3*((c-1)/2) + 7]: rules [b] and [c]. *)
+Lemma le_three_half_pred (c : nat) : c <= 3 * ((c - 1) / 2) + 7.
+Proof.
+  pose proof (Nat.div_add_mod (c - 1) 2) as H.
+  pose proof (Nat.mod_upper_bound (c - 1) 2 (by lia)) as H2.
+  lia.
+Qed.
+
+(** A shallow [L] step ends the phase unless it is rule [e]. *)
+Lemma L_shallow_step (a c a' c' : nat) (Hca : c < a) (H2c : a <= 2 * c)
+    (H : step a c = Next a' c') :
+    a' <= c' \/ (a = c + 2 /\ c mod 4 = 3 /\ c' = 1).
+Proof.
+  assert (E1 : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
+  destruct (orb (Nat.eqb (Nat.modulo c 4) 0) (Nat.eqb (Nat.modulo c 4) 2)) eqn:E4.
+  - assert (Hm : c mod 4 = 0 \/ c mod 4 = 2).
+    { apply orb_true_iff in E4. destruct E4 as [E | E].
+      - left. apply Nat.eqb_eq. exact E.
+      - right. apply Nat.eqb_eq. exact E. }
+    rewrite (step_a a c E1 E4) in H. injection H as Ha Hc. subst a' c'. left.
+    pose proof (le_three_half c). lia.
+  - destruct (Nat.eqb (Nat.modulo c 4) 1) eqn:E5.
+    + destruct (Nat.eqb a (c + 1)) eqn:E6.
+      * rewrite (step_f a c E1 E4 E5 E6) in H. discriminate H.
+      * rewrite (step_b a c E1 E4 E5 E6) in H. injection H as Ha Hc. subst a' c'. left.
+        pose proof (le_three_half_pred c). lia.
+    + destruct (Nat.eqb a (c + 1)) eqn:E6.
+      * rewrite (step_halt1 a c E1 E4 E5 E6) in H. discriminate H.
+      * destruct (Nat.eqb a (c + 2)) eqn:E7.
+        -- assert (Ha2 : a = c + 2) by (apply Nat.eqb_eq; exact E7).
+           rewrite (step_e a c E1 E4 E5 E6 E7) in H. injection H as Ha Hc. subst a' c'.
+           right. split; [exact Ha2 | split; [ | reflexivity]].
+           apply orb_false_iff in E4. destruct E4 as [E40 E42].
+           apply Nat.eqb_neq in E40. apply Nat.eqb_neq in E42.
+           apply Nat.eqb_neq in E5. lia.
+        -- destruct (Nat.eqb a (c + 3)) eqn:E8.
+           ++ rewrite (step_halt3 a c E1 E4 E5 E6 E7 E8) in H. discriminate H.
+           ++ rewrite (step_c a c E1 E4 E5 E6 E7 E8) in H. injection H as Ha Hc. subst a' c'. left.
+              pose proof (le_three_half_pred c). lia.
+Qed.
+
+(** With [a] odd every [J] step is [i] or [j]: [a] stays odd, at least triples,
+    and [c] rises by at most 3. *)
+Lemma jrun_odd_step (a c a' c' : nat) (H1 : a <= c) (H2 : a mod 2 = 1)
+    (H : step a c = Next a' c') :
+    a' mod 2 = 1 /\ 3 * a <= a' /\ c' <= c + 3.
+Proof.
+  assert (E1 : Nat.leb a c = true) by (apply Nat.leb_le; exact H1).
+  assert (E2 : Nat.eqb (Nat.modulo a 2) 0 = false) by (apply Nat.eqb_neq; lia).
+  assert (Ha1 : 1 <= a) by (apply mod2_one_pos; exact H2).
+  destruct (Nat.eqb (Nat.modulo c 2) 0) eqn:E3.
+  - rewrite (step_i a c E1 E2 E3) in H. injection H as Ha Hc. subst a' c'.
+    split.
+    + rewrite Nat.mul_mod, H2. reflexivity.
+    + split; lia.
+  - rewrite (step_j a c E1 E2 E3) in H. injection H as Ha Hc. subst a' c'.
+    split.
+    + rewrite Nat.add_mod, Nat.mul_mod, H2. reflexivity.
+    + split; lia.
+Qed.
+
+(** A [J] phase of length [n+1] from an odd [a] satisfies [3^n * a <= c + 3n]. *)
+Lemma jrun_odd (n a c : nat) (H : JRun (S n) a c) (Ha : a mod 2 = 1) :
+    3 ^ n * a <= c + 3 * n.
+Proof.
+  revert a c H.
+  induction n as [| n IH]; intros a c H.
+  - simpl in H. destruct H as [H1 _]. simpl. lia.
+  - simpl in H. destruct H as [H1 [a' [c' [Hstep Hrest]]]].
+    destruct (jrun_odd_step a c a' c' H1 Ha Hstep) as [Ha' [H3a Hc]].
+    specialize (IH a' c' Hrest Ha').
+    assert (Hpow : 3 ^ S n = 3 * 3 ^ n) by (simpl; ring).
+    rewrite Hpow.
+    assert (Heq : 3 * 3 ^ n * a = 3 ^ n * (3 * a)) by ring.
+    rewrite Heq.
+    assert (Hmono : 3 ^ n * (3 * a) <= 3 ^ n * a') by (apply Nat.mul_le_mono_l; exact H3a).
+    lia.
+Qed.
+
+(** A [J] phase of length 8 forces [c >= 355]. *)
+Lemma jrun_eight (a c : nat) (H : JRun 8 a c) : 355 <= c.
+Proof.
+  destruct (Nat.eqb (Nat.modulo a 2) 0) eqn:E2.
+  - assert (Ha0 : a mod 2 = 0) by (apply Nat.eqb_eq; exact E2).
+    simpl in H. destruct H as [H1 [a' [c' [Hstep Hrest]]]].
+    assert (E1 : Nat.leb a c = true) by (apply Nat.leb_le; exact H1).
+    destruct (Nat.eqb (Nat.modulo c 2) 0) eqn:E3.
+    + rewrite (step_g a c E1 E2 E3) in Hstep. discriminate Hstep.
+    + rewrite (step_h a c E1 E2 E3) in Hstep.
+      injection Hstep as Ha Hc. subst a' c'.
+      assert (Hodd : 1 mod 2 = 1) by reflexivity.
+      pose proof (jrun_odd 6 1 (a / 2 + c + 2) Hrest Hodd) as H6.
+      replace (3 ^ 6) with 729 in H6 by reflexivity.
+      simpl in H6.
+      assert (Hd : a / 2 <= c) by (apply Nat.le_trans with a; [apply Nat.div_le_self | exact H1]).
+      lia.
+  - assert (Ha1 : a mod 2 = 1) by (apply Nat.eqb_neq in E2; lia).
+    pose proof (jrun_odd 7 a c H Ha1) as H7.
+    replace (3 ^ 7) with 2187 in H7 by reflexivity.
+    assert (Hpos : 1 <= a) by (apply mod2_one_pos; exact Ha1).
+    assert (H2' : 2187 * 1 <= 2187 * a) by (apply Nat.mul_le_mono_l; exact Hpos).
+    simpl in H2'. lia.
+Qed.
+
+(** **The shallow-cone phase bound in its true form**: in the [J] region with
+    [c < 355] no phase has length 8, hence every phase has length at most 7. *)
+Lemma J_phase_le_seven (a c : nat) (H : JRun 8 a c) (Hc : c < 355) : False.
+Proof.
+  pose proof (jrun_eight a c H). lia.
+Qed.
+
+(** **The brick as literally stated is false**: [(1,6561)] satisfies [a <= 2c]
+    and its [J] phase has eight steps
+    [(1,6561) -> (5,6561) -> (17,6557) -> (53,6541) -> (161,6489) ->
+     (485,6329) -> (1457,5845) -> (4373,4389) -> (13121,17)], the ninth state
+    leaving the [J] region. *)
+Lemma shallow_phase_eight : JRun 8 1 6561.
+Proof.
+  assert (E1 : step 1 6561 = Next 5 6561) by (vm_compute; reflexivity).
+  assert (E2 : step 5 6561 = Next 17 6557) by (vm_compute; reflexivity).
+  assert (E3 : step 17 6557 = Next 53 6541) by (vm_compute; reflexivity).
+  assert (E4 : step 53 6541 = Next 161 6489) by (vm_compute; reflexivity).
+  assert (E5 : step 161 6489 = Next 485 6329) by (vm_compute; reflexivity).
+  assert (E6 : step 485 6329 = Next 1457 5845) by (vm_compute; reflexivity).
+  assert (E7 : step 1457 5845 = Next 4373 4389) by (vm_compute; reflexivity).
+  assert (E8 : step 4373 4389 = Next 13121 17) by (vm_compute; reflexivity).
+  cbn [JRun].
+  split; [lia |].
+  exists 5, 6561; split; [exact E1 |].
+  cbn [JRun]. split; [lia |].
+  exists 17, 6557; split; [exact E2 |].
+  cbn [JRun]. split; [lia |].
+  exists 53, 6541; split; [exact E3 |].
+  cbn [JRun]. split; [lia |].
+  exists 161, 6489; split; [exact E4 |].
+  cbn [JRun]. split; [lia |].
+  exists 485, 6329; split; [exact E5 |].
+  cbn [JRun]. split; [lia |].
+  exists 1457, 5845; split; [exact E6 |].
+  cbn [JRun]. split; [lia |].
+  exists 4373, 4389; split; [exact E7 |].
+  cbn [JRun]. split; [lia |].
+  exists 13121, 17; split; [exact E8 | exact I].
+Qed.
+
+(** The start of the counterexample is shallow: [1 <= 2*6561]. *)
+Lemma shallow_phase_eight_shallow : 1 <= 2 * 6561.
+Proof. lia. Qed.
+
+Print Assumptions le_three_half.
+Print Assumptions le_three_half_pred.
+Print Assumptions L_shallow_step.
+Print Assumptions jrun_odd_step.
+Print Assumptions jrun_odd.
+Print Assumptions jrun_eight.
+Print Assumptions J_phase_le_seven.
+Print Assumptions shallow_phase_eight.
+Print Assumptions shallow_phase_eight_shallow.
+

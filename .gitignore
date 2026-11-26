@@ -24,3 +24,6 @@ __pycache__/
 
 # Local-only Discord draft for the GlyphCalc BB proposal
 bb-variants/GlyphCalc/DISCORD_POST.md
+
+.lake/
+.tmp_rwst/

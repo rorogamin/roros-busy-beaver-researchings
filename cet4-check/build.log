@@ -1,0 +1,14 @@
+⚠ [1/7] Replayed CET4.Basic
+warning: .\.\.\.\CET4\Basic.lean:54:10: unused variable `M`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3/7] Replayed CET4.NoneHalt
+warning: .\.\.\.\CET4\NoneHalt.lean:32:8: declaration uses 'sorry'
+info: .\.\.\.\CET4\NoneHalt.lean:36:0: 'CET4.none_halt' depends on axioms: [sorryAx]
+⚠ [4/7] Replayed CET4.Mixed
+warning: .\.\.\.\CET4\Mixed.lean:32:8: declaration uses 'sorry'
+info: .\.\.\.\CET4\Mixed.lean:35:0: 'CET4.mixed_ladder' depends on axioms: [sorryAx]
+⚠ [5/7] Built CET4.AllHalt
+warning: .\.\.\.\CET4\AllHalt.lean:32:8: declaration uses 'sorry'
+info: .\.\.\.\CET4\AllHalt.lean:36:0: 'CET4.all_halt' depends on axioms: [sorryAx]
+✔ [6/7] Built CET4
+Build completed successfully.

@@ -1,0 +1,216 @@
+== fw1_5_s7: core=fw1_5 states=7 symbols=5 cap=200000 budget=3e9
+mode=maxcfg core=fw1_5 states=7 symbols=5 cap=200000 budget=3000000000 fill=0
+landmark: 0^inf 3^(2m+1) 2^k A> 1^n 4^p 0^inf
+start: blank tape 0^inf A> 0^inf
+  ... steps=16777216 nodes=13
+  ... steps=33554432 nodes=15
+  ... steps=50331648 nodes=18
+  ... steps=67108864 nodes=19
+  ... steps=83886080 nodes=22
+
+New Best Config Found:  0^inf 3^(1) 2^1 A> 1^3 4^1 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG2RE_1LF0LD4LG1RB1LD
+  ... steps=100663296 nodes=23
+
+New Best Config Found:  0^inf 3^(1) 2^3 A> 1^2 4^1 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG0RD4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG2RE_1LF0LD4LG1RB2LD
+  ... steps=117440512 nodes=25
+
+New Best Config Found:  0^inf 3^(1) 2^31 A> 1^2 4^1 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RD4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG2RE_1LF0LD4LG1RB2LD
+  ... steps=134217728 nodes=26
+  ... steps=150994944 nodes=27
+  ... steps=167772160 nodes=29
+  ... steps=184549376 nodes=30
+
+New Best Config Found:  0^inf 3^(1) 2^32 A> 1^2 4^1 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2LA4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG2RE_1LF0LD4LG1RB4RE
+  ... steps=201326592 nodes=32
+  ... steps=218103808 nodes=34
+  ... steps=234881024 nodes=36
+  ... steps=251658240 nodes=37
+  ... steps=268435456 nodes=39
+  ... steps=285212672 nodes=40
+  ... steps=301989888 nodes=42
+  ... steps=318767104 nodes=44
+  ... steps=335544320 nodes=45
+  ... steps=352321536 nodes=49
+  ... steps=369098752 nodes=50
+  ... steps=385875968 nodes=52
+  ... steps=402653184 nodes=53
+  ... steps=419430400 nodes=54
+  ... steps=436207616 nodes=55
+  ... steps=452984832 nodes=58
+  ... steps=469762048 nodes=59
+  ... steps=486539264 nodes=61
+  ... steps=503316480 nodes=64
+  ... steps=520093696 nodes=65
+  ... steps=536870912 nodes=66
+  ... steps=553648128 nodes=68
+  ... steps=570425344 nodes=69
+  ... steps=587202560 nodes=71
+  ... steps=603979776 nodes=72
+  ... steps=620756992 nodes=73
+  ... steps=637534208 nodes=76
+  ... steps=654311424 nodes=77
+  ... steps=671088640 nodes=78
+  ... steps=687865856 nodes=80
+
+New Best Config Found:  0^inf 3^(1) 2^1 A> 1^2 4^2 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4LG_1LF0LD4LA1RB1LD
+  ... steps=704643072 nodes=81
+  ... steps=721420288 nodes=83
+  ... steps=738197504 nodes=85
+  ... steps=754974720 nodes=87
+  ... steps=771751936 nodes=88
+  ... steps=788529152 nodes=89
+  ... steps=805306368 nodes=91
+  ... steps=822083584 nodes=92
+  ... steps=838860800 nodes=94
+  ... steps=855638016 nodes=95
+  ... steps=872415232 nodes=96
+  ... steps=889192448 nodes=98
+  ... steps=905969664 nodes=100
+  ... steps=922746880 nodes=101
+  ... steps=939524096 nodes=102
+  ... steps=956301312 nodes=104
+  ... steps=973078528 nodes=105
+  ... steps=989855744 nodes=107
+  ... steps=1006632960 nodes=109
+  ... steps=1023410176 nodes=110
+  ... steps=1040187392 nodes=111
+  ... steps=1056964608 nodes=112
+  ... steps=1073741824 nodes=114
+  ... steps=1090519040 nodes=116
+  ... steps=1107296256 nodes=118
+  ... steps=1124073472 nodes=119
+  ... steps=1140850688 nodes=120
+  ... steps=1157627904 nodes=122
+  ... steps=1174405120 nodes=123
+  ... steps=1191182336 nodes=124
+  ... steps=1207959552 nodes=127
+  ... steps=1224736768 nodes=129
+  ... steps=1241513984 nodes=130
+  ... steps=1258291200 nodes=132
+  ... steps=1275068416 nodes=133
+  ... steps=1291845632 nodes=135
+  ... steps=1308622848 nodes=136
+  ... steps=1325400064 nodes=139
+  ... steps=1342177280 nodes=141
+  ... steps=1358954496 nodes=143
+  ... steps=1375731712 nodes=144
+  ... steps=1392508928 nodes=145
+  ... steps=1409286144 nodes=147
+  ... steps=1426063360 nodes=148
+  ... steps=1442840576 nodes=151
+  ... steps=1459617792 nodes=152
+  ... steps=1476395008 nodes=154
+  ... steps=1493172224 nodes=156
+  ... steps=1509949440 nodes=158
+  ... steps=1526726656 nodes=159
+  ... steps=1543503872 nodes=161
+  ... steps=1560281088 nodes=162
+  ... steps=1577058304 nodes=164
+  ... steps=1593835520 nodes=165
+  ... steps=1610612736 nodes=166
+  ... steps=1627389952 nodes=169
+  ... steps=1644167168 nodes=170
+  ... steps=1660944384 nodes=172
+  ... steps=1677721600 nodes=173
+  ... steps=1694498816 nodes=175
+  ... steps=1711276032 nodes=176
+  ... steps=1728053248 nodes=177
+  ... steps=1744830464 nodes=179
+  ... steps=1761607680 nodes=181
+  ... steps=1778384896 nodes=182
+  ... steps=1795162112 nodes=184
+  ... steps=1811939328 nodes=185
+  ... steps=1828716544 nodes=187
+  ... steps=1845493760 nodes=189
+  ... steps=1862270976 nodes=190
+  ... steps=1879048192 nodes=192
+  ... steps=1895825408 nodes=194
+  ... steps=1912602624 nodes=195
+  ... steps=1929379840 nodes=197
+  ... steps=1946157056 nodes=198
+  ... steps=1962934272 nodes=199
+  ... steps=1979711488 nodes=201
+  ... steps=1996488704 nodes=203
+  ... steps=2013265920 nodes=204
+  ... steps=2030043136 nodes=206
+  ... steps=2046820352 nodes=208
+  ... steps=2063597568 nodes=209
+  ... steps=2080374784 nodes=210
+  ... steps=2097152000 nodes=212
+  ... steps=2113929216 nodes=213
+  ... steps=2130706432 nodes=214
+  ... steps=2147483648 nodes=217
+  ... steps=2164260864 nodes=219
+  ... steps=2181038080 nodes=221
+  ... steps=2197815296 nodes=222
+  ... steps=2214592512 nodes=224
+  ... steps=2231369728 nodes=227
+  ... steps=2248146944 nodes=230
+
+New Best Config Found:  0^inf 3^(1) 2^29 A> 1^2 4^2 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG0LE4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4LG_1LF0LD4LA1RB4RE
+  ... steps=2264924160 nodes=231
+  ... steps=2281701376 nodes=232
+  ... steps=2298478592 nodes=234
+  ... steps=2315255808 nodes=235
+  ... steps=2332033024 nodes=238
+  ... steps=2348810240 nodes=240
+  ... steps=2365587456 nodes=241
+  ... steps=2382364672 nodes=242
+  ... steps=2399141888 nodes=245
+  ... steps=2415919104 nodes=246
+  ... steps=2432696320 nodes=248
+
+New Best Config Found:  0^inf 3^(1) 2^30 A> 1^2 4^2 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4RA_1LF0LD0LG1RB0LA
+  ... steps=2449473536 nodes=250
+
+New Best Config Found:  0^inf 3^(1) 2^30 A> 1^2 4^3 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4RA_1LF0LD0LG1RB4LA
+  ... steps=2466250752 nodes=251
+  ... steps=2483027968 nodes=253
+  ... steps=2499805184 nodes=254
+  ... steps=2516582400 nodes=255
+  ... steps=2533359616 nodes=256
+  ... steps=2550136832 nodes=257
+
+New Best Config Found:  0^inf 3^(1) 2^30 A> 1^2 4^4 0^inf
+          0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4RA_1LF0LD4LG1RB4LA
+  ... steps=2566914048 nodes=259
+  ... steps=2583691264 nodes=261
+  ... steps=2600468480 nodes=262
+  ... steps=2617245696 nodes=265
+  ... steps=2634022912 nodes=266
+  ... steps=2650800128 nodes=268
+  ... steps=2667577344 nodes=270
+  ... steps=2684354560 nodes=272
+  ... steps=2701131776 nodes=274
+  ... steps=2717908992 nodes=275
+  ... steps=2734686208 nodes=278
+  ... steps=2751463424 nodes=279
+  ... steps=2768240640 nodes=280
+  ... steps=2785017856 nodes=281
+  ... steps=2801795072 nodes=284
+  ... steps=2818572288 nodes=286
+  ... steps=2835349504 nodes=288
+  ... steps=2852126720 nodes=290
+  ... steps=2868903936 nodes=292
+  ... steps=2885681152 nodes=293
+  ... steps=2902458368 nodes=295
+  ... steps=2919235584 nodes=296
+  ... steps=2936012800 nodes=298
+  ... steps=2952790016 nodes=299
+  ... steps=2969567232 nodes=300
+  ... steps=2986344448 nodes=302
+
+---- done ----
+steps=3003121664 nodes=303 abort=1
+best 0^inf 3^(1) 2^30 A> 1^2 4^4 0^inf
+  step=2623 states_used=7
+  0LB3LB4LC2RA4LB_0LE3RB1LC2RA4RD_3RB1LB3LC2RC4LC_1RZ2RB4RG2RF4LE_0LC1LG2RC0LF3LC_1LC1RG2RG0LG4RA_1LF0LD4LG1RB4LA
+== fw1_5_s7 DONE

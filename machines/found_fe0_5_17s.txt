@@ -1,0 +1,121 @@
+## found_fe0_5_17s: 17-state, 5-symbol machine found by bbsearch on the fe0_5 core.
+##
+## PROVENANCE: .tmp_bbsearch/bbsearch.exe --core fe0_5 --states 17 --symbols 5
+## --cap 200000 --budget 1e10, blank tape 0^inf A> 0^inf.
+## Full log: .tmp_bbsearch/sweep/fe0_s17_b1e10.log (the run took 9.4e9 steps of
+## search before it printed this machine; it is the last "New Best" of that run).
+##
+## SEARCH CLAIM: landmark  1^2 B> 2^3   reached at step 155, 17 states used.
+## CHECKED HERE (tools/found_machine.py, an independent re-simulation): from the
+## blank tape this machine is at
+##     0^inf 1^2 B> 2^3 0^inf          at step 155,
+## and it is still running after 300000 steps.
+##
+## WHY THIS MATTERS: fe0_5 is the f_{eps_0} core of loader3229's core list; its
+## documented input configuration is  0^inf 1^m B> 2^n 0^inf  with n > m, and the
+## core table halts only after the eps_0-sized descent.  This machine is a
+## blank-tape boot into exactly that input (m=2, n=3), i.e. a concrete candidate
+## for a machine whose halting time is at the f_{eps_0} level.
+##
+## HALTING: exactly one halt cell, B/0 = 1RZ (the core's own).  Halting is
+## VERIFIED: from the core's (1,3) input 1^1 B> 2^3 this machine halts at
+## exactly 15981 steps with 39 ones on the tape.  Kernel-checked in Rocq:
+## rocq/Fe0Boot.v, theorems found_halt_13, found_halt_13_stops, found_score_13
+## (all "Closed under the global context").
+## From the blank tape it boots into the core's n=3 input 1^2 B> 2^3 at step
+## 155 (Fe0Boot.boot_155), and from there it has NOT halted in 30000000 steps.
+##
+## WHAT IS *NOT* CLAIMED HERE: the level.  The search only shows the boot reaches
+## the core input; the statement "this machine halts in f_{eps_0}(n) steps" is a
+## claim about the core's descent, and per AGENTS.md / FGH_MACHINES_PLAN.md it
+## must be proved symbolically in Rocq (no vm_compute verdicts, no simulation
+## argument).  That proof is not in this repo yet.
+##
+## Format: <state> <read> <write> <dir> <next>, states 0..16, start state 0,
+## blank tape, symbols 0..4; H = halt.
+##
+0 0 1 L 2
+0 1 0 L 9
+0 2 0 R 5
+0 3 0 R 3
+0 4 1 L 16
+1 0 1 R H
+1 1 1 R 1
+1 2 2 L 2
+1 3 0 L 2
+1 4 0 L 0
+2 0 0 L 8
+2 1 4 R 2
+2 2 2 R 2
+2 3 3 R 2
+2 4 2 R 2
+3 0 1 L 4
+3 1 1 R 3
+3 2 2 R 3
+3 3 3 R 3
+3 4 0 R 0
+4 0 3 L 0
+4 1 1 L 4
+4 2 2 L 4
+4 3 3 L 4
+4 4 4 R 5
+5 0 0 L 6
+5 1 1 R 5
+5 2 2 R 5
+5 3 3 R 5
+5 4 2 L 3
+6 0 0 R 8
+6 1 0 L 7
+6 2 1 L 6
+6 3 3 R 8
+6 4 4 R 3
+7 0 2 L 0
+7 1 1 L 7
+7 2 2 L 7
+7 3 3 L 7
+7 4 2 L 16
+8 0 3 R 13
+8 1 1 L 9
+8 2 0 L 0
+8 3 0 L 8
+8 4 0 L 5
+9 0 2 R 14
+9 1 0 L 4
+9 2 2 L 9
+9 3 3 L 9
+9 4 0 R 3
+10 0 2 L 11
+10 1 0 L 1
+10 2 2 R 10
+10 3 3 R 10
+10 4 4 R 10
+11 0 3 R 14
+11 1 2 R 14
+11 2 2 L 11
+11 3 3 L 11
+11 4 4 L 11
+12 0 3 L 11
+12 1 0 L 1
+12 2 2 R 12
+12 3 3 R 12
+12 4 4 R 12
+13 0 4 L 9
+13 1 1 L 13
+13 2 2 L 13
+13 3 3 L 13
+13 4 1 L 14
+14 0 1 R 1
+14 1 4 R 15
+14 2 1 R 10
+14 3 0 R 12
+14 4 4 L 13
+15 0 4 L 9
+15 1 1 R 15
+15 2 2 R 15
+15 3 3 R 15
+15 4 0 R 15
+16 0 1 R 1
+16 1 1 L 16
+16 2 2 L 16
+16 3 3 L 16
+16 4 1 L 16

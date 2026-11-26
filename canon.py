@@ -15,6 +15,7 @@ import sys
 import bb
 
 ROOT = Path(__file__).resolve().parent
+LISTS = Path("C:/Users/Rowan/Documents/BBHoldouts")   # holdout list files live here
 
 
 def transform_trans(tm: bb.TM, sp, yp, mirror):
@@ -105,13 +106,13 @@ def main():
         specs = load_machines(ROOT / "Bb2x5_informalLast37.txt")
         out["37"] = report("BB(2,5) formal 37", specs)
     if which in ("all", "60"):
-        specs = load_machines(ROOT / "BB2x5_Rocq_holdouts_60.txt", strip_id=True)
+        specs = load_machines(LISTS / "BB2x5_Rocq_holdouts_60.txt", strip_id=True)
         out["60"] = report("BB(2,5) formal 60", specs)
     if which in ("all", "608"):
-        specs = load_machines(ROOT / "BB6_holdouts_608.txt", strip_id=True)
+        specs = load_machines(LISTS / "BB6_holdouts_608.txt", strip_id=True)
         out["608"] = report("BB(6) 608", specs)
     if which in ("all", "3x3"):
-        specs = load_machines(ROOT / "3x3_holdout_6.txt")
+        specs = load_machines(LISTS / "3x3_holdout_6.txt")
         out["3x3"] = report("BB(3,3) 6", specs)
 
     # Cross-list: are the 37 classes contained in the 60 classes?

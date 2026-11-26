@@ -21,6 +21,15 @@ for f in TM.v Bounds.v Core.v Machine1.v Machine2.v Machine3.v Machine4.v Machin
   fi
 done
 
+echo "== Rocq table vs machine file"
+# Fe0Boot.v's table must be exactly machines/found_fe0_5_17s.txt; this is the
+# link between the proved table and the simulated machine.
+python ../tools/check_boot_table.py ../machines/found_fe0_5_17s.txt Fe0Boot.v
+if [ $? -ne 0 ]; then
+  echo "!! Fe0Boot.v does not match machines/found_fe0_5_17s.txt"
+  fail=1
+fi
+
 echo "== axiom audit"
 # count occurrences, not lines: a file whose last Print Assumptions has no
 # trailing newline merges with the next file's first line

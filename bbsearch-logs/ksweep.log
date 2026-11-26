@@ -1,0 +1,12 @@
+k=4 NOHALT steps=2000000000 state=C pos=-43122 cells=44704 tapeHead=1
+k=1 NOHALT steps=2000000000 state=C pos=-42860 cells=44720 tapeHead=3
+k=6 NOHALT steps=2000000000 state=B pos=-43108 cells=44708 tapeHead=2
+k=3 NOHALT steps=2000000000 state=C pos=-42670 cells=44729 tapeHead=1
+k=9 NOHALT steps=2000000000 state=B pos=-43076 cells=44714 tapeHead=2
+k=2 NOHALT steps=2000000000 state=C pos=-39232 cells=48596 tapeHead=3
+k=0 NOHALT steps=2000000000 state=B pos=-43102 cells=44702 tapeHead=2
+k=10 NOHALT steps=2000000000 state=C pos=-43062 cells=44716 tapeHead=1
+k=7 NOHALT steps=2000000000 state=C pos=-43098 cells=44710 tapeHead=1
+k=8 NOHALT steps=2000000000 state=B pos=-43088 cells=44712 tapeHead=2
+k=5 NOHALT steps=2000000000 state=B pos=-43116 cells=44706 tapeHead=2
+SWEEP DONE

@@ -1,0 +1,15 @@
+Q0 _ _ l Q1
+Q0 1 2 r Q1
+Q0 2 _ r Q2
+Q1 _ 1 r Q3
+Q1 1 _ l Q2
+Q1 2 1 r Q4
+Q2 _ 2 l Q4
+Q2 1 1 l Q1
+Q2 2 2 l Q4
+Q3 _ 1 l Q3
+Q3 1 1 r Q1
+Q3 2 1 r Q3
+Q4 _ 2 r Q4
+Q4 1 _ l Q0
+Q4 2 _ l Q1
