@@ -2160,3 +2160,27 @@ Audits: Lean exit 0 (all 5 theorems report "does not depend on any axioms"); Roc
 alternation bound (`PhaseLedger` / `HalvingTimeBound`) and a kernel-checked wall certificate
 remain open; no halting or non-halting conclusion; no required phrase applies.
 
+## 38. Exact 2-adic / mod-23 obstruction for all pure `L²J` cycles + multi-chain `H` preimage tree (2026-11-27)
+
+New paired modules `cryptids_a6/BusyBeaver/BB33/M_758_NoCycle.lean` and `rocq/BB33_758_NoCycle.v`
+prove an exact number-theoretic upper bound on consecutive repetitions of any pure `L²J` cycle
+`w in {bbj, bcj, cbj, ccj}`:
+
+    D(a, c) := 4*a - 15*c,   Cw := (1363, 1759, 2173, 2569)
+    cycle_shifted_eq    : 4 * (23 * D(a', c') - Cw) = 27 * (23 * D(a, c) - Cw)
+    shifted_ne_zero     : 23 * D(a, c) - Cw <> 0   (since Cw mod 23 in {6, 11, 16})
+    no_long_pure_L2J    : iterCycle w m a0 c0 am cm -> 4^m <= |23 * D(a0, c0) - Cw|
+    no_infinite_pure_L2J: ~(forall m, exists am cm, iterCycle w m a0 c0 am cm)
+
+Since `gcd(4^m, 27^m) = 1`, `4^m | (23 * D(a0, c0) - Cw) <> 0`, yielding the logarithmic bound
+`m <= log_4 |23 * D(a0, c0) - Cw|` (at most `236` cycles at `H`) purely from 2-adic divisibility
+without Archimedean bounds on `(am, cm)`.
+
+In parallel, `M_758_HaltH.lean` and `BB33_758_HaltH.v` were extended with zero-axiom certificates
+for all 4 direct 1-chain preimages (`H - 613, H - 615, H - 1228, H - 1230 -> H`) and 4 two-chain
+preimages (`H - 1832, H - 1834 -> H - 613`; `H - 1837, H - 1839 -> H - 1228`).
+
+Audits: Lean exit 0 (`[propext, Quot.sound]` / axiom-free, no `sorry`, no `Classical.choice`);
+Rocq exit 0 (all `Print Assumptions` `Closed under the global context`).  `PhaseLedger` and
+`HalvingTimeBound` remain open; no halting or non-halting conclusion; no required phrase applies.
+

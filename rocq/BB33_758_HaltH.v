@@ -69,8 +69,32 @@ Proof. vm_compute. reflexivity. Qed.
 Lemma H_minus_2_alive_306 : isSomeN (runN 306 1 (H_val - 2)) = true.
 Proof. vm_compute. reflexivity. Qed.
 
+(** Direct 1-chain preimages of [H]. *)
+Lemma H_pre1_613 : runN 300 1 (H_val - 613) = Some (1, H_val).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre1_615 : runN 300 1 (H_val - 615) = Some (1, H_val).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre1_1228 : runN 597 1 (H_val - 1228) = Some (1, H_val).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre1_1230 : runN 597 1 (H_val - 1230) = Some (1, H_val).
+Proof. vm_compute. reflexivity. Qed.
+
+(** Direct 2-chain preimages merging into [H - 613] and [H - 1228]. *)
+Lemma H_pre2_1832 : runN 594 1 (H_val - 1832) = Some (1, H_val - 613).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre2_1834 : runN 594 1 (H_val - 1834) = Some (1, H_val - 613).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre2_1837 : runN 300 1 (H_val - 1837) = Some (1, H_val - 1228).
+Proof. vm_compute. reflexivity. Qed.
+Lemma H_pre2_1839 : runN 300 1 (H_val - 1839) = Some (1, H_val - 1228).
+Proof. vm_compute. reflexivity. Qed.
+
 Print Assumptions H_exact_div.
 Print Assumptions H_halts_307.
 Print Assumptions H_alive_306.
 Print Assumptions H_minus_2_halts_307.
 Print Assumptions H_minus_2_alive_306.
+Print Assumptions H_pre1_613.
+Print Assumptions H_pre1_1228.
+Print Assumptions H_pre2_1832.
+Print Assumptions H_pre2_1837.
