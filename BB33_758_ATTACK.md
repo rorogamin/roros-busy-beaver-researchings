@@ -2123,3 +2123,23 @@ no `Classical.choice`); Rocq `BB33_758_OddC.v` exit 0 (all 13 `Print Assumptions
 `PhaseLedger`, `HalvingTimeBound`, and `T <= 10000` remain open; no halting or non-halting
 conclusion; no required phrase applies.
 
+## 36. Infinite Cantor-gap theorem: every surviving odd-`a` `L`-phase has even length `>= 2` (2026-11-27)
+
+Section 17 of `M_758_TBudget.lean` and `rocq/BB33_758_OddC.v` prove:
+
+    hrun_L_one_step_parity   : 2 <= c0 -> c % 2 = 1 -> c < a -> hrun c0 1 a c = Some (a', c') ->
+                               c' % 2 = 1 /\ (a' + a) % 2 = 1 /\ Q a c + 5 <= Q a' c'
+    hrun_L_run_parity        : 2 <= c0 -> c % 2 = 1 -> (forall i < n, in L) ->
+                               hrun c0 n a c = Some (an, cn) ->
+                               cn % 2 = 1 /\ (an + a + n) % 2 = 0 /\ Q a c + 5*n <= Q an cn
+    L_phase_even_of_survives : 2 <= c0 -> c % 2 = 1 -> a % 2 = 1 -> c < a ->
+                               (forall i < n, in L) -> hrun c0 n a c = Some (an, cn) ->
+                               an <= cn -> HSurvives c0 (n + 1) a c ->
+                               n % 2 = 0 /\ 2 <= n /\ Q a c + 10 <= Q an cn
+
+This formally kills all infinitely many odd-length `L`-bands `((2/3)^(2r+2), (2/3)^(2r+1))`
+of the expanding Cantor-set ratio walk in one inductive theorem.  Audits: Lean exit 0
+(`[propext, Quot.sound]`, no `sorry`, no `Classical.choice`); Rocq `BB33_758_OddC.v` exit 0
+(all 18 `Print Assumptions` closed).  `PhaseLedger`, `HalvingTimeBound`, and `T <= 10000`
+remain open; no halting or non-halting conclusion; no required phrase applies.
+

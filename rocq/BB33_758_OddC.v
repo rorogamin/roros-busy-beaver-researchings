@@ -341,3 +341,170 @@ Print Assumptions hrun_two_odd_a_mod3_wide.
 Print Assumptions surviving_L_start_ratio.
 Print Assumptions surviving_L_next_in_L.
 Print Assumptions surviving_J_exit_ratio.
+
+(* ------------------------------------------------------------------ *)
+(** ** Pass 31: Infinite Cantor-gap theorem: every surviving odd-[a] [L]-phase has even length [>= 2] *)
+(* ------------------------------------------------------------------ *)
+
+Lemma sub_odd_parity_flip (a c k : nat) (hle : c + k <= a) (hc : c mod 2 = 1)
+    (hk : k = 2 \/ k = 4) : (a - c - k + a) mod 2 = 1.
+Proof.
+  pose proof (Nat.div_mod a 2 (ltac:(lia))) as Hda.
+  pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+  set (qa := a / 2) in *. set (qc := c / 2) in *.
+  set (ra := a mod 2) in *.
+  assert (Hra : ra = 0 \/ ra = 1).
+  { subst ra. pose proof (Nat.mod_upper_bound a 2 (ltac:(lia))). lia. }
+  destruct hk as [hk | hk]; subst k.
+  - replace (a - c - 2 + a) with (2 * (2 * qa + ra - qc - 2) + 1) by lia.
+    rewrite Nat.add_comm, Nat.mul_comm, Nat.Div0.mod_add. reflexivity.
+  - replace (a - c - 4 + a) with (2 * (2 * qa + ra - qc - 3) + 1) by lia.
+    rewrite Nat.add_comm, Nat.mul_comm, Nat.Div0.mod_add. reflexivity.
+Qed.
+
+Lemma Q_b_ge5 (a c q : nat) (hc1 : 1 <= c) (hge2 : c + 2 <= a) (hq : 2 * q = c - 1) :
+    Q a c + 5 <= Q (a - c - 2) (3 * q + 5).
+Proof. unfold Q. lia. Qed.
+
+Lemma Q_c_ge5 (a c q : nat) (hc1 : 1 <= c) (hge4 : c + 4 <= a) (hq : 2 * q = c - 1) :
+    Q a c + 5 <= Q (a - c - 4) (3 * q + 8).
+Proof. unfold Q. lia. Qed.
+
+(** A surviving [L]-step of [hrun] (with [2 <= c0] and [c] odd) cannot take rule [e],
+    preserves [c mod 2 = 1], flips [a mod 2], and raises [Q] by at least 5. *)
+Lemma hrun_L_one_step_parity (c0 a c a' c' : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (hlt : c < a)
+    (h1 : hrun c0 1 a c = Some (a', c')) :
+    c' mod 2 = 1 /\ (a' + a) mod 2 = 1 /\ Q a c + 5 <= Q a' c'.
+Proof.
+  assert (E1c : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
+  assert (Hc1 : 1 <= c).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))). set (qc := c / 2) in *. lia. }
+  assert (Hdiv : 2 * ((c - 1) / 2) = c - 1).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+    pose proof (Nat.div_mod (c - 1) 2 (ltac:(lia))) as Hd1.
+    assert (Hm1 : (c - 1) mod 2 = 0).
+    { set (qc := c / 2) in *. replace (c - 1) with (2 * qc) by lia.
+      rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    set (q1 := (c - 1) / 2) in *. lia. }
+  assert (hm : c mod 4 = 1 \/ c mod 4 = 3) by (exact (odd_c_mod4 c hc)).
+  destruct hm as [hmod1 | hmod3].
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact hmod1).
+    destruct (Nat.eqb a (c + 1)) eqn:E6.
+    + cbn [hrun] in h1. rewrite (step_f a c E1c E4 E5 E6) in h1. discriminate h1.
+    + assert (Hge2 : c + 2 <= a) by (apply Nat.eqb_neq in E6; lia).
+      change (match step a c with | Halt => None | Next a1 c1 => if orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0) then None else Some (a1, c1) end = Some (a', c')) in h1.
+      rewrite (step_b a c E1c E4 E5 E6) in h1. cbv iota beta in h1.
+      destruct (orb (Nat.eqb (a - c - 2) 1) (Nat.leb (2 * (3 * ((c - 1) / 2) + 5)) c0)); [discriminate h1|].
+      inversion h1; subst.
+      split; [exact (step_b_odd_c c hmod1) |].
+      split; [exact (sub_odd_parity_flip a c 2 Hge2 hc (or_introl eq_refl)) |].
+      exact (Q_b_ge5 a c ((c - 1) / 2) Hc1 Hge2 Hdiv).
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+    destruct (Nat.eqb a (c + 1)) eqn:E6.
+    + cbn [hrun] in h1. rewrite (step_halt1 a c E1c E4 E5 E6) in h1. discriminate h1.
+    + destruct (Nat.eqb a (c + 2)) eqn:E7.
+      * cbn [hrun] in h1. rewrite (step_e a c E1c E4 E5 E6 E7) in h1.
+        assert (Ele : Nat.leb (2 * 1) c0 = true) by (apply Nat.leb_le; lia).
+        rewrite Ele, Bool.orb_true_r in h1. discriminate h1.
+      * destruct (Nat.eqb a (c + 3)) eqn:E8.
+        -- cbn [hrun] in h1. rewrite (step_halt3 a c E1c E4 E5 E6 E7 E8) in h1. discriminate h1.
+        -- assert (Hge4 : c + 4 <= a).
+           { apply Nat.eqb_neq in E6. apply Nat.eqb_neq in E7. apply Nat.eqb_neq in E8. lia. }
+           change (match step a c with | Halt => None | Next a1 c1 => if orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0) then None else Some (a1, c1) end = Some (a', c')) in h1.
+           rewrite (step_c a c E1c E4 E5 E6 E7 E8) in h1. cbv iota beta in h1.
+           destruct (orb (Nat.eqb (a - c - 4) 1) (Nat.leb (2 * (3 * ((c - 1) / 2) + 8)) c0)); [discriminate h1|].
+           inversion h1; subst.
+           split; [exact (step_c_odd_c c hmod3) |].
+           split; [exact (sub_odd_parity_flip a c 4 Hge4 hc (or_intror eq_refl)) |].
+           exact (Q_c_ge5 a c ((c - 1) / 2) Hc1 Hge4 Hdiv).
+Qed.
+
+Lemma parity_step_combine (an a1 a n : nat)
+    (hflip : (a1 + a) mod 2 = 1) (hpar : (an + a1 + n) mod 2 = 0) :
+    (an + a + S n) mod 2 = 0.
+Proof.
+  pose proof (Nat.div_mod (a1 + a) 2 (ltac:(lia))) as H1.
+  pose proof (Nat.div_mod (an + a1 + n) 2 (ltac:(lia))) as H2.
+  set (q1 := (a1 + a) / 2) in *. set (q2 := (an + a1 + n) / 2) in *.
+  replace (an + a + S n) with (2 * (q1 + q2 + 1 - a1)) by lia.
+  rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity.
+Qed.
+
+(** Inductive parity and [Q]-growth invariant across an [n]-step [L]-phase of [hrun]. *)
+Lemma hrun_L_run_parity (c0 : nat) (hc0 : 2 <= c0) :
+    forall (n a c an cn : nat),
+      c mod 2 = 1 ->
+      (forall i, i < n -> snd (st c0 i a c) < fst (st c0 i a c)) ->
+      hrun c0 n a c = Some (an, cn) ->
+      cn mod 2 = 1 /\ (an + a + n) mod 2 = 0 /\ Q a c + 5 * n <= Q an cn.
+Proof.
+  induction n as [|n ih]; intros a c an cn hc hL hr.
+  - cbn [hrun] in hr. inversion hr; subst.
+    split; [exact hc |].
+    split.
+    + replace (an + an + 0) with (2 * an) by lia.
+      rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity.
+    + lia.
+  - assert (hlt0 : c < a) by (exact (hL 0 (ltac:(lia)))).
+    cbn [hrun] in hr.
+    destruct (step a c) as [|a1 c1] eqn:hs; [discriminate hr|].
+    destruct (orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0)) eqn:Estop; [discriminate hr|].
+    assert (hr1 : hrun c0 1 a c = Some (a1, c1)).
+    { cbn [hrun]. rewrite hs, Estop. reflexivity. }
+    destruct (hrun_L_one_step_parity c0 a c a1 c1 hc0 hc hlt0 hr1) as [hc1 [hflip hQ1]].
+    assert (hL' : forall i, i < n -> snd (st c0 i a1 c1) < fst (st c0 i a1 c1)).
+    { intros i hi.
+      pose proof (hL (S i) (ltac:(lia))) as hsi.
+      cbn [st] in hsi. rewrite hs, Estop in hsi. exact hsi. }
+    destruct (ih a1 c1 an cn hc1 hL' hr) as [hcn [hpar hQn]].
+    split; [exact hcn |].
+    split; [exact (parity_step_combine an a1 a n hflip hpar) |].
+    lia.
+Qed.
+
+(** **Infinite Cantor-gap theorem**: every surviving [L]-phase starting at odd [a], odd [c]
+    that closes into [J] ([an <= cn]) must have **even length [n >= 2]** and raise [Q] by
+    at least 10. *)
+Lemma L_phase_even_of_survives (c0 n a c an cn : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (ha : a mod 2 = 1) (hlt : c < a)
+    (hL : forall i, i < n -> snd (st c0 i a c) < fst (st c0 i a c))
+    (hrn : hrun c0 n a c = Some (an, cn))
+    (hclose : an <= cn)
+    (hsurv : HSurvives c0 (n + 1) a c) :
+    n mod 2 = 0 /\ 2 <= n /\ Q a c + 10 <= Q an cn.
+Proof.
+  destruct (hrun_L_run_parity c0 hc0 n a c an cn hc hL hrn) as [hcn [hpar hQn]].
+  assert (hne0 : n <> 0).
+  { intro h0. subst n. cbn [hrun] in hrn. inversion hrn; subst. lia. }
+  assert (heven : n mod 2 = 0).
+  { pose proof (Nat.mod_upper_bound n 2 (ltac:(lia))) as Hmn.
+    destruct (Nat.eq_dec (n mod 2) 0) as [he | hne]; [exact he |].
+    assert (hodd : n mod 2 = 1) by lia.
+    assert (han_even : an mod 2 = 0).
+    { pose proof (Nat.div_mod an 2 (ltac:(lia))).
+      pose proof (Nat.div_mod a 2 (ltac:(lia))).
+      pose proof (Nat.div_mod n 2 (ltac:(lia))).
+      pose proof (Nat.div_mod (an + a + n) 2 (ltac:(lia))).
+      pose proof (Nat.mod_upper_bound an 2 (ltac:(lia))).
+      set (qan := an / 2) in *. set (qa := a / 2) in *.
+      set (qn := n / 2) in *. set (qs := (an + a + n) / 2) in *. lia. }
+    assert (hdie : hrun c0 1 an cn = None)
+      by (exact (hrun_stops_of_even_le c0 an cn hclose han_even)).
+    destruct hsurv as [af [cf hrf]].
+    rewrite (hrun_add c0 n 1 a c an cn hrn) in hrf.
+    rewrite hdie in hrf. discriminate hrf. }
+  assert (hge2 : 2 <= n).
+  { pose proof (Nat.div_mod n 2 (ltac:(lia))). set (qn := n / 2) in *. lia. }
+  split; [exact heven | split; [exact hge2 | lia]].
+Qed.
+
+Print Assumptions sub_odd_parity_flip.
+Print Assumptions hrun_L_one_step_parity.
+Print Assumptions parity_step_combine.
+Print Assumptions hrun_L_run_parity.
+Print Assumptions L_phase_even_of_survives.
