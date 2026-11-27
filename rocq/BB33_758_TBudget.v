@@ -3396,3 +3396,101 @@ Print Assumptions g4_succ_not.
 Print Assumptions g4cnt_le.
 Print Assumptions g4cnt_le_half.
 Print Assumptions g4_charge.
+
+(* ------------------------------------------------------------------ *)
+(** ** 14. Odd-[c] gap sharpening: gaps 4 and 6 die; gap 5 forces [c mod 4 = 1] *)
+(* ------------------------------------------------------------------ *)
+
+(** When [c mod 4 = 3], [a = c + 5] steps by rule [c] to [a' = 1], stopping [hrun] immediately. *)
+Lemma hrun_two_gap_five_mod3 (c0 c : nat) (h4 : c mod 4 = 3) :
+    hrun c0 2 (c + 5) c = None.
+Proof.
+  assert (E1c : Nat.leb (c + 5) c = false) by (apply Nat.leb_gt; lia).
+  assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+    by (apply orb_mod4_false; lia).
+  assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+  assert (E6 : Nat.eqb (c + 5) (c + 1) = false) by (apply Nat.eqb_neq; lia).
+  assert (E7 : Nat.eqb (c + 5) (c + 2) = false) by (apply Nat.eqb_neq; lia).
+  assert (E8 : Nat.eqb (c + 5) (c + 3) = false) by (apply Nat.eqb_neq; lia).
+  assert (hstep : step (c + 5) c = Next 1 (3 * ((c - 1) / 2) + 8)).
+  { rewrite (step_c (c + 5) c E1c E4 E5 E6 E7 E8).
+    replace ((c + 5) - c - 4) with 1 by lia. reflexivity. }
+  exact (hrun_two_stop c0 (c + 5) c 1 (3 * ((c - 1) / 2) + 8) hstep (or_introl eq_refl)).
+Qed.
+
+(** When [c] is odd, [a = c + 6] dies in at most two steps: rule [b] lands on [a' = 4]
+    and rule [c] on [a' = 2], both even in the [J] region. *)
+Lemma hrun_two_gap_six_odd (c0 c : nat) (h4 : c mod 4 = 1 \/ c mod 4 = 3) :
+    hrun c0 2 (c + 6) c = None.
+Proof.
+  assert (E1c : Nat.leb (c + 6) c = false) by (apply Nat.leb_gt; lia).
+  destruct h4 as [h4 | h4].
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact h4).
+    assert (E6 : Nat.eqb (c + 6) (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    assert (hstep : step (c + 6) c = Next 4 (3 * ((c - 1) / 2) + 5)).
+    { rewrite (step_b (c + 6) c E1c E4 E5 E6).
+      replace ((c + 6) - c - 2) with 4 by lia. reflexivity. }
+    apply (hrun_two_step c0 (c + 6) c 4 (3 * ((c - 1) / 2) + 5) hstep).
+    apply (hrun_stops_of_even_le c0 4 (3 * ((c - 1) / 2) + 5)); [set (q := (c - 1) / 2); lia | reflexivity].
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+    assert (E6 : Nat.eqb (c + 6) (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    assert (E7 : Nat.eqb (c + 6) (c + 2) = false) by (apply Nat.eqb_neq; lia).
+    assert (E8 : Nat.eqb (c + 6) (c + 3) = false) by (apply Nat.eqb_neq; lia).
+    assert (hstep : step (c + 6) c = Next 2 (3 * ((c - 1) / 2) + 8)).
+    { rewrite (step_c (c + 6) c E1c E4 E5 E6 E7 E8).
+      replace ((c + 6) - c - 4) with 2 by lia. reflexivity. }
+    apply (hrun_two_step c0 (c + 6) c 2 (3 * ((c - 1) / 2) + 8) hstep).
+    apply (hrun_stops_of_even_le c0 2 (3 * ((c - 1) / 2) + 8)); [set (q := (c - 1) / 2); lia | reflexivity].
+Qed.
+
+(** **On odd [c], the surviving [L]-gap is at least five.** *)
+Lemma L_gap_ge_five_odd (c0 a c : nat) (hc0 : 2 <= c0) (hlt : c < a)
+    (hodd : c mod 4 = 1 \/ c mod 4 = 3) (hs : HSurvives c0 2 a c) :
+    c + 5 <= a.
+Proof.
+  assert (h4 : c + 4 <= a) by (apply (L_gap_ge_four c0 a c hc0 hlt hs)).
+  destruct (Nat.eq_dec a (c + 4)) as [heq | hne].
+  - subst a. destruct hs as [a' [c' hr]].
+    rewrite (hrun_two_gap_four_odd c0 c hodd) in hr. discriminate hr.
+  - lia.
+Qed.
+
+(** **Sharp odd-[c] gap classification**: a surviving odd-[c] [L] state either has gap [>= 7],
+    or has [a = c + 5], [c mod 4 = 1], and steps onto [(3, 3 * ((c - 1) / 2) + 5)]. *)
+Lemma L_gap_five_or_ge_seven_odd (c0 a c : nat) (hc0 : 2 <= c0) (hlt : c < a)
+    (hodd : c mod 4 = 1 \/ c mod 4 = 3) (hs : HSurvives c0 2 a c) :
+    (a = c + 5 /\ c mod 4 = 1 /\ st c0 1 a c = (3, 3 * ((c - 1) / 2) + 5)) \/ c + 7 <= a.
+Proof.
+  assert (h5 : c + 5 <= a) by (apply (L_gap_ge_five_odd c0 a c hc0 hlt hodd hs)).
+  destruct (Nat.eq_dec a (c + 5)) as [ha5 | hne5].
+  - subst a. destruct hs as [a' [c' hr]].
+    destruct hodd as [h1 | h3].
+    + left. split; [reflexivity | split; [exact h1 |]].
+      assert (E1c : Nat.leb (c + 5) c = false) by (apply Nat.leb_gt; lia).
+      assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+        by (apply orb_mod4_false; lia).
+      assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact h1).
+      assert (E6 : Nat.eqb (c + 5) (c + 1) = false) by (apply Nat.eqb_neq; lia).
+      assert (hsp : step (c + 5) c = Next 3 (3 * ((c - 1) / 2) + 5)).
+      { rewrite (step_b (c + 5) c E1c E4 E5 E6).
+        replace ((c + 5) - c - 2) with 3 by lia. reflexivity. }
+      assert (Egen : forall (b : bool) (p : nat * nat),
+          ((if b then p else p) = p) /\ (p = (if b then p else p)))
+        by (intros b p; destruct b; split; reflexivity).
+      cbn [st]. rewrite hsp. cbn.
+      first [ apply (proj1 (Egen _ _)) | apply (proj2 (Egen _ _)) ].
+    + rewrite (hrun_two_gap_five_mod3 c0 c h3) in hr. discriminate hr.
+  - destruct (Nat.eq_dec a (c + 6)) as [ha6 | hne6].
+    + subst a. destruct hs as [a' [c' hr]].
+      rewrite (hrun_two_gap_six_odd c0 c hodd) in hr. discriminate hr.
+    + right. lia.
+Qed.
+
+Print Assumptions hrun_two_gap_five_mod3.
+Print Assumptions hrun_two_gap_six_odd.
+Print Assumptions L_gap_ge_five_odd.
+Print Assumptions L_gap_five_or_ge_seven_odd.

@@ -2055,3 +2055,30 @@ Lean exit 0 (`g4_step_le_three`, `g4_succ_not`, `g4cnt_le`, `g4cnt_le_half`, `g4
 `Axioms:`.  `PhaseLedger`, `HalvingTimeBound`, `T <= 10000` remain open.  No halting or
 non-halting conclusion; no required phrase applies.
 
+## 33. Odd-`c` gap sharpening: gaps 4 and 6 die, gap 5 pinned to `c % 4 = 1` (2026-11-27)
+
+Section 14 in both `M_758_TBudget.lean` and `BB33_758_TBudget.v` sharpens the Diophantine
+bottleneck on odd-`c` orbits (all reachable post-`j` states have `c` odd since rules `a` and
+`g` are unreachable):
+
+    hrun_two_gap_five_mod3     : c % 4 = 3 -> hrun c0 2 (c + 5) c = none
+    hrun_two_gap_six_odd       : c % 4 = 1 \/ c % 4 = 3 -> hrun c0 2 (c + 6) c = none
+    L_gap_ge_five_odd          : 2 <= c0 -> c < a -> (c % 4 = 1 \/ c % 4 = 3) ->
+                                 HSurvives c0 2 a c -> c + 5 <= a
+    L_gap_five_or_ge_seven_odd : 2 <= c0 -> c < a -> (c % 4 = 1 \/ c % 4 = 3) ->
+                                 HSurvives c0 2 a c ->
+                                 (a = c + 5 /\ c % 4 = 1 /\ st c0 1 a c = (3, 3*((c-1)/2)+5))
+                                 \/ c + 7 <= a
+
+In parallel, we tested two non-local angles:
+1. **Exact affine cycle-skipping forward acceleration** from `c = 1,059,491,543,272,883`:
+   skips `254,074,710,616` chains (`bcjjch`, `dc = 80`) in `0.01s` to `1,079,817,520,122,241`,
+   then hits the `bcjjj...` L-phase chaotic zone (`n_L ~ 60`, `2^{n_L} > c`, no short period).
+2. **Expanding-map periodic-ray analysis** in `s = 2c/(a+2c)`: exact drift `s* * dQ / 2` is
+   non-integral for all short surviving cycles (`bbj..bbbbjj`), and adversarial shadowing at
+   `k = 292` around `s* = 8/23` and `32/227` dies by `T = 558` and `623`.
+
+Audits: Lean exit 0 (`[propext, Quot.sound]`, no `sorry`, no `Classical.choice`); Rocq exit 0
+(all `Print Assumptions` `Closed under the global context`).  `PhaseLedger`, `HalvingTimeBound`,
+and `T <= 10000` remain open; no halting or non-halting conclusion; no required phrase applies.
+
