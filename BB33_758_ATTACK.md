@@ -2143,3 +2143,20 @@ of the expanding Cantor-set ratio walk in one inductive theorem.  Audits: Lean e
 (all 18 `Print Assumptions` closed).  `PhaseLedger`, `HalvingTimeBound`, and `T <= 10000`
 remain open; no halting or non-halting conclusion; no required phrase applies.
 
+## 37. Zero-axiom kernel-checked halting certificates for `A(1, H)` and `A(1, H - 2)` (2026-11-27)
+
+New paired modules `cryptids_a6/BusyBeaver/BB33/M_758_HaltH.lean` and `rocq/BB33_758_HaltH.v`
+discharge premise (3) (`F(H) = bot`) of `halts_of_no_overshoot` directly over the exact 463-bit
+halting value `H = (3^307 - 8282708212) / 13959275` (and its twin `H - 2`):
+
+    H_exact_div         : (3^307 - 8282708212) % 13959275 = 0
+    H_halts_307         : run 307 (1, H) = none
+    H_alive_306         : isSome (run 306 (1, H)) = true
+    H_minus_2_halts_307 : run 307 (1, H - 2) = none
+    H_minus_2_alive_306 : isSome (run 306 (1, H - 2)) = true
+
+Audits: Lean exit 0 (all 5 theorems report "does not depend on any axioms"); Rocq exit 0
+(all 5 `Print Assumptions` report `Closed under the global context`).  The Collatz-like
+alternation bound (`PhaseLedger` / `HalvingTimeBound`) and a kernel-checked wall certificate
+remain open; no halting or non-halting conclusion; no required phrase applies.
+
