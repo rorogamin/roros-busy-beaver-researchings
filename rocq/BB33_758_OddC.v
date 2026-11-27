@@ -1,0 +1,204 @@
+From Stdlib Require Import Arith Lia.
+From Top Require Import BB33_758_TBudget.
+
+(* ------------------------------------------------------------------ *)
+(** ** Pass 29: Odd-[c] invariance along [hrun], shallow odd-[a] kill band, and [g4cnt = 0] *)
+(* ------------------------------------------------------------------ *)
+
+Lemma odd_c_mod4 (c : nat) (hc : c mod 2 = 1) : c mod 4 = 1 \/ c mod 4 = 3.
+Proof.
+  pose proof (Nat.div_mod c 4 (ltac:(lia))) as Hd4.
+  assert (hm : c mod 4 = 0 \/ c mod 4 = 1 \/ c mod 4 = 2 \/ c mod 4 = 3).
+  { pose proof (Nat.mod_upper_bound c 4 (ltac:(lia))). lia. }
+  set (q := c / 4) in *.
+  destruct hm as [h0 | [h1 | [h2 | h3]]].
+  - exfalso.
+    assert (He : c mod 2 = 0).
+    { replace c with (2 * (2 * q)) by lia. rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    lia.
+  - left. exact h1.
+  - exfalso.
+    assert (He : c mod 2 = 0).
+    { replace c with (2 * (2 * q + 1)) by lia. rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    lia.
+  - right. exact h3.
+Qed.
+
+Lemma step_b_odd_c (c : nat) (h1 : c mod 4 = 1) : (3 * ((c - 1) / 2) + 5) mod 2 = 1.
+Proof.
+  pose proof (half_mod2_of_mod4_one c h1) as hq.
+  set (q := (c - 1) / 2) in *.
+  exact (three_mul_add5_odd q hq).
+Qed.
+
+Lemma step_c_odd_c (c : nat) (h3 : c mod 4 = 3) : (3 * ((c - 1) / 2) + 8) mod 2 = 1.
+Proof.
+  pose proof (half_mod2_of_mod4_three c h3) as hq.
+  set (q := (c - 1) / 2) in *.
+  exact (three_mul_add8_odd q hq).
+Qed.
+
+Lemma sub_odd_odd_add1 (a c : nat) (hle : a <= c) (ha : a mod 2 = 1) (hc : c mod 2 = 1) :
+    (c - a + 1) mod 2 = 1.
+Proof.
+  pose proof (Nat.div_mod a 2 (ltac:(lia))) as Hda.
+  pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+  set (qa := a / 2) in *. set (qc := c / 2) in *.
+  replace (c - a + 1) with (2 * (qc - qa) + 1) by lia.
+  rewrite Nat.add_comm, Nat.mul_comm, Nat.Div0.mod_add. reflexivity.
+Qed.
+
+(** Every non-stopping step of [hrun] preserves [c mod 2 = 1]. *)
+Lemma step_odd_c (a c a' c' : nat) (hc : c mod 2 = 1)
+    (hs : step a c = Next a' c') (ha1 : a' <> 1) : c' mod 2 = 1.
+Proof.
+  destruct (Nat.leb a c) eqn:E1.
+  - assert (hle : a <= c) by (apply Nat.leb_le; exact E1).
+    destruct (Nat.eqb (a mod 2) 0) eqn:E2.
+    + assert (E3 : Nat.eqb (c mod 2) 0 = false) by (apply Nat.eqb_neq; lia).
+      rewrite (step_h a c E1 E2 E3) in hs. inversion hs; subst.
+      exfalso. apply ha1. reflexivity.
+    + assert (ha1m : a mod 2 = 1).
+      { pose proof (Nat.mod_upper_bound a 2 (ltac:(lia))).
+        apply Nat.eqb_neq in E2. lia. }
+      assert (E3 : Nat.eqb (c mod 2) 0 = false) by (apply Nat.eqb_neq; lia).
+      rewrite (step_j a c E1 E2 E3) in hs. inversion hs; subst.
+      exact (sub_odd_odd_add1 a c hle ha1m hc).
+  - assert (hm : c mod 4 = 1 \/ c mod 4 = 3) by (exact (odd_c_mod4 c hc)).
+    destruct hm as [h1 | h3].
+    + assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+        by (apply orb_mod4_false; lia).
+      assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact h1).
+      destruct (Nat.eqb a (c + 1)) eqn:E6.
+      * rewrite (step_f a c E1 E4 E5 E6) in hs. discriminate hs.
+      * rewrite (step_b a c E1 E4 E5 E6) in hs. inversion hs; subst.
+        exact (step_b_odd_c c h1).
+    + assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+        by (apply orb_mod4_false; lia).
+      assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+      destruct (Nat.eqb a (c + 1)) eqn:E6.
+      * rewrite (step_halt1 a c E1 E4 E5 E6) in hs. discriminate hs.
+      * destruct (Nat.eqb a (c + 2)) eqn:E7.
+        -- rewrite (step_e a c E1 E4 E5 E6 E7) in hs. inversion hs; subst. reflexivity.
+        -- destruct (Nat.eqb a (c + 3)) eqn:E8.
+           ++ rewrite (step_halt3 a c E1 E4 E5 E6 E7 E8) in hs. discriminate hs.
+           ++ rewrite (step_c a c E1 E4 E5 E6 E7 E8) in hs. inversion hs; subst.
+              exact (step_c_odd_c c h3).
+Qed.
+
+(** **[c] stays odd throughout any halving run started at odd [c].** *)
+Lemma hrun_odd_c (c0 : nat) : forall (n a c a' c' : nat),
+    c mod 2 = 1 -> hrun c0 n a c = Some (a', c') -> c' mod 2 = 1.
+Proof.
+  induction n as [|n ih]; intros a c a' c' hc hr.
+  - cbn [hrun] in hr. inversion hr; subst. exact hc.
+  - cbn [hrun] in hr. destruct (step a c) as [|a1 c1] eqn:hs.
+    + discriminate hr.
+    + destruct (orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0)) eqn:Estop.
+      * discriminate hr.
+      * assert (ha1 : a1 <> 1).
+        { intro heq. subst a1. rewrite Nat.eqb_refl in Estop. discriminate Estop. }
+        assert (hc1 : c1 mod 2 = 1) by (exact (step_odd_c a c a1 c1 hc hs ha1)).
+        exact (ih a1 c1 a' c' hc1 hr).
+Qed.
+
+Lemma sub_odd_odd_even (a c k : nat) (hle : c + k <= a) (ha : a mod 2 = 1) (hc : c mod 2 = 1)
+    (hk : k = 2 \/ k = 4) : (a - c - k) mod 2 = 0.
+Proof.
+  pose proof (Nat.div_mod a 2 (ltac:(lia))) as Hda.
+  pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+  set (qa := a / 2) in *. set (qc := c / 2) in *.
+  destruct hk as [hk | hk]; subst k.
+  - replace (a - c - 2) with (2 * (qa - qc - 1)) by lia.
+    rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity.
+  - replace (a - c - 4) with (2 * (qa - qc - 2)) by lia.
+    rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity.
+Qed.
+
+(** **Shallow odd-[a] kill band**: on odd [c], every odd [a] with [c < a] and
+    [2 * a <= 5 * c + 11] dies in at most two halving steps. *)
+Lemma hrun_two_odd_a_shallow (c0 a c : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (ha : a mod 2 = 1) (hlt : c < a) (hub : 2 * a <= 5 * c + 11) :
+    hrun c0 2 a c = None.
+Proof.
+  assert (E1c : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
+  assert (hm : c mod 4 = 1 \/ c mod 4 = 3) by (exact (odd_c_mod4 c hc)).
+  pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+  assert (Hdiv : 2 * ((c - 1) / 2) = c - 1).
+  { pose proof (Nat.div_mod (c - 1) 2 (ltac:(lia))) as Hd1.
+    assert (Hm1 : (c - 1) mod 2 = 0).
+    { set (qc := c / 2) in *. replace (c - 1) with (2 * qc) by lia.
+      rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    set (q1 := (c - 1) / 2) in *. lia. }
+  assert (Hge2 : c + 2 <= a).
+  { set (qc := c / 2) in *. pose proof (Nat.div_mod a 2 (ltac:(lia))). set (qa := a / 2) in *. lia. }
+  destruct hm as [h1 | h3].
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact h1).
+    assert (E6 : Nat.eqb a (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    assert (hstep : step a c = Next (a - c - 2) (3 * ((c - 1) / 2) + 5))
+      by (exact (step_b a c E1c E4 E5 E6)).
+    apply (hrun_two_step c0 a c (a - c - 2) (3 * ((c - 1) / 2) + 5) hstep).
+    apply (hrun_stops_of_even_le c0 (a - c - 2) (3 * ((c - 1) / 2) + 5)).
+    + set (q := (c - 1) / 2) in *. lia.
+    + exact (sub_odd_odd_even a c 2 Hge2 ha hc (or_introl eq_refl)).
+  - assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+    assert (E6 : Nat.eqb a (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    destruct (Nat.eq_dec a (c + 2)) as [ha2 | hne2].
+    + assert (E7 : Nat.eqb a (c + 2) = true) by (apply Nat.eqb_eq; exact ha2).
+      assert (hstep : step a c = Next (3 * c + 8) 1)
+        by (exact (step_e a c E1c E4 E5 E6 E7)).
+      assert (hstop2 : 2 * 1 <= c0) by lia.
+      exact (hrun_two_stop c0 a c (3 * c + 8) 1 hstep (or_intror hstop2)).
+    + assert (Hge4 : c + 4 <= a).
+      { set (qc := c / 2) in *. pose proof (Nat.div_mod a 2 (ltac:(lia))). set (qa := a / 2) in *. lia. }
+      assert (E7 : Nat.eqb a (c + 2) = false) by (apply Nat.eqb_neq; exact hne2).
+      assert (E8 : Nat.eqb a (c + 3) = false) by (apply Nat.eqb_neq; lia).
+      assert (hstep : step a c = Next (a - c - 4) (3 * ((c - 1) / 2) + 8))
+        by (exact (step_c a c E1c E4 E5 E6 E7 E8)).
+      apply (hrun_two_step c0 a c (a - c - 4) (3 * ((c - 1) / 2) + 8) hstep).
+      apply (hrun_stops_of_even_le c0 (a - c - 4) (3 * ((c - 1) / 2) + 8)).
+      * set (q := (c - 1) / 2) in *. lia.
+      * exact (sub_odd_odd_even a c 4 Hge4 ha hc (or_intror eq_refl)).
+Qed.
+
+(** **Zero gap-4 collapses on every surviving odd-[c] halving run.** *)
+Lemma g4cnt_zero_of_odd_survives (c0 : nat) : forall (n a c : nat),
+    c mod 2 = 1 -> HSurvives c0 (S n) a c -> g4cnt c0 n a c = 0.
+Proof.
+  induction n as [|n ih]; intros a c hc hs.
+  - reflexivity.
+  - destruct hs as [af [cf hr]].
+    assert (hnotg4 : ~ g4 a c).
+    { intro hg. destruct hg as [_ hgap]. subst a.
+      assert (h2 : hrun c0 2 (c + 4) c = None)
+        by (exact (hrun_two_gap_four_odd c0 c (odd_c_mod4 c hc))).
+      cbn [hrun] in hr, h2.
+      destruct (step (c + 4) c) as [|a1 c1]; [discriminate hr|].
+      destruct (orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0)); [discriminate hr|].
+      destruct (step a1 c1) as [|a2 c2]; [discriminate hr|].
+      destruct (orb (Nat.eqb a2 1) (Nat.leb (2 * c2) c0)); [discriminate hr | discriminate h2]. }
+    cbn [hrun] in hr.
+    destruct (step a c) as [|a1 c1] eqn:hstep; [discriminate hr|].
+    destruct (orb (Nat.eqb a1 1) (Nat.leb (2 * c1) c0)) eqn:Estop; [discriminate hr|].
+    assert (ha1 : a1 <> 1).
+    { intro heq. subst a1. rewrite Nat.eqb_refl in Estop. discriminate Estop. }
+    assert (hc1 : c1 mod 2 = 1) by (exact (step_odd_c a c a1 c1 hc hstep ha1)).
+    assert (hrec : g4cnt c0 n a1 c1 = 0) by (exact (ih a1 c1 hc1 (ex_intro _ af (ex_intro _ cf hr)))).
+    assert (Eg4 : g4b a c = false).
+    { destruct (g4b a c) eqn:E; [exfalso; apply hnotg4; apply (proj1 (g4b_spec a c)); exact E | reflexivity]. }
+    cbn [g4cnt]. rewrite hstep, Estop, Eg4, hrec. reflexivity.
+Qed.
+
+Print Assumptions odd_c_mod4.
+Print Assumptions step_b_odd_c.
+Print Assumptions step_c_odd_c.
+Print Assumptions sub_odd_odd_add1.
+Print Assumptions step_odd_c.
+Print Assumptions hrun_odd_c.
+Print Assumptions sub_odd_odd_even.
+Print Assumptions hrun_two_odd_a_shallow.
+Print Assumptions g4cnt_zero_of_odd_survives.

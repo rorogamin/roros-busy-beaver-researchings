@@ -2082,3 +2082,21 @@ Audits: Lean exit 0 (`[propext, Quot.sound]`, no `sorry`, no `Classical.choice`)
 (all `Print Assumptions` `Closed under the global context`).  `PhaseLedger`, `HalvingTimeBound`,
 and `T <= 10000` remain open; no halting or non-halting conclusion; no required phrase applies.
 
+## 34. Odd-`c` invariance along `hrun`, shallow odd-`a` kill band, and `g4cnt = 0` (2026-11-27)
+
+Section 15 of `M_758_TBudget.lean` and companion Rocq module `rocq/BB33_758_OddC.v` (importing
+`BB33_758_TBudget`, compiles in 2s) prove:
+
+    step_odd_c                : c % 2 = 1 -> step a c = Next a' c' -> a' <> 1 -> c' % 2 = 1
+    hrun_odd_c                : c % 2 = 1 -> hrun c0 n a c = Some (a', c') -> c' % 2 = 1
+    hrun_two_odd_a_shallow    : 2 <= c0 -> c % 2 = 1 -> a % 2 = 1 -> c < a ->
+                                2 * a <= 5 * c + 11 -> hrun c0 2 a c = None
+    g4cnt_zero_of_odd_survives: c % 2 = 1 -> HSurvives c0 (n + 1) a c -> g4cnt c0 n a c = 0
+
+`hrun_two_odd_a_shallow` subsumes every even gap `a = c + 2m` up to `2.5 * c + 5` on odd-`c`
+orbits, and `g4cnt_zero_of_odd_survives` replaces Pass 27's `2 * g4cnt <= n + 1` with exact
+`0` on all reachable odd-`c` runs.  Audits: Lean exit 0 (`[propext, Quot.sound]`, no `sorry`,
+no `Classical.choice`); Rocq `BB33_758_OddC.v` exit 0 (all 9 `Print Assumptions` closed).
+`PhaseLedger`, `HalvingTimeBound`, and `T <= 10000` remain open; no halting or non-halting
+conclusion; no required phrase applies.
+
