@@ -124,6 +124,8 @@ Proof.
   assert (E1c : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
   assert (hm : c mod 4 = 1 \/ c mod 4 = 3) by (exact (odd_c_mod4 c hc)).
   pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+  assert (Hc1 : 1 <= c).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))). set (qc := c / 2) in *. lia. }
   assert (Hdiv : 2 * ((c - 1) / 2) = c - 1).
   { pose proof (Nat.div_mod (c - 1) 2 (ltac:(lia))) as Hd1.
     assert (Hm1 : (c - 1) mod 2 = 0).
@@ -202,3 +204,140 @@ Print Assumptions hrun_odd_c.
 Print Assumptions sub_odd_odd_even.
 Print Assumptions hrun_two_odd_a_shallow.
 Print Assumptions g4cnt_zero_of_odd_survives.
+
+(* ------------------------------------------------------------------ *)
+(** ** Pass 30: Surviving [L]-phase length [>= 2] and the [5/11] [J]-exit ratio *)
+(* ------------------------------------------------------------------ *)
+
+(** When [c mod 4 = 3] and [a] is odd, the two-step kill band extends to [2 * a <= 5 * c + 21]. *)
+Lemma hrun_two_odd_a_mod3_wide (c0 a c : nat) (hc0 : 2 <= c0)
+    (h3 : c mod 4 = 3) (ha : a mod 2 = 1) (hlt : c < a) (hub : 2 * a <= 5 * c + 21) :
+    hrun c0 2 a c = None.
+Proof.
+  assert (hc : c mod 2 = 1).
+  { pose proof (Nat.div_mod c 4 (ltac:(lia))). set (q4 := c / 4) in *.
+    replace c with (2 * (2 * q4 + 1) + 1) by lia.
+    rewrite Nat.add_comm, Nat.mul_comm, Nat.Div0.mod_add. reflexivity. }
+  assert (E1c : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
+  assert (Hc1 : 1 <= c).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))). set (qc := c / 2) in *. lia. }
+  assert (Hdiv : 2 * ((c - 1) / 2) = c - 1).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+    pose proof (Nat.div_mod (c - 1) 2 (ltac:(lia))) as Hd1.
+    assert (Hm1 : (c - 1) mod 2 = 0).
+    { set (qc := c / 2) in *. replace (c - 1) with (2 * qc) by lia.
+      rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    set (q1 := (c - 1) / 2) in *. lia. }
+  assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+    by (apply orb_mod4_false; lia).
+  assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+  assert (E6 : Nat.eqb a (c + 1) = false).
+  { apply Nat.eqb_neq. pose proof (Nat.div_mod a 2 (ltac:(lia))). pose proof (Nat.div_mod c 2 (ltac:(lia))).
+    set (qa := a / 2) in *. set (qc := c / 2) in *. lia. }
+  destruct (Nat.eq_dec a (c + 2)) as [ha2 | hne2].
+  - assert (E7 : Nat.eqb a (c + 2) = true) by (apply Nat.eqb_eq; exact ha2).
+    assert (hstep : step a c = Next (3 * c + 8) 1) by (exact (step_e a c E1c E4 E5 E6 E7)).
+    assert (hstop2 : 2 * 1 <= c0) by lia.
+    exact (hrun_two_stop c0 a c (3 * c + 8) 1 hstep (or_intror hstop2)).
+  - assert (Hge4 : c + 4 <= a).
+    { pose proof (Nat.div_mod a 2 (ltac:(lia))). pose proof (Nat.div_mod c 2 (ltac:(lia))).
+      set (qa := a / 2) in *. set (qc := c / 2) in *. lia. }
+    assert (E7 : Nat.eqb a (c + 2) = false) by (apply Nat.eqb_neq; exact hne2).
+    assert (E8 : Nat.eqb a (c + 3) = false) by (apply Nat.eqb_neq; lia).
+    assert (hstep : step a c = Next (a - c - 4) (3 * ((c - 1) / 2) + 8))
+      by (exact (step_c a c E1c E4 E5 E6 E7 E8)).
+    apply (hrun_two_step c0 a c (a - c - 4) (3 * ((c - 1) / 2) + 8) hstep).
+    apply (hrun_stops_of_even_le c0 (a - c - 4) (3 * ((c - 1) / 2) + 8)).
+    + set (q := (c - 1) / 2) in *. lia.
+    + exact (sub_odd_odd_even a c 4 Hge4 ha hc (or_intror eq_refl)).
+Qed.
+
+(** **Every surviving odd-[a], odd-[c] [L]-start satisfies [5 * c + 13 <= 2 * a].** *)
+Lemma surviving_L_start_ratio (c0 a c : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (ha : a mod 2 = 1) (hlt : c < a) (hs : HSurvives c0 2 a c) :
+    5 * c + 13 <= 2 * a.
+Proof.
+  destruct hs as [af [cf hr]].
+  destruct (Nat.leb (2 * a) (5 * c + 11)) eqn:E.
+  - apply Nat.leb_le in E.
+    rewrite (hrun_two_odd_a_shallow c0 a c hc0 hc ha hlt E) in hr. discriminate hr.
+  - apply Nat.leb_gt in E.
+    pose proof (Nat.div_mod c 2 (ltac:(lia))). set (qc := c / 2) in *. lia.
+Qed.
+
+(** **Every surviving odd-[a], odd-[c] [L]-start stays in [L] after step 1** with even [a']
+    and odd [c'], forcing every surviving tail [L]-phase to have length at least 2. *)
+Lemma surviving_L_next_in_L (c0 a c : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (ha : a mod 2 = 1) (hlt : c < a) (hs : HSurvives c0 2 a c) :
+    exists a' c', step a c = Next a' c' /\ c' < a' /\ a' mod 2 = 0 /\ c' mod 2 = 1.
+Proof.
+  assert (hrat : 5 * c + 13 <= 2 * a) by (exact (surviving_L_start_ratio c0 a c hc0 hc ha hlt hs)).
+  assert (E1c : Nat.leb a c = false) by (apply Nat.leb_gt; lia).
+  assert (Hc1 : 1 <= c).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))). set (qc := c / 2) in *. lia. }
+  assert (Hdiv : 2 * ((c - 1) / 2) = c - 1).
+  { pose proof (Nat.div_mod c 2 (ltac:(lia))) as Hdc.
+    pose proof (Nat.div_mod (c - 1) 2 (ltac:(lia))) as Hd1.
+    assert (Hm1 : (c - 1) mod 2 = 0).
+    { set (qc := c / 2) in *. replace (c - 1) with (2 * qc) by lia.
+      rewrite Nat.mul_comm, Nat.Div0.mod_mul. reflexivity. }
+    set (q1 := (c - 1) / 2) in *. lia. }
+  assert (hm : c mod 4 = 1 \/ c mod 4 = 3) by (exact (odd_c_mod4 c hc)).
+  destruct hm as [h1 | h3].
+  - exists (a - c - 2), (3 * ((c - 1) / 2) + 5).
+    assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = true) by (apply Nat.eqb_eq; exact h1).
+    assert (E6 : Nat.eqb a (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    split; [exact (step_b a c E1c E4 E5 E6) |].
+    split; [set (q := (c - 1) / 2) in *; lia |].
+    split; [exact (sub_odd_odd_even a c 2 (ltac:(lia)) ha hc (or_introl eq_refl)) |].
+    exact (step_b_odd_c c h1).
+  - destruct hs as [af [cf hr]].
+    assert (hwide : 5 * c + 22 <= 2 * a).
+    { destruct (Nat.leb (2 * a) (5 * c + 21)) eqn:Ew.
+      - apply Nat.leb_le in Ew.
+        rewrite (hrun_two_odd_a_mod3_wide c0 a c hc0 h3 ha hlt Ew) in hr. discriminate hr.
+      - apply Nat.leb_gt in Ew. lia. }
+    exists (a - c - 4), (3 * ((c - 1) / 2) + 8).
+    assert (E4 : orb (Nat.eqb (c mod 4) 0) (Nat.eqb (c mod 4) 2) = false)
+      by (apply orb_mod4_false; lia).
+    assert (E5 : Nat.eqb (c mod 4) 1 = false) by (apply Nat.eqb_neq; lia).
+    assert (E6 : Nat.eqb a (c + 1) = false) by (apply Nat.eqb_neq; lia).
+    assert (E7 : Nat.eqb a (c + 2) = false) by (apply Nat.eqb_neq; lia).
+    assert (E8 : Nat.eqb a (c + 3) = false) by (apply Nat.eqb_neq; lia).
+    split; [exact (step_c a c E1c E4 E5 E6 E7 E8) |].
+    split; [set (q := (c - 1) / 2) in *; lia |].
+    split; [exact (sub_odd_odd_even a c 4 (ltac:(lia)) ha hc (or_intror eq_refl)) |].
+    exact (step_c_odd_c c h3).
+Qed.
+
+(** **Every surviving [J -> L] exit satisfies [5 * c + 14 <= 11 * a].** *)
+Lemma surviving_J_exit_ratio (c0 a c : nat) (hc0 : 2 <= c0)
+    (hc : c mod 2 = 1) (ha : a mod 2 = 1) (hle : a <= c)
+    (hexit : c - a + 1 < 3 * a + 2) (hs : HSurvives c0 3 a c) :
+    5 * c + 14 <= 11 * a.
+Proof.
+  destruct hs as [af [cf hr]].
+  assert (E1 : Nat.leb a c = true) by (apply Nat.leb_le; exact hle).
+  assert (E2 : Nat.eqb (a mod 2) 0 = false) by (apply Nat.eqb_neq; lia).
+  assert (E3 : Nat.eqb (c mod 2) 0 = false) by (apply Nat.eqb_neq; lia).
+  assert (hsp : step a c = Next (3 * a + 2) (c - a + 1)) by (exact (step_j a c E1 E2 E3)).
+  cbn [hrun] in hr. rewrite hsp in hr.
+  destruct (orb (Nat.eqb (3 * a + 2) 1) (Nat.leb (2 * (c - a + 1)) c0)) eqn:Estop.
+  - discriminate hr.
+  - assert (ha' : (3 * a + 2) mod 2 = 1).
+    { pose proof (Nat.div_mod a 2 (ltac:(lia))). set (qa := a / 2) in *.
+      replace (3 * a + 2) with (2 * (3 * qa + 2) + 1) by lia.
+      rewrite Nat.add_comm, Nat.mul_comm, Nat.Div0.mod_add. reflexivity. }
+    assert (hc' : (c - a + 1) mod 2 = 1) by (exact (sub_odd_odd_add1 a c hle ha hc)).
+    assert (hrat : 5 * (c - a + 1) + 13 <= 2 * (3 * a + 2))
+      by (exact (surviving_L_start_ratio c0 (3 * a + 2) (c - a + 1) hc0 hc' ha' hexit
+                  (ex_intro _ af (ex_intro _ cf hr)))).
+    lia.
+Qed.
+
+Print Assumptions hrun_two_odd_a_mod3_wide.
+Print Assumptions surviving_L_start_ratio.
+Print Assumptions surviving_L_next_in_L.
+Print Assumptions surviving_J_exit_ratio.

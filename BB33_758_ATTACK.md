@@ -2100,3 +2100,26 @@ no `Classical.choice`); Rocq `BB33_758_OddC.v` exit 0 (all 9 `Print Assumptions`
 `PhaseLedger`, `HalvingTimeBound`, and `T <= 10000` remain open; no halting or non-halting
 conclusion; no required phrase applies.
 
+## 35. Surviving `L`-phase length `>= 2` and the `5/11` `J`-exit ratio bound (2026-11-27)
+
+Section 16 of `M_758_TBudget.lean` and `rocq/BB33_758_OddC.v` prove:
+
+    hrun_two_odd_a_mod3_wide : 2 <= c0 -> c % 4 = 3 -> a % 2 = 1 -> c < a ->
+                               2 * a <= 5 * c + 21 -> hrun c0 2 a c = None
+    surviving_L_start_ratio  : 2 <= c0 -> c % 2 = 1 -> a % 2 = 1 -> c < a ->
+                               HSurvives c0 2 a c -> 5 * c + 13 <= 2 * a
+    surviving_L_next_in_L    : 2 <= c0 -> c % 2 = 1 -> a % 2 = 1 -> c < a ->
+                               HSurvives c0 2 a c ->
+                               exists a' c', step a c = Next a' c' /\ c' < a' /\
+                                             a' % 2 = 0 /\ c' % 2 = 1
+    surviving_J_exit_ratio   : 2 <= c0 -> c % 2 = 1 -> a % 2 = 1 -> a <= c ->
+                               c - a + 1 < 3 * a + 2 -> HSurvives c0 3 a c ->
+                               5 * c + 14 <= 11 * a
+
+This formally closes the first geometric cut of the Cantor-set ratio walk (`s < 4/9` at every
+surviving tail `L`-start, `a > (5/11) * c` at every surviving `J -> L` exit, and length `>= 2`
+for every surviving tail `L`-phase).  Audits: Lean exit 0 (`[propext, Quot.sound]`, no `sorry`,
+no `Classical.choice`); Rocq `BB33_758_OddC.v` exit 0 (all 13 `Print Assumptions` closed).
+`PhaseLedger`, `HalvingTimeBound`, and `T <= 10000` remain open; no halting or non-halting
+conclusion; no required phrase applies.
+
